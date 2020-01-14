@@ -5,18 +5,83 @@ import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
+import { AssessmentFormComponent } from './assessment-form/assessment-form.component';
+import { FormsGuidesComponent } from './forms-guides/forms-guides.component';
+import { DocumentsComponent } from './documents/documents.component';
+import { VisaComponent } from './visa/visa.component';
+import { FamilyComponent } from './family/family.component';
+import { ConsultantComponent } from './consultant/consultant.component';
+import { AddOnsComponent } from './add-ons/add-ons.component';
+import { CouponsComponent } from './coupons/coupons.component';
+import { FreeResourcesComponent } from './free-resources/free-resources.component';
+import { AdmissionComponent } from './admission/admission.component';
+import { AppoinmentComponent } from './appoinment/appoinment.component';
+import { BillingInvoiceComponent } from './billing-invoice/billing-invoice.component';
+
 
 const routes: Routes = [{
   path: '',
   component: PagesComponent,
   children: [
     {
-      path: 'dashboard',
+      path: 'iot-dashboard',
+      // component: DashboardComponent,
       component: ECommerceComponent,
     },
     {
-      path: 'iot-dashboard',
+      path: 'dashboard',
+      // component: ECommerceComponent,
       component: DashboardComponent,
+    },
+    {
+      path: 'assessment-form',
+      component: AssessmentFormComponent,
+      // loadChildren: () => import('./assessment-form/assessment-form.module')
+      //   .then(m => m.AssessmentFormModule),
+    },
+    {
+      path: 'forms-guides',
+      component: FormsGuidesComponent,
+    },
+    {
+      path: 'documents',
+      component: DocumentsComponent,
+    },
+    {
+      path: 'visa',
+      component: VisaComponent,
+    },
+    {
+      path: 'family',
+      component: FamilyComponent,
+    },
+    {
+      path: 'consultant',
+      component: ConsultantComponent,
+    },
+    {
+      path: 'add-ons',
+      component: AddOnsComponent,
+    },
+    {
+      path: 'coupons',
+      component: CouponsComponent,
+    },
+    {
+      path: 'free-resources',
+      component: FreeResourcesComponent,
+    },
+    {
+      path: 'admission',
+      component: AdmissionComponent,
+    },
+    {
+      path: 'appoinment',
+      component: AppoinmentComponent,
+    },
+    {
+      path: 'billin-invoice',
+      component: BillingInvoiceComponent,
     },
     {
       path: 'layout',
