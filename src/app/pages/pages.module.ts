@@ -20,17 +20,18 @@ import {
 const nebular = [
   ThemeModule,
   NbMenuModule,
-  NbCardModule,
-  NbInputModule,
-  NbSelectModule,
-  NbActionsModule,
-  NbButtonModule,
-  NbCheckboxModule,
-  NbDatepickerModule,
-  NbIconModule,
-  NbRadioModule,
-  NbUserModule
+  // NbCardModule,
+  // NbInputModule,
+  // NbSelectModule,
+  // NbActionsModule,
+  // NbButtonModule,
+  // NbCheckboxModule,
+  // NbDatepickerModule,
+  // NbIconModule,
+  // NbRadioModule,
+  // NbUserModule
 ];
+
 // importaciones del proyecto base de nebular
 import { PagesComponent } from './pages.component';
 import { DashboardModule } from './dashboard/dashboard.module';
@@ -50,8 +51,8 @@ import { FreeResourcesComponent } from './free-resources/free-resources.componen
 import { AdmissionComponent } from './admission/admission.component';
 import { AppoinmentComponent } from './appoinment/appoinment.component';
 import { BillingInvoiceComponent } from './billing-invoice/billing-invoice.component';
-// import { AssessmentFormModule } from './assessment-form/assessment-form.module';
-import { AssessmentFormComponent } from './assessment-form/assessment-form.component';
+import { AssessmentFormModule } from './assessment-form/assessment-form.module';
+// import { AssessmentFormComponent } from './assessment-form/assessment-form.component';
 
 
 @NgModule({
@@ -62,7 +63,7 @@ import { AssessmentFormComponent } from './assessment-form/assessment-form.compo
     // imports form nebular
     ...nebular,
     // modules to application
-    // AssessmentFormModule,
+    AssessmentFormModule,
     // others modules
     DashboardModule,
     ECommerceModule,
@@ -70,7 +71,7 @@ import { AssessmentFormComponent } from './assessment-form/assessment-form.compo
   ],
   declarations: [
     PagesComponent,
-    AssessmentFormComponent,
+    // AssessmentFormComponent,
     FormsGuidesComponent,
     DocumentsComponent,
     VisaComponent,

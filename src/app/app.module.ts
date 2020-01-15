@@ -21,6 +21,9 @@ import {
   NbWindowModule,
 } from '@nebular/theme';
 
+import { ServiceModule } from './services/service.module';
+
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -28,7 +31,7 @@ import {
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-
+    ServiceModule,
     ThemeModule.forRoot(),
 
     NbSidebarModule.forRoot(),

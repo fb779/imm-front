@@ -13,6 +13,20 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'edit-2-outline',
     // icon: { icon: 'angry', pack: 'fas' },
     link: '/pages/assessment-form',
+    children: [
+      {
+        title: 'Visitor',
+        link: '/pages/assessment-form/visit',
+      },
+      {
+        title: 'Student',
+        link: '/pages/assessment-form/study',
+      },
+      {
+        title: 'Work Permit',
+        link: '/pages/assessment-form/work-permit',
+      },
+    ]
 
   },
   {

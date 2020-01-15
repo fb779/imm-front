@@ -5,7 +5,7 @@ import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
-import { AssessmentFormComponent } from './assessment-form/assessment-form.component';
+// import { AssessmentFormComponent } from './assessment-form/assessment-form.component';
 import { FormsGuidesComponent } from './forms-guides/forms-guides.component';
 import { DocumentsComponent } from './documents/documents.component';
 import { VisaComponent } from './visa/visa.component';
@@ -35,9 +35,9 @@ const routes: Routes = [{
     },
     {
       path: 'assessment-form',
-      component: AssessmentFormComponent,
-      // loadChildren: () => import('./assessment-form/assessment-form.module')
-      //   .then(m => m.AssessmentFormModule),
+      // component: AssessmentFormComponent,
+      loadChildren: () => import('./assessment-form/assessment-form.module')
+        .then(m => m.AssessmentFormModule),
     },
     {
       path: 'forms-guides',

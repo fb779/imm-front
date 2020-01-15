@@ -1,3 +1,232 @@
-<p>
-  study works!
-</p>
+<form ngNativeValidate #f="ngForm">
+    <div>
+        <nb-card>
+            <nb-card-header>Student</nb-card-header>
+            <nb-card-body>
+                <nb-card accent="info">
+                    <nb-card-header>
+                        <label for="">Personal information</label>
+                    </nb-card-header>
+                    <nb-card-body>
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="">Title</label>
+                                    <nb-select name="title" fullWidth placeholder="Select Showcase">
+                                        <nb-option value="">Select...</nb-option>
+                                        <!-- <nb-option *ngFor="let item of optTitle" [value]='item.value'> {{ item.name }}</nb-option> -->
+                                    </nb-select>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="">Sex</label>
+                                    <nb-select name="sex" fullWidth placeholder="Select Showcase">
+                                        <nb-option value="">Select...</nb-option>
+                                        <!-- <nb-option *ngFor="let item of optSex" [value]='item.value'> {{ item.name }}</nb-option> -->
+                                    </nb-select>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="">First Name</label>
+                                    <input type="text" name="first-name" nbInput fullWidth placeholder="First Name">
+                                </div>
+
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="">Last Name</label>
+                                    <input type="text" name="last-name" nbInput fullWidth placeholder="Last Name">
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="">Email</label>
+                                    <input type="text" name="email" nbInput fullWidth placeholder="Email">
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="">Telephone</label>
+                                    <input type="text" name="telephone" nbInput fullWidth placeholder="Telephone">
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="">Country of Citizenship</label>
+                                    <nb-select name="country_citizenship" fullWidth placeholder="Select Showcase">
+                                        <nb-option value="">Select...</nb-option>
+                                        <!-- <nb-option *ngFor="let item of opt" [value]='item.value'> {{ item.name }}</nb-option> -->
+                                    </nb-select>
+
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="">Other Citizenship</label>
+                                    <nb-select name="other_citizenship" fullWidth placeholder="Select Showcase">
+                                        <nb-option value="">Select...</nb-option>
+                                        <!-- <nb-option *ngFor="let item of opt" [value]='item.value'> {{ item.name }}</nb-option> -->
+                                    </nb-select>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="">Country of Residence</label>
+                                    <nb-select name="country_residence" fullWidth placeholder="Select Showcase">
+                                        <nb-option value="">Select...</nb-option>
+                                        <!-- <nb-option *ngFor="let item of opt" [value]='item.value'> {{ item.name }}</nb-option> -->
+                                    </nb-select>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="">Status in Country of Residence</label>
+                                    <nb-select name="status_residence" fullWidth placeholder="Select Showcase">
+                                        <nb-option value="">Select...</nb-option>
+                                        <!-- <nb-option *ngFor="let item of opt" [value]='item.value'> {{ item.name }}</nb-option> -->
+                                    </nb-select>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="">Age</label>
+                                    <input name="age" type="number" nbInput fullWidth placeholder="Age">
+                                </div>
+                            </div>
+                        </div>
+                    </nb-card-body>
+                </nb-card>
+
+                <nb-card accent="info">
+                    <nb-card-body>
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+                                <div class="form-group">
+                                    <label for="">Destination in Canada</label>
+                                    <nb-select name="destiny" fullWidth placeholder="Select Showcase">
+                                        <nb-option value="">Select...</nb-option>
+                                        <!-- <nb-option *ngFor="let item of selectDestiny" [value]='item.value'> {{ item.name }}</nb-option> -->
+                                    </nb-select>
+                                </div>
+                            </div>
+                        </div>
+
+                    </nb-card-body>
+                </nb-card>
+
+                <nb-card accent="info">
+                    <nb-card-body>
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="">Marital Status</label>
+                                    <nb-select name="marital_status" fullWidth placeholder="Select Showcase">
+                                        <nb-option value="">Select...</nb-option>
+                                        <!-- <nb-option *ngFor="let item of opt" [value]='item.value'> {{ item.name }}</nb-option> -->
+                                    </nb-select>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="">Intended  Level of Education?</label>
+                                    <input name="number_children" type="number" nbInput fullWidth placeholder="Number of dependent children">
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="">Current Level of Your Education?</label>
+                                    <nb-select name="spouse_accompanying" fullWidth placeholder="Select Showcase">
+                                        <nb-option value="">Select...</nb-option>
+                                        <!-- <nb-option *ngFor="let item of opt" [value]='item.value'> {{ item.name }}</nb-option> -->
+                                    </nb-select>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="">do you have or are you in the process of obtaining acceptance from canadian educational institution?</label>
+                                    <nb-select name="spouse_accompanying" fullWidth placeholder="Select Showcase">
+                                        <nb-option value="">Select...</nb-option>
+                                        <!-- <nb-option *ngFor="let item of opt" [value]='item.value'> {{ item.name }}</nb-option> -->
+                                    </nb-select>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="">do you have sufficient funds for tuition and living expenses?</label>
+                                    <nb-select name="letter_invitation" fullWidth placeholder="Select Showcase">
+                                        <nb-option value="">Select...</nb-option>
+                                        <!-- <nb-option *ngFor="let item of opt" [value]='item.value'> {{ item.name }}</nb-option> -->
+                                    </nb-select>
+                                </div>
+                            </div>
+
+                        </div>
+                    </nb-card-body>
+                </nb-card>
+
+                <nb-card accent="info">
+                    <nb-card-header>
+                        <label for="">DO YOU OR  ANY OF YOUR ACCOMPANYING FAMILY MEMBERS</label>
+                    </nb-card-header>
+                    <nb-card-body>
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="">Have any serious disease?</label>
+                                    <nb-select name="funds" fullWidth placeholder="Select Showcase">
+                                        <nb-option value="">Select...</nb-option>
+                                        <!-- <nb-option *ngFor="let item of opt" [value]='item.value'> {{ item.name }}</nb-option> -->
+                                    </nb-select>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="">Been convicted of a criminal act?</label>
+                                    <nb-select name="funds" fullWidth placeholder="Select Showcase">
+                                        <nb-option value="">Select...</nb-option>
+                                        <!-- <nb-option *ngFor="let item of opt" [value]='item.value'> {{ item.name }}</nb-option> -->
+                                    </nb-select>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="">Been refused entry to Canada?</label>
+                                    <nb-select name="funds" fullWidth placeholder="Select Showcase">
+                                        <nb-option value="">Select...</nb-option>
+                                        <!-- <nb-option *ngFor="let item of opt" [value]='item.value'> {{ item.name }}</nb-option> -->
+                                    </nb-select>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="">Been refused entry to Canada?</label>
+                                    <textarea rows="5" nbInput fullWidth shape="semi-round" placeholder="Text Area"></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+                    </nb-card-body>
+                </nb-card>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</form>

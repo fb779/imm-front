@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AssessmentFormComponent } from './assessment-form.component';
+import { WorkPermitComponent } from './work-permit.component';
 
-describe('AssessmentFormComponent', () => {
-  let component: AssessmentFormComponent;
-  let fixture: ComponentFixture<AssessmentFormComponent>;
+describe('WorkPermitComponent', () => {
+  let component: WorkPermitComponent;
+  let fixture: ComponentFixture<WorkPermitComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AssessmentFormComponent ]
+      declarations: [ WorkPermitComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AssessmentFormComponent);
+    fixture = TestBed.createComponent(WorkPermitComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
