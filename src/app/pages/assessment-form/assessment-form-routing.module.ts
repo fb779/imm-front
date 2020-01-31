@@ -10,20 +10,20 @@ const routes: Routes = [
   {
     path: '',
     component: AssessmentFormComponent,
-    children: [
-      {
-        path: 'visit',
-        component: VisitComponent,
-      },
-      {
-        path: 'study',
-        component: StudyComponent,
-      },
-      {
-        path: 'work-permit',
-        component: WorkPermitComponent,
-      },
-    ],
+    // children: [
+    //   {
+    //     path: 'visit',
+    //     component: VisitComponent,
+    //   },
+    //   {
+    //     path: 'study',
+    //     component: StudyComponent,
+    //   },
+    //   {
+    //     path: 'work-permit',
+    //     component: WorkPermitComponent,
+    //   },
+    // ],
   },
 ];
 

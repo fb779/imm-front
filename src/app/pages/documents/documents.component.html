@@ -1,3 +1,31 @@
-<p>
-  documents works!
-</p>
+<div class="row">
+    <div class="col">
+        <nb-card>
+            <nb-card-body>
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            The following documents are required.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <ngx-upload-file *ngFor="let item of items" [title]="item.name"></ngx-upload-file>
+                    </div>
+                </div>
+
+                <!-- <div class="">
+                    <button nbButton size="small">Upload</button>
+                </div> -->
+            </nb-card-body>
+        </nb-card>
+    </div>
+    <!-- <div class="col">
+        <nb-card>
+            <nb-card-body>
+                <p>Hola </p>
+            </nb-card-body>
+        </nb-card>
+    </div> -->
+</div>

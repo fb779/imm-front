@@ -1,7 +1,7 @@
-<form ngNativeValidate #f="ngForm">
-    <div>
+<div>
+    <form novalidate autocomplete="off" [formGroup]="form_study" (submit)="guardar()">
         <nb-card>
-            <nb-card-header>Student</nb-card-header>
+            <nb-card-header>Student Evaluation</nb-card-header>
             <nb-card-body>
                 <nb-card accent="info">
                     <nb-card-header>
@@ -12,27 +12,36 @@
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Title</label>
-                                    <nb-select name="title" fullWidth placeholder="Select Showcase">
+                                    <nb-select name="title" placeholder="Select Showcase" fullWidth formControlName="title" [status]="(form_study.get('title').touched && form_study.get('title').errors)?'danger':''">
                                         <nb-option value="">Select...</nb-option>
-                                        <!-- <nb-option *ngFor="let item of optTitle" [value]='item.value'> {{ item.name }}</nb-option> -->
+                                        <nb-option *ngFor="let item of optTitles" [value]='item.value'> {{ item.name }}</nb-option>
                                     </nb-select>
+                                    <div class="card-text text-white" *ngIf="form_study.get('title').errors && form_study.get('title').touched">
+                                        <small *ngIf="form_study.get('title').errors?.required" class="text-muted">Campo requerido</small>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Sex</label>
-                                    <nb-select name="sex" fullWidth placeholder="Select Showcase">
+                                    <nb-select name="sex" fullWidth placeholder="Select Showcase" formControlName="sex" [status]="(form_study.get('sex').touched && form_study.get('sex').errors)?'danger':''">
                                         <nb-option value="">Select...</nb-option>
                                         <!-- <nb-option *ngFor="let item of optSex" [value]='item.value'> {{ item.name }}</nb-option> -->
                                     </nb-select>
+                                    <div class="card-text text-white" *ngIf="form_study.get('sex').errors && form_study.get('sex').touched">
+                                        <small *ngIf="form_study.get('sex').errors?.required" class="text-muted">Campo requerido</small>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">First Name</label>
-                                    <input type="text" name="first-name" nbInput fullWidth placeholder="First Name">
+                                    <input type="text" name="first_name" nbInput fullWidth placeholder="First Name" formControlName="first_name" [status]="(form_study.get('first_name').touched && form_study.get('first_name').errors)?'danger':''">
+                                    <div class="card-text text-white" *ngIf="form_study.get('first_name').errors && form_study.get('first_name').touched">
+                                        <small *ngIf="form_study.get('first_name').errors?.required" class="text-muted">Campo requerido</small>
+                                    </div>
                                 </div>
 
                             </div>
@@ -40,69 +49,93 @@
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Last Name</label>
-                                    <input type="text" name="last-name" nbInput fullWidth placeholder="Last Name">
+                                    <input type="text" name="last_name" placeholder="Last Name" nbInput fullWidth formControlName="last_name" [status]="(form_study.get('last_name').touched && form_study.get('last_name').errors)?'danger':''">
+                                    <div class="card-text text-white" *ngIf="form_study.get('last_name').errors && form_study.get('last_name').touched">
+                                        <small *ngIf="form_study.get('last_name').errors?.required" class="text-muted">Campo requerido</small>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Email</label>
-                                    <input type="text" name="email" nbInput fullWidth placeholder="Email">
+                                    <input type="text" name="email" placeholder="Email" nbInput fullWidth formControlName="email" [status]="(form_study.get('email').touched && form_study.get('email').errors)?'danger':''">
+                                    <div class="card-text text-white" *ngIf="form_study.get('email').errors && form_study.get('email').touched">
+                                        <small *ngIf="form_study.get('email').errors?.required" class="text-muted">Campo requerido</small>
+                                        <small *ngIf="form_study.get('email').errors?.pattern" class="text-muted">Email invalid</small>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Telephone</label>
-                                    <input type="text" name="telephone" nbInput fullWidth placeholder="Telephone">
+                                    <input type="text" name="telephone" nbInput fullWidth placeholder="Telephone" formControlName="telephone" [status]="(form_study.get('telephone').touched && form_study.get('telephone').errors)?'danger':''">
+                                    <div class="card-text text-white" *ngIf="form_study.get('telephone').errors && form_study.get('telephone').touched">
+                                        <small *ngIf="form_study.get('telephone').errors?.required" class="text-muted">Campo requerido</small>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Country of Citizenship</label>
-                                    <nb-select name="country_citizenship" fullWidth placeholder="Select Showcase">
+                                    <nb-select name="country_citizenship" fullWidth placeholder="Select Showcase" formControlName="country_citizenship" [status]="(form_study.get('country_citizenship').touched && form_study.get('country_citizenship').errors)?'danger':''">
                                         <nb-option value="">Select...</nb-option>
                                         <!-- <nb-option *ngFor="let item of opt" [value]='item.value'> {{ item.name }}</nb-option> -->
                                     </nb-select>
-
+                                    <div class="card-text text-white" *ngIf="form_study.get('country_citizenship').errors && form_study.get('country_citizenship').touched">
+                                        <small *ngIf="form_study.get('country_citizenship').errors?.required" class="text-muted">Campo requerido</small>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Other Citizenship</label>
-                                    <nb-select name="other_citizenship" fullWidth placeholder="Select Showcase">
+                                    <nb-select name="other_citizenship" fullWidth placeholder="Select Showcase" formControlName="other_citizenship" [status]="(form_study.get('other_citizenship').touched && form_study.get('other_citizenship').errors)?'danger':''">
                                         <nb-option value="">Select...</nb-option>
                                         <!-- <nb-option *ngFor="let item of opt" [value]='item.value'> {{ item.name }}</nb-option> -->
                                     </nb-select>
+                                    <div class="card-text text-white" *ngIf="form_study.get('other_citizenship').errors && form_study.get('other_citizenship').touched">
+                                        <small *ngIf="form_study.get('other_citizenship').errors?.required" class="text-muted">Campo requerido</small>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Country of Residence</label>
-                                    <nb-select name="country_residence" fullWidth placeholder="Select Showcase">
+                                    <nb-select name="country_residence" fullWidth placeholder="Select Showcase" formControlName="country_residence" [status]="(form_study.get('country_residence').touched && form_study.get('country_residence').errors)?'danger':''">
                                         <nb-option value="">Select...</nb-option>
                                         <!-- <nb-option *ngFor="let item of opt" [value]='item.value'> {{ item.name }}</nb-option> -->
                                     </nb-select>
+                                    <div class="card-text text-white" *ngIf="form_study.get('country_residence').errors && form_study.get('country_residence').touched">
+                                        <small *ngIf="form_study.get('country_residence').errors?.required" class="text-muted">Campo requerido</small>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Status in Country of Residence</label>
-                                    <nb-select name="status_residence" fullWidth placeholder="Select Showcase">
+                                    <nb-select name="status_residence" fullWidth placeholder="Select Showcase" formControlName="status_residence" [status]="(form_study.get('status_residence').touched && form_study.get('status_residence').errors)?'danger':''">
                                         <nb-option value="">Select...</nb-option>
                                         <!-- <nb-option *ngFor="let item of opt" [value]='item.value'> {{ item.name }}</nb-option> -->
                                     </nb-select>
+                                    <div class="card-text text-white" *ngIf="form_study.get('status_residence').errors && form_study.get('status_residence').touched">
+                                        <small *ngIf="form_study.get('status_residence').errors?.required" class="text-muted">Campo requerido</small>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Age</label>
-                                    <input name="age" type="number" nbInput fullWidth placeholder="Age">
+                                    <input name="age" type="number" nbInput fullWidth placeholder="Age" formControlName="age" [status]="(form_study.get('age').touched && form_study.get('age').errors)?'danger':''">
+                                    <div class="card-text text-white" *ngIf="form_study.get('age').errors && form_study.get('age').touched">
+                                        <small *ngIf="form_study.get('age').errors?.required" class="text-muted">Campo requerido</small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -115,10 +148,13 @@
                             <div class="col-12 col-md-12">
                                 <div class="form-group">
                                     <label for="">Destination in Canada</label>
-                                    <nb-select name="destiny" fullWidth placeholder="Select Showcase">
+                                    <nb-select name="destiny" fullWidth placeholder="Select Showcase" formControlName="destiny" [status]="(form_study.get('destiny').touched && form_study.get('destiny').errors)?'danger':''">
                                         <nb-option value="">Select...</nb-option>
                                         <!-- <nb-option *ngFor="let item of selectDestiny" [value]='item.value'> {{ item.name }}</nb-option> -->
                                     </nb-select>
+                                    <div class="card-text text-white" *ngIf="form_study.get('destiny').errors && form_study.get('destiny').touched">
+                                        <small *ngIf="form_study.get('destiny').errors?.required" class="text-muted">Campo requerido</small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -132,47 +168,62 @@
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Marital Status</label>
-                                    <nb-select name="marital_status" fullWidth placeholder="Select Showcase">
+                                    <nb-select name="marital_status" fullWidth placeholder="Select Showcase" formControlName="marital_status" [status]="(form_study.get('marital_status').touched && form_study.get('marital_status').errors)?'danger':''">
                                         <nb-option value="">Select...</nb-option>
                                         <!-- <nb-option *ngFor="let item of opt" [value]='item.value'> {{ item.name }}</nb-option> -->
                                     </nb-select>
+                                    <div class="card-text text-white" *ngIf="form_study.get('marital_status').errors && form_study.get('marital_status').touched">
+                                        <small *ngIf="form_study.get('marital_status').errors?.required" class="text-muted">Campo requerido</small>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
-                                    <label for="">Intended  Level of Education?</label>
-                                    <input name="number_children" type="number" nbInput fullWidth placeholder="Number of dependent children">
+                                    <label for="">Intended Level of Education?</label>
+                                    <input name="intended_education" type="number" nbInput fullWidth placeholder="Select Showcase" formControlName="intended_education" [status]="(form_study.get('intended_education').touched && form_study.get('intended_education').errors)?'danger':''">
+                                    <div class="card-text text-white" *ngIf="form_study.get('intended_education').errors && form_study.get('intended_education').touched">
+                                        <small *ngIf="form_study.get('intended_education').errors?.required" class="text-muted">Campo requerido</small>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Current Level of Your Education?</label>
-                                    <nb-select name="spouse_accompanying" fullWidth placeholder="Select Showcase">
+                                    <nb-select name="current_education" fullWidth placeholder="Select Showcase" formControlName="current_education" [status]="(form_study.get('current_education').touched && form_study.get('current_education').errors)?'danger':''">
                                         <nb-option value="">Select...</nb-option>
                                         <!-- <nb-option *ngFor="let item of opt" [value]='item.value'> {{ item.name }}</nb-option> -->
                                     </nb-select>
+                                    <div class="card-text text-white" *ngIf="form_study.get('current_education').errors && form_study.get('current_education').touched">
+                                        <small *ngIf="form_study.get('current_education').errors?.required" class="text-muted">Campo requerido</small>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">do you have or are you in the process of obtaining acceptance from canadian educational institution?</label>
-                                    <nb-select name="spouse_accompanying" fullWidth placeholder="Select Showcase">
+                                    <nb-select name="process_education" fullWidth placeholder="Select Showcase" formControlName="process_education" [status]="(form_study.get('process_education').touched && form_study.get('process_education').errors)?'danger':''">
                                         <nb-option value="">Select...</nb-option>
                                         <!-- <nb-option *ngFor="let item of opt" [value]='item.value'> {{ item.name }}</nb-option> -->
                                     </nb-select>
+                                    <div class="card-text text-white" *ngIf="form_study.get('process_education').errors && form_study.get('process_education').touched">
+                                        <small *ngIf="form_study.get('process_education').errors?.required" class="text-muted">Campo requerido</small>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">do you have sufficient funds for tuition and living expenses?</label>
-                                    <nb-select name="letter_invitation" fullWidth placeholder="Select Showcase">
+                                    <nb-select name="funds" fullWidth placeholder="Select Showcase" formControlName="funds" [status]="(form_study.get('funds').touched && form_study.get('funds').errors)?'danger':''">
                                         <nb-option value="">Select...</nb-option>
                                         <!-- <nb-option *ngFor="let item of opt" [value]='item.value'> {{ item.name }}</nb-option> -->
                                     </nb-select>
+                                    <div class="card-text text-white" *ngIf="form_study.get('funds').errors && form_study.get('funds').touched">
+                                        <small *ngIf="form_study.get('funds').errors?.required" class="text-muted">Campo requerido</small>
+                                    </div>
                                 </div>
                             </div>
 
@@ -189,44 +240,63 @@
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Have any serious disease?</label>
-                                    <nb-select name="funds" fullWidth placeholder="Select Showcase">
+                                    <nb-select name="disease" fullWidth placeholder="Select Showcase" formControlName="disease" [status]="(form_study.get('disease').touched && form_study.get('disease').errors)?'danger':''">
                                         <nb-option value="">Select...</nb-option>
                                         <!-- <nb-option *ngFor="let item of opt" [value]='item.value'> {{ item.name }}</nb-option> -->
                                     </nb-select>
+                                    <div class="card-text text-white" *ngIf="form_study.get('disease').errors && form_study.get('disease').touched">
+                                        <small *ngIf="form_study.get('disease').errors?.required" class="text-muted">Campo requerido</small>
+                                    </div>
+
                                 </div>
                             </div>
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Been convicted of a criminal act?</label>
-                                    <nb-select name="funds" fullWidth placeholder="Select Showcase">
+                                    <nb-select name="criminal_act" fullWidth placeholder="Select Showcase" formControlName="criminal_act" [status]="(form_study.get('criminal_act').touched && form_study.get('criminal_act').errors)?'danger':''">
                                         <nb-option value="">Select...</nb-option>
                                         <!-- <nb-option *ngFor="let item of opt" [value]='item.value'> {{ item.name }}</nb-option> -->
                                     </nb-select>
+                                    <div class="card-text text-white" *ngIf="form_study.get('criminal_act').errors && form_study.get('criminal_act').touched">
+                                        <small *ngIf="form_study.get('criminal_act').errors?.required" class="text-muted">Campo requerido</small>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Been refused entry to Canada?</label>
-                                    <nb-select name="funds" fullWidth placeholder="Select Showcase">
+                                    <nb-select name="refused_canada" fullWidth placeholder="Select Showcase" formControlName="refused_canada" [status]="(form_study.get('refused_canada').touched && form_study.get('refused_canada').errors)?'danger':''">
                                         <nb-option value="">Select...</nb-option>
                                         <!-- <nb-option *ngFor="let item of opt" [value]='item.value'> {{ item.name }}</nb-option> -->
                                     </nb-select>
+                                    <div class="card-text text-white" *ngIf="form_study.get('refused_canada').errors && form_study.get('refused_canada').touched">
+                                        <small *ngIf="form_study.get('refused_canada').errors?.required" class="text-muted">Campo requerido</small>
+                                    </div>
+
                                 </div>
                             </div>
 
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="">Been refused entry to Canada?</label>
-                                    <textarea rows="5" nbInput fullWidth shape="semi-round" placeholder="Text Area"></textarea>
+                                    <label for="">Comments?</label>
+                                    <textarea name="comments" rows="5" nbInput fullWidth shape="semi-round" placeholder="Text Area" formControlName="comments" [status]="(form_study.get('comments').touched && form_study.get('comments').errors)?'danger':''">
+
+                                    </textarea>
+                                    <div class="card-text text-white" *ngIf="form_study.get('comments').errors && form_study.get('comments').touched">
+                                        <small *ngIf="form_study.get('comments').errors?.required" class="text-muted">Campo requerido</small>
+                                    </div>
                                 </div>
                             </div>
 
                         </div>
                     </nb-card-body>
                 </nb-card>
+                <div>
+                    <button type="submit" [disabled]="!form_study.valid" nbButton fullWidth status="primary">Submit</button>
+                </div>
             </nb-card-body>
         </nb-card>
-    </div>
-</form>
+    </form>
+</div>

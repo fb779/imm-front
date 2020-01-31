@@ -1,0 +1,43 @@
+<!-- <div class="form-group">
+    <label for="">{{ title }}</label>
+    <input nbInput #inputFile (change)="seleccionarImagen( $event.target.files[0] )" type="file" placeholder="First Name" class="form-control form-control-file">
+</div> -->
+
+<div class="form-group" [ngClass]="{'d-none': !vs}">
+    <!-- <label for="">{{ title }}</label> -->
+    <div class="input-group">
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" nbInput #inputFile (change)="seleccionarImagen( $event.target.files[0] )">
+            <label class="custom-file-label" #labelFile>{{ name || title }}</label>
+        </div>
+        <div class="input-group-append" [ngClass]="{'d-none': !imagenSubir}">
+            <button nbButton status="danger" size="small" shape="rectangle" [disabled]="!imagenSubir" type="button" (click)="eraser()">
+                <span class="">
+                    <!-- <nb-icon icon="star"></nb-icon> -->
+                    <nb-icon icon="eraser" pack="fas"></nb-icon>
+                </span>
+            </button>
+        </div>
+        <div class="input-group-append">
+            <button nbButton size="small" shape="rectangle" [disabled]="!imagenSubir" type="button" (click)="uploadDocument()">
+                <span class="">
+                    <!-- <nb-icon icon="star"></nb-icon> -->
+                    <nb-icon icon="upload" pack="fas"></nb-icon>
+                </span>
+            </button>
+        </div>
+        <div class="input-group-append">
+            <span class="input-group-text">
+                <!-- <nb-icon icon="star"></nb-icon> -->
+                <nb-icon icon="info-circle" pack="fas"></nb-icon>
+            </span>
+        </div>
+        <div class="input-group-append">
+            <span class="input-group-text">
+                <!-- <nb-icon icon="star"></nb-icon> -->
+                <nb-icon icon="question-circle" pack="fas"></nb-icon>
+            </span>
+        </div>
+
+    </div>
+</div>

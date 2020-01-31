@@ -1,11 +1,11 @@
-import { RouterModule, Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+// import { DashboardComponent } from './dashboard/dashboard.component';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
-// import { AssessmentFormComponent } from './assessment-form/assessment-form.component';
+import { AssessmentFormComponent } from './assessment-form/assessment-form.component';
 import { FormsGuidesComponent } from './forms-guides/forms-guides.component';
 import { DocumentsComponent } from './documents/documents.component';
 import { VisaComponent } from './visa/visa.component';
@@ -18,26 +18,35 @@ import { AdmissionComponent } from './admission/admission.component';
 import { AppoinmentComponent } from './appoinment/appoinment.component';
 import { BillingInvoiceComponent } from './billing-invoice/billing-invoice.component';
 
-
 const routes: Routes = [{
   path: '',
   component: PagesComponent,
   children: [
     {
+      path: 'user',
+      loadChildren: () => import('./user/user.module')
+        .then(m => m.UserModule),
+    },
+    {
+      path: 'admin',
+      loadChildren: () => import('./admin/admin.module')
+        .then(m => m.AdminModule),
+    },
+    {
       path: 'iot-dashboard',
       // component: DashboardComponent,
       component: ECommerceComponent,
     },
+    // {
+    //   path: 'user/dashboard',
+    //   // component: ECommerceComponent,
+    //   component: DashboardComponent,
+    // },
     {
-      path: 'dashboard',
-      // component: ECommerceComponent,
-      component: DashboardComponent,
-    },
-    {
-      path: 'assessment-form',
-      // component: AssessmentFormComponent,
-      loadChildren: () => import('./assessment-form/assessment-form.module')
-        .then(m => m.AssessmentFormModule),
+      path: 'user/assessment-form',
+      component: AssessmentFormComponent,
+      // loadChildren: () => import('./assessment-form/assessment-form.module')
+      //   .then(m => m.AssessmentFormModule),
     },
     {
       path: 'forms-guides',

@@ -8,6 +8,17 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./assessment-form.component.scss']
 })
 export class AssessmentFormComponent implements OnInit {
+  form: number = null;
+  opts = [
+    {
+      value: 1,
+      name: 'Visitor',
+    },
+    {
+      value: 2,
+      name: 'Student',
+    }
+  ];
 
   constructor() { }
 

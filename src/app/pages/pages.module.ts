@@ -20,7 +20,7 @@ import {
 const nebular = [
   ThemeModule,
   NbMenuModule,
-  // NbCardModule,
+  NbCardModule,
   // NbInputModule,
   // NbSelectModule,
   // NbActionsModule,
@@ -34,14 +34,13 @@ const nebular = [
 
 // importaciones del proyecto base de nebular
 import { PagesComponent } from './pages.component';
-import { DashboardModule } from './dashboard/dashboard.module';
+// import { DashboardModule } from './dashboard/dashboard.module';
 import { ECommerceModule } from './e-commerce/e-commerce.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 
 // componentes visa services
-import { FormsGuidesComponent } from './forms-guides/forms-guides.component';
-import { DocumentsComponent } from './documents/documents.component';
+// import { DocumentsComponent } from './documents/documents.component';
 import { VisaComponent } from './visa/visa.component';
 import { FamilyComponent } from './family/family.component';
 import { ConsultantComponent } from './consultant/consultant.component';
@@ -52,28 +51,30 @@ import { AdmissionComponent } from './admission/admission.component';
 import { AppoinmentComponent } from './appoinment/appoinment.component';
 import { BillingInvoiceComponent } from './billing-invoice/billing-invoice.component';
 import { AssessmentFormModule } from './assessment-form/assessment-form.module';
-// import { AssessmentFormComponent } from './assessment-form/assessment-form.component';
-
+import { FormsGuidesModule } from './forms-guides/forms-guides.module';
+import { DocumentsModule } from './documents/documents.module';
 
 @NgModule({
   imports: [
-    PagesRoutingModule,
     CommonModule,
+    PagesRoutingModule,
     FormsModule,
     // imports form nebular
     ...nebular,
     // modules to application
     AssessmentFormModule,
+    DocumentsModule,
+    FormsGuidesModule,
     // others modules
-    DashboardModule,
+    // DashboardModule,
     ECommerceModule,
     MiscellaneousModule,
   ],
   declarations: [
     PagesComponent,
     // AssessmentFormComponent,
-    FormsGuidesComponent,
-    DocumentsComponent,
+    // FormsGuidesComponent,
+    // DocumentsComponent,
     VisaComponent,
     FamilyComponent,
     ConsultantComponent,

@@ -1,7 +1,7 @@
-<form ngNativeValidate #f="ngForm">
-    <div>
+<div>
+    <form novalidate autocomplete="off" [formGroup]="forma" (submit)="guardar()">
         <nb-card>
-            <nb-card-header>Visitor</nb-card-header>
+            <nb-card-header>Visitor Evaluation</nb-card-header>
             <nb-card-body>
                 <nb-card accent="info">
                     <nb-card-header>
@@ -12,97 +12,134 @@
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Title</label>
-                                    <nb-select name="title" fullWidth placeholder="Select Showcase">
+                                    <nb-select name="title" placeholder="Select Showcase" fullWidth formControlName="title" [status]="(forma.get('title').touched && forma.get('title').errors)?'danger':''">
                                         <nb-option value="">Select...</nb-option>
                                         <nb-option *ngFor="let item of optTitles" [value]='item.value'> {{ item.name }}</nb-option>
                                     </nb-select>
+                                    <div class="card-text text-white" *ngIf="forma.get('title').errors && forma.get('title').touched">
+                                        <small *ngIf="forma.get('title').errors?.required" class="text-muted text-muted-danger">Field required</small>
+                                    </div>
+
                                 </div>
                             </div>
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Sex</label>
-                                    <nb-select name="sex" fullWidth placeholder="Select Showcase">
+                                    <nb-select name="sex" placeholder="Select Showcase" fullWidth formControlName="sex" [status]="(forma.get('sex').touched && forma.get('sex').errors)?'danger':'' ">
                                         <nb-option value="">Select...</nb-option>
                                         <nb-option *ngFor="let item of optSex" [value]='item.value'> {{ item.name }}</nb-option>
                                     </nb-select>
+                                    <div *ngIf="forma.get('sex').errors && forma.get('sex').touched" class="card-text">
+                                        <small *ngIf="forma.get('sex').errors?.required" class="text-muted text-muted-danger">Field required</small>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">First Name</label>
-                                    <input type="text" name="first-name" nbInput fullWidth placeholder="First Name">
-                                </div>
+                                    <input type="text" name="first_name" placeholder="First Name" nbInput fullWidth formControlName="first_name" [status]="(forma.get('first_name').touched && forma.get('first_name').errors)?'danger':''">
 
+                                    <div *ngIf="forma.get('first_name').errors && forma.get('first_name').touched" class="card-text">
+                                        <small *ngIf="forma.get('first_name').errors?.required" class="text-muted text-muted-danger">Field required</small>
+                                        <small *ngIf="forma.get('first_name').errors?.existe" class="text-muted text-muted-danger">campo con errores</small>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Last Name</label>
-                                    <input type="text" name="last-name" nbInput fullWidth placeholder="Last Name">
+                                    <input type="text" name="last_name" placeholder="Last Name" nbInput fullWidth formControlName="last_name" [status]="(forma.get('last_name').touched && forma.get('last_name').errors)?'danger':''">
+                                    <div *ngIf="forma.get('last_name').errors && forma.get('last_name').touched" class="card-text">
+                                        <small *ngIf="forma.get('last_name').errors?.required" class="text-muted text-muted-danger">Field required</small>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Email</label>
-                                    <input type="text" name="email" nbInput fullWidth placeholder="Email">
+                                    <input type="text" name="email" placeholder="Email" nbInput fullWidth formControlName="email" [status]="(forma.get('email').touched && forma.get('email').errors)?'danger':''">
+                                    <div *ngIf="forma.get('email').errors && forma.get('email').touched" class="card-text">
+                                        <small *ngIf="forma.get('email').errors?.required" class="text-muted text-muted-danger">Field required</small>
+                                        <small *ngIf="forma.get('email').errors?.pattern" class="text-muted text-muted-danger">Email invalid</small>
+                                        <small *ngIf="forma.get('email').errors?.existe" class="text-muted text-muted-danger">The email already exist</small>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Telephone</label>
-                                    <input type="text" name="telephone" nbInput fullWidth placeholder="Telephone">
+                                    <input type="text" name="telephone" placeholder="Telephone" nbInput fullWidth formControlName="telephone" [status]="(forma.get('telephone').touched && forma.get('telephone').errors)?'danger':''">
+                                    <div *ngIf="forma.get('telephone').errors && forma.get('telephone').touched" class="card-text">
+                                        <small *ngIf="forma.get('telephone').errors?.required" class="text-muted text-muted-danger">Field required</small>
+                                        <small *ngIf="forma.get('telephone').errors?.pattern" class="text-muted text-muted-danger">Not is a phone number valid</small>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Country of Citizenship</label>
-                                    <nb-select name="country_citizenship" fullWidth placeholder="Select Showcase">
+                                    <nb-select name="country_citizenship" placeholder="Select Showcase" fullWidth formControlName="country_citizenship" [status]="(forma.get('country_citizenship').touched && forma.get('country_citizenship').errors)?'danger':''">
                                         <nb-option value="">Select...</nb-option>
                                         <nb-option *ngFor="let item of optCountries" [value]='item.value'> {{ item.name }}</nb-option>
                                     </nb-select>
-
+                                    <div *ngIf="forma.get('country_citizenship').errors && forma.get('country_citizenship').touched" class="card-text">
+                                        <small *ngIf="forma.get('country_citizenship').errors?.required" class="text-muted text-muted-danger">Field required</small>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Other Citizenship</label>
-                                    <nb-select name="other_citizenship" fullWidth placeholder="Select Showcase">
+                                    <nb-select name="other_citizenship" placeholder="Select Showcase" fullWidth formControlName="other_citizenship" [status]="(forma.get('other_citizenship').touched && forma.get('other_citizenship').errors)?'danger':''">
                                         <nb-option value="">Select...</nb-option>
                                         <nb-option *ngFor="let item of optCountries" [value]='item.value'> {{ item.name }}</nb-option>
                                     </nb-select>
+                                    <div *ngIf="forma.get('other_citizenship').errors && forma.get('other_citizenship').touched" class="card-text">
+                                        <small *ngIf="forma.get('other_citizenship').errors?.required" class="text-muted text-muted-danger">Field required</small>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Country of Residence</label>
-                                    <nb-select name="country_residence" fullWidth placeholder="Select Showcase">
+                                    <nb-select name="country_residence" placeholder="Select Showcase" fullWidth formControlName="country_residence" [status]="(forma.get('country_residence').touched && forma.get('country_residence').errors)?'danger':''">
                                         <nb-option value="">Select...</nb-option>
                                         <nb-option *ngFor="let item of optCountries" [value]='item.value'> {{ item.name }}</nb-option>
                                     </nb-select>
+                                    <div *ngIf="forma.get('country_residence').errors && forma.get('country_residence').touched" class="card-text">
+                                        <small *ngIf="forma.get('country_residence').errors?.required" class="text-muted text-muted-danger">Field required</small>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Status in Country of Residence</label>
-                                    <nb-select name="status_residence" fullWidth placeholder="Select Showcase">
+                                    <nb-select name="status_residence" placeholder="Select Showcase" fullWidth formControlName="status_residence" [status]="(forma.get('status_residence').touched && forma.get('status_residence').errors)?'danger':''">
                                         <nb-option value="">Select...</nb-option>
                                         <nb-option *ngFor="let item of optStatus" [value]='item.value'> {{ item.name }}</nb-option>
                                     </nb-select>
+                                    <div *ngIf="forma.get('status_residence').errors && forma.get('status_residence').touched" class="card-text">
+                                        <small *ngIf="forma.get('status_residence').errors?.required" class="text-muted text-muted-danger">Field required</small>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Age</label>
-                                    <input name="age" type="number" nbInput fullWidth placeholder="Age">
+                                    <input type="number" name="age" placeholder="Age" nbInput fullWidth formControlName="age" [status]="(forma.get('age').touched && forma.get('age').errors)?'danger':''">
+                                    <div *ngIf="forma.get('age').errors && forma.get('age').touched" class="card-text">
+                                        <small *ngIf="forma.get('age').errors?.required" class="text-muted text-muted-danger">Field required</small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -115,10 +152,13 @@
                             <div class="col-12 col-md-12">
                                 <div class="form-group">
                                     <label for="">Destination in Canada</label>
-                                    <nb-select name="destiny" fullWidth placeholder="Select Showcase">
+                                    <nb-select name="destiny" placeholder="Select Showcase" fullWidth formControlName="destiny" [status]="(forma.get('destiny').touched && forma.get('destiny').errors)?'danger':''">
                                         <nb-option value="">Select...</nb-option>
                                         <nb-option *ngFor="let item of optProvinces" [value]='item.value'> {{ item.name }}</nb-option>
                                     </nb-select>
+                                    <div *ngIf="forma.get('destiny').errors && forma.get('destiny').touched" class="card-text">
+                                        <small *ngIf="forma.get('destiny').errors?.required" class="text-muted text-muted-danger">Field required</small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -131,57 +171,75 @@
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Marital Status</label>
-                                    <nb-select name="marital_status" fullWidth placeholder="Select Showcase">
+                                    <nb-select name="marital_status" placeholder="Select Showcase" fullWidth formControlName="marital_status" [status]="(forma.get('marital_status').touched && forma.get('marital_status').errors)?'danger':''">
                                         <nb-option value="">Select...</nb-option>
                                         <nb-option *ngFor="let item of optMaritalStatus" [value]='item.value'> {{ item.name }}</nb-option>
                                     </nb-select>
+                                    <div *ngIf="forma.get('marital_status').errors && forma.get('marital_status').touched" class="card-text">
+                                        <small *ngIf="forma.get('marital_status').errors?.required" class="text-muted text-muted-danger">Field required</small>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Number of dependent children visiting with you Canada?</label>
-                                    <input name="number_children" type="number" nbInput fullWidth placeholder="Number of dependent children">
+                                    <input type="number" name="number_children" placeholder="Number of dependent children" nbInput fullWidth formControlName="number_children" [status]="(forma.get('number_children').touched && forma.get('number_children').errors)?'danger':''">
+                                    <div *ngIf="forma.get('number_children').errors && forma.get('number_children').touched" class="card-text">
+                                        <small *ngIf="forma.get('number_children').errors?.required" class="text-muted text-muted-danger">Field required</small>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Your spouse accompanying you to Canada?</label>
-                                    <nb-select name="spouse_accompanying" fullWidth placeholder="Select Showcase">
+                                    <nb-select name="spouse_accompanying" formControlName="spouse_accompanying" [status]="(forma.get('spouse_accompanying').touched && forma.get('spouse_accompanying').errors)?'danger':''" fullWidth placeholder="Select Showcase">
                                         <nb-option value="">Select...</nb-option>
                                         <nb-option *ngFor="let item of optYesNo" [value]='item.value'> {{ item.name }}</nb-option>
                                     </nb-select>
+                                    <div *ngIf="forma.get('spouse_accompanying').errors && forma.get('spouse_accompanying').touched" class="card-text">
+                                        <small *ngIf="forma.get('spouse_accompanying').errors?.required" class="text-muted text-muted-danger">Field required</small>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Purpose of your visit?</label>
-                                    <nb-select name="purpose_visit" fullWidth placeholder="Select Showcase">
+                                    <nb-select name="purpose_visit" formControlName="purpose_visit" [status]="(forma.get('purpose_visit').touched && forma.get('purpose_visit').errors)?'danger':''" fullWidth placeholder="Select Showcase">
                                         <nb-option value="">Select...</nb-option>
                                         <nb-option *ngFor="let item of optPropousVisit" [value]='item.value'> {{ item.name }}</nb-option>
                                     </nb-select>
+                                    <div *ngIf="forma.get('purpose_visit').errors && forma.get('purpose_visit').touched" class="card-text">
+                                        <small *ngIf="forma.get('purpose_visit').errors?.required" class="text-muted text-muted-danger">Field required</small>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Do you have a letter of invitation from a Canadian citizen or permanent resident?</label>
-                                    <nb-select name="letter_invitation" fullWidth placeholder="Select Showcase">
+                                    <nb-select name="letter_invitation" formControlName="letter_invitation" [status]="(forma.get('letter_invitation').touched && forma.get('letter_invitation').errors)?'danger':''" fullWidth placeholder="Select Showcase">
                                         <nb-option value="">Select...</nb-option>
                                         <nb-option *ngFor="let item of optYesNo" [value]='item.value'> {{ item.name }}</nb-option>
                                     </nb-select>
+                                    <div *ngIf="forma.get('letter_invitation').errors && forma.get('letter_invitation').touched" class="card-text">
+                                        <small *ngIf="forma.get('letter_invitation').errors?.required" class="text-muted text-muted-danger">Field required</small>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Length of intended stay in Canada?</label>
-                                    <nb-select name="stay_canada" fullWidth placeholder="Select Showcase">
+                                    <nb-select name="stay_canada" formControlName="stay_canada" [status]="(forma.get('stay_canada').touched && forma.get('stay_canada').errors)?'danger':''" fullWidth placeholder="Select Showcase">
                                         <nb-option value="">Select...</nb-option>
                                         <nb-option *ngFor="let item of optStayCanada" [value]='item.value'> {{ item.name }}</nb-option>
                                     </nb-select>
+                                    <div *ngIf="forma.get('stay_canada').errors && forma.get('stay_canada').touched" class="card-text">
+                                        <small *ngIf="forma.get('stay_canada').errors?.required" class="text-muted text-muted-danger">Field required</small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -197,54 +255,74 @@
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Do you have sufficient funds for your visit?</label>
-                                    <nb-select name="funds" fullWidth placeholder="Select Showcase">
+                                    <nb-select name="funds" formControlName="funds" [status]="(forma.get('funds').touched && forma.get('funds').errors)?'danger':''" fullWidth placeholder="Select Showcase">
                                         <nb-option value="">Select...</nb-option>
                                         <nb-option *ngFor="let item of optYesNo" [value]='item.value'> {{ item.name }}</nb-option>
                                     </nb-select>
+                                    <div *ngIf="forma.get('funds').errors && forma.get('funds').touched" class="card-text">
+                                        <small *ngIf="forma.get('funds').errors?.required" class="text-muted text-muted-danger">Field required</small>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Have any serious disease?</label>
-                                    <nb-select name="funds" fullWidth placeholder="Select Showcase">
+                                    <nb-select name="disease" formControlName="disease" [status]="(forma.get('disease').touched && forma.get('disease').errors)?'danger':''" fullWidth placeholder="Select Showcase">
                                         <nb-option value="">Select...</nb-option>
                                         <nb-option *ngFor="let item of optYesNo" [value]='item.value'> {{ item.name }}</nb-option>
                                     </nb-select>
+                                    <div *ngIf="forma.get('disease').errors && forma.get('disease').touched" class="card-text">
+                                        <small *ngIf="forma.get('disease').errors?.required" class="text-muted text-muted-danger">Field required</small>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Been convicted of a criminal act?</label>
-                                    <nb-select name="funds" fullWidth placeholder="Select Showcase">
+                                    <nb-select name="criminal_act" formControlName="criminal_act" [status]="(forma.get('criminal_act').touched && forma.get('criminal_act').errors)?'danger':''" fullWidth placeholder="Select Showcase">
                                         <nb-option value="">Select...</nb-option>
                                         <nb-option *ngFor="let item of optYesNo" [value]='item.value'> {{ item.name }}</nb-option>
                                     </nb-select>
+                                    <div *ngIf="forma.get('criminal_act').errors && forma.get('criminal_act').touched" class="card-text">
+                                        <small *ngIf="forma.get('criminal_act').errors?.required" class="text-muted text-muted-danger">Field required</small>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Been refused entry to Canada?</label>
-                                    <nb-select name="funds" fullWidth placeholder="Select Showcase">
+                                    <nb-select name="refuse_canada" formControlName="refuse_canada" [status]="(forma.get('refuse_canada').touched && forma.get('refuse_canada').errors)?'danger':''" fullWidth placeholder="Select Showcase">
                                         <nb-option value="">Select...</nb-option>
                                         <nb-option *ngFor="let item of optYesNo" [value]='item.value'> {{ item.name }}</nb-option>
                                     </nb-select>
+                                    <div *ngIf="forma.get('refuse_canada').errors && forma.get('refuse_canada').touched" class="card-text">
+                                        <small *ngIf="forma.get('refuse_canada').errors?.required" class="text-muted text-muted-danger">Field required</small>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="">Been refused entry to Canada?</label>
-                                    <textarea rows="5" nbInput fullWidth shape="semi-round" placeholder="Text Area"></textarea>
+                                    <label for="">Comments?</label>
+                                    <textarea name="comments" rows="5" placeholder="Text Area" nbInput fullWidth shape="semi-round" formControlName="comments" [status]="(forma.get('comments').touched && forma.get('comments').errors)?'danger':''">
+                                    </textarea>
+                                    <div *ngIf="forma.get('comments').errors && forma.get('comments').touched" class="card-text">
+                                        <small *ngIf="forma.get('comments').errors?.required" class="text-muted text-muted-danger">Field required</small>
+                                    </div>
                                 </div>
                             </div>
 
                         </div>
                     </nb-card-body>
                 </nb-card>
+
+                <div>
+                    <button type="submit" [disabled]="!forma.valid" nbButton fullWidth status="primary">Submit</button>
+                </div>
             </nb-card-body>
         </nb-card>
-    </div>
-</form>
+    </form>
+</div>

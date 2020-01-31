@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 import { ThemeModule } from '../../@theme/theme.module';
 import {
@@ -11,10 +11,11 @@ import {
   NbButtonModule,
   NbCheckboxModule,
   NbDatepickerModule,
+  NbStepperModule,
   NbActionsModule,
   NbIconModule,
   NbRadioModule,
-  NbUserModule
+  NbUserModule,
 } from '@nebular/theme';
 
 const nebular = [
@@ -27,12 +28,13 @@ const nebular = [
   NbCheckboxModule,
   NbDatepickerModule,
   NbButtonModule,
+  NbStepperModule,
   // NbActionsModule,
   // NbRadioModule,
   // NbUserModule
 ];
 
-import { AssessmentFormRoutingModule } from './assessment-form-routing.module';
+// import { AssessmentFormRoutingModule } from './assessment-form-routing.module';
 import { AssessmentFormComponent } from './assessment-form.component';
 import { VisitComponent } from './visit/visit.component';
 import { StudyComponent } from './study/study.component';
@@ -54,8 +56,9 @@ import { WorkPermitComponent } from './work-permit/work-permit.component';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     ...nebular,
-    AssessmentFormRoutingModule,
+    // AssessmentFormRoutingModule,
   ]
 })
 export class AssessmentFormModule { }

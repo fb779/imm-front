@@ -5,29 +5,28 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'Dashboard',
     icon: 'home-outline',
     // icon: { icon: 'home', pack: 'fas' },
-    link: '/pages/dashboard',
-    // home: true,
+    link: '/pages/user/dashboard',
+    home: true,
   },
   {
     title: 'Assessment Form',
     icon: 'edit-2-outline',
     // icon: { icon: 'angry', pack: 'fas' },
-    link: '/pages/assessment-form',
-    children: [
-      {
-        title: 'Visitor',
-        link: '/pages/assessment-form/visit',
-      },
-      {
-        title: 'Student',
-        link: '/pages/assessment-form/study',
-      },
-      {
-        title: 'Work Permit',
-        link: '/pages/assessment-form/work-permit',
-      },
-    ]
-
+    link: '/pages/user/assessment-form',
+    // children: [
+    //   {
+    //     title: 'Visitor',
+    //     link: '/pages/assessment-form/visit',
+    //   },
+    //   {
+    //     title: 'Student',
+    //     link: '/pages/assessment-form/study',
+    //   },
+    //   {
+    //     title: 'Work Permit',
+    //     link: '/pages/assessment-form/work-permit',
+    //   },
+    // ]
   },
   {
     title: 'Forms & Guides',
@@ -51,7 +50,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'My Family',
     icon: 'people-outline',
     link: '/pages/family',
-
+    hidden: false,
   },
   {
     title: 'My Consultant',
@@ -140,28 +139,28 @@ export const MENU_ITEMS: NbMenuItem[] = [
   //     },
   //   ],
   // },
-  {
-    title: 'Forms',
-    icon: 'edit-2-outline',
-    children: [
-      {
-        title: 'Form Inputs',
-        link: '/pages/forms/inputs',
-      },
-      {
-        title: 'Form Layouts',
-        link: '/pages/forms/layouts',
-      },
-      {
-        title: 'Buttons',
-        link: '/pages/forms/buttons',
-      },
-      {
-        title: 'Datepicker',
-        link: '/pages/forms/datepicker',
-      },
-    ],
-  },
+  // {
+  //   title: 'Forms',
+  //   icon: 'edit-2-outline',
+  //   children: [
+  //     {
+  //       title: 'Form Inputs',
+  //       link: '/pages/forms/inputs',
+  //     },
+  //     {
+  //       title: 'Form Layouts',
+  //       link: '/pages/forms/layouts',
+  //     },
+  //     {
+  //       title: 'Buttons',
+  //       link: '/pages/forms/buttons',
+  //     },
+  //     {
+  //       title: 'Datepicker',
+  //       link: '/pages/forms/datepicker',
+  //     },
+  //   ],
+  // },
   // {
   //   title: 'UI Features',
   //   icon: 'keypad-outline',
