@@ -20,8 +20,8 @@ export class UploadFileComponent implements OnInit {
   @Input('title') title: string = 'Leyenda personalizada';
 
   // variables de salida emitidas por el componente
-  @Output() cambioValor: EventEmitter<number> = new EventEmitter();
-  @Output() porcentaje: EventEmitter<number> = new EventEmitter();
+  // @Output() cambioValor: EventEmitter<number> = new EventEmitter();
+  // @Output() porcentaje: EventEmitter<number> = new EventEmitter();
 
   // types permited
   ext: string[] = [
@@ -29,7 +29,7 @@ export class UploadFileComponent implements OnInit {
     'image',
   ]
 
-  vs: boolean = true;
+  visible: boolean = true;
 
   imagenSubir = null;
   name: string = '';
@@ -78,7 +78,7 @@ export class UploadFileComponent implements OnInit {
   uploadDocument(){
     setTimeout(()=>{
       console.log('Uploaded file', this.name);
-      this.vs = false;
+      this.visible = false;
     }, 3000);
   }
 }

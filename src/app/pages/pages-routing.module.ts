@@ -17,6 +17,7 @@ import { FreeResourcesComponent } from './free-resources/free-resources.componen
 import { AdmissionComponent } from './admission/admission.component';
 import { AppoinmentComponent } from './appoinment/appoinment.component';
 import { BillingInvoiceComponent } from './billing-invoice/billing-invoice.component';
+import { FormsGuidesModule } from './forms-guides/forms-guides.module';
 
 const routes: Routes = [{
   path: '',
@@ -50,7 +51,9 @@ const routes: Routes = [{
     },
     {
       path: 'forms-guides',
-      component: FormsGuidesComponent,
+      // component: FormsGuidesComponent,
+      loadChildren: () => import('./forms-guides/forms-guides.module')
+        .then(m => m.FormsGuidesModule),
     },
     {
       path: 'documents',
@@ -144,7 +147,7 @@ const routes: Routes = [{
     },
     {
       path: '',
-      redirectTo: 'dashboard',
+      redirectTo: 'user/dashboard',
       pathMatch: 'full',
     },
     {

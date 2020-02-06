@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormsGuidesService } from '../../services/forms-guides/forms-guides.service';
+import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
 
 @Component({
   selector: 'ngx-forms-guides',
@@ -7,32 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormsGuidesComponent implements OnInit {
 
-  guides: any[] = [
-    {
-      title: 'Pasos para la visa',
-      type: 'pdf',
-      description: 'Description steps to process to visar',
-    },
-    {
-      title: 'Documents upload',
-      type: 'doc',
-      description: 'UPLOAD DOCUMENTS TO PLATFORM',
-    },
-    {
-      title: 'Billing and invoces',
-      type: 'ppt',
-      description: 'The billing and invoices to process',
-    },
-    {
-      title: 'More info for you',
-      type: 'zip',
-      description: 'Join the interesting information',
-    },
-  ];
+  user: any;
+  guides: any[] = [];
 
-  constructor() { }
+  constructor( private _fgs: FormsGuidesService, private _nbAuth:NbAuthService) {
+    this._nbAuth.getToken().subscribe( (data: any)=>{
+      this.user = data.payload.user;
+    });
+  }
 
   ngOnInit() {
+
+    this._fgs.getDocuments(this.user._id).subscribe( (data: any)=>{
+      this.guides = data;
+    } );
+
   }
 
 }

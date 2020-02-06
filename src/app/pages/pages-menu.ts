@@ -83,7 +83,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
 
   },
   {
-    title: 'Appoinment',
+    title: 'Appointment',
     icon: 'bookmark-outline',
     link: '/pages/appoinment',
 

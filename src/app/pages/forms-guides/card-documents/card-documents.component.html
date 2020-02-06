@@ -4,6 +4,6 @@
     </div>
     <div class="details">
         <div class="title h5">{{ title }}</div>
-        <div class="description">{{ description }}</div>
+        <div *ngIf="description" class="description">{{ description }}</div>
     </div>
 </nb-card>

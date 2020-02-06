@@ -35,18 +35,22 @@ const nebularModules = [
   // NbUserModule
 ];
 
-import { FormsGuidesComponent } from './forms-guides.component';
 import { CardDocumentsComponent } from './card-documents/card-documents.component';
+import { FormsComponent } from './forms/forms.component';
+import { FormsGuidesRoutingModule } from './forms-guides-routing.module';
+import { FormsGuidesComponent } from './forms-guides.component';
 
 @NgModule({
   declarations: [
+    CardDocumentsComponent,
     FormsGuidesComponent,
-    CardDocumentsComponent
+    FormsComponent
   ],
   exports: [
     FormsGuidesComponent
   ],
   imports: [
+    FormsGuidesRoutingModule,
     CommonModule,
     ...nebularModules,
 //
