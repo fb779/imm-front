@@ -88,7 +88,14 @@ import { URL_SERVICIOS } from './config/config';
             // defaultErrors: ['Login/Email combination is not correct, please try again.'],
             // defaultMessages: ['You have been successfully logged in.'],
           },
-
+          logout: {
+            endpoint: '/login/signout',
+            method: 'get',
+            redirect: {
+              success : '/auth/login',
+              failure: null,
+            },
+          },
         }),
       ],
       forms: {

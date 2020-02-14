@@ -39,10 +39,10 @@ const routes: Routes = [
                 // component: NbRegisterComponent,
                 component: RegisterComponent,
             },
-            // {
-            //     path: 'logout',
-            //     component: NbLogoutComponent,
-            // },
+            {
+                path: 'logout',
+                component: NbLogoutComponent,
+            },
             // {
             //     path: 'request-password',
             //     component: NbRequestPasswordComponent,

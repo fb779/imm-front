@@ -19,14 +19,14 @@ import { tap } from 'rxjs/operators';
 export class AuthGuardGuard implements CanActivate {
 
   constructor( private _router: Router, private authService: NbAuthService) {
-    console.log('Hola desde el guard');
+    // console.log('Hola desde el guard');
    }
 
   canActivate( next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
     // canActive can return Observable<boolean>, which is exactly what isAuthenticated returns
     return this.authService.isAuthenticated().pipe(
       tap(authenticated => {
-        console.log(authenticated);
+        // console.log(authenticated);
         if (!authenticated) {
           this._router.navigate(['auth/login']);
           return false;

@@ -1,5 +1,6 @@
 // guards
 export { AuthGuardGuard } from './auth-guard/auth-guard.guard';
+export { UserTypeGuard } from './auth-guard/user-type.guard';
 
 // services
 export { SidebarService } from './sidebar/sidebar.service';

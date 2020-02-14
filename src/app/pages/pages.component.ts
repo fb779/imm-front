@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 // import { MENU_ITEMS } from './pages-menu';
 
@@ -15,7 +15,7 @@ import { SidebarService } from '../services/services.index';
     </ngx-one-column-layout>
   `,
 })
-export class PagesComponent {
+export class PagesComponent implements OnInit {
 
   // menu = MENU_ITEMS;
 
@@ -25,5 +25,8 @@ export class PagesComponent {
   ) {
     this.iconLibraries.registerFontPack('fas', { packClass: 'fas', iconClassPrefix: 'fa' });
     this.iconLibraries.registerFontPack('far', { packClass: 'far', iconClassPrefix: 'fa' });
+  }
+
+  ngOnInit() {
   }
 }
