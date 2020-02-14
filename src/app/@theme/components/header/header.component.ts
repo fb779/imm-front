@@ -41,7 +41,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   // currentTheme = 'dark';
   currentTheme = 'corporate';
 
-  userMenu = [ { title: 'Profile' }, { title: 'Log out' } ];
+  userMenu = [
+    { title: 'Profile' },
+    { title: 'Log out', link: 'pages/user/assessment-form', icon: 'edit-2-outline', }
+  ];
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
@@ -53,8 +56,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     ) {
       this.authService.onTokenChange().subscribe((token: any) => {
+
         if (token.isValid()) {
           let data = token.getPayload(); // here we receive a payload from the token and assigns it to our `user` variable
+          console.log('Carga de informacion del usuario',data);
           this.user = data.user;
         }
       });
@@ -68,13 +73,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
     //   .pipe(takeUntil(this.destroy$))
     //   .subscribe((users: any) => this.user = users.nick);
 
-    const { xl } = this.breakpointService.getBreakpointsMap();
+    const { xl, md } = this.breakpointService.getBreakpointsMap();
     this.themeService.onMediaQueryChange()
       .pipe(
-        map(([, currentBreakpoint]) => currentBreakpoint.width < xl),
+        // map(([, currentBreakpoint]) => currentBreakpoint.width < xl),
+        map(([, currentBreakpoint]) => currentBreakpoint.width < md),
         takeUntil(this.destroy$),
       )
-      .subscribe((isLessThanXl: boolean) => this.userPictureOnly = isLessThanXl);
+      .subscribe((isLessThanXl: boolean) => {
+        this.userPictureOnly = isLessThanXl
+      });
 
     this.themeService.onThemeChange()
       .pipe(

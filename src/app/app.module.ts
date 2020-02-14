@@ -93,7 +93,7 @@ import { URL_SERVICIOS } from './config/config';
       ],
       forms: {
         login: {
-          redirectDelay: 100, // delay before redirect after a successful login, while success message is shown to the user
+          redirectDelay: 0, // delay before redirect after a successful login, while success message is shown to the user
           strategy: 'email',  // strategy id key.
           // rememberMe: false,   // whether to show or not the `rememberMe` checkbox
           showMessages: {     // show/not show success/error messages
@@ -111,6 +111,51 @@ import { URL_SERVICIOS } from './config/config';
             error: true,
           },
           // socialLinks: socialLinks, // social links at the bottom of a page
+        },
+
+        // requestPassword: {
+        //   redirectDelay: 500,
+        //   strategy: 'email',
+        //   showMessages: {
+        //     success: true,
+        //     error: true,
+        //   },
+        //   // socialLinks: socialLinks,
+        // },
+        // resetPassword: {
+        //   redirectDelay: 500,
+        //   strategy: 'email',
+        //   showMessages: {
+        //     success: true,
+        //     error: true,
+        //   },
+        //   // socialLinks: socialLinks,
+        // },
+        // logout: {
+        //   redirectDelay: 500,
+        //   strategy: 'email',
+        // },
+        validation: {
+          password: {
+            required: true,
+            minLength: 4,
+            maxLength: 50,
+          },
+          email: {
+            required: true,
+            email: true,
+            pattern: ''
+          },
+          firstName: {
+            required: true,
+            minLength: 2,
+            maxLength: 20,
+          },
+          lastName: {
+            required: true,
+            minLength: 2,
+            maxLength: 25,
+          },
         },
       },
     }),
