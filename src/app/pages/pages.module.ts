@@ -35,7 +35,7 @@ const nebular = [
 import { PagesRoutingModule } from './pages-routing.module';
 // importaciones del proyecto base de nebular
 import { PagesComponent } from './pages.component';
-// import { DashboardModule } from './dashboard/dashboard.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 import { ECommerceModule } from './e-commerce/e-commerce.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 
@@ -66,7 +66,7 @@ import { DocumentsModule } from './documents/documents.module';
     DocumentsModule,
     FormsGuidesModule,
     // others modules
-    // DashboardModule,
+    DashboardModule,
     ECommerceModule,
     MiscellaneousModule,
   ],

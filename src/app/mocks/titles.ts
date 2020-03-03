@@ -2,10 +2,10 @@ import { Title } from "../models/Titlel";
 import { Country } from '../models/Country';
 
 export const opsTitles: Title[] = [
-    { value: '1', name:'Mr'},
-    { value: '2', name:'Mrs'},
-    { value: '3', name:'Miss'},
-    { value: '4', name:'Ms' },
+    { value: 'Mr', name:'Mr'},
+    { value: 'Mrs', name:'Mrs'},
+    { value: 'Miss', name:'Miss'},
+    { value: 'Ms', name:'Ms' },
   ];
 
 export const opsYesNo = [

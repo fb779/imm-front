@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SidebarService } from '../services/services.index';
+import { NbIconLibraries } from '@nebular/theme';
 
 @Component({
   selector: 'ngx-admin',
@@ -14,9 +15,10 @@ import { SidebarService } from '../services/services.index';
 })
 export class AdminComponent implements OnInit {
 
-  constructor(
-    public _sidebarServices: SidebarService
-  ) { }
+  constructor( public _sidebarServices: SidebarService, private iconLibraries: NbIconLibraries ) {
+    this.iconLibraries.registerFontPack('fas', { packClass: 'fas', iconClassPrefix: 'fa' });
+    this.iconLibraries.registerFontPack('far', { packClass: 'far', iconClassPrefix: 'fa' });
+  }
 
   ngOnInit() {
   }

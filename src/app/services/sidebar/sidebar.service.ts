@@ -19,7 +19,7 @@ export class SidebarService {
         return;
       }
 
-      console.log('informacion', dt, Date() );
+      // console.log('informacion', dt, Date() );
 
       if (dt.user.role === 'ADMIN_ROLE'){
         this.menu = ADMIN;

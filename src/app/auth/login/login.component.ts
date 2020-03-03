@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-import { NbLoginComponent, NbAuthService, NbAuthJWTToken } from '@nebular/auth';
+import { NbLoginComponent } from '@nebular/auth';
 
 @Component({
   selector: 'ngx-login',
@@ -9,7 +8,9 @@ import { NbLoginComponent, NbAuthService, NbAuthJWTToken } from '@nebular/auth';
 })
 export class LoginComponent extends NbLoginComponent implements OnInit {
 
-  ngOnInit(){}
+  ngOnInit(){
+
+  }
 
   // ngOnInit() {
   //   this.authService.onTokenChange().subscribe((token: NbAuthJWTToken) => {

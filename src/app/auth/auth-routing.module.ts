@@ -34,11 +34,11 @@ const routes: Routes = [
             //     path: 'login',
             //     component: NbLoginComponent,
             // },
-            {
-                path: 'register',
-                // component: NbRegisterComponent,
-                component: RegisterComponent,
-            },
+            // {
+            //     path: 'register',
+            //     // component: NbRegisterComponent,
+            //     component: RegisterComponent,
+            // },
             {
                 path: 'logout',
                 component: NbLogoutComponent,
@@ -54,7 +54,7 @@ const routes: Routes = [
         ],
     },
 
-    // { path: 'oldPath', redirectTo: '/login' },
+    // { path: '', redirectTo: 'auth/login' },
 
     //{ path: 'path/:routeParam', component: MyComponent },
     //{ path: 'staticPath', component: ... },

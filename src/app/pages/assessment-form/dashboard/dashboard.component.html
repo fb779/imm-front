@@ -1,0 +1,17 @@
+<nb-card>
+    <nb-card-header>
+        Process
+    </nb-card-header>
+    <nb-list>
+        <nb-list-item *ngFor="let process of processes">
+            <div class="row">
+                <div class="col-8">
+                    {{ process.type_visa }}
+                </div>
+                <div class="col-4">
+                    <button (click)="goPorcess(process)" nbButton size="small" fullWidth [disabled]="!process.active"> Selec Process </button>
+                </div>
+            </div>
+        </nb-list-item>
+    </nb-list>
+</nb-card>

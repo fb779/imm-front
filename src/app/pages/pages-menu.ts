@@ -5,14 +5,14 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'Dashboard',
     icon: 'home-outline',
     // icon: { icon: 'home', pack: 'fas' },
-    link: '/pages/user/dashboard',
+    link: '/pages/dashboard',
     home: true,
   },
   {
     title: 'Assessment Form',
     icon: 'edit-2-outline',
     // icon: { icon: 'angry', pack: 'fas' },
-    link: '/pages/user/assessment-form',
+    link: '/pages/assessment-form',
     // children: [
     //   {
     //     title: 'Visitor',

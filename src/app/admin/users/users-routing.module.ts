@@ -1,19 +1,25 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 
-import { UserComponent } from './user.component';
-
-// import { HomeComponent } from './';
-// import { Name2Component } from './';
-// import { Name3Component } from './';
-// import { Name4Component } from './';
-// import { PageNotFoundComponent } from './';
+import { UsersComponent } from './users.component';
+import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
     {
         path: '',
+        component: UsersComponent,
+        // children: [
+        //     {
+        //         path: 'user/:id',
+        //         component: UserComponent
+        //     }
+        // ]
+    },
+    {
+        path: 'user/:id',
         component: UserComponent
     }
+
     // { path: '', component: HomeComponent },
     // { path: 'path2', component: Name2Component },
     // { path: 'path3', component: Name3Component },

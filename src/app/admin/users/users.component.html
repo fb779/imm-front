@@ -1,0 +1,58 @@
+<nb-card>
+    <nb-card-header>
+        Users
+    </nb-card-header>
+
+    <nb-card-body>
+
+        <table class="table table-strip">
+            <thead>
+                <tr>
+                    <th>img</th>
+                    <th class="text-center">first_name</th>
+                    <th class="text-center">last_name</th>
+                    <th class="text-center">email</th>
+                    <th class="text-center">Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users">
+                    <td>
+                        <img [src]="user.img" width="75px" alt="">
+                    </td>
+                    <td>{{user.first_name}}</td>
+                    <td>{{ user.last_name }}</td>
+                    <td>{{ user.email }}</td>
+
+                    <td>
+                        <div class="row">
+                            <div class="col">
+                                <!-- <button nbButton fullWidth size="small" status="success" (click)="editUser( user )"> -->
+                                <button nbButton fullWidth size="small" status="success" [routerLink]="['user', user._id]">
+                                    <nb-icon icon="edit" pack="far"></nb-icon>
+                                </button>
+                            </div>
+                            <div class="col">
+                                <button nbButton fullWidth size="small" status="info">
+                                    <nb-icon icon="edit" pack="far"></nb-icon>
+                                </button>
+                            </div>
+                        </div>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </nb-card-body>
+</nb-card>
+
+<!-- <nb-card>
+    <nb-card-header>
+        Smart Table
+    </nb-card-header>
+
+    <nb-card-body>
+        <ng2-smart-table [settings]="settings" [source]="source" (createConfirm)="onAddConfirm($event)" (editConfirm)="onEditConfirm($event)" (deleteConfirm)="onDeleteConfirm($event)">
+        </ng2-smart-table>
+    </nb-card-body>
+</nb-card> -->

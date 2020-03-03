@@ -16,6 +16,7 @@ import {
   NbIconModule,
   NbRadioModule,
   NbUserModule,
+  NbListModule,
 } from '@nebular/theme';
 
 const nebular = [
@@ -29,17 +30,19 @@ const nebular = [
   NbDatepickerModule,
   NbButtonModule,
   NbStepperModule,
+  NbListModule
   // NbActionsModule,
   // NbRadioModule,
   // NbUserModule
 ];
 
-// import { AssessmentFormRoutingModule } from './assessment-form-routing.module';
+import { AssessmentFormRoutingModule } from './assessment-form-routing.module';
 import { AssessmentFormComponent } from './assessment-form.component';
 import { VisitComponent } from './visit/visit.component';
 import { StudyComponent } from './study/study.component';
 import { SkilledWorkerComponent } from './skilled-worker/skilled-worker.component';
 import { WorkPermitComponent } from './work-permit/work-permit.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
@@ -48,7 +51,8 @@ import { WorkPermitComponent } from './work-permit/work-permit.component';
     VisitComponent,
     StudyComponent,
     SkilledWorkerComponent,
-    WorkPermitComponent
+    WorkPermitComponent,
+    DashboardComponent,
   ],
   exports: [
     AssessmentFormComponent,
@@ -58,7 +62,7 @@ import { WorkPermitComponent } from './work-permit/work-permit.component';
     FormsModule,
     ReactiveFormsModule,
     ...nebular,
-    // AssessmentFormRoutingModule,
+    AssessmentFormRoutingModule,
   ]
 })
 export class AssessmentFormModule { }

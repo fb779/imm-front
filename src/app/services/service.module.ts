@@ -2,7 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 // import { HttpClientModule } from '@angular/common/http';
 
-import { SidebarService, AssessmentFormService, AuthGuardGuard, UserTypeGuard, FormsGuidesService } from './services.index';
+import {
+  SidebarService,
+  AssessmentFormService,
+  AuthGuardGuard,
+  UserTypeGuard,
+  FormsGuidesService,
+  UserService,
+  UsersService,
+  UserProcessService,
+  AdminProcessService
+} from './services.index';
 
 @NgModule({
   declarations: [],
@@ -11,7 +21,11 @@ import { SidebarService, AssessmentFormService, AuthGuardGuard, UserTypeGuard, F
     UserTypeGuard,
     SidebarService,
     AssessmentFormService,
-    FormsGuidesService
+    FormsGuidesService,
+    UserService,
+    UsersService,
+    UserProcessService,
+    AdminProcessService,
   ],
   imports: [
     CommonModule,

@@ -1,48 +1,49 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ProcessesRoutingModule } from './processes-routing.module';
+
 import { ThemeModule } from '../../@theme/theme.module';
+
 import {
   NbMenuModule,
   NbCardModule,
   NbInputModule,
   NbSelectModule,
+  NbActionsModule,
   NbButtonModule,
   NbCheckboxModule,
   NbDatepickerModule,
-  NbStepperModule,
-  NbActionsModule,
   NbIconModule,
   NbRadioModule,
-  NbUserModule,
+  NbUserModule
 } from '@nebular/theme';
 
-const nebular = [
+const processes_nebular = [
   ThemeModule,
   NbMenuModule,
-  // NbIconModule,
   NbCardModule,
-  NbInputModule,
+  // NbInputModule,
   NbSelectModule,
-  NbCheckboxModule,
-  NbDatepickerModule,
-  NbButtonModule,
-  NbStepperModule,
   // NbActionsModule,
+  NbButtonModule,
+  // NbCheckboxModule,
+  // NbDatepickerModule,
+  NbIconModule,
   // NbRadioModule,
   // NbUserModule
 ];
 
-import { AdminRoutingModule } from './admin-routing.module';
-import { AdminComponent } from './admin.component';
+import { ProcessesComponent } from './processes.component';
 
 @NgModule({
-  declarations: [
-    AdminComponent
-  ],
   imports: [
-    AdminRoutingModule,
     CommonModule,
-    ...nebular
-  ]
+    ProcessesRoutingModule,
+    ...processes_nebular,
+  ],
+  exports: [],
+  declarations: [
+    ProcessesComponent
+  ],
 })
-export class AdminModule { }
+export class ProcessesModule { }

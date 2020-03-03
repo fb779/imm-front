@@ -13,6 +13,7 @@ import {
 import { AuthGuardGuard, UserTypeGuard } from './services/services.index';
 
 const routes: Routes = [
+
   {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module')
@@ -20,12 +21,13 @@ const routes: Routes = [
   },
   {
     path: 'pages',
-    canActivate: [AuthGuardGuard],
+    // canActivate: [AuthGuardGuard],
     loadChildren: () => import('./pages/pages.module')
       .then(m => m.PagesModule),
   },
   {
     path: 'auth',
+    // canActivate: [AuthGuardGuard],
     loadChildren: () => import('./auth/auth.module')
       .then(m => m.AuthModule),
     // loadChildren: './auth/auth.module#NgxAuthModule',

@@ -1,14 +1,22 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 
-import { AdminComponent } from './admin.component';
+// import { HomeComponent } from './';
+// import { Name2Component } from './';
+// import { Name3Component } from './';
+// import { Name4Component } from './';
+// import { PageNotFoundComponent } from './';
+import { ProcessesComponent } from './processes.component';
 
 const routes: Routes = [
     {
         path: '',
-        component: AdminComponent,
-        // children: [],
+        component: ProcessesComponent
     },
+
+    // { path: 'path2', component: Name2Component },
+    // { path: 'path3', component: Name3Component },
+    // { path: 'path4', component: Name4Component },
     // { path: '**', component: PageNotFoundComponent },
 
     //{ path: 'path/:routeParam', component: MyComponent },
@@ -22,4 +30,4 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class AdminRoutingModule {}
+export class ProcessesRoutingModule {}

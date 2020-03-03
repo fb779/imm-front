@@ -3,7 +3,6 @@ import {
   CanActivate,
   CanActivateChild,
   CanLoad,
-  Route,
   UrlSegment,
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
@@ -12,25 +11,30 @@ import {
 import { Observable } from 'rxjs';
 import { NbAuthService } from '@nebular/auth';
 import { tap } from 'rxjs/operators';
+import { UserService } from '../../services/user/user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuardGuard implements CanActivate {
 
-  constructor( private _router: Router, private authService: NbAuthService) {
+  constructor( private _router: Router, private authService: NbAuthService, private _userServices: UserService) {
     // console.log('Hola desde el guard');
+    console.log('info del usuario',this._userServices.user);
+    console.log('token del usuario',this._userServices.token);
    }
 
   canActivate( next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
     // canActive can return Observable<boolean>, which is exactly what isAuthenticated returns
+
     return this.authService.isAuthenticated().pipe(
       tap(authenticated => {
-        // console.log(authenticated);
         if (!authenticated) {
-          this._router.navigate(['auth/login']);
+          // this._router.navigate(['auth/login']);
+          this._router.navigate(['auth/logout']);
           return false;
         }
+        return true;
       }),
     );
     // return true;

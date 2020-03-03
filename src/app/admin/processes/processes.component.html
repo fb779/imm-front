@@ -1,0 +1,57 @@
+<nb-card>
+    <nb-card-header>List of process</nb-card-header>
+    <nb-card-body>
+        <div class="row" *ngIf="processes.length <= 0">
+            <div class="col">
+                <p>
+                    Empty process
+                </p>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="processes.length > 0">
+
+            <div class="col">
+                <table class="table table-striped table-bordered">
+                    <thead class="text-center">
+                        <tr>
+                            <th style="width: 200px;">Type of process</th>
+                            <th>Owner</th>
+                            <th>Email</th>
+                            <th>Assessor</th>
+                            <th style="width: 200px;">Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let process of processes">
+                            <td> {{ process.type_visa }} </td>
+                            <td> {{ process.user.first_name + ' ' + process.user.last_name }} </td>
+                            <td> {{ process.user.email }} </td>
+                            <td>
+                                <nb-select size="small" fullWidth placeholder="Consultan select" [(selected)]="process.consultan">
+                                    <nb-option [value]="null">Selected</nb-option>
+                                    <nb-option [value]="consultan._id" *ngFor="let consultan of consultans">{{ consultan.first_name + ' ' + consultan.last_name || consultan?.email }}</nb-option>
+                                </nb-select>
+                            </td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <button nbButton fullWidth size="small" [disabled]="!process.consultan" (click)="save(process)">
+                                            <nb-icon pack="far" icon="save"></nb-icon>
+                                        </button>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <button nbButton fullWidth size="small">
+                                            <nb-icon pack="far" icon="trash-alt"></nb-icon>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </nb-card-body>
+</nb-card>

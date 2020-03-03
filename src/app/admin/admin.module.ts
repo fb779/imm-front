@@ -45,7 +45,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   ],
   declarations: [
     AdminComponent,
-    DashboardComponent
+    DashboardComponent,
   ],
 })
 export class AdminModule { }

@@ -8,6 +8,8 @@ import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 
+import { UserService } from '../../../services/services.index';
+
 @Component({
   selector: 'ngx-header',
   styleUrls: ['./header.component.scss'],
@@ -44,17 +46,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   userMenu = [
     // { title: 'Profile' },
-    { title: 'Log out', link: 'auth/logout', icon: 'edit-2-outline', }
+    { title: 'Log out', link: 'auth/logout', icon: '', }
   ];
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
               private themeService: NbThemeService,
-              private userService: UserData,
               private layoutService: LayoutService,
               private breakpointService: NbMediaBreakpointsService,
               private authService: NbAuthService,
-              private _route: Router
+              private _route: Router,
+              private userService: UserService,
 
     ) {
       this.authService.onTokenChange().subscribe((token: NbAuthJWTToken) => {
@@ -64,13 +66,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
           // console.log('Carga de informacion del usuario',data);
           this.user = data.user;
 
-          if( this.user.role === 'ADMIN_ROLE'){
-            this._route.navigate(['/admin']);
-          }
+          // if( this.user.role === 'ADMIN_ROLE'){
+          //   this._route.navigate(['/admin']);
+          // }
 
-          if( this.user.role !== 'ADMIN_ROLE'){
-            this._route.navigate(['/pages']);
-          }
+          // if( this.user.role !== 'ADMIN_ROLE'){
+          //   this._route.navigate(['/pages']);
+          // }
+
         } else {
           this._route.navigate(['/auth/logout']);
         }
@@ -80,6 +83,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.changeTheme(this.currentTheme);
     this.currentTheme = this.themeService.currentTheme;
+
 
     // this.userService.getUsers()
     //   .pipe(takeUntil(this.destroy$))

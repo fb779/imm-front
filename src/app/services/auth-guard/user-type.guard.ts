@@ -16,7 +16,7 @@ export class UserTypeGuard implements CanActivate {
 
    canActivate( next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
     // canActive can return Observable<boolean>, which is exactly what isAuthenticated returns
-    var user;
+    let user;
     this.authService.getToken().subscribe((token: NbAuthJWTToken) => {
       user = token.getPayload();
     });
