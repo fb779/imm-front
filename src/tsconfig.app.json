@@ -9,7 +9,10 @@
       ],
       "@nebular/*": [
         "../node_modules/@nebular/*"
-      ]
+      ],
+      "@models/User": [
+        "app/models/User"
+      ],
     }
   },
   "exclude": [

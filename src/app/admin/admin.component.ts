@@ -5,7 +5,6 @@ import { NbIconLibraries } from '@nebular/theme';
 @Component({
   selector: 'ngx-admin',
   styleUrls: ['./admin.component.scss'],
-  // templateUrl: './admin.component.html',
   template: `
     <ngx-one-column-layout>
       <nb-menu [items]="_sidebarServices.menu"></nb-menu>

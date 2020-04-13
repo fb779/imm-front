@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { map, catchError, tap } from 'rxjs/operators';
+
+import { User } from '../../models/User';
+// import { User } from '@models/User';
 
 import { URL_SERVICIOS } from '../../config/config';
 import { NbAuthService, NbAuthJWTToken } from '@nebular/auth';
@@ -13,41 +16,67 @@ import { NbAuthService, NbAuthJWTToken } from '@nebular/auth';
 })
 export class UserService {
   private id: string;
-  public user: any;
+  public user: User;
   public token: string;
 
-  constructor(
-    private _http: HttpClient,
-    private _route: Router,
-    private authService: NbAuthService
-  ) {
+  constructor( private _http: HttpClient, private _route: Router, private authService: NbAuthService ) {
+    this.loadStorage();
+    // this.saveStorage();
+    // this.authService.onTokenChange().subscribe(( token: NbAuthJWTToken)=>{
+    //   if( token.isValid() ){
+    //     this.token = token.getValue();
+    //     this.id = token.getPayload().sub;
+    //     // this.user = token.getPayload().user;
+    //   }
+    // });
+  }
 
-    // this.authService.onTokenChange().pipe(
+  // ===================================================
+  //  Metodo de guardado en storage
+  // ===================================================
+  saveStorage( user: any){
+    localStorage.setItem('user', JSON.stringify(user));
 
-    // )
+    this.user = user;
+  }
 
-    this.authService.getToken().subscribe(( token: NbAuthJWTToken)=>{
+  loadStorage(){
+    this.token = '';
+    this.user = null;
+
+    this.authService.onTokenChange().subscribe((token)=>{
       if( token.isValid() ){
         this.token = token.getValue();
         this.id = token.getPayload().sub;
-        this.user = token.getPayload().user;
-        // this.getUser(this.id).subscribe((user: any)=>{
-        //   this.user = user;
-        // });
+        // this.user = token.getPayload().user;
       }
     });
 
+    if ( localStorage.getItem('user') ){
+      this.user = JSON.parse( localStorage.getItem('user') );
+    }
+
+  }
+
+  clearStorage() {
+    this.user = null;
+    localStorage.removeItem('user');
   }
 
   // ===================================================
   //  Get user by Id
   // ===================================================
-  getUser( id: string){
-    console.log(id);
+  getUser( id: string ){
+    // console.log(this.id);
     const url = `${ URL_SERVICIOS }/users/${ id }`;
 
     return this._http.get(url).pipe(
-      map( (resp: any) => resp.data )
+      // tap((r)=> console.log('datos que llegaron', r ) ),
+      map( (resp: any) => {
+        let user: User = resp.data.user;
+        this.saveStorage(user);
+        return user
+      })
     );
   }
 

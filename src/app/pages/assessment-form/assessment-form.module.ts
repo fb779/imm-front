@@ -10,13 +10,13 @@ import {
   NbSelectModule,
   NbButtonModule,
   NbCheckboxModule,
-  NbDatepickerModule,
   NbStepperModule,
+  NbListModule,
+  NbDatepickerModule,
   NbActionsModule,
   NbIconModule,
   NbRadioModule,
   NbUserModule,
-  NbListModule,
 } from '@nebular/theme';
 
 const nebular = [
@@ -43,6 +43,7 @@ import { StudyComponent } from './study/study.component';
 import { SkilledWorkerComponent } from './skilled-worker/skilled-worker.component';
 import { WorkPermitComponent } from './work-permit/work-permit.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SharedModule } from '../../shared/shared.module';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     FormsModule,
     ReactiveFormsModule,
     ...nebular,

@@ -10,13 +10,27 @@ export class AdminProcessService {
 
   constructor(private _http: HttpClient) { }
 
+  // metodo para guardar la asignacion de un consultor con un proceso
+  setAsignConsultan( process: any ){
+    let url = `${ environment.api_url }/process/${ process._id }`;
+    process.status = 'ASIGNED';
+    return this._http.put( url, {...process} )
+    .pipe(
+      tap(d => console.log('lo recibido en tap 1', d)),
+      // map((dt: any)=>{
+      //   return dt.data;
+      // }),
+    );
+  }
+
+  // metodo para cargar los consultores
   getConsultans(){
-    let url = `${ environment.api_url }/users/consultans`;
+    let url = `${ environment.api_url }/users/consultants`;
 
     return this._http.get( url ).pipe(
       // tap(d => console.log('lo recibido en tap 1', d)),
       map((dt: any)=>{
-        return dt.data.consultans;
+        return dt.data.consultants;
       }),
       // tap(d => console.log('lo recibido en tap 2', d)),
     );
@@ -24,12 +38,12 @@ export class AdminProcessService {
 
   // carga de un proceso especifico
   getProcessToAsigned(){
-    let url = `${ environment.api_url }/process/asigned`;
+    let url = `${ environment.api_url }/process`;
 
     return this._http.get( url ).pipe(
       // tap(d => console.log('lo recibido en tap 1', d)),
       map((dt: any)=>{
-        return dt.data.processes;
+        return dt.list;
       }),
       // tap(d => console.log('lo recibido en tap 2', d)),
     );

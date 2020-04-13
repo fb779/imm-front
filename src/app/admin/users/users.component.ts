@@ -73,7 +73,7 @@ export class UsersComponent implements OnInit {
 
     // this._userService.getUsers();
     this._userService.getUsers().subscribe(( data: any)=>{
-      console.log('Usuarios cargados',data);
+      // console.log('Usuarios cargados',data);
       this.users = data.users;
     });
   }
@@ -82,8 +82,8 @@ export class UsersComponent implements OnInit {
   }
 
   onAddConfirm(event){
-    console.log('Evento de Creacion de usuario', event);
-    console.log('Creacion de usuario', event.newData);
+    // console.log('Evento de Creacion de usuario', event);
+    // console.log('Creacion de usuario', event.newData);
     if (window.confirm('Are you sure you want to create?')) {
       event.confirm.resolve();
     } else {
@@ -92,8 +92,8 @@ export class UsersComponent implements OnInit {
   }
 
   onEditConfirm(event){
-    console.log('Evento de Edicion de usuario', event);
-    console.log('Edicion de usuario', event.newData);
+    // console.log('Evento de Edicion de usuario', event);
+    // console.log('Edicion de usuario', event.newData);
 
     if (window.confirm('Are you sure you want to edit?')) {
       event.confirm.resolve();

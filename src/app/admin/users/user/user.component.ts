@@ -12,7 +12,8 @@ export class UserComponent implements OnInit {
 
   id;
 
-  constructor( private _router: Router, private _activateRoute: ActivatedRoute, private _userService: UserService) {
+  // constructor( private _router: Router, private _activateRoute: ActivatedRoute, private _userService: UserService) {
+  constructor( private _router: Router, private _activateRoute: ActivatedRoute) {
       this._activateRoute.params.subscribe( (params) => {
         this.id = params['id'];
 

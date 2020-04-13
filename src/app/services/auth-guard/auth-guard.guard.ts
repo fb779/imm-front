@@ -1,43 +1,33 @@
 import { Injectable } from '@angular/core';
-import {
-  CanActivate,
-  CanActivateChild,
-  CanLoad,
-  UrlSegment,
-  ActivatedRouteSnapshot,
-  RouterStateSnapshot,
-  UrlTree,
-  Router} from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from '@angular/router';
 import { Observable } from 'rxjs';
-import { NbAuthService } from '@nebular/auth';
+import { NbAuthService, NbAuthJWTToken } from '@nebular/auth';
 import { tap } from 'rxjs/operators';
-import { UserService } from '../../services/user/user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuardGuard implements CanActivate {
-
-  constructor( private _router: Router, private authService: NbAuthService, private _userServices: UserService) {
-    // console.log('Hola desde el guard');
-    console.log('info del usuario',this._userServices.user);
-    console.log('token del usuario',this._userServices.token);
-   }
+  payload;
+  constructor( private _router: Router, private _authService: NbAuthService) {
+    this._authService.onTokenChange().subscribe((token: NbAuthJWTToken)=>{
+      if (token.isValid()){
+        this.payload = token.getPayload();
+      }
+    });
+  }
 
   canActivate( next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
-    // canActive can return Observable<boolean>, which is exactly what isAuthenticated returns
-
-    return this.authService.isAuthenticated().pipe(
+    return this._authService.isAuthenticated().pipe(
       tap(authenticated => {
         if (!authenticated) {
-          // this._router.navigate(['auth/login']);
           this._router.navigate(['auth/logout']);
           return false;
         }
         return true;
       }),
     );
-    // return true;
+    return true;
   }
 
   // canActivateChild(

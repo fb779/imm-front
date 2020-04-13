@@ -6,14 +6,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { APP_BASE_HREF } from '@angular/common';
-import { HttpClientModule, HTTP_INTERCEPTORS, HttpRequest } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { environment } from '../environments/environment';
+
+import { NbPasswordAuthStrategy, NbAuthModule, NbAuthJWTToken } from '@nebular/auth';
+
 import { CoreModule } from './@core/core.module';
 import { ThemeModule } from './@theme/theme.module';
+
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-
-import { NbPasswordAuthStrategy, NbAuthModule, NbAuthJWTToken, NB_AUTH_TOKEN_INTERCEPTOR_FILTER, NbAuthJWTInterceptor } from '@nebular/auth';
 
 import {
   NbChatModule,
@@ -25,25 +27,11 @@ import {
   NbWindowModule,
 } from '@nebular/theme';
 
+
 import { ServiceModule } from './services/service.module';
 import { AuthGuardGuard } from './services/services.index';
-import { URL_SERVICIOS } from './config/config';
-// import { InterceptorService } from './services/interceptor/interceptor.service';
-import { TokenInterceptorService } from './services/interceptor/token-interceptor.service';
-import { environment } from '../environments/environment';
 import { AuthInterceptorService } from './services/interceptor/auth-interceptor.service';
-
-
-// const formSetting: any = {
-//   redirectDelay: 100, // delay before redirect after a successful login, while success message is shown to the user
-//   strategy: 'email',  // strategy id key.
-//   rememberMe: true,   // whether to show or not the `rememberMe` checkbox
-//   showMessages: {     // show/not show success/error messages
-//     success: true,
-//     error: true,
-//   },
-//   // socialLinks: socialLinks, // social links at the bottom of a page
-// };
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent],

@@ -9,34 +9,34 @@ import { AdminProcessService } from '../../services/process/admin-process.servic
 export class ProcessesComponent implements OnInit {
 
   processes = [];
-  consultans = [
-    {
-      _id: "sd8778dsy87dsy78ds78yds",
-      name: 'perpito cosito'
-    },
-    {
-      _id: "67sd67ds67sd6778ds78yds",
-      name: 'juanito perenzejo'
-    }
-  ];
+  consultants = [];
   selectedConsultor = '';
 
   constructor( private _process: AdminProcessService ) {
-    this._process.getProcessToAsigned().subscribe((data: any)=>{
-      // console.log('Procesos pendientes de asignacion', data);
-      this.processes = data;
-    });
-
     this._process.getConsultans().subscribe((data: any)=>{
       // console.log('Consultores encontrados', data);
-      this.consultans = data;
+      this.consultants = data;
     });
+
+    this.loadProcess();
   }
 
   ngOnInit() {
   }
 
+  loadProcess(){
+    this._process.getProcessToAsigned().subscribe((data: any)=>{
+      this.processes = data;
+    });
+  }
+
   save(process: any){
     console.log('proceso seleccionado', process);
+    this._process.setAsignConsultan(process).subscribe(( data: any )=>{
+      console.log(data);
+      if (data.ok){
+        this.loadProcess();
+      }
+    })
   }
 }

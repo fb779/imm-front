@@ -32,13 +32,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'Forms & Guides',
     icon: 'file-text-outline',
     link: '/pages/forms-guides',
-
   },
   {
     title: 'My Documents',
     icon: 'folder-outline',
     link: '/pages/documents',
-
   },
   {
     title: 'My Visa',

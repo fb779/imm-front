@@ -6,10 +6,10 @@
         <nb-list-item *ngFor="let process of processes">
             <div class="row">
                 <div class="col-8">
-                    {{ process.type_visa }}
+                    {{ process.visa_category.name }}
                 </div>
                 <div class="col-4">
-                    <button (click)="goPorcess(process)" nbButton size="small" fullWidth [disabled]="!process.active"> Selec Process </button>
+                    <button (click)="goProcess(process)" nbButton size="small" fullWidth [status]="(process.status !== status.active) ? 'success' : 'primary'" [disabled]="!process.active"> Selec Process </button>
                 </div>
             </div>
         </nb-list-item>

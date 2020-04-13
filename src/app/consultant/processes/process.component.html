@@ -1,0 +1,52 @@
+<nb-card>
+    <!-- <nb-card-header>
+        <label for="">Mi titulo del proceso</label>
+    </nb-card-header> -->
+    <nb-card-body [nbSpinner]="loading" nbSpinnerStatus="success">
+        <nb-tabset fullWidth>
+            <nb-tab tabTitle="Users">
+                <div *ngIf="process && type_visa">
+                    <ng-container *ngIf="type_visa === visa_categories.visitor">
+                        <ngx-visitor [process]="process"></ngx-visitor>
+                    </ng-container>
+
+                    <ng-container *ngIf="type_visa === visa_categories.study">
+                        <ngx-study [process]="process"></ngx-study>
+                    </ng-container>
+                </div>
+            </nb-tab>
+
+            <nb-tab tabTitle="Check List">
+                <nb-card>
+                    <nb-card-header>
+                        <label for="">Upload documents</label>
+                    </nb-card-header>
+                    <nb-card-body *ngIf="process && type_visa">
+                        <!-- <ngx-select-documents [type]="'visitor'"></ngx-select-documents> -->
+                        <ngx-select-documents [type]="'study'"></ngx-select-documents>
+                    </nb-card-body>
+                </nb-card>
+            </nb-tab>
+            <nb-tab tabTitle="Forms">
+                <nb-card>
+                    <nb-card-header>
+                        Forms
+                    </nb-card-header>
+                    <nb-card-body>
+                        <ngx-forms-guides processo="procesooo"></ngx-forms-guides>
+                    </nb-card-body>
+                </nb-card>
+            </nb-tab>
+            <nb-tab tabTitle="Guides">
+                <nb-card>
+                    <nb-card-header>
+                        Guides
+                    </nb-card-header>
+                    <nb-card-body>
+                        <ngx-forms-guides processo="procesooo"></ngx-forms-guides>
+                    </nb-card-body>
+                </nb-card>
+            </nb-tab>
+        </nb-tabset>
+    </nb-card-body>
+</nb-card>

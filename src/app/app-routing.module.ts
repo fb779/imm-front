@@ -10,58 +10,48 @@ import {
   NbResetPasswordComponent,
 } from '@nebular/auth';
 
-import { AuthGuardGuard, UserTypeGuard } from './services/services.index';
+import { AuthGuardGuard, AdminProfileGuard, UserTypeGuard } from './services/services.index';
 
 const routes: Routes = [
-
-  {
-    path: 'admin',
-    loadChildren: () => import('./admin/admin.module')
-      .then(m => m.AdminModule),
-  },
-  {
-    path: 'pages',
-    // canActivate: [AuthGuardGuard],
-    loadChildren: () => import('./pages/pages.module')
-      .then(m => m.PagesModule),
-  },
   {
     path: 'auth',
     // canActivate: [AuthGuardGuard],
     loadChildren: () => import('./auth/auth.module')
-      .then(m => m.AuthModule),
-    // loadChildren: './auth/auth.module#NgxAuthModule',
+    .then(m => m.AuthModule),
   },
-  // {
-  //   path: 'auth',
-  //   component: NbAuthComponent,
-  //   children: [
-  //     {
-  //       path: '',
-  //       component: NbLoginComponent,
-  //     },
-  //     {
-  //       path: 'login',
-  //       component: NbLoginComponent,
-  //     },
-  //     {
-  //       path: 'register',
-  //       component: NbRegisterComponent,
-  //     },
-  //     {
-  //       path: 'logout',
-  //       component: NbLogoutComponent,
-  //     },
-  //     {
-  //       path: 'request-password',
-  //       component: NbRequestPasswordComponent,
-  //     },
-  //     {
-  //       path: 'reset-password',
-  //       component: NbResetPasswordComponent,
-  //     },
-  //   ],
-  // },
+  {
+    path: 'pages',
+    canActivate: [AuthGuardGuard],
+    loadChildren: () => import('./pages/pages.module')
+    .then(m => m.PagesModule),
+  },
+  {
+    path: 'admin',
+    canActivate: [AuthGuardGuard, UserTypeGuard],
+    loadChildren: () => import('./admin/admin.module')
+    .then(m => m.AdminModule),
+    data: {
+      role: 'ADMIN_ROLE'
+    }
+  },
+  {
+    path: 'client',
+    canActivate: [AuthGuardGuard, UserTypeGuard],
+    loadChildren: () => import('./client/client.module')
+    .then(m => m.ClientModule),
+    data: {
+      role: 'CLIENT_ROLE'
+    }
+  },
+  {
+    path: 'consultant',
+    canActivate: [AuthGuardGuard, UserTypeGuard],
+    loadChildren: () => import('./consultant/consultant.module')
+    .then(m => m.ConsultantModule),
+    data: {
+      role: 'USER_ROLE'
+    }
+  },
   { path: '', redirectTo: 'pages', pathMatch: 'full' },
   { path: '**', redirectTo: 'pages' },
 ];

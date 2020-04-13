@@ -34,7 +34,7 @@
     <div class="form-control-group">
         <span class="label-with-link">
       <label class="label" for="input-password">Password:</label>
-      <a class="forgot-password caption-2" routerLink="../request-password">Forgot Password?</a>
+      <!-- <a class="forgot-password caption-2" routerLink="../request-password">Forgot Password?</a> -->
     </span>
         <input nbInput fullWidth [(ngModel)]="user.password" #password="ngModel" name="password" type="password" id="input-password" placeholder="Password" fieldSize="large" [status]="password.dirty ? (password.invalid  ? 'danger' : 'success') : ''" [required]="getConfigValue('forms.validation.password.required')"
             [minlength]="getConfigValue('forms.validation.password.minLength')" [maxlength]="getConfigValue('forms.validation.password.maxLength')" [attr.aria-invalid]="password.invalid && password.touched ? true : null">
@@ -75,5 +75,5 @@
 
 <section class="another-action" aria-label="Register">
     <!-- Don't have an account? <a class="text-link" routerLink="../register">Register</a> -->
-    Don't have an account? <a class="text-link" [routerLink]="['/auth/register']">Register</a>
+    <!-- Don't have an account? <a class="text-link" [routerLink]="['/auth/register']">Register</a> -->
 </section>

@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UserProcessService } from '../../../services/services.index';
 import { Router } from '@angular/router';
+import { Process } from '../../../models/Process';
+import { status, visa_categories } from '../../../config/config';
+
+
 
 @Component({
   selector: 'ngx-dashboard',
@@ -8,7 +12,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  processes = [];
+  processes:Process[] = [];
+  status = status;
 
   constructor( private _router: Router ,private _processServices: UserProcessService) {
     this.getProcesses();
@@ -18,13 +23,30 @@ export class DashboardComponent implements OnInit {
   }
 
   getProcesses(){
-    this._processServices.getUserProcesses().subscribe((dt: any)=> this.processes = dt);
+    this._processServices.getUserProcesses().subscribe((dt: Process[])=> {
+      this.processes = dt;
+    });
   }
 
-  goPorcess( process: any ){
-    console.log('Proceso seleccionado',process);
-    if (process.type_visa === 'VISITOR'){
-      this._router.navigate(['/pages/assessment-form/visit', process._id]);
+  goProcess( process: Process ){
+    let routeForm = null;
+
+    switch(process.visa_category.name){
+      case visa_categories.visitor:{
+        routeForm = 'visit';
+      }break;
+
+      case visa_categories.turist:{
+        routeForm = 'turist';
+      }break;
+
+      case visa_categories.study:{
+        routeForm = 'study';
+      }break;
+    }
+
+    if ( routeForm ){
+      this._router.navigate(['/pages/assessment-form/', routeForm, process._id]);
     }
   }
 }

@@ -1,0 +1,30 @@
+<nb-card>
+    <nb-card-header>
+        Process Assigned
+    </nb-card-header>
+    <nb-list>
+        <!-- {{ processes | json }} -->
+        <nb-list-item *ngFor="let process of processes">
+            <div class="row">
+                <div class="col-12 col-md">
+                    {{ process.client.first_name | uppercase }} {{ process.client.last_name | uppercase }}
+                </div>
+                <div class="col-12 col-md">
+                    {{ process.client.email }}
+                </div>
+                <div class="col-12 col-md">
+                    {{'case Number'}}
+                </div>
+                <div class="col-12 col-md">
+                    {{ process.visa_category.name }}
+                </div>
+                <div class="col-12 col-md-2">
+                    <button nbButton fullWidth size="small" [disabled]="!process" (click)="select(process)">
+                        <nb-icon pack="far" icon="eye"></nb-icon>
+                    </button>
+                </div>
+            </div>
+
+        </nb-list-item>
+    </nb-list>
+</nb-card>

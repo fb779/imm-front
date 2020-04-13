@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { NbLoginComponent } from '@nebular/auth';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { NbLoginComponent, NbAuthService } from '@nebular/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-login',

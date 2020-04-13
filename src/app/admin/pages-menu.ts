@@ -5,7 +5,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'Dashboard',
     icon: 'home-outline',
     // icon: { icon: 'home', pack: 'fas' },
-    link: '/admin',
+    link: '/admin/dashboard',
     home: true,
   },
   {

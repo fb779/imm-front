@@ -1,0 +1,62 @@
+<div class="row">
+    <!-- <div>
+        <pre>
+            {{ listOfDocuments | json }}
+        </pre>
+    </div> -->
+    <div class="col-12" *ngFor="let document of listOfDocuments">
+        <nb-checkbox [(checked)]="document.required" (checkedChange)="toggle($event)">{{ document.group }} - {{ document.name }}</nb-checkbox>
+    </div>
+    <div class="col-12">
+        <hr>
+    </div>
+    <div class="col-12">
+        <div class="row form-group">
+            <div class="col-12">
+                <label for="">Add others</label>
+            </div>
+            <div class="col-10">
+                <input type="text" nbInput fullWidth class="form-control" [(ngModel)]="otherDocument" (keyup.enter)="addOther()">
+            </div>
+            <div class="col-2">
+                <button nbButton fullWidth size="small" (click)="addOther()" [disabled]="!otherDocument">
+                    <nb-icon pack="fas" icon="plus-circle"></nb-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <ul>
+            <li *ngFor="let item of otherDocuments">
+                <div class="row">
+                    <div class="col-10">
+                        {{ item.name }}
+                    </div>
+                    <div class="col-2">
+                        <button nbButton fullWidth size="small" status="danger" (click)="removeOther(item)">
+                            <nb-icon pack="fas" icon="minus-circle"></nb-icon>
+                        </button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!-- <div class="col-6">
+        <label for="">Listado de documentos</label>
+        <pre>
+            {{ listOfDocuments | json }}
+        </pre>
+    </div> -->
+    <!-- <div class="col-6">
+        <label for="">Listado de documentos requeridos</label>
+        <pre>
+            {{ documentRequired | json }}
+        </pre>
+    </div> -->
+    <!-- <div class="col-6">
+        <label for="">Listado de otros documentos requeridos</label>
+        <pre>
+            {{ otherDocuments | json }}
+        </pre>
+    </div> -->
+</div>

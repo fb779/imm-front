@@ -9,28 +9,28 @@ import * as moment from 'moment';
   providedIn: 'root'
 })
 export class UserTypeGuard implements CanActivate {
+  payload: any = null;
 
-  constructor( private _router: Router, private authService: NbAuthService) {
-    // console.log('Hola desde el guard');
-   }
-
-   canActivate( next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
-    // canActive can return Observable<boolean>, which is exactly what isAuthenticated returns
-    let user;
-    this.authService.getToken().subscribe((token: NbAuthJWTToken) => {
-      user = token.getPayload();
+  constructor( private _authServices: NbAuthService, private _router: Router ){
+    this._authServices.onTokenChange().subscribe((token: NbAuthJWTToken)=>{
+      if (token.isValid()){
+        this.payload = token.getPayload();
+      }
     });
-    console.log('Se cargo el token en el guard',user.user);
+  }
 
-    // if (user.user.role === 'ADMIN_ROLE' || user.user.role === 'USER_ROLE'){
-    //   this._router.navigate(['admin']);
-    // }
+  canActivate( next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
+    if ( this.payload.exp <= moment().unix()) {
+      this._router.navigate(['auth/logout']);
+      return false;
+    }
 
-    // if (user.user.role === 'CLIENT_ROLE'){
-    //   this._router.navigate(['pages']);
-    // }
+    if (this.payload.user.role !== next.data.role ){
+      this._router.navigate(['pages']);
+      return false;
+    }
 
-    return false;
+    return true;
   }
 
 }

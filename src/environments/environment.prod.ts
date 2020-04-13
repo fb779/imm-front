@@ -1,3 +1,4 @@
+import { URL_SERVICIOS } from '../app/config/config';
 /**
  * @license
  * Copyright Akveo. All Rights Reserved.
@@ -5,4 +6,5 @@
  */
 export const environment = {
   production: true,
+  api_url: URL_SERVICIOS,
 };

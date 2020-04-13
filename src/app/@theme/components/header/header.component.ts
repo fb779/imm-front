@@ -4,11 +4,11 @@ import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeServ
 
 import { UserData } from '../../../@core/data/users';
 import { LayoutService } from '../../../@core/utils';
-import { map, takeUntil } from 'rxjs/operators';
+import { map, takeUntil, filter, tap } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { Router } from '@angular/router';
 
 import { UserService } from '../../../services/services.index';
+import { User } from '../../../models/User';
 
 @Component({
   selector: 'ngx-header',
@@ -20,74 +20,63 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private destroy$: Subject<void> = new Subject<void>();
   userPictureOnly: boolean = false;
-  user: any;
+  user: User;
 
   themes = [
-    // {
-    //   value: 'default',
-    //   name: 'Light',
-    // },
     {
       value: 'dark',
       name: 'Dark',
     },
-    // {
-    //   value: 'cosmic',
-    //   name: 'Cosmic',
-    // },
     {
       value: 'corporate',
       name: 'Corporate',
     },
+    // {
+    //   value: 'default',
+    //   name: 'Light',
+    // },
+    // {
+    //   value: 'cosmic',
+    //   name: 'Cosmic',
+    // },
   ];
 
-  // currentTheme = 'dark';
   currentTheme = 'corporate';
 
   userMenu = [
     // { title: 'Profile' },
+    // { title: 'Log out', icon: '', }
     { title: 'Log out', link: 'auth/logout', icon: '', }
   ];
 
-  constructor(private sidebarService: NbSidebarService,
-              private menuService: NbMenuService,
-              private themeService: NbThemeService,
-              private layoutService: LayoutService,
-              private breakpointService: NbMediaBreakpointsService,
-              private authService: NbAuthService,
-              private _route: Router,
-              private userService: UserService,
-
+  constructor(
+    private sidebarService: NbSidebarService,
+    private menuService: NbMenuService,
+    private themeService: NbThemeService,
+    private layoutService: LayoutService,
+    private breakpointService: NbMediaBreakpointsService,
+    private authService: NbAuthService,
+    private _userService: UserService,
     ) {
-      this.authService.onTokenChange().subscribe((token: NbAuthJWTToken) => {
-        if (token.isValid()) {
-          let data = token.getPayload(); // here we receive a payload from the token and assigns it to our `user` variable
-
-          // console.log('Carga de informacion del usuario',data);
-          this.user = data.user;
-
-          // if( this.user.role === 'ADMIN_ROLE'){
-          //   this._route.navigate(['/admin']);
-          // }
-
-          // if( this.user.role !== 'ADMIN_ROLE'){
-          //   this._route.navigate(['/pages']);
-          // }
-
-        } else {
-          this._route.navigate(['/auth/logout']);
+      this.authService.onTokenChange().subscribe(( token: NbAuthJWTToken)=>{
+        if( token.isValid() ){
+          let dt = token.getPayload();
+          this._userService.getUser(dt.sub).subscribe((user)=>{
+            // console.log(user);
+            this.user = user;
+          }); ;
         }
       });
-  }
+    }
 
   ngOnInit() {
+
+    // this._userService.getUser().subscribe((us)=>{
+    //   this.user = us;
+    // });
+
     this.changeTheme(this.currentTheme);
     this.currentTheme = this.themeService.currentTheme;
-
-
-    // this.userService.getUsers()
-    //   .pipe(takeUntil(this.destroy$))
-    //   .subscribe((users: any) => this.user = users.nick);
 
     const { xl, md } = this.breakpointService.getBreakpointsMap();
     this.themeService.onMediaQueryChange()
@@ -106,9 +95,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$),
       )
       .subscribe(themeName => this.currentTheme = themeName);
+
+      // this.menuService.onItemClick()
+      // .pipe(
+      //   map(({ item: { title } }) => title),
+      // ).subscribe((item) => {
+      //   console.log('Click en el item del menu', item);
+      // });
   }
 
   ngOnDestroy() {
+    // console.log('destruccion del header');
+    this._userService.clearStorage();
     this.destroy$.next();
     this.destroy$.complete();
   }

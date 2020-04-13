@@ -1,8 +1,16 @@
 import { Injectable } from '@angular/core';
-import { MENU_ITEMS as CLIENT } from '../../pages/pages-menu';
-import { MENU_ITEMS as ADMIN} from '../../admin/admin-menu';
+// import { MENU_ITEMS as ADMIN} from '../../admin/pages-menu';
+// import { MENU_ITEMS as PAGES } from '../../pages/pages-menu';
+// import { MENU_ITEMS as CLIENT } from '../../client/pages-menu';
+// import { MENU_ITEMS as USER} from '../../consultant/pages-menu';
 import { NbMenuService } from '@nebular/theme';
 import { NbAuthService, NbAuthJWTToken } from '@nebular/auth';
+import {
+  ADMIN_MENU_ITEMS as ADMIN,
+  USER_MENU_ITEMS as USER,
+  CLIENT_MENU_ITEMS as CLIENT
+} from './pages-menu';
+
 
 @Injectable({
   providedIn: 'root'
@@ -19,15 +27,22 @@ export class SidebarService {
         return;
       }
 
-      // console.log('informacion', dt, Date() );
-
       if (dt.user.role === 'ADMIN_ROLE'){
         this.menu = ADMIN;
       }
 
-      if (dt.user.role !== 'ADMIN_ROLE'){
+      if (dt.user.role === 'USER_ROLE'){
+        this.menu = USER;
+        // this.menu = [];
+      }
+
+      if (dt.user.role === 'CLIENT_ROLE'){
         this.menu = CLIENT;
       }
+
+      // if (dt.user.role !== 'ADMIN_ROLE'){
+      //   this.menu = CLIENT;
+      // }
     });
   }
 

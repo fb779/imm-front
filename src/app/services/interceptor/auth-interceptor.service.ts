@@ -1,4 +1,4 @@
-import { Injectable, Type } from '@angular/core';
+import { Injectable, Type, ErrorHandler } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -12,14 +12,14 @@ export class AuthInterceptorService implements HttpInterceptor {
   token: string;
 
   constructor(private authService: NbAuthService) {
-    this.authService.getToken().subscribe(( token: NbAuthJWTToken)=>{
+    // this.authService.getToken().subscribe(( token: NbAuthJWTToken)=>{
+    this.authService.onTokenChange().subscribe(( token: NbAuthJWTToken)=>{
       this.token = token.getValue();
     });
    }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // console.log('interceptor');
-    // console.log('token', this.token);
+
     if (req.url.includes('login')){
       return next.handle( req );
       // .pipe(
@@ -31,16 +31,16 @@ export class AuthInterceptorService implements HttpInterceptor {
 
     const reqClone = req.clone(httpOptions);
 
-    return next.handle( reqClone );
-    // .pipe(
-    //   catchError( this.manejarError )
-    // );
+    return next.handle( reqClone ).pipe(
+      catchError( this.manejarError )
+    );
 
   }
 
-  manejarError( err ){
-    console.log('error en el servicio');
+  manejarError( err: any ){
+    // console.log('error en el servicio');
     console.warn(err);
+    // console.log(err.error.data.message);
     return throwError('Error en el servicio del usuario');
   }
 

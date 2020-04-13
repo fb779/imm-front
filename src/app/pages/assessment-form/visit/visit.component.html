@@ -1,4 +1,5 @@
-<div>
+<ngx-visitor *ngIf="process" [process]="process"></ngx-visitor>
+<!-- <div>
     <form novalidate autocomplete="off" [formGroup]="forma" (submit)="guardar()">
         <nb-card>
             <nb-card-header>Visitor Evaluation</nb-card-header>
@@ -139,6 +140,8 @@
                                     <input type="number" name="age" placeholder="Age" nbInput fullWidth formControlName="age" [status]="(forma.get('age').touched && forma.get('age').errors)?'danger':''">
                                     <div *ngIf="forma.get('age').errors && forma.get('age').touched" class="card-text">
                                         <small *ngIf="forma.get('age').errors?.required" class="text-muted text-muted-danger">Field required</small>
+                                        <small *ngIf="forma.get('age').errors?.min" class="text-muted text-muted-danger">Field minimun {{ forma.get('age').errors.min.min }}</small>
+                                        <small *ngIf="forma.get('age').errors?.max" class="text-muted text-muted-danger">Field {{ forma.get('age').errors.max.max }}</small>
                                     </div>
                                 </div>
                             </div>
@@ -319,10 +322,12 @@
                     </nb-card-body>
                 </nb-card>
 
+
                 <div *ngIf="process && process.status === 'ACTIVE'">
                     <button type="submit" [disabled]="!forma.valid" nbButton fullWidth status="primary">Submit</button>
                 </div>
+
             </nb-card-body>
         </nb-card>
     </form>
-</div>
+</div> -->

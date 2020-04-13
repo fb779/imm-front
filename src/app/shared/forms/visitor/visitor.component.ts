@@ -1,0 +1,186 @@
+import { Component, OnInit, Input } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
+import { status } from '../../../config/config';
+import { Title } from '../../../models/Titlel';
+import { Country } from '../../../models/Country';
+
+import {
+  AssessmentFormService,
+  SidebarService,
+  UserProcessService
+} from '../../../services/services.index';
+
+@Component({
+  selector: 'ngx-visitor',
+  templateUrl: './visitor.component.html',
+  styleUrls: ['./visitor.component.scss']
+})
+export class VisitorComponent implements OnInit {
+
+  @Input('process') process: any;
+  id: string;
+  submitted = false;
+  status = status;
+  url: string[];
+  // client: FormGroup;
+  forma: FormGroup;
+
+  optTitles: Title[] = [];
+  optSex = [];
+  optYesNo = [];
+  optCountries: Country[] = [];
+  optStatus = []
+  optProvinces = [];
+  optMaritalStatus = [];
+  optPropousVisit = [];
+  optStayCanada = [];
+
+  constructor(
+    private _router: Router, private _activatedRoute: ActivatedRoute,
+    public _sidebarServices: SidebarService,
+    private _porcessServices: UserProcessService,
+    private _asf: AssessmentFormService,
+  ) {
+    this.url = this._router.url.split('/').filter( x => x.trim() !== '');
+
+    // this.client = new FormGroup({
+    //   '_id': new FormControl('nuevo'),
+    //   'title': new FormControl('', [Validators.required]),
+    //   'sex': new FormControl('', [Validators.required]),
+    //   'first_name': new FormControl('', [Validators.required]),
+    //   'last_name': new FormControl('', [Validators.required]),
+    //   // 'email': new FormControl('', [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")], [this.existeEmail]),
+    //   'email': new FormControl('', [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")]),
+    //   'telephone': new FormControl('', [Validators.required, Validators.pattern("[0-9]*$")]),
+    //   'country_citizenship': new FormControl('', [Validators.required]),
+    //   'other_citizenship': new FormControl('', []),
+    //   'country_residence': new FormControl('', [Validators.required]),
+    //   'status_residence': new FormControl('', [Validators.required]),
+    //   'age': new FormControl('', [Validators.required, Validators.min(0), Validators.max(99)]),
+    // });
+
+    this.forma = new FormGroup({
+      '_id': new FormControl('nuevo'),
+      // 'process': new FormControl('', [Validators.required]),
+      'title': new FormControl('', [Validators.required]),
+      'sex': new FormControl('', [Validators.required]),
+      'first_name': new FormControl('', [Validators.required]),
+      'last_name': new FormControl('', [Validators.required]),
+      // 'email': new FormControl('', [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")], [this.existeEmail]),
+      'email': new FormControl('', [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")]),
+      'telephone': new FormControl('', [Validators.required, Validators.pattern("[0-9]*$")]),
+      'country_citizenship': new FormControl('', [Validators.required]),
+      'other_citizenship': new FormControl('', []),
+      'country_residence': new FormControl('', [Validators.required]),
+      'status_residence': new FormControl('', [Validators.required]),
+      'age': new FormControl('', [Validators.required, Validators.min(0), Validators.max(99)]),
+      'destiny': new FormControl('', [Validators.required]),
+      'marital_status': new FormControl('', [Validators.required]),
+      'number_children': new FormControl(null, [Validators.required, Validators.min(0), Validators.max(99)]),
+      'spouse_accompanying': new FormControl('', [Validators.required]),
+      'purpose_visit': new FormControl('', [Validators.required]),
+      'letter_invitation': new FormControl('', [Validators.required]),
+      'stay_canada': new FormControl('', [Validators.required]),
+      'funds': new FormControl('', [Validators.required]),
+      'disease': new FormControl('', [Validators.required]),
+      'criminal_act': new FormControl('', [Validators.required]),
+      'refuse_canada': new FormControl('', [Validators.required]),
+      'comments': new FormControl('', []),
+    });
+
+    this.forma.controls['marital_status'].valueChanges.subscribe( (data:any) => {
+      // this.forma.get('number_children').reset();
+      // this.forma.get('spouse_accompanying').reset();
+      // this.forma.get('number_children').setValidators([Validators.required, Validators.min(0), Validators.max(99)]);
+      this.forma.get('number_children').enable();
+      this.forma.get('spouse_accompanying').enable();
+      if (!data || data==1 ){
+        this.forma.get('number_children').reset();
+        this.forma.get('spouse_accompanying').reset();
+        // this.forma.get('number_children').setValidators([Validators.min(0), Validators.max(99)]);
+        this.forma.get('number_children').disable();
+        this.forma.get('spouse_accompanying').disable();
+      }
+    });
+
+    this._asf.getTitles().subscribe( (data)=>{
+      this.optTitles = data;
+    } );
+
+    this._asf.getSex().subscribe( (data)=>{
+      this.optSex = data;
+    } );
+
+    this._asf.getYesNo().subscribe( (data)=>{
+      this.optYesNo = data;
+    } );
+
+    this._asf.getCountries().subscribe( (data)=>{
+      this.optCountries = data;
+    } );
+
+    this._asf.getStatus().subscribe( (data)=>{
+      this.optStatus = data;
+    } );
+
+    this._asf.getProvinces().subscribe( (data)=>{
+      this.optProvinces = data;
+    } );
+
+    this._asf.getMaritalStatus().subscribe( (data)=>{
+      this.optMaritalStatus = data;
+    } );
+
+    this._asf.getPropousVisit().subscribe( (data)=>{
+      this.optPropousVisit = data;
+    } );
+
+    this._asf.getStayCanada().subscribe( (data)=>{
+      this.optStayCanada = data;
+    } );
+  }
+
+  ngOnInit() {
+    if ( this.process && this.process.status !== status.active ){
+      this._porcessServices.getUserForm(this.process._id).subscribe((dt) => {
+        let ndt = dt;
+        if (!ndt.number_children){
+          ndt.number_children = 0;
+        }
+        this.forma.setValue(ndt);
+      });
+    }
+  }
+
+  get f() { return this.forma.controls; }
+
+  guardar(){
+    this.submitted = true;
+
+    if ( this.forma.invalid ){
+      alert('Fomr is invalid');
+      return;
+    }
+
+    if ( this.f._id.value === 'nuevo'){
+      this._porcessServices.setForm(this.process, this.forma.value).subscribe((resp: any)=>{
+        if ( resp.ok ){
+          this._router.navigate([this.url[0], this.url[1]]);
+          return;
+        }
+      });
+    } else {
+      console.log('actualizar formulario');
+      this._porcessServices.updateForm(this.process, this.forma.value).subscribe((resp: any)=>{
+        console.log('llegada del servicio',resp);
+        return;
+        // if ( resp.ok ){
+        //   this._router.navigate([this.url[0], this.url[1]]);
+        //   return;
+        // }
+      });
+    }
+  }
+}
