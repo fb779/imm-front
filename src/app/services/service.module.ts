@@ -14,6 +14,8 @@ import { UserProcessService } from './process/user-process.service';
 import { AdminProcessService } from './process/admin-process.service';
 import { ConsultantService } from './consultant/consultant.service';
 import { ProcessService } from './process/process.service';
+import { FamilyService } from './family/family.service';
+
 
 @NgModule({
   declarations: [],
@@ -30,6 +32,7 @@ import { ProcessService } from './process/process.service';
     AdminProcessService,
     ConsultantService,
     ProcessService,
+    FamilyService,
   ],
   imports: [
     CommonModule,

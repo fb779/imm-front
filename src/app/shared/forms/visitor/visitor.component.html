@@ -136,6 +136,16 @@
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
+                                    <label for="name">Other Status in Country of Residence</label>
+                                    <input type="text" name="status_residence_other" formControlName="status_residence_other" nbInput fullWidth [status]="((submitted || f.status_residence_other.touched) && f.status_residence_other.errors)?'danger':''" />
+                                    <div *ngIf="(submitted || f.status_residence_other.touched) && f.status_residence_other.errors" class="card-text">
+                                        <small *ngIf="f.status_residence_other.errors?.required" class="text-muted text-muted-danger">Field required</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
                                     <label for="">Age</label>
                                     <input type="number" name="age" placeholder="Age" nbInput fullWidth formControlName="age" [status]="((submitted || f.age.touched) && f.age.errors)?'danger':''">
                                     <div *ngIf="(submitted || f.age.touched) && f.age.errors" class="card-text">
@@ -247,6 +257,15 @@
                                 </div>
                             </div>
                         </div>
+                    </nb-card-body>
+                </nb-card>
+
+                <nb-card accent="info">
+                    <nb-card-header>
+                        <label for="">FAMILY MEMBERS</label>
+                    </nb-card-header>
+                    <nb-card-body>
+                        <ngx-family-form [process]="process" [url]="url"></ngx-family-form>
                     </nb-card-body>
                 </nb-card>
 

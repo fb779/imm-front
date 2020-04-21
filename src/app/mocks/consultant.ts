@@ -1,5 +1,6 @@
 import { CheckList } from '../models/CheckList';
 
+export const listOfProcess = [
     {
         status: "FORM",
         active: true,

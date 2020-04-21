@@ -11,6 +11,7 @@ export class Client {
     age?: number;
     country_citizenship?: string;
     other_citizenship?: string;
+    other_citizenship_text?: string;
     country_residence?: string;
     status_country_residence?: string;
     type?: string;

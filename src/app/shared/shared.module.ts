@@ -23,7 +23,7 @@ import { FamilyFormComponent } from './family-form/family-form.component';
 
 const nebular = [
   NbMenuModule,
-  // NbIconModule,
+  NbIconModule,
   NbCardModule,
   NbInputModule,
   NbSelectModule,

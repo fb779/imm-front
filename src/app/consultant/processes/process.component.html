@@ -23,7 +23,8 @@
                     </nb-card-header>
                     <nb-card-body *ngIf="process && type_visa">
                         <!-- <ngx-select-documents [type]="'visitor'"></ngx-select-documents> -->
-                        <ngx-select-documents [type]="'study'"></ngx-select-documents>
+                        <!-- <ngx-select-documents [type]="type_visa"></ngx-select-documents> -->
+                        <ngx-select-documents [process]="process"></ngx-select-documents>
                     </nb-card-body>
                 </nb-card>
             </nb-tab>

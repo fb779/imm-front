@@ -9,6 +9,6 @@ export class User {
     active: string;
     img?: string;
     client?: Client;
-    createdAt: string;
-    updatedAt: string;
+    createdAt?: string;
+    updatedAt?: string;
 }

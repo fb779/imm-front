@@ -75,6 +75,7 @@ export class VisitorComponent implements OnInit {
       'other_citizenship': new FormControl('', []),
       'country_residence': new FormControl('', [Validators.required]),
       'status_residence': new FormControl('', [Validators.required]),
+      'status_residence_other': new FormControl({value: '', disable: true}, [Validators.required]),
       'age': new FormControl('', [Validators.required, Validators.min(0), Validators.max(99)]),
       'destiny': new FormControl('', [Validators.required]),
       'marital_status': new FormControl('', [Validators.required]),
@@ -88,6 +89,19 @@ export class VisitorComponent implements OnInit {
       'criminal_act': new FormControl('', [Validators.required]),
       'refuse_canada': new FormControl('', [Validators.required]),
       'comments': new FormControl('', []),
+    });
+
+    // this.forma.get('status_residence_other').disable();
+
+    this.forma.controls['status_residence'].valueChanges.subscribe( (value:any) => {
+      if (value == 5){
+        this.forma.get('status_residence_other').enable();
+      } else {
+        this.forma.get('status_residence_other').disable();
+        this.forma.get('status_residence_other').reset();
+      }
+
+
     });
 
     this.forma.controls['marital_status'].valueChanges.subscribe( (data:any) => {

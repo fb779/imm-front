@@ -6,6 +6,7 @@ import { Title } from '../../models/Titlel';
 import { Country } from '../../models/Country';
 
 import {
+  opsRelationships,
   opsTitles,
   opsSex,
   opsYesNo,
@@ -22,7 +23,7 @@ import {
   providedIn: 'root'
 })
 export class AssessmentFormService {
-
+  relationships: any[] = [];
   titles: Title[] = [];
   sex = [];
   yesNo =[];
@@ -34,6 +35,11 @@ export class AssessmentFormService {
   stayCanada =[];
 
   constructor( private _http: HttpClient) { }
+
+  getRelationships(): Observable<any[]>{
+    this.relationships = opsRelationships;
+    return observableOf(this.relationships)
+  }
 
   getTitles(): Observable<Title[]>{
     this.titles = opsTitles;

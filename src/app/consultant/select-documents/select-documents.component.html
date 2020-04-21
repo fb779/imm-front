@@ -1,9 +1,4 @@
 <div class="row">
-    <!-- <div>
-        <pre>
-            {{ listOfDocuments | json }}
-        </pre>
-    </div> -->
     <div class="col-12" *ngFor="let document of listOfDocuments">
         <nb-checkbox [(checked)]="document.required" (checkedChange)="toggle($event)">{{ document.group }} - {{ document.name }}</nb-checkbox>
     </div>

@@ -12,3 +12,9 @@ export const visa_categories = {
     turist: 'TURIST',
     study: 'STUDY',
 };
+
+export const relationships = {
+    spouse: "Spouse",
+    common_law_partner:"Common-law Partner",
+    child:"Dependent Child",
+}

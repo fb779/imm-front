@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Document } from '../../models/Document';
 import { ConsultantService } from '../../services/services.index';
 import { CheckList } from '../../models/CheckList';
+import { Process } from '../../models/Process';
 
 @Component({
   selector: 'ngx-select-documents',
@@ -10,7 +11,9 @@ import { CheckList } from '../../models/CheckList';
 })
 export class SelectDocumentsComponent implements OnInit {
 
-  @Input('type') type_visa: string;
+  @Input('process') process: Process;
+
+  type_visa: string;
 
   otherDocument: string = '';
 
@@ -24,7 +27,7 @@ export class SelectDocumentsComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this._consultatnService.getDocumentsOfConsultant(this.type_visa).subscribe((data: Document[])=>{
+    this.type_visa = this.process.visa_category.name;
     this._consultatnService.getDocumentsOfConsultant(this.type_visa).subscribe((data: CheckList[])=>{
       this.listOfDocuments = data;
     });
@@ -46,7 +49,7 @@ export class SelectDocumentsComponent implements OnInit {
     // console.log(this.otherDocument);
 
     if( !this.otherDocument ){
-      console.log('Debe contener algun texto');
+      console.log('the field is required');
       return;
     }
 
