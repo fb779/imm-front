@@ -22,40 +22,37 @@ export class FamilyService {
       map( (x:any) => {
         return x.map( ({client}) => ({...client}) );
       }),
-      tap( x => console.log('familiares recibidos', x) ),
-
+      // tap( x => console.log('familiares recibidos', x) ),
       // map(({_id, client, relationship})=>({ _id, ...client, relationship })),
       // map( (data) => data.list )
     );
   }
 
-  setNewFamilyMember( process: Process, client: Client): Observable<any>{
+  newFamilyMember( process: Process, client: Client): Observable<any>{
     delete client._id;
 
     let url = `${ environment.api_url }/family/${ process._id }`;
 
     return this._http.post( url, client ).pipe(
-      tap( x => console.log('new member create', x) ),
+      // tap( x => console.log('new member create', x) ),
       map<any,any>( ({ok, member}) => ({ok, member}) )
     );
 
   }
 
-  // setEditFamilyMember( process: Process, client: Client): Observable<any>{
-  //   let url = `${ environment.api_url }/family/${ process._id }`;
+  editFamilyMember( process: Process, client: Client): Observable<any>{
+    let url = `${ environment.api_url }/family/${ process._id }`;
 
-  //   return this._http.put( url, client ).pipe(
-  //     tap( x => console.log('new member create', x) ),
-  //     map<any,any>( ({ok, member}) => ({ok, member}) )
-  //   );
+    return this._http.put( url, client ).pipe(
+      map<any,any>( ({ok, familyMember}) => ({ok, familyMember}) )
+    );
 
-  // }
+  }
 
   removeFamiliMember( process: Process, client: Client): Observable<any>{
     const url = `${ environment.api_url }/family/${ process._id }/${ client._id }`;
 
     return this._http.delete( url ).pipe(
-      tap( x => console.log('recibido en el tap eliminacion', x) ),
       // map( (data) => data.list )
     );
 

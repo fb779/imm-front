@@ -105,31 +105,49 @@ export class FamilyFormComponent implements OnInit {
 
     const client = this.clientForm.value;
 
-    console.log(client);
+    // if( client._id ){
+    //   this.clientForm.reset();
+    //   this.submitted = false;
 
-    if( client._id ){
+    // } else {
+    //   this._familyServices.newFamilyMember(this.process, this.clientForm.value).subscribe((res)=>{
+    //     client['_id'] = res._id;
+    //     this.loadMembers();
+    //     this.clientForm.reset();
+    //     this.submitted = false;
+    //   })
+    // }
+    this._familyServices.newFamilyMember(this.process, this.clientForm.value).subscribe((res)=>{
+      client['_id'] = res._id;
+      this.loadMembers();
       this.clientForm.reset();
       this.submitted = false;
-
-    } else {
-      this._familyServices.setNewFamilyMember(this.process, this.clientForm.value).subscribe((res)=>{
-        client['_id'] = res._id;
-        this.loadMembers();
-        this.clientForm.reset();
-        this.submitted = false;
-      })
-    }
-
-
+    })
   }
 
   loadToEditMember( client: Client){
-    console.log('editar cliente', client);
     // delete client.email;
     this.clientForm.setValue(client);
   }
 
-  updateMember( client: Client){}
+  updateMember( ){
+    if( this.clientForm.invalid ){
+      this.submitted = true;
+      // alert('formulario invalido');
+      return;
+    }
+
+    const client = this.clientForm.value;
+
+    this._familyServices.editFamilyMember(this.process, this.clientForm.value)
+    .subscribe((res)=>{
+      if (res.ok){
+        this.loadMembers();
+        this.clientForm.reset();
+        this.submitted = false;
+      }
+    })
+  }
 
   removeMenber( client: Client ){
     this._familyServices.removeFamiliMember(this.process, client).subscribe( ()=>{

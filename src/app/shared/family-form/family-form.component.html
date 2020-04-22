@@ -163,9 +163,19 @@
                     <button type="button" nbButton fullWidth status="success" (click)="addMember()" *ngIf="!f._id.value">
                         Add Family Member
                     </button>
-                    <button type="button" nbButton fullWidth status="primary" (click)="updateMember()" *ngIf="f._id.value">
-                        Update Information
-                    </button>
+                    <div class="row" *ngIf="f._id.value">
+                        <div class="col">
+                            <button type="button" nbButton fullWidth status="primary" (click)="updateMember()">
+                                Update Information
+                            </button>
+                        </div>
+                        <div class="col">
+                            <button type="button" nbButton fullWidth status="danger" (click)="clientForm.reset()">
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
