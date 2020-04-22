@@ -18,6 +18,9 @@ export class FamilyFormComponent implements OnInit {
   @Input('url') url: string[];
   status = status;
 
+  visibleClient: boolean = false;
+  visibleConsultan: boolean = false;
+
   clientForm: FormGroup;
   submitted = false;
 
@@ -54,6 +57,8 @@ export class FamilyFormComponent implements OnInit {
   ngOnInit() {
     this.buildForm();
     this.loadMembers();
+    this.visibleClient = this.process && this.process.status === status.active;
+    this.visibleConsultan = this.process && this.process.status !== status.active && this.url[0] !== 'pages';
   }
 
   get f() { return this.clientForm.controls; }

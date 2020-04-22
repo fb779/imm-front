@@ -152,11 +152,12 @@
 
             </div>
             <div class="row">
-                <div class="col-12" *ngIf="process && process.status === status.active">
+                <!-- <div class="col-12" *ngIf="process && process.status === status.active"> -->
+                <div class="col-12" *ngIf="visibleClient">
                     <button type="button" nbButton fullWidth status="success" (click)="addMember()">Add Family Member</button>
                 </div>
 
-                <div class="col-12" *ngIf="process && process.status !== status.active && url[0] !== 'pages'">
+                <div class="col-12" *ngIf="visibleConsultan">
                     <!-- <button type="button" nbButton fullWidth status="success" (click)="addMember()">
                         Add Family Member consultor
                     </button> -->
@@ -220,16 +221,19 @@
                                 {{ client.age }}
                             </div>
                         </div>
+
+
                         <div class="col-6 col-md-1">
                             <button type="button" nbButton fullWidth size="small" status="primary" (click)="loadToEditMember(client)">
                                 <nb-icon pack="far" icon="edit"></nb-icon>
                             </button>
                         </div>
-                        <div class="col-6 col-md-1">
+                        <div class="col-6 col-md-1" *ngIf="visibleClient || visibleConsultan">
                             <button type="button" nbButton fullWidth size="small" status="danger" (click)="removeMenber(client)">
-                                    <nb-icon pack="far" icon="trash-alt"></nb-icon>
-                                </button>
+                                <nb-icon pack="far" icon="trash-alt"></nb-icon>
+                            </button>
                         </div>
+
                     </div>
 
                 </nb-list-item>

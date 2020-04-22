@@ -1,4 +1,4 @@
-import { Option } from '../models/option.model';
+import { Option } from '../models/Option';
 import { Title } from "../models/Titlel";
 import { Country } from '../models/Country';
 
