@@ -1,8 +1,47 @@
-import { Option } from '../models/Option';
+import { IOption, IOptionNumber } from '../models/Option';
 import { Title } from "../models/Titlel";
 import { Country } from '../models/Country';
 
-export const opsRelationships: Option[] = [
+export const opsAccompanying: IOptionNumber[] = [
+  {value: 0, name: "0" },
+  {value: 1, name: "1" },
+  {value: 2, name: "2" },
+  {value: 3, name: "3" },
+  {value: 4, name: "4" },
+  {value: 5, name: "5" },
+  {value: 6, name: "6" },
+  {value: 7, name: "7" },
+  {value: 8, name: "8" },
+  {value: 9, name: "9" },
+  {value: 10, name: "10" },
+];
+
+export const opsAges: IOptionNumber[] = [
+  {value: 1, name: "1" },
+  {value: 2, name: "2" },
+  {value: 3, name: "3" },
+  {value: 4, name: "4" },
+  {value: 5, name: "5" },
+  {value: 6, name: "6" },
+  {value: 7, name: "7" },
+  {value: 8, name: "8" },
+  {value: 9, name: "9" },
+  {value: 10, name: "10" },
+  {value: 11, name: "11" },
+  {value: 12, name: "12" },
+  {value: 13, name: "13" },
+  {value: 14, name: "14" },
+  {value: 15, name: "15" },
+  {value: 16, name: "16" },
+  {value: 17, name: "17" },
+  {value: 18, name: "18" },
+  {value: 19, name: "19" },
+  {value: 20, name: "20" },
+  {value: 21, name: "21" },
+  {value: 999, name: "22 and over (with disability)" },
+];
+
+export const opsRelationships: IOption[] = [
   {value: "SPOUSE", name: "Spouse" },
   {value: "PARTNER", name: "Common-law / Partner" },
   {value: "CHILDREN", name: "Dependent Child" },
@@ -15,17 +54,17 @@ export const opsTitles: Title[] = [
   { value: 'ms', name:'Ms' },
 ];
 
-export const opsYesNo: Option[] = [
+export const opsYesNo: IOption[] = [
   {value: '1', name: 'Yes'},
   {value: '2', name: 'No'},
 ];
 
-export const opsSex: Option[]= [
+export const opsSex: IOption[]= [
   { value: '1', name:'Male'},
   { value: '2', name:'Female'},
 ];
 
-export const opsStatus: Option[] = [
+export const opsStatus: IOption[] = [
   {value: '1', name: 'Citizen'},
   {value: '2', name: 'Visitor'},
   {value: '3', name: 'Student'},
@@ -33,7 +72,7 @@ export const opsStatus: Option[] = [
   {value: '5', name: 'Other'},
 ];
 
-export const opsProvinces: Option[] = [
+export const opsProvinces: IOption[] = [
   {value: '1', name: 'Ontario'},
   {value: '2', name: 'Quebec'},
   {value: '3', name: 'British Columbia'},
@@ -49,7 +88,7 @@ export const opsProvinces: Option[] = [
   {value: '13', name: 'Yukon'},
 ];
 
-export const opsMaritalStatus: Option[] = [
+export const opsMaritalStatus: IOption[] = [
   {value: '1', name: 'single'},
   {value: '2', name: 'married or common law' },
   {value: '3', name: 'separated'},
@@ -57,7 +96,7 @@ export const opsMaritalStatus: Option[] = [
   {value: '5', name: 'widowed'},
 ];
 
-export const opsPropousVisit: Option[] = [
+export const opsPropousVisit: IOption[] = [
   {value: '1', name: 'business'},
   {value: '2', name: 'tourism'},
   {value: '3', name: 'visiting relatives'},
@@ -66,12 +105,12 @@ export const opsPropousVisit: Option[] = [
   {value: '6', name: 'other'},
 ];
 
-export const opsStayCanada: Option[] = [
+export const opsStayCanada: IOption[] = [
   {value: '1', name: '0-6 months'},
   {value: '2', name: '6 months or more'},
 ];
 
-export const opsCountries: Option[] = [
+export const opsCountries: IOption[] = [
   { name: "Afghanistan", value: "AF" },
   { name: "Åland Islands", value: "AX" },
   { name: "Albania", value: "AL" },

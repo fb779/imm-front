@@ -1,11 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
-import { ConsultantRoutingModule } from './consultant-routing.module';
+import { ConsultantRoutingModule } from "./consultant-routing.module";
 
-
-import { ThemeModule } from '../@theme/theme.module';
+import { ThemeModule } from "../@theme/theme.module";
 import {
   NbMenuModule,
   NbCardModule,
@@ -20,8 +19,9 @@ import {
   NbActionsModule,
   NbRadioModule,
   NbUserModule,
-  NbSpinnerModule
-} from '@nebular/theme';
+  NbSpinnerModule,
+  NbAccordionModule,
+} from "@nebular/theme";
 
 const consultanttNebular = [
   ThemeModule,
@@ -36,21 +36,20 @@ const consultanttNebular = [
   NbCheckboxModule,
   NbDatepickerModule,
   NbSpinnerModule,
+  NbAccordionModule,
   // NbActionsModule,
   // NbRadioModule,
   // NbUserModule
 ];
 
-import { ConsultantComponent } from './consultant.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { ProcessesComponent } from './processes/processes.component';
-import { ProcessComponent } from './processes/process.component';
-import { VisitComponent } from './forms/visit/visit.component';
-import { StudyComponent } from './forms/study/study.component';
-import { FormsGuidesComponent } from './forms-guides/forms-guides.component';
-import { UploadFileComponent } from './forms-guides/upload-file/upload-file.component';
-import { SelectDocumentsComponent } from './select-documents/select-documents.component';
-import { SharedModule } from '../shared/shared.module';
+import { ConsultantComponent } from "./consultant.component";
+import { DashboardComponent } from "./dashboard/dashboard.component";
+import { ProcessesComponent } from "./processes/processes.component";
+import { ProcessComponent } from "./processes/process.component";
+import { FormsGuidesComponent } from "./forms-guides/forms-guides.component";
+import { UploadFileComponent } from "./forms-guides/upload-file/upload-file.component";
+import { SelectDocumentsComponent } from "./select-documents/select-documents.component";
+import { SharedModule } from "../shared/shared.module";
 
 @NgModule({
   imports: [
@@ -68,10 +67,8 @@ import { SharedModule } from '../shared/shared.module';
     DashboardComponent,
     ProcessesComponent,
     ProcessComponent,
-    VisitComponent,
-    StudyComponent,
     FormsGuidesComponent,
     SelectDocumentsComponent,
   ],
 })
-export class ConsultantModule { }
+export class ConsultantModule {}

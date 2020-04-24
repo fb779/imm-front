@@ -14,7 +14,7 @@ export const visa_categories = {
 };
 
 export const relationships = {
-    spouse: "Spouse",
-    common_law_partner:"Common-law Partner",
-    child:"Dependent Child",
+    spouse: "SPOUSE",
+    common_law_partner:"PARTNER",
+    child:"CHILDREN",
 }

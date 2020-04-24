@@ -12,7 +12,6 @@
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Title</label>
-                                    <!-- <nb-select name="title" placeholder="Select Showcase" fullWidth formControlName="title" [status]="((submitted || f.title.touched) && f.title.errors)?'danger':''"> -->
                                     <nb-select name="title" placeholder="Select Showcase" fullWidth formControlName="title" [status]="((submitted || f.title.touched) && f.title.errors)?'danger':''">
                                         <nb-option value="">Select...</nb-option>
                                         <nb-option *ngFor="let item of optTitles" [value]='item.value'> {{ item.name }}</nb-option>
@@ -41,7 +40,6 @@
                                 <div class="form-group">
                                     <label for="">First Name</label>
                                     <input type="text" name="first_name" placeholder="First Name" nbInput fullWidth formControlName="first_name" [status]="((submitted || f.first_name.touched) && f.first_name.errors)?'danger':''">
-
                                     <div *ngIf="(submitted || f.first_name.touched) && f.first_name.errors" class="card-text">
                                         <small *ngIf="f.first_name.errors?.required" class="text-muted text-muted-danger">Field required</small>
                                         <small *ngIf="f.first_name.errors?.existe" class="text-muted text-muted-danger">campo con errores</small>
@@ -196,24 +194,15 @@
 
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
-                                    <label for="">Number of dependent children visiting with you Canada?</label>
-                                    <input type="number" name="number_children" placeholder="Number of dependent children" nbInput fullWidth formControlName="number_children" [status]="((submitted || f.number_children.touched) && f.number_children.errors)?'danger':''">
-                                    <div *ngIf="(submitted || f.number_children.touched) && f.number_children.errors" class="card-text">
-                                        <small *ngIf="f.number_children.errors?.required" class="text-muted text-muted-danger">Field required</small>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-12 col-md-6">
-                                <div class="form-group">
-                                    <label for="">Your spouse accompanying you to Canada?</label>
-                                    <nb-select name="spouse_accompanying" formControlName="spouse_accompanying" [status]="((submitted || f.spouse_accompanying.touched) && f.spouse_accompanying.errors)?'danger':''" fullWidth placeholder="Select Showcase">
+                                    <label for="">How many family members will accompany you? (Only Spouse, and Children)</label>
+                                    <nb-select name="number_accompanying" placeholder="Select Showcase" fullWidth formControlName="number_accompanying" [status]="((submitted || f.number_accompanying.touched) && f.number_accompanying.errors)?'danger':''">
                                         <nb-option value="">Select...</nb-option>
-                                        <nb-option *ngFor="let item of optYesNo" [value]='item.value'> {{ item.name }}</nb-option>
+                                        <nb-option *ngFor="let item of optAccompanying" [value]='item.value'> {{ item.name }}</nb-option>
                                     </nb-select>
-                                    <div *ngIf="(submitted || f.spouse_accompanying.touched) && f.spouse_accompanying.errors" class="card-text">
-                                        <small *ngIf="f.spouse_accompanying.errors?.required" class="text-muted text-muted-danger">Field required</small>
+                                    <div *ngIf="(submitted || f.number_accompanying.touched) && f.number_accompanying.errors" class="card-text">
+                                        <small *ngIf="f.number_accompanying.errors?.required" class="text-muted text-muted-danger">Field required</small>
                                     </div>
+
                                 </div>
                             </div>
 
@@ -265,7 +254,7 @@
                         <label for="">FAMILY MEMBERS</label>
                     </nb-card-header>
                     <nb-card-body>
-                        <ngx-family-form [process]="process" [url]="url"></ngx-family-form>
+                        <ngx-family-form [process]="process" [url]="url" [members]="f.number_accompanying.value"></ngx-family-form>
                     </nb-card-body>
                 </nb-card>
 

@@ -29,6 +29,7 @@ export class VisitorComponent implements OnInit {
 
   optTitles: Title[] = [];
   optSex = [];
+  optAccompanying = [];
   optYesNo = [];
   optCountries: Country[] = [];
   optStatus = []
@@ -79,8 +80,11 @@ export class VisitorComponent implements OnInit {
       'age': new FormControl('', [Validators.required, Validators.min(0), Validators.max(99)]),
       'destiny': new FormControl('', [Validators.required]),
       'marital_status': new FormControl('', [Validators.required]),
-      'number_children': new FormControl(null, [Validators.required, Validators.min(0), Validators.max(99)]),
-      'spouse_accompanying': new FormControl('', [Validators.required]),
+      'number_accompanying': new FormControl(0, [Validators.required]),
+      // 'number_children': new FormControl(null, [Validators.required, Validators.min(0), Validators.max(99)]),
+      // 'spouse_accompanying': new FormControl('', [Validators.required]),
+      // 'number_children': new FormControl(null, []),
+      // 'spouse_accompanying': new FormControl('', []),
       'purpose_visit': new FormControl('', [Validators.required]),
       'letter_invitation': new FormControl('', [Validators.required]),
       'stay_canada': new FormControl('', [Validators.required]),
@@ -100,24 +104,16 @@ export class VisitorComponent implements OnInit {
         this.forma.get('status_residence_other').disable();
         this.forma.get('status_residence_other').reset();
       }
-
-
     });
 
-    this.forma.controls['marital_status'].valueChanges.subscribe( (data:any) => {
-      // this.forma.get('number_children').reset();
-      // this.forma.get('spouse_accompanying').reset();
-      // this.forma.get('number_children').setValidators([Validators.required, Validators.min(0), Validators.max(99)]);
-      this.forma.get('number_children').enable();
-      this.forma.get('spouse_accompanying').enable();
-      if (!data || data==1 ){
-        this.forma.get('number_children').reset();
-        this.forma.get('spouse_accompanying').reset();
-        // this.forma.get('number_children').setValidators([Validators.min(0), Validators.max(99)]);
-        this.forma.get('number_children').disable();
-        this.forma.get('spouse_accompanying').disable();
-      }
-    });
+    // this.forma.controls['marital_status'].valueChanges.subscribe( (data:any) => {
+    //   if (!data || data == 1 ){
+    //     this.forma.get('number_accompanying').reset();
+    //     this.forma.get('number_accompanying').disable();
+    //   } else {
+    //     this.forma.get('number_accompanying').enable();
+    //   }
+    // });
 
     this._asf.getTitles().subscribe( (data)=>{
       this.optTitles = data;
@@ -125,6 +121,10 @@ export class VisitorComponent implements OnInit {
 
     this._asf.getSex().subscribe( (data)=>{
       this.optSex = data;
+    } );
+
+    this._asf.getAccompanying().subscribe( (data)=>{
+      this.optAccompanying = data;
     } );
 
     this._asf.getYesNo().subscribe( (data)=>{
@@ -159,11 +159,7 @@ export class VisitorComponent implements OnInit {
   ngOnInit() {
     if ( this.process && this.process.status !== status.active ){
       this._porcessServices.getUserForm(this.process._id).subscribe((dt) => {
-        let ndt = dt;
-        if (!ndt.number_children){
-          ndt.number_children = 0;
-        }
-        this.forma.setValue(ndt);
+        this.forma.setValue(dt);
       });
     }
   }

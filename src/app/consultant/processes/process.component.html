@@ -10,23 +10,25 @@
                         <ngx-visitor [process]="process"></ngx-visitor>
                     </ng-container>
 
-                    <ng-container *ngIf="type_visa === visa_categories.study">
+                    <!-- <ng-container *ngIf="type_visa === visa_categories.study">
                         <ngx-study [process]="process"></ngx-study>
-                    </ng-container>
+                    </ng-container> -->
                 </div>
             </nb-tab>
 
             <nb-tab tabTitle="Check List">
-                <nb-card>
+
+                <ngx-select-documents *ngIf="process && type_visa" [process]="process"></ngx-select-documents>
+
+
+                <!-- <nb-card>
                     <nb-card-header>
                         <label for="">Upload documents</label>
                     </nb-card-header>
                     <nb-card-body *ngIf="process && type_visa">
-                        <!-- <ngx-select-documents [type]="'visitor'"></ngx-select-documents> -->
-                        <!-- <ngx-select-documents [type]="type_visa"></ngx-select-documents> -->
-                        <ngx-select-documents [process]="process"></ngx-select-documents>
+                        <ngx-select-documents *ngIf="process && type_visa" [process]="process"></ngx-select-documents>
                     </nb-card-body>
-                </nb-card>
+                </nb-card> -->
             </nb-tab>
             <nb-tab tabTitle="Forms">
                 <nb-card>

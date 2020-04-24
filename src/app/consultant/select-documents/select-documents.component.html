@@ -1,4 +1,36 @@
-<div class="row">
+<nb-accordion *ngIf="listOfDocuments.length > 0" [nbSpinner]="loading">
+    <nb-accordion-item>
+        <nb-accordion-item-header>
+            {{ process.client.first_name }} - {{ process.client.last_name }}
+        </nb-accordion-item-header>
+        <nb-accordion-item-body>
+            <div class="col-12" *ngFor="let document of listOfDocuments">
+                <nb-checkbox [(checked)]="document.required" (checkedChange)="toggle($event)">{{ document.group }} - {{ document.name }}</nb-checkbox>
+            </div>
+            <div class="col-12">
+                <button nbButton fullWidth status="primary">Save</button>
+            </div>
+        </nb-accordion-item-body>
+    </nb-accordion-item>
+
+    <nb-accordion-item *ngFor="let familyMember of listFamiliMembers$ | async">
+        <nb-accordion-item-header>
+            {{ familyMember.first_name }} - {{ familyMember.last_name }}
+        </nb-accordion-item-header>
+        <nb-accordion-item-body>
+            <div class="col-12" *ngFor="let document of listOfDocuments">
+                <nb-checkbox [(checked)]="document.required" (checkedChange)="toggle($event)">{{ document.group }} - {{ document.name }}</nb-checkbox>
+            </div>
+
+            <div class="col-12">
+                <button nbButton fullWidth status="">Save</button>
+            </div>
+
+        </nb-accordion-item-body>
+    </nb-accordion-item>
+</nb-accordion>
+
+<!-- <div class="row">
     <div class="col-12" *ngFor="let document of listOfDocuments">
         <nb-checkbox [(checked)]="document.required" (checkedChange)="toggle($event)">{{ document.group }} - {{ document.name }}</nb-checkbox>
     </div>
@@ -36,22 +68,4 @@
             </li>
         </ul>
     </div>
-    <!-- <div class="col-6">
-        <label for="">Listado de documentos</label>
-        <pre>
-            {{ listOfDocuments | json }}
-        </pre>
-    </div> -->
-    <!-- <div class="col-6">
-        <label for="">Listado de documentos requeridos</label>
-        <pre>
-            {{ documentRequired | json }}
-        </pre>
-    </div> -->
-    <!-- <div class="col-6">
-        <label for="">Listado de otros documentos requeridos</label>
-        <pre>
-            {{ otherDocuments | json }}
-        </pre>
-    </div> -->
-</div>
+</div> -->

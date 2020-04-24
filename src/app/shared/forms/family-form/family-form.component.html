@@ -129,38 +129,24 @@
                 <div class="col-12 col-md-6">
                     <div class="form-group">
                         <label for="">Age</label>
-                        <input type="number" name="age" placeholder="Age" nbInput fullWidth formControlName="age" [status]="((submitted || f.age.touched) && f.age.errors)?'danger':''">
+                        <!-- <input type="number" name="age" placeholder="Age" nbInput fullWidth formControlName="age" [status]="((submitted || f.age.touched) && f.age.errors)?'danger':''"> -->
+                        <nb-select name="age" placeholder="Select Showcase" fullWidth formControlName="age" [status]="((submitted || f.age.touched) && f.age.errors)?'danger':''">
+                            <nb-option value="">Select...</nb-option>
+                            <nb-option *ngFor="let item of optAges" [value]='item.value'> {{ item.name }}</nb-option>
+                        </nb-select>
                         <div *ngIf="(submitted || f.age.touched) && f.age.errors" class="card-text">
                             <small *ngIf="f.age.errors?.required" class="text-muted text-muted-danger">Field required</small>
-                            <small *ngIf="f.age.errors?.min" class="text-muted text-muted-danger">Field minimun {{ f.age.errors.min.min }}</small>
-                            <small *ngIf="f.age.errors?.max" class="text-muted text-muted-danger">Field {{ f.age.errors.max.max }}</small>
                         </div>
                     </div>
                 </div>
-
-                <!-- <div class="col-12 col-md-6">
-                    <div class="form-group">
-                        <label for="">Email</label>
-                        <input type="text" name="email" placeholder="Email" nbInput fullWidth formControlName="email" [status]="((submitted || f.email.touched) && f.email.errors)?'danger':''">
-                        <div *ngIf="(submitted || f.email.touched) && f.email.errors" class="card-text">
-                            <small *ngIf="f.email.errors?.required" class="text-muted text-muted-danger">Field required</small>
-                            <small *ngIf="f.email.errors?.pattern" class="text-muted text-muted-danger">Email invalid</small>
-                            <small *ngIf="f.email.errors?.existe" class="text-muted text-muted-danger">The email already exist</small>
-                        </div>
-                    </div>
-                </div> -->
-
             </div>
             <div class="row">
-                <!-- <div class="col-12" *ngIf="process && process.status === status.active"> -->
+
                 <div class="col-12" *ngIf="visibleClient">
                     <button type="button" nbButton fullWidth status="success" (click)="addMember()">Add Family Member</button>
                 </div>
 
                 <div class="col-12" *ngIf="visibleConsultan">
-                    <!-- <button type="button" nbButton fullWidth status="success" (click)="addMember()">
-                        Add Family Member consultor
-                    </button> -->
                     <button type="button" nbButton fullWidth status="success" (click)="addMember()" *ngIf="!f._id.value">
                         Add Family Member
                     </button>
@@ -200,7 +186,10 @@
                             <div class="col-8">
                                 Full Name
                             </div>
-                            <div class="col-4">
+                            <div class="col-3">
+                                Relationship
+                            </div>
+                            <div class="col-1">
                                 Age
                             </div>
                         </div>
@@ -211,14 +200,18 @@
                         </div>
                     </div>
                 </nb-list-item>
-                <nb-list-item *ngFor="let client of listFamiliMembers">
+                <!-- <nb-list-item *ngFor="let client of listFamiliMembers"> -->
+                <nb-list-item *ngFor="let client of listFamiliMembers$ | async">
                     <div class="row">
                         <div class="col-12 col-md-10 row">
                             <div class="col-8 text-center">
                                 {{ client.first_name | uppercase }} - {{ client.last_name | uppercase }}
                             </div>
-                            <div class="col-4">
-                                {{ client.age }}
+                            <div class="col-3">
+                                {{ client.relationship }}
+                            </div>
+                            <div class="col-1">
+                                {{ (client.age > 99) ? '' : client.age }}
                             </div>
                         </div>
 
@@ -241,20 +234,3 @@
         </nb-card>
     </div>
 </div>
-<!-- <div class="row">
-
-
-    <div class="col-12 col-md-6">
-        <div class="form-group">
-            <label for="">Telephone</label>
-            <input type="text" name="telephone" placeholder="Telephone" nbInput fullWidth formControlName="telephone" [status]="((submitted || f.telephone.touched) && f.telephone.errors)?'danger':''">
-            <div *ngIf="(submitted || f.telephone.touched) && f.telephone.errors" class="card-text">
-                <small *ngIf="f.telephone.errors?.required" class="text-muted text-muted-danger">Field required</small>
-                <small *ngIf="f.telephone.errors?.pattern" class="text-muted text-muted-danger">Not is a phone number valid</small>
-            </div>
-        </div>
-    </div>
-
-
-
-</div> -->

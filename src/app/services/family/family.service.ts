@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { map, tap, pluck, filter } from 'rxjs/operators';
+import { Observable, of, BehaviorSubject, Subject } from 'rxjs';
+import { map, tap, pluck, filter, switchMap } from 'rxjs/operators';
 
 import { Process } from '../../models/Process';
 import { environment } from '../../../environments/environment';
@@ -12,20 +12,23 @@ import { Client } from '../../models/Client';
 })
 export class FamilyService {
 
+  // private processBS = new Subject();
+  private processBS = new BehaviorSubject('');
+
+  process$ = this.processBS.asObservable();
+
+  listFamilyMembers$ = this.process$.pipe(
+    switchMap( process_id => this._http.get( `${ environment.api_url }/family/${ process_id }` ) ),
+    pluck('list'),
+    map( (x:any) => {
+      return x.map( ({client}) => ({...client}) );
+    }),
+  )
+
   constructor( private _http: HttpClient) { }
 
-  getFamilyProcesses( process: Process): Observable<any>{
-    let url = `${ environment.api_url }/family/${ process._id }`;
-
-    return this._http.get( url ).pipe(
-      pluck('list'),
-      map( (x:any) => {
-        return x.map( ({client}) => ({...client}) );
-      }),
-      // tap( x => console.log('familiares recibidos', x) ),
-      // map(({_id, client, relationship})=>({ _id, ...client, relationship })),
-      // map( (data) => data.list )
-    );
+  chageProcess( process: Process){
+    this.processBS.next(process._id);
   }
 
   newFamilyMember( process: Process, client: Client): Observable<any>{
@@ -34,7 +37,7 @@ export class FamilyService {
     let url = `${ environment.api_url }/family/${ process._id }`;
 
     return this._http.post( url, client ).pipe(
-      // tap( x => console.log('new member create', x) ),
+      tap( () => this.processBS.next(process._id) ),
       map<any,any>( ({ok, member}) => ({ok, member}) )
     );
 
@@ -44,6 +47,7 @@ export class FamilyService {
     let url = `${ environment.api_url }/family/${ process._id }`;
 
     return this._http.put( url, client ).pipe(
+      tap( () => this.processBS.next(process._id) ),
       map<any,any>( ({ok, familyMember}) => ({ok, familyMember}) )
     );
 
@@ -53,7 +57,7 @@ export class FamilyService {
     const url = `${ environment.api_url }/family/${ process._id }/${ client._id }`;
 
     return this._http.delete( url ).pipe(
-      // map( (data) => data.list )
+      tap( () => this.processBS.next(process._id) ),
     );
 
   }

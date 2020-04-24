@@ -1,9 +1,6 @@
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { VisitorComponent } from './forms/visitor/visitor.component';
-import { TuristComponent } from './forms/turist/turist.component';
-
+import { NgModule } from "@angular/core";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { CommonModule } from "@angular/common";
 import {
   NbMenuModule,
   NbCardModule,
@@ -18,8 +15,8 @@ import {
   NbIconModule,
   NbRadioModule,
   NbUserModule,
-} from '@nebular/theme';
-import { FamilyFormComponent } from './family-form/family-form.component';
+  NbAccordionModule,
+} from "@nebular/theme";
 
 const nebular = [
   NbMenuModule,
@@ -31,11 +28,16 @@ const nebular = [
   NbDatepickerModule,
   NbButtonModule,
   NbStepperModule,
-  NbListModule
+  NbListModule,
+  NbAccordionModule,
   // NbActionsModule,
   // NbRadioModule,
   // NbUserModule
 ];
+
+import { VisitorComponent } from "./forms/visitor/visitor.component";
+import { TuristComponent } from "./forms/turist/turist.component";
+import { FamilyFormComponent } from "./forms/family-form/family-form.component";
 
 @NgModule({
   declarations: [
@@ -49,10 +51,10 @@ const nebular = [
     TuristComponent
   ],
   imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    ...nebular,
-  ]
+    CommonModule, 
+    FormsModule, 
+    ReactiveFormsModule, 
+    ...nebular
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}
