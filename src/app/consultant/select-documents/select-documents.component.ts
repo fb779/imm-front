@@ -60,19 +60,19 @@ export class SelectDocumentsComponent implements OnInit {
   //     .subscribe( data => this.listFamiliMembers = data );
   // }
 
-  toggle(e: boolean) {
-    this.documentRequired = this.listOfDocuments
-      .filter((item) => {
-        return item.required;
-      })
-      .map((el) => {
-        return {
-          _id: el._id,
-          name: el.name,
-          status: el.required,
-        };
-      });
-  }
+  // toggle(e: boolean) {
+  //   this.documentRequired = this.listOfDocuments
+  //     .filter((item) => {
+  //       return item.required;
+  //     })
+  //     .map((el) => {
+  //       return {
+  //         _id: el._id,
+  //         name: el.name,
+  //         status: el.required,
+  //       };
+  //     });
+  // }
 
   addOther() {
     // console.log(this.otherDocument);
@@ -99,6 +99,11 @@ export class SelectDocumentsComponent implements OnInit {
     this.otherDocuments = this.otherDocuments.filter((el) => {
       return !(el.name === other.name);
     });
+  }
+
+  saveList(list){
+
+    console.log('recibida la lista de documentos',list);
   }
 
   private validUnique(document, listDocuments) {

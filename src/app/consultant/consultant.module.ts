@@ -50,6 +50,7 @@ import { FormsGuidesComponent } from "./forms-guides/forms-guides.component";
 import { UploadFileComponent } from "./forms-guides/upload-file/upload-file.component";
 import { SelectDocumentsComponent } from "./select-documents/select-documents.component";
 import { SharedModule } from "../shared/shared.module";
+import { ChecklistComponent } from './select-documents/checklist/checklist.component';
 
 @NgModule({
   imports: [
@@ -69,6 +70,7 @@ import { SharedModule } from "../shared/shared.module";
     ProcessComponent,
     FormsGuidesComponent,
     SelectDocumentsComponent,
+    ChecklistComponent,
   ],
 })
 export class ConsultantModule {}

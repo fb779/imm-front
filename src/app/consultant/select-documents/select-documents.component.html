@@ -4,12 +4,13 @@
             {{ process.client.first_name }} - {{ process.client.last_name }}
         </nb-accordion-item-header>
         <nb-accordion-item-body>
-            <div class="col-12" *ngFor="let document of listOfDocuments">
+            <ngx-checklist [client]="process.client" [type_visa]="type_visa" (save)="saveList($event)"></ngx-checklist>
+            <!-- <div class="col-12" *ngFor="let document of listOfDocuments">
                 <nb-checkbox [(checked)]="document.required" (checkedChange)="toggle($event)">{{ document.group }} - {{ document.name }}</nb-checkbox>
             </div>
             <div class="col-12">
                 <button nbButton fullWidth status="primary">Save</button>
-            </div>
+            </div> -->
         </nb-accordion-item-body>
     </nb-accordion-item>
 
@@ -18,13 +19,14 @@
             {{ familyMember.first_name }} - {{ familyMember.last_name }}
         </nb-accordion-item-header>
         <nb-accordion-item-body>
-            <div class="col-12" *ngFor="let document of listOfDocuments">
+            <ngx-checklist [client]="familyMember" [type_visa]="type_visa" (save)="saveList($event)"></ngx-checklist>
+            <!-- <div class="col-12" *ngFor="let document of listOfDocuments">
                 <nb-checkbox [(checked)]="document.required" (checkedChange)="toggle($event)">{{ document.group }} - {{ document.name }}</nb-checkbox>
             </div>
 
             <div class="col-12">
                 <button nbButton fullWidth status="">Save</button>
-            </div>
+            </div> -->
 
         </nb-accordion-item-body>
     </nb-accordion-item>
