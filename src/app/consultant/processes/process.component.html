@@ -17,18 +17,12 @@
             </nb-tab>
 
             <nb-tab tabTitle="Check List">
-
                 <ngx-select-documents *ngIf="process && type_visa" [process]="process"></ngx-select-documents>
+            </nb-tab>
+            <nb-tab tabTitle="Documents">
 
+                <ngx-documents *ngIf="process && type_visa" [process]="process"></ngx-documents>
 
-                <!-- <nb-card>
-                    <nb-card-header>
-                        <label for="">Upload documents</label>
-                    </nb-card-header>
-                    <nb-card-body *ngIf="process && type_visa">
-                        <ngx-select-documents *ngIf="process && type_visa" [process]="process"></ngx-select-documents>
-                    </nb-card-body>
-                </nb-card> -->
             </nb-tab>
             <nb-tab tabTitle="Forms">
                 <nb-card>

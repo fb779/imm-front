@@ -2,7 +2,7 @@
 <nb-card>
     <nb-card-body>
         <div class="row">
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md">
 
                 <!-- <div class="row">
                     <pre>
@@ -10,82 +10,12 @@
                     </pre>
                 </div> -->
                 <div class="row">
-                    <div class="col-12" *ngFor="let guide of guides">
+                    <div class="col-4" *ngFor="let guide of guides">
                         <ngx-card-documents [title]="guide.title" [description]="guide.description" [type]="guide.type" [name]="guide.name"></ngx-card-documents>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-6">
-                <nb-card>
-                    <nb-card-body>
-                        <nb-stepper #stepper orientation="horizontal">
-                            <nb-step [label]="labelOne">
-                                <ng-template #labelOne>First steps</ng-template>
-                                <!-- <h4>Step content #1</h4> -->
-                                <h5>Find out if you're eligible to apply</h5>
-                                <label for="">
-                                    In order to be eligible, your must
-                                </label>
-                                <nb-card>
-                                    <nb-card-body>
-                                        <ul>
-                                            <li>
-                                                <p class="lorem"> be from an eligible country.</p>
-                                            </li>
-                                            <li>
-                                                <p class="lorem"> be studying in Canada for more than 6 months.</p>
-                                            </li>
-                                            <li>
-                                                <p class="lorem"> have a Guaranteed Investment Certificate (GIC) of at least $10,000.</p>
-                                            </li>
-                                            <li>
-                                                <p class="lorem"> have paid their first year's tuition in full.</p>
-                                            </li>
-                                            <li>
-                                                <p class="lorem"> have a medical exam performed by an IRCC authorized panel physician within the last 12 months if they have visited a designated country for 6 consecutive months within the last year.</p>
-                                            </li>
-                                            <li>
-                                                <p class="lorem"> have taken a language test from the International English Language Testing System (IELTS) with an overall band score of 6.0 or higher, with no individual band lower than 6.0 minimum band of 6.0 or the Test
-                                                    d'évaluation de Français (TEF) with a minimum ability of 7.0 within the past two years.</p>
-                                            </li>
-                                            <li>
-                                                <p class="lorem"> a letter of acceptance from a post-secondary Designated Learning Institution.</p>
-                                            </li>
-                                        </ul>
-                                    </nb-card-body>
-                                </nb-card>
-                                <div>
-                                    <!-- <button nbButton disabled nbStepperNext>prev</button> -->
-                                    <button nbButton nbStepperNext>next</button>
-                                </div>
-                            </nb-step>
-                            <nb-step [label]="labelTwo">
-                                <ng-template #labelTwo>Second step</ng-template>
-                                <h4>Step content #2</h4>
-                                <p class="lorem">
-                                    Lorizzle ipsum dolizzle stuff fizzle, consectetuer adipiscing break it down. Nullizzle sapien velizzle, my shizz pimpin', shizzle my nizzle crocodizzle shut the shizzle up, gravida vizzle, dang.
-                                </p>
-                                <button nbButton nbStepperPrevious>prev</button>
-                                <button nbButton nbStepperNext>next</button>
-                            </nb-step>
-                            <nb-step label="Third step">
-                                <h4>Step content #3</h4>
-                                <p class="lorem">
-                                    Lorizzle ipsum dolizzle stuff fizzle, consectetuer adipiscing break it down. Nullizzle sapien velizzle, my shizz pimpin', shizzle my nizzle crocodizzle shut the shizzle up, gravida vizzle, dang.
-                                </p>
-                                <button nbButton nbStepperPrevious>prev</button>
-                                <button nbButton nbStepperNext>Finish</button>
-                            </nb-step>
-                            <nb-step [hidden]="true">
-                                <div class="step-container">
-                                    <h3>Wizard completed!</h3>
-                                    <button nbButton (click)="stepper.reset()">Try again</button>
-                                </div>
-                            </nb-step>
-                        </nb-stepper>
-                    </nb-card-body>
-                </nb-card>
-            </div>
+
         </div>
     </nb-card-body>
 </nb-card>

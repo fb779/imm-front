@@ -30,7 +30,7 @@ const nebularModules = [
   // NbActionsModule,
   // NbCheckboxModule,
   // NbDatepickerModule,
-  // NbIconModule,
+  NbIconModule,
   // NbRadioModule,
   // NbUserModule
 ];
@@ -53,7 +53,7 @@ import { FormsGuidesComponent } from './forms-guides.component';
     FormsGuidesRoutingModule,
     CommonModule,
     ...nebularModules,
-//
+    //
   ]
 })
 export class FormsGuidesModule { }

@@ -1,0 +1,17 @@
+<div class="row">
+    <nb-list>
+        <nb-list-item *ngFor="let document of listDocuments$ | async">
+            <div class="row">
+                <div class="col-12 col-md-8">
+                    {{ document.name }}
+                </div>
+                <div class="col-12 col-md-4 text-center">
+                    <button type="button" nbButton size="small"> <nb-icon icon="download-outline"></nb-icon> </button>
+                    <button type="button" nbButton size="small" status="success"> <nb-icon icon="checkmark-outline"></nb-icon> </button>
+                    <button type="button" nbButton size="small" status="danger"> <nb-icon icon="close-outline"></nb-icon> </button>
+                </div>
+            </div>
+        </nb-list-item>
+    </nb-list>
+
+</div>

@@ -27,7 +27,7 @@ const nebular = [
   // NbButtonModule,
   // NbCheckboxModule,
   // NbDatepickerModule,
-  // NbIconModule,
+  NbIconModule,
   // NbRadioModule,
   // NbUserModule
 ];

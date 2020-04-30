@@ -1,9 +1,16 @@
-import { Category } from './Category';
+import { CheckList } from './CheckList';
+import { Client } from './Client';
+
+// checklist: CheckList;
+// client: Client;
 
 export class Document {
     _id: string;
+    checklist: string;
+    client: string;
     name: string;
-    type: string;
-    status: boolean;
-    required:boolean;
+    status: string;
+    directory?: string;
+    extension?: string;
+    description?: string;
 }
