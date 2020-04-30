@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ConsultantService } from '../../../services/services.index';
+import { ConsultantService, ChecklistService } from '../../../services/services.index';
 import { CheckList } from '../../../models/CheckList';
+import { Process } from '../../../models/Process';
+import { Client } from '../../../models/Client';
 
 @Component({
   selector: 'ngx-checklist',
@@ -9,41 +11,58 @@ import { CheckList } from '../../../models/CheckList';
 })
 export class ChecklistComponent implements OnInit {
 
+  @Input('process') process: Process;
+  @Input('client') client: Client;
   @Input('type_visa') type_visa;
-  @Input('client') client;
-  @Output() save = new EventEmitter();
+
 
   listItems = [];
-  documentRequired = [];
+  documentSelected = [];
+  documentsLoads = [];
 
-  constructor(private _consultatnService: ConsultantService) { }
+  constructor(private _consultatnService: ConsultantService, private _checklistServices: ChecklistService) { }
 
   ngOnInit() {
     this._consultatnService.getDocumentsOfConsultant(this.type_visa)
       .subscribe((data: CheckList[]) => {
         this.listItems = data;
         // this.loading = false;
+        this.loadDocuments();
       });
   }
 
+  loadDocuments() {
+
+    this._checklistServices.getDocumentsByClient(this.client).subscribe((response) => {
+      this.documentsLoads = response;
+      this.adjustItemList();
+    });
+  }
+
+  adjustItemList() {
+    this.listItems = this.listItems.map(el => {
+      if (this.documentsLoads.indexOf(el._id.toString()) > -1) {
+        el.required = true
+      }
+      return el;
+    });
+  }
+
   toggle(e: boolean) {
-    this.documentRequired = this.listItems
+    this.documentSelected = this.listItems
       .filter((item) => {
         return item.required;
       })
       .map((el) => {
-        return {
-          _id: el._id,
-          name: el.name,
-          status: el.required,
-        };
+        return el._id
       });
   }
 
-  saveList(){
-    if (this.documentRequired.length > 0){
-      this.save.emit({client: this.client, documents: this.documentRequired});
-      // console.log({client: this.client, documents: this.documentRequired});
+  saveList() {
+    if (this.documentSelected.length > 0) {
+      this._checklistServices.saveDocumentsByClient(this.client, this.documentSelected).subscribe((response) => {
+        this.loadDocuments();
+      });
     }
   }
 }

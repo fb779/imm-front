@@ -10,7 +10,7 @@ import { NB_AUTH_TOKEN_INTERCEPTOR_FILTER } from '@nebular/auth';
 export class TokenInterceptorService implements HttpInterceptor {
 
   constructor(private injector: Injector,
-              @Inject(NB_AUTH_TOKEN_INTERCEPTOR_FILTER) protected filter) {
+    @Inject(NB_AUTH_TOKEN_INTERCEPTOR_FILTER) protected filter) {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -21,23 +21,23 @@ export class TokenInterceptorService implements HttpInterceptor {
       return this.authService.isAuthenticatedOrRefresh().pipe(
         switchMap(authenticated => {
           if (authenticated) {
-              return this.authService.getToken().pipe(
-                switchMap((token: NbAuthToken) => {
-                  console.log('Control iterceptor');
-                  //const JWT = `Bearer ${token.getValue()}`;  <--- replace this line with the next
+            return this.authService.getToken().pipe(
+              switchMap((token: NbAuthToken) => {
+                console.log('Control iterceptor');
+                //const JWT = `Bearer ${token.getValue()}`;  <--- replace this line with the next
 
-                  const httpOptions = this.getHeaders(token.getValue());
+                const httpOptions = this.getHeaders(token.getValue());
 
-                  console.log('Cabeceras',httpOptions);
+                console.log('Cabeceras', httpOptions);
 
-                  req = req.clone( httpOptions );
+                req = req.clone(httpOptions);
 
-                  return next.handle(req);
-                }),
-              )
+                return next.handle(req);
+              }),
+            )
           } else {
-              // Request is sent to server without authentication so that the client code
-              // receives the 401/403 error and can act as desired ('session expired', redirect to login, aso)
+            // Request is sent to server without authentication so that the client code
+            // receives the 401/403 error and can act as desired ('session expired', redirect to login, aso)
             return next.handle(req);
           }
         }),
@@ -51,14 +51,14 @@ export class TokenInterceptorService implements HttpInterceptor {
     return this.injector.get(NbAuthService);
   }
 
-  private getHeaders(token){
-    let headersAppend:any;
+  private getHeaders(token) {
+    let headersAppend: any;
 
-    if(token){
+    if (token) {
       headersAppend = new HttpHeaders()
-                          .set("Accept", "application/json")
-                          .set("Authorization", "Bearer "+ token);
-    }else{
+        .set("Accept", "application/json")
+        .set("Authorization", "Bearer " + token);
+    } else {
       headersAppend = new HttpHeaders().set("Accept", "application/json");
     }
 
@@ -67,5 +67,5 @@ export class TokenInterceptorService implements HttpInterceptor {
     };
 
     return Options;
-	}
+  }
 }

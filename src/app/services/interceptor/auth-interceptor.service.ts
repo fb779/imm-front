@@ -13,15 +13,15 @@ export class AuthInterceptorService implements HttpInterceptor {
 
   constructor(private authService: NbAuthService) {
     // this.authService.getToken().subscribe(( token: NbAuthJWTToken)=>{
-    this.authService.onTokenChange().subscribe(( token: NbAuthJWTToken)=>{
+    this.authService.onTokenChange().subscribe((token: NbAuthJWTToken) => {
       this.token = token.getValue();
     });
-   }
+  }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if (req.url.includes('login')){
-      return next.handle( req );
+    if (req.url.includes('login')) {
+      return next.handle(req);
       // .pipe(
       //   catchError( this.manejarError )
       // );
@@ -31,26 +31,25 @@ export class AuthInterceptorService implements HttpInterceptor {
 
     const reqClone = req.clone(httpOptions);
 
-    return next.handle( reqClone ).pipe(
-      catchError( this.manejarError )
+    return next.handle(reqClone).pipe(
+      catchError(this.manejarError)
     );
-
   }
 
-  manejarError( err: any ){
+  manejarError(err: any) {
     // console.log('error en el servicio');
     console.warn(err);
     // console.log(err.error.data.message);
     return throwError('Error en el servicio del usuario');
   }
 
-  getHeaders(){
-    let headersAppend:any;
-    if(this.token){
+  getHeaders() {
+    let headersAppend: any;
+    if (this.token) {
       headersAppend = new HttpHeaders()
-                          .set("Accept", "application/json")
-                          .set("Authorization", "Bearer "+ this.token);
-    }else{
+        .set("Accept", "application/json")
+        .set("Authorization", "Bearer " + this.token);
+    } else {
       headersAppend = new HttpHeaders().set("Accept", "application/json");
     }
 
@@ -59,5 +58,5 @@ export class AuthInterceptorService implements HttpInterceptor {
     };
 
     return Options;
-	}
+  }
 }

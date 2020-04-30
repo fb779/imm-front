@@ -1,6 +1,6 @@
 <nb-card>
     <nb-card-header>
-        Checklist Family
+        Review Documents
     </nb-card-header>
     <nb-card-body>
         <nb-accordion [nbSpinner]="loading">
@@ -8,11 +8,8 @@
                 <nb-accordion-item-header>
                     {{ process.client.first_name }} - {{ process.client.last_name }}
                 </nb-accordion-item-header>
-                <nb-accordion-item-body status="success">
-
-                    <!-- <ngx-checklist [client]="process.client" [type_visa]="type_visa" (save)="saveList($event)"></ngx-checklist> -->
-                    <ngx-checklist [process]="process" [client]="process.client" [type_visa]="type_visa"></ngx-checklist>
-
+                <nb-accordion-item-body>
+                    <ngx-list-documents [client]="process.client"></ngx-list-documents>
                 </nb-accordion-item-body>
             </nb-accordion-item>
 
@@ -21,10 +18,9 @@
                     {{ familyMember.first_name }} - {{ familyMember.last_name }}
                 </nb-accordion-item-header>
                 <nb-accordion-item-body>
-
-                    <!-- <ngx-checklist [client]="familyMember" [type_visa]="type_visa" (save)="saveList($event)"></ngx-checklist> -->
-                    <ngx-checklist [process]="process" [client]="familyMember" [type_visa]="type_visa"></ngx-checklist>
-
+                    <div>
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim porro repellat non rerum sapiente, nesciunt temporibus ducimus, placeat illo quo nobis deserunt eaque incidunt ullam reiciendis facere id eveniet esse.
+                    </div>
                 </nb-accordion-item-body>
             </nb-accordion-item>
         </nb-accordion>

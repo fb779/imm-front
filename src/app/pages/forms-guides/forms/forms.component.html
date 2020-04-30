@@ -1,9 +1,24 @@
 <nb-card>
     <nb-card-header>
-        {{ document }}
+        <div class="row">
+            <div class="col-1">
+                <button nbButton size="small" status="primary" (click)="goback()">
+                    <nb-icon icon="arrow-back-outline"></nb-icon>
+                </button>
+            </div>
+            <div class="col"> {{ document }} </div>
+        </div>
     </nb-card-header>
     <nb-card-body>
-        <button nbButton (click)="goback()">Return</button>
-        <button nbButton (click)="download()">Download</button>
+        <div class="row">
+            <div class="col-10">
+                <label for="">Description</label>
+
+
+            </div>
+            <div class="col-2 text-center">
+                <button nbButton (click)="download()">Download</button>
+            </div>
+        </div>
     </nb-card-body>
 </nb-card>

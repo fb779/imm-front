@@ -44,7 +44,7 @@ export class VisitorComponent implements OnInit {
     private _porcessServices: UserProcessService,
     private _asf: AssessmentFormService,
   ) {
-    this.url = this._router.url.split('/').filter( x => x.trim() !== '');
+    this.url = this._router.url.split('/').filter(x => x.trim() !== '');
 
     // this.client = new FormGroup({
     //   '_id': new FormControl('nuevo'),
@@ -76,7 +76,7 @@ export class VisitorComponent implements OnInit {
       'other_citizenship': new FormControl('', []),
       'country_residence': new FormControl('', [Validators.required]),
       'status_residence': new FormControl('', [Validators.required]),
-      'status_residence_other': new FormControl({value: '', disable: true}, [Validators.required]),
+      'status_residence_other': new FormControl({ value: '', disable: true }, [Validators.required]),
       'age': new FormControl('', [Validators.required, Validators.min(0), Validators.max(99)]),
       'destiny': new FormControl('', [Validators.required]),
       'marital_status': new FormControl('', [Validators.required]),
@@ -97,8 +97,8 @@ export class VisitorComponent implements OnInit {
 
     // this.forma.get('status_residence_other').disable();
 
-    this.forma.controls['status_residence'].valueChanges.subscribe( (value:any) => {
-      if (value == 5){
+    this.forma.controls['status_residence'].valueChanges.subscribe((value: any) => {
+      if (value == 5) {
         this.forma.get('status_residence_other').enable();
       } else {
         this.forma.get('status_residence_other').disable();
@@ -115,49 +115,49 @@ export class VisitorComponent implements OnInit {
     //   }
     // });
 
-    this._asf.getTitles().subscribe( (data)=>{
+    this._asf.getTitles().subscribe((data) => {
       this.optTitles = data;
-    } );
+    });
 
-    this._asf.getSex().subscribe( (data)=>{
+    this._asf.getSex().subscribe((data) => {
       this.optSex = data;
-    } );
+    });
 
-    this._asf.getAccompanying().subscribe( (data)=>{
+    this._asf.getAccompanying().subscribe((data) => {
       this.optAccompanying = data;
-    } );
+    });
 
-    this._asf.getYesNo().subscribe( (data)=>{
+    this._asf.getYesNo().subscribe((data) => {
       this.optYesNo = data;
-    } );
+    });
 
-    this._asf.getCountries().subscribe( (data)=>{
+    this._asf.getCountries().subscribe((data) => {
       this.optCountries = data;
-    } );
+    });
 
-    this._asf.getStatus().subscribe( (data)=>{
+    this._asf.getStatus().subscribe((data) => {
       this.optStatus = data;
-    } );
+    });
 
-    this._asf.getProvinces().subscribe( (data)=>{
+    this._asf.getProvinces().subscribe((data) => {
       this.optProvinces = data;
-    } );
+    });
 
-    this._asf.getMaritalStatus().subscribe( (data)=>{
+    this._asf.getMaritalStatus().subscribe((data) => {
       this.optMaritalStatus = data;
-    } );
+    });
 
-    this._asf.getPropousVisit().subscribe( (data)=>{
+    this._asf.getPropousVisit().subscribe((data) => {
       this.optPropousVisit = data;
-    } );
+    });
 
-    this._asf.getStayCanada().subscribe( (data)=>{
+    this._asf.getStayCanada().subscribe((data) => {
       this.optStayCanada = data;
-    } );
+    });
   }
 
   ngOnInit() {
-    if ( this.process && this.process.status !== status.active ){
+    if (this.process && this.process.status !== status.active) {
       this._porcessServices.getUserForm(this.process._id).subscribe((dt) => {
         this.forma.setValue(dt);
       });
@@ -166,25 +166,23 @@ export class VisitorComponent implements OnInit {
 
   get f() { return this.forma.controls; }
 
-  guardar(){
+  guardar() {
     this.submitted = true;
 
-    if ( this.forma.invalid ){
+    if (this.forma.invalid) {
       alert('Fomr is invalid');
       return;
     }
 
-    if ( this.f._id.value === 'nuevo'){
-      this._porcessServices.setForm(this.process, this.forma.value).subscribe((resp: any)=>{
-        if ( resp.ok ){
+    if (this.f._id.value === 'nuevo') {
+      this._porcessServices.setForm(this.process, this.forma.value).subscribe((resp: any) => {
+        if (resp.ok) {
           this._router.navigate([this.url[0], this.url[1]]);
           return;
         }
       });
     } else {
-      console.log('actualizar formulario');
-      this._porcessServices.updateForm(this.process, this.forma.value).subscribe((resp: any)=>{
-        console.log('llegada del servicio',resp);
+      this._porcessServices.updateForm(this.process, this.forma.value).subscribe((resp: any) => {
         return;
         // if ( resp.ok ){
         //   this._router.navigate([this.url[0], this.url[1]]);
