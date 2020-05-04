@@ -22,15 +22,13 @@ export class DocumentsComponent implements OnInit {
   loading = false;
 
   listFamiliMembers$: Observable<Client[]> = this._familyServices.listFamilyMembers$;
-  documentList: Document[] = [];
+
   constructor(
     private _consultatnService: ConsultantService,
-    private _familyServices: FamilyService,
-    private _documentService: DocumentService
+    private _familyServices: FamilyService
   ) { }
 
   ngOnInit() {
-    // console.log('Clientes en documentos', this.client);
 
   }
 
