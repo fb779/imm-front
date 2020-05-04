@@ -2,7 +2,7 @@
     <!-- <label for="">{{ title }}</label> -->
     <div class="input-group">
         <div class="custom-file">
-            <input type="file" class="custom-file-input" nbInput #inputFile (change)="seleccionarImagen( $event.target.files[0] )">
+            <input type="file" class="custom-file-input" nbInput fullWidth #inputFile (change)="seleccionarImagen( $event.target.files[0] )">
             <label class="custom-file-label" #labelFile>{{ name || title }}</label>
         </div>
         <!-- <div class="input-group-append" [ngClass]="{'d-none': !fileUpload}"> -->

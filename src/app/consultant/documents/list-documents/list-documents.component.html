@@ -1,14 +1,29 @@
 <div class="row">
     <nb-list>
-        <nb-list-item *ngFor="let document of listDocuments$ | async">
+        <nb-list-item>
+            <div class="row">
+                <div class="col-12 text-right">
+                    <button nbButton size="small" status="success" (click)="loadDocuments()">
+                        <nb-icon icon="refresh-outline"></nb-icon>
+                    </button>
+                </div>
+            </div>
+        </nb-list-item>
+        <nb-list-item *ngFor="let document of listDocuments">
             <div class="row">
                 <div class="col-12 col-md-8">
                     {{ document.name }}
                 </div>
                 <div class="col-12 col-md-4 text-center">
-                    <button type="button" nbButton size="small"> <nb-icon icon="download-outline"></nb-icon> </button>
-                    <button type="button" nbButton size="small" status="success"> <nb-icon icon="checkmark-outline"></nb-icon> </button>
-                    <button type="button" nbButton size="small" status="danger"> <nb-icon icon="close-outline"></nb-icon> </button>
+                    <button type="button" nbButton size="small" status="primary" [disabled]="btnDownloadedStatus(document)">
+                        <nb-icon icon="download-outline"></nb-icon>
+                    </button>
+                    <button type="button" nbButton size="small" status="success" [disabled]="btnAprobedRejectedStatus(document)">
+                        <nb-icon icon="checkmark-outline"></nb-icon>
+                    </button>
+                    <button type="button" nbButton size="small" status="danger" [disabled]="btnAprobedRejectedStatus(document)">
+                        <nb-icon icon="close-outline"></nb-icon>
+                    </button>
                 </div>
             </div>
         </nb-list-item>

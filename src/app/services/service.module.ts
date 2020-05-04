@@ -16,6 +16,7 @@ import { ConsultantService } from './consultant/consultant.service';
 import { ProcessService } from './process/process.service';
 import { FamilyService } from './family/family.service';
 import { ChecklistService } from './checklist/checklist.service';
+import { DocumentService } from './document/document.service';
 
 @NgModule({
   declarations: [],
@@ -34,6 +35,7 @@ import { ChecklistService } from './checklist/checklist.service';
     ProcessService,
     FamilyService,
     ChecklistService,
+    DocumentService
   ],
   imports: [
     CommonModule,

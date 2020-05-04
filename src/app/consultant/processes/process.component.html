@@ -21,7 +21,7 @@
             </nb-tab>
             <nb-tab tabTitle="Documents">
 
-                <ngx-documents *ngIf="process && type_visa" [process]="process"></ngx-documents>
+                <ngx-documents *ngIf="process && type_visa" [process]="process" [client]="process.client"></ngx-documents>
 
             </nb-tab>
             <nb-tab tabTitle="Forms">

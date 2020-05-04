@@ -7,6 +7,13 @@ export const status = {
     document: 'DOCUMENT'
 };
 
+export const documentStatus = {
+    create: 'CREATE',
+    uploaded: 'UPLOADED',
+    approved: 'APPROVED',
+    rejected: 'REJECTED'
+};
+
 export const visa_categories = {
     visitor: 'VISITOR',
     turist: 'TURIST',
@@ -15,6 +22,6 @@ export const visa_categories = {
 
 export const relationships = {
     spouse: "SPOUSE",
-    common_law_partner:"PARTNER",
-    child:"CHILDREN",
+    common_law_partner: "PARTNER",
+    child: "CHILDREN",
 }
