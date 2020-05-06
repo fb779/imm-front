@@ -29,8 +29,8 @@
                     <nb-card-header>
                         Forms
                     </nb-card-header>
-                    <nb-card-body>
-                        <ngx-forms-guides processo="procesooo"></ngx-forms-guides>
+                    <nb-card-body *ngIf="process">
+                        <ngx-forms-guides [processo]="process" type="forms"></ngx-forms-guides>
                     </nb-card-body>
                 </nb-card>
             </nb-tab>
@@ -39,8 +39,8 @@
                     <nb-card-header>
                         Guides
                     </nb-card-header>
-                    <nb-card-body>
-                        <ngx-forms-guides processo="procesooo"></ngx-forms-guides>
+                    <nb-card-body *ngIf="process">
+                        <ngx-forms-guides [processo]="process" type="guides"></ngx-forms-guides>
                     </nb-card-body>
                 </nb-card>
             </nb-tab>

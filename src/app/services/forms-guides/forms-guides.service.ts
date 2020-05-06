@@ -1,20 +1,28 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { of as observableOf, Observable } from 'rxjs';
-
-import { documentsFomrsGuides } from '../../mocks/files';
+import { tap, pluck } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
+import { Process } from '../../models/Process';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FormsGuidesService {
 
-  documents = [];
+  constructor(private _http: HttpClient) { }
 
-  constructor() { }
+  getForsGuides(process: Process, type: string) {
+    const url = `${environment.api_url}/forms-guides/${process._id}/${type}`;
 
-  getDocuments( id : string ) : Observable<any[]>{
-    this.documents = documentsFomrsGuides;
-    return observableOf(this.documents);
+    return this._http.get(url).pipe(
+      pluck('list'),
+      // tap(console.log),
+    );
+  }
+
+  deleteFormGuide(id_form_guide) {
+    const url = `${environment.api_url}/forms-guides/${id_form_guide}`;
+
+    return this._http.delete(url).pipe();
   }
 }

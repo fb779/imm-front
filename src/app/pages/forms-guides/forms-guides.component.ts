@@ -20,9 +20,9 @@ export class FormsGuidesComponent implements OnInit {
 
   ngOnInit() {
 
-    this._fgs.getDocuments(this.user._id).subscribe((data: any) => {
-      this.guides = data;
-    });
+    // this._fgs.getDocuments(this.user._id).subscribe((data: any) => {
+    //   this.guides = data;
+    // });
 
   }
 

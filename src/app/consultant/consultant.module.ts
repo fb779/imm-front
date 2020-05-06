@@ -47,7 +47,6 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 import { ProcessesComponent } from "./processes/processes.component";
 import { ProcessComponent } from "./processes/process.component";
 import { FormsGuidesComponent } from "./forms-guides/forms-guides.component";
-import { UploadFileComponent } from "./forms-guides/upload-file/upload-file.component";
 import { SelectDocumentsComponent } from "./select-documents/select-documents.component";
 import { SharedModule } from "../shared/shared.module";
 import { ChecklistComponent } from './select-documents/checklist/checklist.component';
@@ -65,7 +64,6 @@ import { ListDocumentsComponent } from './documents/list-documents/list-document
   ],
   exports: [],
   declarations: [
-    UploadFileComponent,
     ConsultantComponent,
     DashboardComponent,
     ProcessesComponent,
@@ -77,4 +75,4 @@ import { ListDocumentsComponent } from './documents/list-documents/list-document
     ListDocumentsComponent,
   ],
 })
-export class ConsultantModule {}
+export class ConsultantModule { }

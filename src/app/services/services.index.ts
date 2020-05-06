@@ -16,3 +16,4 @@ export { ProcessService } from './process/process.service';
 export { FamilyService } from './family/family.service';
 export { ChecklistService } from './checklist/checklist.service';
 export { DocumentService } from './document/document.service';
+export { UploadFileService } from './upload/upload-file.service';

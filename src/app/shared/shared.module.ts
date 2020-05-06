@@ -11,11 +11,12 @@ import {
   NbStepperModule,
   NbListModule,
   NbDatepickerModule,
-  NbActionsModule,
   NbIconModule,
+  NbAccordionModule,
+  NbSpinnerModule,
+  NbActionsModule,
   NbRadioModule,
   NbUserModule,
-  NbAccordionModule,
 } from "@nebular/theme";
 
 const nebular = [
@@ -30,6 +31,7 @@ const nebular = [
   NbStepperModule,
   NbListModule,
   NbAccordionModule,
+  NbSpinnerModule
   // NbActionsModule,
   // NbRadioModule,
   // NbUserModule
@@ -38,23 +40,27 @@ const nebular = [
 import { VisitorComponent } from "./forms/visitor/visitor.component";
 import { TuristComponent } from "./forms/turist/turist.component";
 import { FamilyFormComponent } from "./forms/family-form/family-form.component";
+import { UploadFileComponent } from './upload-file/upload-file.component';
 
 @NgModule({
   declarations: [
     VisitorComponent,
     TuristComponent,
-    FamilyFormComponent
+    FamilyFormComponent,
+    UploadFileComponent
+
   ],
   exports: [
     CommonModule,
     VisitorComponent,
-    TuristComponent
+    TuristComponent,
+    UploadFileComponent
   ],
   imports: [
-    CommonModule, 
-    FormsModule, 
-    ReactiveFormsModule, 
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     ...nebular
   ],
 })
-export class SharedModule {}
+export class SharedModule { }
