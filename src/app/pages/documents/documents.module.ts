@@ -6,6 +6,8 @@ import { ThemeModule } from '../../@theme/theme.module';
 import {
   NbCardModule,
   NbButtonModule,
+  NbIconModule,
+  NbSpinnerModule,
   NbMenuModule,
   NbInputModule,
   NbSelectModule,
@@ -13,21 +15,20 @@ import {
   NbDatepickerModule,
   NbStepperModule,
   NbActionsModule,
-  NbIconModule,
   NbRadioModule,
   NbUserModule,
 } from '@nebular/theme';
 
 import { DocumentsComponent } from './documents.component';
-import { UploadFileComponent } from './upload-file/upload-file.component';
-
+import { SharedModule } from '../../shared/shared.module';
 
 const nebular = [
   ThemeModule,
-  // NbMenuModule,
   NbIconModule,
   NbCardModule,
   NbButtonModule,
+  NbSpinnerModule,
+  // NbMenuModule,
   // NbStepperModule,
   // NbInputModule,
   // NbSelectModule,
@@ -45,10 +46,10 @@ const nebular = [
     FormsModule,
     ReactiveFormsModule,
     ...nebular,
+    SharedModule
   ],
   declarations: [
     DocumentsComponent,
-    UploadFileComponent
   ],
   exports: [
     DocumentsComponent

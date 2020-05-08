@@ -13,8 +13,8 @@ export class DocumentService {
 
   constructor(private _http: HttpClient) { }
 
-  getDocumentsByClient(client: Client): Observable<Document[]> {
-    const url = `${environment.api_url}/documents/${client._id}`;
+  getDocumentsByClient(id_client: String): Observable<Document[]> {
+    const url = `${environment.api_url}/documents/${id_client}`;
 
     return this._http.get(url).pipe(
       // tap(console.log),

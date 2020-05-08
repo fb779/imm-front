@@ -25,7 +25,7 @@ export class ListDocumentsComponent implements OnInit {
   }
 
   loadDocuments() {
-    this._documentService.getDocumentsByClient(this.client).subscribe((response) => {
+    this._documentService.getDocumentsByClient(this.client._id).subscribe((response) => {
       // console.log('LLegada de los documentos', response);
       this.listDocuments = response;
     });

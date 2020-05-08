@@ -32,8 +32,7 @@ export class ChecklistComponent implements OnInit {
   }
 
   loadDocuments() {
-
-    this._checklistServices.getDocumentsByClient(this.client).subscribe((response) => {
+    this._checklistServices.getDocumentsByClient(this.client._id).subscribe((response) => {
       this.documentsLoads = response;
       this.adjustItemList();
     });

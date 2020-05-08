@@ -16,7 +16,6 @@
         align-content: space-between;
         // min-height: 6rem;
         // overflow: hidden;
-        cursor: pointer;
         .img-circle {
             box-sizing: border-box;
             // border: solid 1px red;
@@ -35,6 +34,7 @@
             width: 100%;
             height: 100%;
             overflow-wrap: break-word;
+            // cursor: pointer;
             /*overflow: hidden;*/
             display: flex;
             flex-flow: column nowrap;

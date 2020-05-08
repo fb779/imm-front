@@ -18,6 +18,7 @@ import { FamilyService } from './family/family.service';
 import { ChecklistService } from './checklist/checklist.service';
 import { DocumentService } from './document/document.service';
 import { UploadFileService } from './upload/upload-file.service';
+import { ClientService } from './client/client.service';
 
 @NgModule({
   declarations: [],
@@ -38,6 +39,7 @@ import { UploadFileService } from './upload/upload-file.service';
     ChecklistService,
     DocumentService,
     UploadFileService,
+    ClientService,
   ],
   imports: [
     CommonModule,

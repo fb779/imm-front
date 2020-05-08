@@ -17,3 +17,4 @@ export { FamilyService } from './family/family.service';
 export { ChecklistService } from './checklist/checklist.service';
 export { DocumentService } from './document/document.service';
 export { UploadFileService } from './upload/upload-file.service';
+export { ClientService } from './client/client.service';

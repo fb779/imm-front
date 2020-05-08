@@ -62,7 +62,6 @@ import { ListDocumentsComponent } from './documents/list-documents/list-document
     SharedModule,
     ...consultanttNebular,
   ],
-  exports: [],
   declarations: [
     ConsultantComponent,
     DashboardComponent,
@@ -74,5 +73,6 @@ import { ListDocumentsComponent } from './documents/list-documents/list-document
     DocumentsComponent,
     ListDocumentsComponent,
   ],
+  exports: [],
 })
 export class ConsultantModule { }

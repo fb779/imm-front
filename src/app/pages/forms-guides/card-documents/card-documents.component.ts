@@ -16,7 +16,7 @@ export class CardDocumentsComponent implements OnInit {
   constructor(private _router: Router) { }
 
   ngOnInit() {
-    this.extension = this.form_guide.name.split('.')[1];
+    this.extension = this.form_guide.name.split('.')[1].toLowerCase();
   }
 
   open(e) {

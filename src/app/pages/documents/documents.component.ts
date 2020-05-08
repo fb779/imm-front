@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { NbAuthService } from '@nebular/auth';
+import { ClientService } from '../../services/services.index';
+import { Document } from '../../models/Document';
+import { Client } from '../../models/Client';
+
 
 @Component({
   selector: 'ngx-documents',
@@ -6,50 +11,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./documents.component.scss']
 })
 export class DocumentsComponent implements OnInit {
+  user: any;
+  client: Client
+  spinner: Boolean = false;
 
+  document_list: Document[] = [];
 
-
-  items = [
-    {name: 'Passport'},
-    {name: 'Letter'},
-    {name: 'Identification Document'},
-    {name: 'Certificate High school'},
-  ]
-
-  images: File[] = [];
-
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private _nbAuth: NbAuthService, private _clientServices: ClientService) {
+    this._nbAuth.getToken().subscribe((data: any) => {
+      this.user = data.payload.user;
+    });
   }
 
+  ngOnInit() {
+    this._clientServices.getClientById(this.user.client).subscribe((response) => {
+      this.client = response;
 
-  seleccionarImagen( archivo ){
+    });
+  }
+
+  seleccionarImagen(archivo) {
     console.log('archivo', archivo);
     console.log(archivo.target.value);
-
-    // let imagenSubir = null;
-    // if ( !archivo ){
-    //   console.log('sin archivo');
-    //   imagenSubir = null;
-    //   return;
-    // }
-
-    // console.log('Tipo', archivo.type);
-    // if ( !archivo.type.includes('pdf') ){
-    //   console.log('No es un pdf');
-    //   // swal('Solo imagenes', 'El archivo seleccionado no es una imagen', 'error');
-    //   imagenSubir = null;
-    //   return;
-    // }
-
-
-
-
-
-
-
-
   }
 
 

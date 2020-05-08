@@ -41,26 +41,33 @@ import { VisitorComponent } from "./forms/visitor/visitor.component";
 import { TuristComponent } from "./forms/turist/turist.component";
 import { FamilyFormComponent } from "./forms/family-form/family-form.component";
 import { UploadFileComponent } from './upload-file/upload-file.component';
+import { ClientDocumentsUploadComponent } from './client-documents-upload/client-documents-upload.component';
+import { ListDocumentsComponent } from './client-documents-upload/list-documents/list-documents.component';
+import { UploadDocumentComponent } from './client-documents-upload/upload-document/upload-document.component';
 
 @NgModule({
-  declarations: [
-    VisitorComponent,
-    TuristComponent,
-    FamilyFormComponent,
-    UploadFileComponent
-
-  ],
-  exports: [
-    CommonModule,
-    VisitorComponent,
-    TuristComponent,
-    UploadFileComponent
-  ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     ...nebular
   ],
+  declarations: [
+    VisitorComponent,
+    TuristComponent,
+    FamilyFormComponent,
+    UploadFileComponent,
+    ClientDocumentsUploadComponent,
+    ListDocumentsComponent,
+    UploadDocumentComponent,
+  ],
+  exports: [
+    CommonModule,
+    VisitorComponent,
+    TuristComponent,
+    UploadFileComponent,
+    ClientDocumentsUploadComponent,
+  ],
+
 })
 export class SharedModule { }

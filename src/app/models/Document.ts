@@ -10,7 +10,7 @@ export class Document {
     client: string;
     name: string;
     status: string;
-    directory?: string;
-    extension?: string;
     description?: string;
+    extension?: string;
+    directory?: string;
 }

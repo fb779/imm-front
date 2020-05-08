@@ -28,9 +28,9 @@ export class ChecklistService {
 
   constructor(private _http: HttpClient) { }
 
-  getDocumentsByClient(client: Client): Observable<any> {
+  getDocumentsByClient(id_client: string): Observable<any> {
     // return of(this.documents);
-    const url = `${environment.api_url}/documents/${client._id}`;
+    const url = `${environment.api_url}/documents/${id_client}`;
     return this._http.get(url).pipe(
       pluck('list'),
       // tap(console.log),
