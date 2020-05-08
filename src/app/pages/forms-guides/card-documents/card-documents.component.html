@@ -1,9 +1,11 @@
 <nb-card status="success" (click)="open($event)">
-    <div class="icon-container">
-        <img class="img-100" [src]="'assets/images/type-files/file-'+type+'.png'">
+    <div class="img-circle">
+        <img *ngIf="extension" [src]="'assets/images/type-files/file-'+extension+'.png'">
     </div>
-    <div class="details">
-        <div class="title h5">{{ title }}</div>
-        <div *ngIf="description" class="description">{{ description }}</div>
+    <div class="content">
+        <label> <strong>{{ form_guide.name }}</strong></label>
+        <p *ngIf="form_guide && form_guide.description" class="description">
+            {{ form_guide.description }}
+        </p>
     </div>
 </nb-card>

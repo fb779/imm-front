@@ -31,8 +31,7 @@ export class FormsGuidesComponent implements OnInit {
   }
 
   loadFiles() {
-    this._formsGuidesService.getForsGuides(this.process, this.type_document).subscribe((response: any) => {
-      console.log('carga de forms o guides del proceso', response);
+    this._formsGuidesService.getFormsGuides(this.process, this.type_document).subscribe((response: any) => {
       this.files = response;
     });
 
@@ -52,7 +51,9 @@ export class FormsGuidesComponent implements OnInit {
     this.spinner = true;
     this._formsGuidesService.deleteFormGuide(file._id).subscribe((response) => {
       this.loadFiles();
-      this.spinner = false;
+      setTimeout(() => {
+        this.spinner = false;
+      }, 1000);
     })
 
     // setTimeout(() => {

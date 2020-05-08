@@ -8,7 +8,7 @@ import { FormsComponent } from './forms/forms.component';
 const routes: Routes = [
     {
         path: '',
-        component: FormsGuidesComponent ,
+        component: FormsGuidesComponent,
         // children: [
         //     {
         //         path: '',
@@ -21,7 +21,7 @@ const routes: Routes = [
         // ]
     },
     {
-        path: ':document',
+        path: ':id_document',
         component: FormsComponent
     }
 
@@ -37,4 +37,4 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class FormsGuidesRoutingModule {}
+export class FormsGuidesRoutingModule { }

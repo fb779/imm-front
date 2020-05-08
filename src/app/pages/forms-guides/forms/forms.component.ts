@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FormsGuidesService } from '../../../services/services.index';
+import { FormsGuides } from '../../../models/FormsGuides';
 
 @Component({
   selector: 'ngx-forms',
@@ -8,34 +10,33 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class FormsComponent implements OnInit {
 
-  document = 'sin carga';
-
+  id_document: string;
+  form_guide: FormsGuides;
   documentUrl: string = './assets/documents/';
+  spinner: Boolean = this._formsGuidesService.spinner;
+
 
   constructor(
     private _router: Router,
-    private _activateRoute: ActivatedRoute
+    private _activateRoute: ActivatedRoute,
+    private _formsGuidesService: FormsGuidesService
   ) {
-    this._activateRoute.params.subscribe( (params) => {
-      // console.log(params);
-      this.document = params['document'];
-      // this.id = params['id'];
-
-      // if ( this.id !== 'nuevo' ){
-      //   this.cargarMedico( this.id );
-      // }
+    this._activateRoute.params.subscribe((params) => {
+      this.id_document = params['id_document'];
     });
   }
 
   ngOnInit() {
+    this._formsGuidesService.getFormGuideById(this.id_document).subscribe((response) => {
+      this.form_guide = response;
+    })
   }
 
-  download(){
-    console.log(this.document);
-    window.open( this.documentUrl + this.document , '_blank', '', true);
+  download() {
+    this._formsGuidesService.getFormGuideFile(this.form_guide);
   }
 
-  goback(){
+  goback() {
     this._router.navigate(['/pages/forms-guides']);
   }
 }

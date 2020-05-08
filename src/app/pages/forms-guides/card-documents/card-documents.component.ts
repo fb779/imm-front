@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormsGuides } from '../../../models/FormsGuides';
 
 @Component({
   selector: 'ngx-card-documents',
@@ -8,21 +9,18 @@ import { Router } from '@angular/router';
 })
 export class CardDocumentsComponent implements OnInit {
 
-  @Input() title: string;
-  @Input() type: string;
-  @Input() description: string;
-  @Input() name: string;
+  @Input('form_guide') form_guide: FormsGuides;
 
-  documentUrl: string = './assets/documents/';
+  extension: string = 'gen'
 
-  constructor( private _router: Router) { }
+  constructor(private _router: Router) { }
 
   ngOnInit() {
+    this.extension = this.form_guide.name.split('.')[1];
   }
 
-  open(e){
-    this._router.navigate(['/pages/forms-guides', this.name]);
-    // window.open( this.documentUrl + this.name , '_blank', '', true);
+  open(e) {
+    this._router.navigate(['/pages/forms-guides', this.form_guide._id]);
   }
 
 }

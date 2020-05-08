@@ -16,7 +16,8 @@ import {
   NbDatepickerModule,
   NbIconModule,
   NbRadioModule,
-  NbUserModule
+  NbUserModule,
+  NbSpinnerModule,
 } from '@nebular/theme';
 
 const nebularModules = [
@@ -25,12 +26,13 @@ const nebularModules = [
   NbCardModule,
   NbStepperModule,
   NbButtonModule,
+  NbIconModule,
+  NbSpinnerModule,
   // NbInputModule,
   // NbSelectModule,
   // NbActionsModule,
   // NbCheckboxModule,
   // NbDatepickerModule,
-  NbIconModule,
   // NbRadioModule,
   // NbUserModule
 ];

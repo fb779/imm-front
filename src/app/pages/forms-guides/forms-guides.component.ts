@@ -10,6 +10,7 @@ import { FormsGuidesService } from '../../services/services.index';
 export class FormsGuidesComponent implements OnInit {
 
   user: any;
+  forms: any[] = [];
   guides: any[] = [];
 
   constructor(private _fgs: FormsGuidesService, private _nbAuth: NbAuthService) {
@@ -20,9 +21,10 @@ export class FormsGuidesComponent implements OnInit {
 
   ngOnInit() {
 
-    // this._fgs.getDocuments(this.user._id).subscribe((data: any) => {
-    //   this.guides = data;
-    // });
+    this._fgs.getFormsGuidesByClient(this.user.client).subscribe((data: any) => {
+      this.forms = data.filter(el => el.type === 'forms');
+      this.guides = data.filter(el => el.type === 'guides');
+    });
 
   }
 

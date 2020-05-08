@@ -66,15 +66,4 @@ export class FamilyService {
     return this._http.get(url).pipe(
     );
   }
-
-  // getDocument() {
-  //   const url = `${environment.api_url}/documents/5e7d18f7fa00e299d7055f60/5e7b681dffa18e37fc66c586/caq.1587994975.pdf`;
-  //   // const url = `${environment.api_url}/documents/5e7d18f7fa00e299d7055f60/5e7b681dffa18e37fc66c586/pasttport.1587994975.jpeg`;
-
-  //   this._http.get(url, { responseType: 'blob' }).pipe(
-  //     tap(console.log)
-  //   ).subscribe(res => {
-  //     window.open(window.URL.createObjectURL(res));
-  //   });
-  // }
 }
