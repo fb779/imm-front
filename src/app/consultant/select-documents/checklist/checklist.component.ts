@@ -32,7 +32,12 @@ export class ChecklistComponent implements OnInit {
   }
 
   loadDocuments() {
-    this._checklistServices.getDocumentsByClient(this.client._id).subscribe((response) => {
+    // this._checklistServices.getDocumentsByClient(this.client._id).subscribe((response) => {
+    //   this.documentsLoads = response;
+    //   this.adjustItemList();
+    // });
+
+    this._checklistServices.getDocumentsByProcessClient(this.process._id, this.client._id).subscribe((response) => {
       this.documentsLoads = response;
       this.adjustItemList();
     });
@@ -59,7 +64,7 @@ export class ChecklistComponent implements OnInit {
 
   saveList() {
     if (this.documentSelected.length > 0) {
-      this._checklistServices.saveDocumentsByClient(this.client, this.documentSelected).subscribe((response) => {
+      this._checklistServices.saveDocumentsByClient(this.process._id, this.client._id, this.documentSelected).subscribe((response) => {
         this.loadDocuments();
       });
     }

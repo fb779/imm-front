@@ -19,11 +19,11 @@
             <nb-tab tabTitle="Check List">
                 <ngx-select-documents *ngIf="process && type_visa" [process]="process"></ngx-select-documents>
             </nb-tab>
+
             <nb-tab tabTitle="Documents">
-
                 <ngx-documents *ngIf="process && type_visa" [process]="process" [client]="process.client"></ngx-documents>
-
             </nb-tab>
+
             <nb-tab tabTitle="Forms">
                 <nb-card>
                     <nb-card-header>
@@ -34,6 +34,7 @@
                     </nb-card-body>
                 </nb-card>
             </nb-tab>
+
             <nb-tab tabTitle="Guides">
                 <nb-card>
                     <nb-card-header>

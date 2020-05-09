@@ -13,11 +13,14 @@ export class UploadDocumentComponent implements OnInit {
 
   // variables de entrada por atrbutos html
   @Input('document') document_file: Document;
-  title: string = 'Leyenda personalizada';
 
   // variables de salida emitidas por el componente
-  // @Output() cambioValor: EventEmitter<number> = new EventEmitter();
-  // @Output() porcentaje: EventEmitter<number> = new EventEmitter();
+  @Output() upload_file: EventEmitter<Boolean> = new EventEmitter();
+
+  title: string = 'Browse your file';
+
+  input_enabled: Boolean = false;
+  spinner: Boolean = false;
 
   // types permited
   ext: string[] = [
@@ -25,21 +28,21 @@ export class UploadDocumentComponent implements OnInit {
     'image',
   ]
 
-  visible: boolean = true;
-
   imagenSubir = null;
   name: string = '';
 
   constructor() { }
 
   ngOnInit() {
+    this.title = this.document_file.name
 
   }
 
-  eraser() {
+  clearFile() {
     this.imagenSubir = null;
     this.name = '';
     this.inputFile.nativeElement.value = '';
+    this.spinner = false;
   }
 
   seleccionarImagen(archivo: File) {
@@ -72,10 +75,19 @@ export class UploadDocumentComponent implements OnInit {
     return inc.length > 0;
   }
 
+  validMaxSize(size: string) {
+    return false;
+  }
+
   uploadDocument() {
     setTimeout(() => {
       console.log('Uploaded file', this.name);
-      this.visible = false;
+      this.clearFile();
     }, 3000);
+  }
+
+  desabilitar() {
+    this.input_enabled = !this.input_enabled;
+    this.spinner = !this.spinner;
   }
 }

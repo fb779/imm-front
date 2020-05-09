@@ -1,20 +1,19 @@
-<div class="form-group" [ngClass]="{'d-none': !visible}">
-    <!-- <label for="">{{ title }}</label> -->
-    <div class="input-group">
+<div class="form-group">
+    <div class="input-group" [nbSpinner]="spinner" nbSpinnerStatus="success">
         <div class="custom-file">
             <input type="file" class="custom-file-input" nbInput fullWidth #inputFile (change)="seleccionarImagen( $event.target.files[0] )">
             <label class="custom-file-label" #labelFile>{{ name || title }}</label>
         </div>
         <!-- <div class="input-group-append" [ngClass]="{'d-none': !fileUpload}"> -->
         <div class="input-group-append">
-            <button type="button" nbButton status="danger" size="small" shape="rectangle" [disabled]="!fileUpload || spinner" (click)="clearFile()">
+            <button type="button" nbButton status="danger" size="small" shape="rectangle" [disabled]="!fileUpload" (click)="clearFile()">
                 <span class="">
                     <nb-icon icon="eraser" pack="fas"></nb-icon>
                 </span>
             </button>
         </div>
         <div class="input-group-append">
-            <button type="button" nbButton size="small" shape="rectangle" [nbSpinner]="spinner" [disabled]="!fileUpload" (click)="uploadDocument()">
+            <button type="button" nbButton size="small" shape="rectangle" [disabled]="!fileUpload" (click)="uploadDocument()">
                 <span class="">
                     <nb-icon icon="upload" pack="fas"></nb-icon>
                 </span>

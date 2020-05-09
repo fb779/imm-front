@@ -15,8 +15,6 @@ export class DocumentsComponent implements OnInit {
   client: Client
   spinner: Boolean = false;
 
-  document_list: Document[] = [];
-
   constructor(private _nbAuth: NbAuthService, private _clientServices: ClientService) {
     this._nbAuth.getToken().subscribe((data: any) => {
       this.user = data.payload.user;
@@ -24,16 +22,11 @@ export class DocumentsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.spinner = true;
     this._clientServices.getClientById(this.user.client).subscribe((response) => {
       this.client = response;
-
+      this.spinner = false;
     });
   }
-
-  seleccionarImagen(archivo) {
-    console.log('archivo', archivo);
-    console.log(archivo.target.value);
-  }
-
 
 }

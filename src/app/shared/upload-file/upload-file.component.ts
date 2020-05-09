@@ -31,7 +31,6 @@ export class UploadFileComponent implements OnInit {
   @Input('process') process: Process;
 
   // variables de salida emitidas por el componente
-  // @Output() cambioValor: EventEmitter<number> = new EventEmitter();
   @Output() file: EventEmitter<any> = new EventEmitter();
 
   // types permited
@@ -108,20 +107,10 @@ export class UploadFileComponent implements OnInit {
 
   uploadDocument() {
     this.spinner = true;
-
     this._upFileservice.uploadFormsGuides(this.fileUpload, this.type_upload, this.process, this.comment).subscribe((response: any) => {
       // console.log(response);
       this.file.emit(this.fileUpload);
       this.clearFile();
     });
-
-
-    // setTimeout(() => {
-    //   // console.log('Uploaded file', this.name);
-    //   // this.visible = false;
-    //   this.clearFile();
-    //   this.spinner = false;
-    //   this.file.emit(this.fileUpload);
-    // }, 2500);
   }
 }

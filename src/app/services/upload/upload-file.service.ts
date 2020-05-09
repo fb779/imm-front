@@ -29,8 +29,8 @@ export class UploadFileService {
 
   }
 
-  uploadDocument(file: File, _document: Document, process: Process, document: Document) {
-    const url = `${environment.api_url}/upload/forms-guides/${process._id}/${document.client}`;
+  uploadDocument(file: File, _document: Document, process: Process) {
+    const url = `${environment.api_url}/upload/forms-guides/${_document.client}`;
 
     var form_data: FormData = new FormData();
     form_data.append('form', file);

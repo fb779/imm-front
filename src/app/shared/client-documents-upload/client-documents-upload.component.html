@@ -2,15 +2,15 @@
     <nb-card-header>
         {{ client.first_name }} {{ client.last_name }}
     </nb-card-header>
-    <nb-card-body>
-        <nb-card *ngIf="documents_list.length > 0">
+    <nb-card-body [nbSpinner]="spinner" *ngIf="documents_list.length > 0">
+        <nb-card>
             <nb-card-body>
                 <!-- <ngx-upload-file *ngFor="let document_file of documents_list" [document]="document_file"></ngx-upload-file> -->
                 <ngx-upload-document *ngFor="let document_file of documents_list" [document]="document_file"></ngx-upload-document>
             </nb-card-body>
         </nb-card>
 
-        <nb-card *ngIf="documents_list.length > 0">
+        <nb-card>
             <nb-card-body>
                 <ngx-list-documents *ngFor="let document_file of documents_list" [document]="document_file"></ngx-list-documents>
             </nb-card-body>

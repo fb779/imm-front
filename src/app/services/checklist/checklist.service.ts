@@ -12,24 +12,9 @@ import { CheckList } from '../../models/CheckList';
 })
 export class ChecklistService {
 
-  private documents: Document[] = [
-    {
-      "_id": "5e947f1e209cc0121bf65ee7",
-      "checklist": "",
-      "client": "",
-      "name": "",
-      "description": "",
-      "extension": "",
-      "directory": "",
-      "status": ""
-    }
-  ];
-
-
   constructor(private _http: HttpClient) { }
 
   getDocumentsByClient(id_client: string): Observable<any> {
-    // return of(this.documents);
     const url = `${environment.api_url}/documents/${id_client}`;
     return this._http.get(url).pipe(
       pluck('list'),
@@ -38,9 +23,18 @@ export class ChecklistService {
     );
   }
 
-  saveDocumentsByClient(client: Client, list: any): Observable<any> {
-    const url = `${environment.api_url}/documents/${client._id}`;
-    return this._http.post(url, { documents: list.join(',') }).pipe(
+  getDocumentsByProcessClient(id_process: string, id_client: string): Observable<any> {
+    const url = `${environment.api_url}/documents/${id_process}/${id_client}`;
+    return this._http.get(url).pipe(
+      pluck('list'),
+      // tap(console.log),
+      map((x: any) => x.map(el => el.checklist))
+    );
+  }
+
+  saveDocumentsByClient(id_process: string, id_client: string, list: any): Observable<any> {
+    const url = `${environment.api_url}/documents/${id_client}`;
+    return this._http.post(url, { id_process, list_checks: list.join(',') }).pipe(
 
     );
   }
