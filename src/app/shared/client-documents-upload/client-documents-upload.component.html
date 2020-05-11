@@ -5,15 +5,11 @@
     <nb-card-body [nbSpinner]="spinner" *ngIf="documents_list.length > 0">
         <nb-card>
             <nb-card-body>
-                <!-- <ngx-upload-file *ngFor="let document_file of documents_list" [document]="document_file"></ngx-upload-file> -->
-                <ngx-upload-document *ngFor="let document_file of documents_list" [document]="document_file"></ngx-upload-document>
+                <ngx-upload-document *ngFor="let document_file of documents_list" [document]="document_file" (upload_file)="loadDocuments()"></ngx-upload-document>
             </nb-card-body>
         </nb-card>
 
-        <nb-card>
-            <nb-card-body>
-                <ngx-list-documents *ngFor="let document_file of documents_list" [document]="document_file"></ngx-list-documents>
-            </nb-card-body>
-        </nb-card>
+        <ngx-list-documents [documents]="documents_list"></ngx-list-documents>
+
     </nb-card-body>
 </nb-card>

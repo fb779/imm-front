@@ -17,7 +17,7 @@ export class ClientService {
 
     return this._http.get(url).pipe(
       pluck('data', 'client'),
-      tap(console.log),
+      // tap(console.log),
     );
   }
 }

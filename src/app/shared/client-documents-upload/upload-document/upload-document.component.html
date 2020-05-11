@@ -5,14 +5,14 @@
             <label class="custom-file-label" #labelFile>{{ name || title }}</label>
         </div>
         <div class="input-group-append">
-            <button nbButton status="danger" size="small" shape="rectangle" [disabled]="!imagenSubir || input_enabled" type="button" (click)="clearFile()">
+            <button nbButton status="danger" size="small" shape="rectangle" [disabled]="!file_upload || input_enabled" type="button" (click)="clearFile()">
               <span>
                   <nb-icon icon="eraser" pack="fas"></nb-icon>
               </span>
           </button>
         </div>
         <div class="input-group-append">
-            <button nbButton size="small" shape="rectangle" type=" button" [disabled]="!imagenSubir || input_enabled" (click)="uploadDocument()">
+            <button nbButton size="small" shape="rectangle" type=" button" [disabled]="!file_upload || input_enabled" (click)="uploadDocument()">
               <span>
                   <nb-icon icon="upload" pack="fas"></nb-icon>
               </span>

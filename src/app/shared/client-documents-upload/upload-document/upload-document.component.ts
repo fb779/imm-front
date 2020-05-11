@@ -1,5 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter } from '@angular/core';
+import { UploadFileService } from '../../../services/services.index';
+import { documentStatus } from '../../../config/config';
 import { Document } from '../../../models/Document';
+
+
 
 @Component({
   selector: 'ngx-upload-document',
@@ -28,18 +32,18 @@ export class UploadDocumentComponent implements OnInit {
     'image',
   ]
 
-  imagenSubir = null;
+  file_upload = null;
   name: string = '';
 
-  constructor() { }
+  constructor(private _upFileService: UploadFileService) { }
 
   ngOnInit() {
     this.title = this.document_file.name
-
+    this.input_enabled = !(this.document_file.status === documentStatus.create || this.document_file.status === documentStatus.rejected);
   }
 
   clearFile() {
-    this.imagenSubir = null;
+    this.file_upload = null;
     this.name = '';
     this.inputFile.nativeElement.value = '';
     this.spinner = false;
@@ -51,27 +55,26 @@ export class UploadDocumentComponent implements OnInit {
 
     if (!archivo) {
       console.log('without file');
-      this.imagenSubir = null;
+      this.file_upload = null;
       return;
     }
 
     if (!this.validType(archivo.type)) {
       console.log("File isn't authorizing");
-      this.imagenSubir = null;
+      this.file_upload = null;
       this.inputFile.nativeElement.value = '';
       return;
     }
 
-    this.imagenSubir = archivo;
+    this.file_upload = archivo;
     this.name = archivo.name;
-    console.log('Archivo autorizado', archivo);
+    // console.log('Archivo autorizado', archivo);
   }
 
   validType(type: string) {
     let inc = this.ext.filter((el) => {
       return type.includes(el);
     });
-    console.log(inc);
     return inc.length > 0;
   }
 
@@ -80,10 +83,19 @@ export class UploadDocumentComponent implements OnInit {
   }
 
   uploadDocument() {
-    setTimeout(() => {
-      console.log('Uploaded file', this.name);
+    this.spinner = true;
+    this._upFileService.uploadDocument(this.file_upload, this.document_file._id).subscribe((response) => {
+      // if (response.ok) {
       this.clearFile();
-    }, 3000);
+      this.spinner = false;
+      this.upload_file.emit(true);
+      // return;
+      // }
+    });
+    // setTimeout(() => {
+    //   console.log('Uploaded file', this.name);
+    //   this.clearFile();
+    // }, 3000);
   }
 
   desabilitar() {

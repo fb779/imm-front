@@ -29,11 +29,11 @@ export class UploadFileService {
 
   }
 
-  uploadDocument(file: File, _document: Document, process: Process) {
-    const url = `${environment.api_url}/upload/forms-guides/${_document.client}`;
+  uploadDocument(file: File, id_document: string) {
+    const url = `${environment.api_url}/upload/documents/${id_document}`;
 
     var form_data: FormData = new FormData();
-    form_data.append('form', file);
+    form_data.append('document', file);
     // form_data.append('type_document', type_upload);
     // form_data.append('description', description);
 

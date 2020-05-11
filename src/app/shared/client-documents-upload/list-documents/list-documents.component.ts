@@ -8,7 +8,7 @@ import { Document } from '../../../models/Document';
 })
 export class ListDocumentsComponent implements OnInit {
 
-  @Input('document') document_file: Document;
+  @Input('documents') document_list: Document[];
 
   constructor() { }
 
