@@ -66,4 +66,12 @@ export class FamilyService {
     return this._http.get(url).pipe(
     );
   }
+
+  getFamilyMembersByClient(id_client: string): Observable<Client[]> {
+    const url = `${environment.api_url}/family/client/${id_client}`;
+
+    return this._http.get(url).pipe(
+      pluck('list')
+    );
+  }
 }

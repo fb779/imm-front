@@ -14,7 +14,7 @@ import {
   NbDatepickerModule,
   NbIconModule,
   NbRadioModule,
-  NbUserModule
+  NbUserModule,
 } from '@nebular/theme';
 
 const nebular = [
@@ -42,7 +42,6 @@ import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 // componentes visa services
 // import { DocumentsComponent } from './documents/documents.component';
 import { VisaComponent } from './visa/visa.component';
-import { FamilyComponent } from './family/family.component';
 import { ConsultantComponent } from './consultant/consultant.component';
 import { AddOnsComponent } from './add-ons/add-ons.component';
 import { CouponsComponent } from './coupons/coupons.component';
@@ -54,6 +53,7 @@ import { AssessmentFormModule } from './assessment-form/assessment-form.module';
 import { FormsGuidesModule } from './forms-guides/forms-guides.module';
 import { DocumentsModule } from './documents/documents.module';
 import { SharedModule } from '../shared/shared.module';
+import { FamilyModule } from './family/family.module';
 
 @NgModule({
   imports: [
@@ -66,6 +66,7 @@ import { SharedModule } from '../shared/shared.module';
     AssessmentFormModule,
     DocumentsModule,
     FormsGuidesModule,
+    FamilyModule,
     // others modules
     DashboardModule,
     ECommerceModule,
@@ -77,7 +78,6 @@ import { SharedModule } from '../shared/shared.module';
     // FormsGuidesComponent,
     // DocumentsComponent,
     VisaComponent,
-    FamilyComponent,
     ConsultantComponent,
     AddOnsComponent,
     CouponsComponent,

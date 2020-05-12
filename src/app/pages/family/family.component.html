@@ -1,3 +1,21 @@
-<p>
-  family works!
-</p>
+<ng-container *ngIf="familyMembers.length > 0; else elseTemplate">
+    <nb-card>
+        <nb-card-body>
+            <nb-tabset fullWidth>
+                <nb-tab [tabTitle]="member.first_name" *ngFor="let member of familyMembers">
+                    <ngx-client-documents-upload [client]="member"></ngx-client-documents-upload>
+                </nb-tab>
+            </nb-tabset>
+
+        </nb-card-body>
+    </nb-card>
+</ng-container>
+<ng-template #elseTemplate>
+    <nb-card>
+        <nb-card-body>
+            <div>
+                No registered family members in the process
+            </div>
+        </nb-card-body>
+    </nb-card>
+</ng-template>

@@ -26,8 +26,7 @@ export class ClientDocumentsUploadComponent implements OnInit {
       this.documents_list = response;
       this.spinner = false;
     });
+
   }
-
-
 
 }

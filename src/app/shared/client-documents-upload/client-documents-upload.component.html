@@ -1,15 +1,28 @@
-<nb-card [nbSpinner]="spinner">
-    <nb-card-header>
-        {{ client.first_name }} {{ client.last_name }}
-    </nb-card-header>
-    <nb-card-body [nbSpinner]="spinner" *ngIf="documents_list.length > 0">
-        <nb-card>
-            <nb-card-body>
-                <ngx-upload-document *ngFor="let document_file of documents_list" [document]="document_file" (upload_file)="loadDocuments()"></ngx-upload-document>
-            </nb-card-body>
-        </nb-card>
+<ng-container *ngIf="client; else clientEmpty">
+    <nb-card [nbSpinner]="spinner">
+        <nb-card-header>
+            {{ client.first_name }} {{ client.last_name }}
+        </nb-card-header>
+        <nb-card-body [nbSpinner]="spinner" *ngIf="documents_list.length > 0; else documentsEmpty">
+            <nb-card>
+                <nb-card-body>
+                    <ngx-upload-document *ngFor="let document_file of documents_list" [document]="document_file" (upload_file)="loadDocuments()"></ngx-upload-document>
+                </nb-card-body>
+            </nb-card>
 
-        <ngx-list-documents [documents]="documents_list"></ngx-list-documents>
+            <ngx-list-documents [documents]="documents_list"></ngx-list-documents>
 
+        </nb-card-body>
+    </nb-card>
+</ng-container>
+
+<ng-template #clientEmpty>
+    The client isn't load
+</ng-template>
+<ng-template #documentsEmpty>
+    <nb-card-body>
+        <p>
+            No documents assigned to upload
+        </p>
     </nb-card-body>
-</nb-card>
+</ng-template>

@@ -12,40 +12,40 @@ import { status, visa_categories } from '../../../config/config';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  processes:Process[] = [];
+  processes: Process[] = [];
   status = status;
 
-  constructor( private _router: Router ,private _processServices: UserProcessService) {
+  constructor(private _router: Router, private _processServices: UserProcessService) {
     this.getProcesses();
   }
 
   ngOnInit() {
   }
 
-  getProcesses(){
-    this._processServices.getUserProcesses().subscribe((dt: Process[])=> {
+  getProcesses() {
+    this._processServices.getUserProcesses().subscribe((dt: Process[]) => {
       this.processes = dt;
     });
   }
 
-  goProcess( process: Process ){
+  goProcess(process: Process) {
     let routeForm = null;
 
-    switch(process.visa_category.name){
-      case visa_categories.visitor:{
+    switch (process.visa_category.name) {
+      case visa_categories.visitor: {
         routeForm = 'visit';
-      }break;
+      } break;
 
-      case visa_categories.turist:{
+      case visa_categories.turist: {
         routeForm = 'turist';
-      }break;
+      } break;
 
-      case visa_categories.study:{
+      case visa_categories.study: {
         routeForm = 'study';
-      }break;
+      } break;
     }
 
-    if ( routeForm ){
+    if (routeForm) {
       this._router.navigate(['/pages/assessment-form/', routeForm, process._id]);
     }
   }
