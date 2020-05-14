@@ -14,6 +14,7 @@ import {
   NbIconModule,
   NbAccordionModule,
   NbSpinnerModule,
+  NbAlertModule,
   NbActionsModule,
   NbRadioModule,
   NbUserModule,
@@ -31,7 +32,8 @@ const nebular = [
   NbStepperModule,
   NbListModule,
   NbAccordionModule,
-  NbSpinnerModule
+  NbSpinnerModule,
+  NbAlertModule
   // NbActionsModule,
   // NbRadioModule,
   // NbUserModule

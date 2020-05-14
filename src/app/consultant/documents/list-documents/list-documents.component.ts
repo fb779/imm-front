@@ -17,6 +17,8 @@ export class ListDocumentsComponent implements OnInit {
   @Input('client') client: Client;
   listDocuments: Document[];
   documentStatus = documentStatus;
+  comments = {};
+  // comment = 'Mis comentarios por defecto';
 
   constructor(private _documentService: DocumentService) { }
 
@@ -28,6 +30,7 @@ export class ListDocumentsComponent implements OnInit {
     this._documentService.getDocumentsByClient(this.client._id).subscribe((response) => {
       // console.log('LLegada de los documentos', response);
       this.listDocuments = response;
+      this.comments={};
     });
   }
 
@@ -43,7 +46,29 @@ export class ListDocumentsComponent implements OnInit {
   //   return item.status === documentStatus.create;
   // }
 
-  download() {
-    // this._familyServices.getDocument()
+  download(document_file: Document) {
+    this._documentService.getDocumentFile(document_file);
+  }
+
+  approbe(document_file: Document){
+    console.log('Aprobacion de documento', document_file);
+
+    this._documentService.setApproveDocument(document_file._id).subscribe(
+      ( response )=> console.log(response)
+    );
+
+  }
+
+  reject(document_file: Document, comment: string){
+    if (!comment){
+      alert('The comment is required');
+      return;
+    }
+    console.log('Rechazo de documento', document_file);
+    console.log('Comentario de Rechazo de documento', comment);
+
+    this._documentService.setRejectDocument(document_file._id, comment).subscribe(
+      ( response )=> console.log(response)
+    )
   }
 }

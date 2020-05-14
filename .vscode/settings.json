@@ -1,6 +1,1 @@
-{
-  "typescript.tsdk": "./node_modules/typescript/lib",
-  "tslint.enable": false,
-  "editor.tabSize": 2,
-  "editor.formatOnSave": true
-}
+{}

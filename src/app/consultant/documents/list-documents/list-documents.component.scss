@@ -1,6 +1,70 @@
 // .row {
 //     margin-bottom: 10px;
 // }
-button {
-    margin: 3px;
+.general {
+    box-sizing: border-box;
+    margin-top: 1em;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: stretch;
 }
+
+.info {
+    box-sizing: border-box;
+    // width: 100%;
+    // margin: auto 5px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: stretch;
+    align-content: center;
+}
+
+.info>div {
+    flex: 1;
+}
+
+.comments {
+    box-sizing: border-box;
+    // width: 100%;
+    // margin: auto 5px;
+    // flex: 1;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: stretch;
+}
+
+.comments>div {
+    box-sizing: border-box;
+    padding: 2px;
+    margin: 2px;
+    flex: 1;
+}
+
+.btns {
+    box-sizing: border-box;
+    // width: 100%;
+    // margin: 2px 0;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: stretch;
+}
+
+// .form-group {
+//     width: 100%;
+//     margin-bottom: 0;
+// }
+// button {
+//     margin: 3px;
+// }
+// .buttons {
+//     box-sizing: border-box;
+//     margin-top: 1em;
+//     display: flex;
+//     flex-flow: column nowrap;
+//     justify-content: center;
+//     align-items: center;
+// }

@@ -24,7 +24,6 @@ export class DocumentsComponent implements OnInit {
   listFamiliMembers$: Observable<Client[]> = this._familyServices.listFamilyMembers$;
 
   constructor(
-    private _consultatnService: ConsultantService,
     private _familyServices: FamilyService
   ) { }
 

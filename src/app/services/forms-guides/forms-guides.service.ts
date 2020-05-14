@@ -59,7 +59,10 @@ export class FormsGuidesService {
     this.spinner = true;
     this._http.get(url, { responseType: 'blob' }).pipe(
       tap(() => this.spinner = false)
-    ).subscribe((res) => this.downloadFile(res, form_guide.name));
+    ).subscribe(
+      (res) => this.downloadFile(res, form_guide.name),
+      (err) => alert(`The file doesn't exist ${err.message}` ) // enc aso de que la descarga falle por alguna razon se presenta mensaje de error al usuario
+      );
   }
 
   downloadFile(blob: Blob, name: string) {

@@ -50,7 +50,6 @@ export class UploadDocumentComponent implements OnInit {
   }
 
   seleccionarImagen(archivo: File) {
-    console.log(archivo);
     this.name = '';
 
     if (!archivo) {

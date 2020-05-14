@@ -38,9 +38,9 @@ export class AuthInterceptorService implements HttpInterceptor {
 
   manejarError(err: any) {
     // console.log('error en el servicio');
-    console.warn(err);
+    // console.warn(err);
     // console.log(err.error.data.message);
-    return throwError('Error en el servicio del usuario');
+    return throwError({status: err.status, text: err.statusText, message: err.message});
   }
 
   getHeaders() {

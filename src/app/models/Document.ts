@@ -6,6 +6,7 @@ import { Client } from './Client';
 
 export class Document {
     _id: string;
+    process: string;
     checklist: string;
     client: string;
     name: string;
@@ -13,4 +14,6 @@ export class Document {
     description?: string;
     extension?: string;
     directory?: string;
+    file_name: string;
+    comments?: any[];
 }
