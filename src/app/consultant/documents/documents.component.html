@@ -4,14 +4,14 @@
     </nb-card-header>
     <nb-card-body>
         <nb-accordion [nbSpinner]="loading">
-            <nb-accordion-item>
+            <!-- <nb-accordion-item>
                 <nb-accordion-item-header>
                     {{ process.client.first_name }} - {{ process.client.last_name }}
                 </nb-accordion-item-header>
                 <nb-accordion-item-body>
                     <ngx-list-documents [client]="process.client"></ngx-list-documents>
                 </nb-accordion-item-body>
-            </nb-accordion-item>
+            </nb-accordion-item> -->
 
             <nb-accordion-item *ngFor="let familyMember of listFamiliMembers$ | async">
                 <nb-accordion-item-header>

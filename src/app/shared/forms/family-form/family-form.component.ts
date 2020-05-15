@@ -34,9 +34,7 @@ export class FamilyFormComponent implements OnInit {
   clientForm: FormGroup;
   submitted = false;
 
-  listFamiliMembers$: Observable<Client[]> = this._familyServices
-    .listFamilyMembers$;
-  // listFamiliMembers: Client[] = [];
+  listFamiliMembers$: Observable<Client[]> = this._familyServices.listFamilyMembers$;
 
   optAges = [];
   optRelationships = [];
