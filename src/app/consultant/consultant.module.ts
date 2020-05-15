@@ -21,6 +21,7 @@ import {
   NbUserModule,
   NbSpinnerModule,
   NbAccordionModule,
+  NbDialogModule,
 } from "@nebular/theme";
 
 const consultanttNebular = [
@@ -60,6 +61,7 @@ import { ListDocumentsComponent } from './documents/list-documents/list-document
     ReactiveFormsModule,
     ConsultantRoutingModule,
     SharedModule,
+    NbDialogModule.forChild(),
     ...consultanttNebular,
   ],
   declarations: [

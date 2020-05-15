@@ -1,0 +1,59 @@
+<nb-card class="dialog-card">
+    <form novalidate autocomplete="off" [formGroup]="checklistFormGroup" (submit)="saveChecklist()">
+        <!-- <nb-card-body> -->
+        <nb-card class="formChecklist" [nbSpinner]="spinner">
+            <nb-card-header>New Item Check-list</nb-card-header>
+            <nb-card-body>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="">Name</label>
+                            <input type="text" name="name" placeholder="Name" nbInput fullWidth formControlName="name" [status]="((submited || f.name.touched) && f.name.errors)?'danger':''">
+                            <div class="card-text text-white" *ngIf="(submited || f.name.touched) && f.name.errors">
+                                <small *ngIf="f.name.errors?.required" class="text-muted text-muted-danger">Field required</small>
+                                <small *ngIf="f.name.errors?.existName" class="text-muted text-muted-danger">This name alredy exist</small>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="">Visa Category</label>
+                            <input type="text" name="visa_categories" placeholder="Visa Categories" nbInput fullWidth formControlName="visa_categories" [status]="((submited || f.visa_categories.touched) && f.visa_categories.errors)?'danger':''">
+                            <!-- <nb-select name="visa_categories" formControlName="visa_categories" [status]="(f.visa_categories.touched && f.visa_categories.errors)?'danger':''" fullWidth placeholder="Select Showcase">
+                                <nb-option *ngFor="let item of visaCategory" [value]='item._id'> {{ item.name }}</nb-option>
+                            </nb-select> -->
+                            <div class="card-text text-white" *ngIf="(submited || f.visa_categories.touched) && f.visa_categories.errors">
+                                <small *ngIf="f.visa_categories.errors?.required" class="text-muted text-muted-danger">Field required</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="">Description</label>
+                            <textarea name="description" rows="5" placeholder="Text Area" nbInput fullWidth shape="semi-round" formControlName="description" [status]="((submited || f.description.touched) && f.description.errors)?'danger':''">
+                            </textarea>
+                            <div *ngIf="(submited || f.description.touched) && f.description.errors" class="card-text">
+                                <small *ngIf="f.description.errors?.required" class="text-muted text-muted-danger">Field required</small>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </nb-card-body>
+            <nb-card-footer>
+                <button nbButton status="primary" (click)="dismiss()">
+                    <nb-icon icon="close-circle-outline"></nb-icon>
+                </button>
+
+                <button type="submit" nbButton status="primary">
+                    <nb-icon icon="save"></nb-icon>
+                    <!-- <nb-icon pak="fas" icon="save" ></nb-icon> -->
+                </button>
+            </nb-card-footer>
+        </nb-card>
+        <!-- </nb-card-body> -->
+    </form>
+</nb-card>

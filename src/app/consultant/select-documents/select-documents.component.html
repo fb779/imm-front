@@ -1,6 +1,13 @@
 <nb-card>
     <nb-card-header>
-        Checklist Family
+        <div class="row">
+            <div class="col-10">
+                Checklist Family
+            </div>
+            <div class="col-2">
+                <ngx-dialog-checklist [process]="process" (saveCheck)="loadProcess()"></ngx-dialog-checklist>
+            </div>
+        </div>
     </nb-card-header>
     <nb-card-body>
         <nb-accordion [nbSpinner]="loading">
@@ -21,7 +28,6 @@
                     {{ familyMember.first_name }} - {{ familyMember.last_name }}
                 </nb-accordion-item-header>
                 <nb-accordion-item-body>
-
                     <!-- <ngx-checklist [client]="familyMember" [type_visa]="type_visa" (save)="saveList($event)"></ngx-checklist> -->
                     <ngx-checklist [process]="process" [client]="familyMember" [type_visa]="type_visa"></ngx-checklist>
 

@@ -15,7 +15,6 @@ export class ChecklistComponent implements OnInit {
   @Input('client') client: Client;
   @Input('type_visa') type_visa;
 
-
   listItems = [];
   documentSelected = [];
   documentsLoads = [];
@@ -32,11 +31,6 @@ export class ChecklistComponent implements OnInit {
   }
 
   loadDocuments() {
-    // this._checklistServices.getDocumentsByClient(this.client._id).subscribe((response) => {
-    //   this.documentsLoads = response;
-    //   this.adjustItemList();
-    // });
-
     this._checklistServices.getDocumentsByProcessClient(this.process._id, this.client._id).subscribe((response) => {
       this.documentsLoads = response;
       this.adjustItemList();

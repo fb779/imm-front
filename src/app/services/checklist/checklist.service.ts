@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from "rxjs";
-import { map, pluck, tap } from 'rxjs/operators';
+import { map, pluck, tap, catchError } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
-import { Client } from '../../models/Client';
-import { Document } from '../../models/Document';
 import { CheckList } from '../../models/CheckList';
+
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +35,21 @@ export class ChecklistService {
     const url = `${environment.api_url}/documents/${id_client}`;
     return this._http.post(url, { id_process, list_checks: list.join(',') }).pipe(
 
+    );
+  }
+
+  getChecklistByType(type: string): Observable<CheckList[]> {
+    const url = `${environment.api_url}/check-list?type=${type}`;
+
+    return this._http.get(url).pipe(
+      pluck('list'),
+    )
+  }
+
+  createCheckList(checklist: any){
+    const url = `${environment.api_url}/check-list`;
+    return this._http.post(url, checklist ).pipe(
+      catchError((err)=>of(err))
     );
   }
 

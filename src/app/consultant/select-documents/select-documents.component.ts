@@ -1,14 +1,12 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { Document } from "../../models/Document";
-import {
-  ConsultantService,
-  FamilyService,
-} from "../../services/services.index";
+import { Component, OnInit, Input, TemplateRef } from '@angular/core';
+
+import { FamilyService, } from "../../services/services.index";
 import { status } from "../../config/config";
 import { CheckList } from "../../models/CheckList";
 import { Process } from "../../models/Process";
 import { Client } from "../../models/Client";
 import { Observable } from "rxjs";
+
 
 @Component({
   selector: "ngx-select-documents",
@@ -25,10 +23,7 @@ export class SelectDocumentsComponent implements OnInit {
 
   listFamiliMembers$: Observable<Client[]> = this._familyServices.listFamilyMembers$;
 
-  constructor(
-    private _consultatnService: ConsultantService,
-    private _familyServices: FamilyService
-  ) { }
+  constructor( private _familyServices: FamilyService ) { }
 
   ngOnInit() {
     // this.loading = true;
