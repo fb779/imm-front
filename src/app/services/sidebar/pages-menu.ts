@@ -42,7 +42,7 @@ export const CLIENT_MENU_ITEMS: NbMenuItem[] = [
       title: 'My Visa',
       icon: 'person-outline',
       link: '/pages/visa',
-
+      hidden: true,
     },
     {
       title: 'My Family',
@@ -54,43 +54,43 @@ export const CLIENT_MENU_ITEMS: NbMenuItem[] = [
       title: 'My Consultant',
       icon: 'hard-drive-outline',
       link: '/pages/consultant',
-
+      hidden: true,
     },
     {
       title: 'Add-Ons',
       icon: 'keypad-outline',
       link: '/pages/add-ons',
-
+      hidden: true,
     },
     {
       title: 'Coupons',
       icon: 'gift-outline',
       link: '/pages/coupons',
-
+      hidden: true,
     },
     {
       title: 'Free Resources',
       icon: 'grid-outline',
       link: '/pages/free-resources',
-
+      hidden: true,
     },
     {
       title: 'Admission',
       icon: 'done-all-outline',
       link: '/pages/admission',
-
+      hidden: true,
     },
     {
       title: 'Appointment',
       icon: 'bookmark-outline',
       link: '/pages/appoinment',
-
+      hidden: true,
     },
     {
       title: 'Billin & Invoice',
       icon: 'trending-up-outline',
       link: '/pages/billin-invoice',
-
+      hidden: true,
     },
 ];
 

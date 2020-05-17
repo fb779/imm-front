@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'
+import { RouterModule } from '@angular/router';
 
 import { ThemeModule } from '../@theme/theme.module';
 import {
@@ -54,6 +55,7 @@ import { FormsGuidesModule } from './forms-guides/forms-guides.module';
 import { DocumentsModule } from './documents/documents.module';
 import { SharedModule } from '../shared/shared.module';
 import { FamilyModule } from './family/family.module';
+
 
 @NgModule({
   imports: [
