@@ -19,6 +19,7 @@ import { ChecklistService } from './checklist/checklist.service';
 import { DocumentService } from './document/document.service';
 import { UploadFileService } from './upload/upload-file.service';
 import { ClientService } from './client/client.service';
+import { ToastrService } from './toastr/toastr.service';
 
 @NgModule({
   declarations: [],
@@ -40,6 +41,7 @@ import { ClientService } from './client/client.service';
     DocumentService,
     UploadFileService,
     ClientService,
+    ToastrService,
   ],
   imports: [
     CommonModule,

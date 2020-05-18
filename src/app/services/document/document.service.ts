@@ -6,13 +6,14 @@ import { environment } from '../../../environments/environment';
 import { Document } from '../../models/Document';
 
 import { documentStatus } from '../../config/config';
+import { ToastrService } from '../toastr/toastr.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DocumentService {
 
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient, private _toastr: ToastrService) { }
 
   getDocumentsByClient(id_client: String): Observable<Document[]> {
     const url = `${environment.api_url}/documents/${id_client}`;
@@ -68,6 +69,7 @@ export class DocumentService {
     link.download = name;
     link.click();
     window.URL.revokeObjectURL(urlDownload);
+    this._toastr.toastrDownload('File download success', 'Download File', 'success', 'done-all-outline');
     // window.open(window.URL.createObjectURL(res));
   }
 

@@ -5,6 +5,7 @@ import { tap, pluck } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { Process } from '../../models/Process';
 import { FormsGuides } from '../../models/FormsGuides';
+import { ToastrService } from '../toastr/toastr.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class FormsGuidesService {
 
   public spinner = false;
 
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient, private _toastr: ToastrService) { }
 
   getFormsGuides(process: Process, type: string) {
     const url = `${environment.api_url}/forms-guides/${process._id}/${type}`;
@@ -50,6 +51,7 @@ export class FormsGuidesService {
     this.spinner = true;
     return this._http.delete(url).pipe(
       tap(() => this.spinner = false),
+
     );
   }
 
@@ -61,8 +63,9 @@ export class FormsGuidesService {
       tap(() => this.spinner = false)
     ).subscribe(
       (res) => this.downloadFile(res, form_guide.name),
-      (err) => alert(`The file doesn't exist ${err.message}` ) // enc aso de que la descarga falle por alguna razon se presenta mensaje de error al usuario
-      );
+      // enc aso de que la descarga falle por alguna razon se presenta mensaje de error al usuario
+      (err) => this._toastr.toastrDownload(`The file doesn't exist`, 'Download File','danger', 'alert-triangle-outline')
+    );
   }
 
   downloadFile(blob: Blob, name: string) {
@@ -72,6 +75,7 @@ export class FormsGuidesService {
     link.download = name;
     link.click();
     window.URL.revokeObjectURL(urlDownload);
+    this._toastr.toastrDownload('File download success', 'Download File', 'success', 'done-all-outline');
     // window.open(window.URL.createObjectURL(res));
   }
 }

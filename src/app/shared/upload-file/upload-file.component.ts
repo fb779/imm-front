@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter } from '@angular/core';
 import { UploadFileService } from '../../services/services.index';
 import { Process } from '../../models/Process';
+import { ToastrService } from '../../services/toastr/toastr.service';
 
 @Component({
   selector: 'ngx-upload-file',
@@ -43,7 +44,7 @@ export class UploadFileComponent implements OnInit {
   name: string = '';
   // comment: string = '';
 
-  constructor(private _upFileservice: UploadFileService) { }
+  constructor(private _upFileservice: UploadFileService, private _toastr: ToastrService) { }
 
   ngOnInit() {
     // console.log('process', this.process);
@@ -56,18 +57,21 @@ export class UploadFileComponent implements OnInit {
 
     if (!archivo) {
       console.log('without file');
+      this._toastr.toastrGenericMessage('You need select a file', 'Upload File','warning')
       this.clearFile();
       return;
     }
 
     if (!this.validType(archivo.type)) {
       console.log("File isn't authorizing");
+      this._toastr.toastrGenericMessage(`File is invalid to upload`, 'Upload File','warning')
       this.clearFile();
       return;
     }
 
     if (this.validExistFile(archivo, this.listFiles)) {
       console.log("The file was uploaded");
+      this._toastr.toastrGenericMessage(`The file was uploaded`, 'Upload File','warning')
       this.clearFile();
       return;
     }
@@ -107,10 +111,14 @@ export class UploadFileComponent implements OnInit {
 
   uploadDocument() {
     this.spinner = true;
-    this._upFileservice.uploadFormsGuides(this.fileUpload, this.type_upload, this.process, this.comment).subscribe((response: any) => {
-      // console.log(response);
-      this.file.emit(this.fileUpload);
-      this.clearFile();
-    });
+    this._upFileservice.uploadFormsGuides(this.fileUpload, this.type_upload, this.process, this.comment).subscribe(
+      (response: any) => {
+        // console.log(response);
+        this._toastr.toastrGenericMessage('Upload file successfull', 'Upload File','success')
+        this.file.emit(this.fileUpload);
+        this.clearFile();
+      },
+      (err)=> this._toastr.toastrGenericMessage('Upload file failed', 'Upload File','danger')
+      );
   }
 }

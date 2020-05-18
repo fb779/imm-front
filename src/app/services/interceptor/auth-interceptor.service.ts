@@ -3,6 +3,7 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpHeaders, Http
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { NbAuthService, NbAuthJWTToken } from '@nebular/auth';
+import { ToastrService } from '../toastr/toastr.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class AuthInterceptorService implements HttpInterceptor {
 
   token: string;
 
-  constructor(private authService: NbAuthService) {
+  constructor(private authService: NbAuthService, private _toastr: ToastrService) {
     // this.authService.getToken().subscribe(( token: NbAuthJWTToken)=>{
     this.authService.onTokenChange().subscribe((token: NbAuthJWTToken) => {
       this.token = token.getValue();
@@ -41,6 +42,7 @@ export class AuthInterceptorService implements HttpInterceptor {
     // console.warn(err);
     // console.log(err.error.data.message);
     // return throwError({status: err.status, text: err.statusText, message: err.message});
+    // this._toastr.toastrGenericErrorHttp(err.error.message,err.statusText);
     return throwError(err.error);
   }
 

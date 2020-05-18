@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter } from '@angular/core';
-import { UploadFileService } from '../../../services/services.index';
+import { UploadFileService, ToastrService } from '../../../services/services.index';
 import { documentStatus } from '../../../config/config';
 import { Document } from '../../../models/Document';
 
@@ -35,7 +35,7 @@ export class UploadDocumentComponent implements OnInit {
   file_upload = null;
   name: string = '';
 
-  constructor(private _upFileService: UploadFileService) { }
+  constructor(private _upFileService: UploadFileService, private _toastr: ToastrService) { }
 
   ngOnInit() {
     this.title = this.document_file.name
@@ -54,12 +54,14 @@ export class UploadDocumentComponent implements OnInit {
 
     if (!archivo) {
       console.log('without file');
+      this._toastr.toastrGenericMessage('You need select a file', 'Upload File', 'warning');
       this.file_upload = null;
       return;
     }
 
     if (!this.validType(archivo.type)) {
       console.log("File isn't authorizing");
+      this._toastr.toastrGenericMessage(`File isn't authorizing`, 'Upload File', 'warning');
       this.file_upload = null;
       this.inputFile.nativeElement.value = '';
       return;
@@ -83,18 +85,19 @@ export class UploadDocumentComponent implements OnInit {
 
   uploadDocument() {
     this.spinner = true;
-    this._upFileService.uploadDocument(this.file_upload, this.document_file._id).subscribe((response) => {
-      // if (response.ok) {
-      this.clearFile();
-      this.spinner = false;
-      this.upload_file.emit(true);
-      // return;
-      // }
-    });
-    // setTimeout(() => {
-    //   console.log('Uploaded file', this.name);
-    //   this.clearFile();
-    // }, 3000);
+    this._upFileService.uploadDocument(this.file_upload, this.document_file._id).subscribe(
+      (response) => {
+        // if (response.ok) {
+        this._toastr.toastrGenericMessage('Successfull file upload', 'Upload File', 'success');
+        this.clearFile();
+        this.spinner = false;
+        this.upload_file.emit(true);
+        // return;
+        // }
+      },
+      (err)=> this._toastr.toastrGenericMessage('Filed upload', 'Upload File', 'danger')
+    );
+
   }
 
   desabilitar() {

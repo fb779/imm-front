@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { FamilyService, DocumentService } from '../../../services/services.index';
+import { DocumentService, ToastrService } from '../../../services/services.index';
 import { Document } from '../../../models/Document';
 import { Client } from '../../../models/Client';
 import { Process } from '../../../models/Process';
@@ -20,7 +19,7 @@ export class ListDocumentsComponent implements OnInit {
   comments = {};
   // comment = 'Mis comentarios por defecto';
 
-  constructor(private _documentService: DocumentService) { }
+  constructor(private _documentService: DocumentService, private _toastr: ToastrService) { }
 
   ngOnInit() {
     this.loadDocuments();
@@ -54,7 +53,8 @@ export class ListDocumentsComponent implements OnInit {
     console.log('Aprobacion de documento', document_file);
 
     this._documentService.setApproveDocument(document_file._id).subscribe(
-      ( response )=> console.log(response)
+      ( response ) => {this._toastr.toastrGenericMessage(`Save approve document`, 'Documents'); console.log(response)},
+      (err ) => this._toastr.toastrGenericMessage(`Error save reject document`, 'Documents', 'danger')
     );
 
   }
@@ -68,7 +68,8 @@ export class ListDocumentsComponent implements OnInit {
     console.log('Comentario de Rechazo de documento', comment);
 
     this._documentService.setRejectDocument(document_file._id, comment).subscribe(
-      ( response )=> console.log(response)
+      ( response ) => {this._toastr.toastrGenericMessage(`Save reject document`, 'Documents'); console.log(response)},
+      (err ) => this._toastr.toastrGenericMessage(`Error save reject document`, 'Documents', 'danger')
     )
   }
 }

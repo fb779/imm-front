@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NbDialogRef } from '@nebular/theme';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Process } from '../../../models/Process';
-import { ChecklistService } from '../../../services/services.index';
+import { ChecklistService, ToastrService } from '../../../services/services.index';
 import { CheckList } from '../../../models/CheckList';
 import { Observable } from 'rxjs';
 
@@ -23,8 +23,9 @@ export class CheckListFormComponent implements OnInit {
 
   constructor(
     protected ref: NbDialogRef<CheckListFormComponent>,
+    private formBuilder: FormBuilder,
     private _checklistService: ChecklistService,
-    private formBuilder: FormBuilder
+    private _toastr: ToastrService,
   ) {}
 
   ngOnInit(){
@@ -80,6 +81,7 @@ export class CheckListFormComponent implements OnInit {
 
     if ( this.checklistFormGroup.invalid ){
       this.submited = true;
+      this._toastr.toastrGenericMessage(`Form is invalid`,'Check list', 'warning');
       // alert('Fomr is invalid');
       return;
     }
@@ -89,8 +91,16 @@ export class CheckListFormComponent implements OnInit {
     data.visa_categories = this.process.visa_category._id;
 
     this._checklistService.createCheckList(data).subscribe(
-      (response)=>{if (response.ok) {this.ref.close(response.ok)} },
-      (err) => console.log(err)
+      (response)=>{
+        if (response.ok) {
+          this.ref.close(response.ok)
+          this._toastr.toastrGenericMessage(`Save new check lsit item`,'Check list', 'success');
+        }
+       },
+      (err) => {
+        console.log(err);
+        this._toastr.toastrGenericMessage(`Error to save new check lsit item`,'Check list', 'danger');
+      }
     );
   }
 }

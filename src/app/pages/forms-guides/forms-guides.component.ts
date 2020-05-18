@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
+import { NbAuthService } from '@nebular/auth';
 import { FormsGuidesService } from '../../services/services.index';
 
 @Component({

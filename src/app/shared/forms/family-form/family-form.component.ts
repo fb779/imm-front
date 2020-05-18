@@ -9,6 +9,7 @@ import { Observable } from "rxjs";
 import {
   AssessmentFormService,
   FamilyService,
+  ToastrService,
 } from "../../../services/services.index";
 import { status, relationships } from "../../../config/config";
 import { Title } from "../../../models/Titlel";
@@ -46,7 +47,8 @@ export class FamilyFormComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private _asf: AssessmentFormService,
-    private _familyServices: FamilyService
+    private _familyServices: FamilyService,
+    private _toastr: ToastrService
   ) {
     this._asf.getAges().subscribe((data) => {
       this.optAges = data;
@@ -144,10 +146,14 @@ export class FamilyFormComponent implements OnInit {
 
     this._familyServices
       .newFamilyMember(this.process, this.clientForm.value)
-      .subscribe((res) => {
-        this.clientForm.reset();
-        this.submitted = false;
-      });
+      .subscribe(
+        (res) => {
+          this._toastr.toastrGenericMessage('Save new family member', 'Family members', 'success');
+          this.clientForm.reset();
+          this.submitted = false;
+        },
+        (err) => this._toastr.toastrGenericMessage('Error to save new family member', 'Family members', 'danger')
+      );
   }
 
   loadToEditMember(client: Client) {
@@ -157,6 +163,7 @@ export class FamilyFormComponent implements OnInit {
   updateMember() {
     if (this.clientForm.invalid) {
       this.submitted = true;
+      this._toastr.toastrGenericMessage('Form to family member is invalid', 'Family members', 'warning');
       // alert('formulario invalido');
       return;
     }
@@ -165,6 +172,7 @@ export class FamilyFormComponent implements OnInit {
       .editFamilyMember(this.process, this.clientForm.value)
       .subscribe((res) => {
         if (res.ok) {
+          this._toastr.toastrGenericMessage('Edit family member', 'Family members', 'success');
           // this.loadMembers();
           // this._familyServices.chageProcess(this.process);
           this.clientForm.reset();
@@ -178,6 +186,7 @@ export class FamilyFormComponent implements OnInit {
       .removeFamiliMember(this.process, client)
       .subscribe(() => {
         // this.loadMembers();
+        this._toastr.toastrGenericMessage('Remove family member', 'Family members', 'success');
         this.clientForm.reset();
         this.submitted = false;
       });

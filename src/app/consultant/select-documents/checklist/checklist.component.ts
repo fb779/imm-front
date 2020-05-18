@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ConsultantService, ChecklistService } from '../../../services/services.index';
+import { Component, OnInit, Input } from '@angular/core';
+import { ConsultantService, ChecklistService, ToastrService } from '../../../services/services.index';
 import { CheckList } from '../../../models/CheckList';
 import { Process } from '../../../models/Process';
 import { Client } from '../../../models/Client';
@@ -19,7 +19,7 @@ export class ChecklistComponent implements OnInit {
   documentSelected = [];
   documentsLoads = [];
 
-  constructor(private _consultatnService: ConsultantService, private _checklistServices: ChecklistService) { }
+  constructor(private _consultatnService: ConsultantService, private _checklistServices: ChecklistService, private _toastr: ToastrService) { }
 
   ngOnInit() {
     this._consultatnService.getDocumentsOfConsultant(this.type_visa)
@@ -59,8 +59,10 @@ export class ChecklistComponent implements OnInit {
   saveList() {
     if (this.documentSelected.length > 0) {
       this._checklistServices.saveDocumentsByClient(this.process._id, this.client._id, this.documentSelected).subscribe((response) => {
+        this._toastr.toastrGenericMessage(`Save document required`, 'Check list')
         this.loadDocuments();
-      });
+      },
+      ()=>this._toastr.toastrGenericMessage(`Error to save document`, 'Check list', 'danger'));
     }
   }
 }

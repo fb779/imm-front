@@ -9,7 +9,8 @@ import { Country } from '../../../models/Country';
 import {
   AssessmentFormService,
   SidebarService,
-  UserProcessService
+  UserProcessService,
+  ToastrService
 } from '../../../services/services.index';
 
 @Component({
@@ -43,6 +44,7 @@ export class VisitorComponent implements OnInit {
     public _sidebarServices: SidebarService,
     private _porcessServices: UserProcessService,
     private _asf: AssessmentFormService,
+    private _toastr: ToastrService,
   ) {
     this.url = this._router.url.split('/').filter(x => x.trim() !== '');
 
@@ -170,6 +172,7 @@ export class VisitorComponent implements OnInit {
     this.submitted = true;
 
     if (this.forma.invalid) {
+      this._toastr.toastrGenericMessage(`Form is nvalid`, '', 'warning');
       alert('Fomr is invalid');
       return;
     }
@@ -177,17 +180,18 @@ export class VisitorComponent implements OnInit {
     if (this.f._id.value === 'nuevo') {
       this._porcessServices.setForm(this.process, this.forma.value).subscribe((resp: any) => {
         if (resp.ok) {
+          this._toastr.toastrGenericMessage(`Saved successfull`, 'Form save', 'success');
           this._router.navigate([this.url[0], this.url[1]]);
           return;
         }
       });
     } else {
       this._porcessServices.updateForm(this.process, this.forma.value).subscribe((resp: any) => {
-        return;
-        // if ( resp.ok ){
-        //   this._router.navigate([this.url[0], this.url[1]]);
-        //   return;
-        // }
+        if ( resp.ok ){
+        this._toastr.toastrGenericMessage(`Saved successfull`, 'Form save', 'success');
+          // this._router.navigate([this.url[0], this.url[1]]);
+          return;
+        }
       });
     }
   }
