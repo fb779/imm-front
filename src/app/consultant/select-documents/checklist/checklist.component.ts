@@ -59,10 +59,12 @@ export class ChecklistComponent implements OnInit {
   saveList() {
     if (this.documentSelected.length > 0) {
       this._checklistServices.saveDocumentsByClient(this.process._id, this.client._id, this.documentSelected).subscribe((response) => {
-        this._toastr.toastrGenericMessage(`Save document required`, 'Check list')
+        this._toastr.toastrGenericMessage(`Save document successfull`, 'Check list')
         this.loadDocuments();
       },
       ()=>this._toastr.toastrGenericMessage(`Error to save document`, 'Check list', 'danger'));
+    }else{
+      this._toastr.toastrGenericMessage(`Select document to saved`, 'Check list', 'warning')
     }
   }
 }

@@ -37,13 +37,11 @@ import { PagesRoutingModule } from './pages-routing.module';
 // importaciones del proyecto base de nebular
 import { PagesComponent } from './pages.component';
 import { DashboardModule } from './dashboard/dashboard.module';
-import { ECommerceModule } from './e-commerce/e-commerce.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 
 // componentes visa services
 // import { DocumentsComponent } from './documents/documents.component';
 import { VisaComponent } from './visa/visa.component';
-import { ConsultantComponent } from './consultant/consultant.component';
 import { AddOnsComponent } from './add-ons/add-ons.component';
 import { CouponsComponent } from './coupons/coupons.component';
 import { FreeResourcesComponent } from './free-resources/free-resources.component';
@@ -71,16 +69,11 @@ import { FamilyModule } from './family/family.module';
     FamilyModule,
     // others modules
     DashboardModule,
-    ECommerceModule,
     MiscellaneousModule,
   ],
   declarations: [
     PagesComponent,
-    // AssessmentFormComponent,
-    // FormsGuidesComponent,
-    // DocumentsComponent,
     VisaComponent,
-    ConsultantComponent,
     AddOnsComponent,
     CouponsComponent,
     FreeResourcesComponent,
