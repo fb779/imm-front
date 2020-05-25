@@ -13,7 +13,7 @@ import { status, visa_categories } from '../../../config/config';
 })
 export class DashboardComponent implements OnInit {
   processes: Process[] = [];
-  status = status;
+  status:any = status;
 
   constructor(private _router: Router, private _processServices: UserProcessService) {
     this.getProcesses();

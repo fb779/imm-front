@@ -48,22 +48,6 @@ export class VisitorComponent implements OnInit {
   ) {
     this.url = this._router.url.split('/').filter(x => x.trim() !== '');
 
-    // this.client = new FormGroup({
-    //   '_id': new FormControl('nuevo'),
-    //   'title': new FormControl('', [Validators.required]),
-    //   'sex': new FormControl('', [Validators.required]),
-    //   'first_name': new FormControl('', [Validators.required]),
-    //   'last_name': new FormControl('', [Validators.required]),
-    //   // 'email': new FormControl('', [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")], [this.existeEmail]),
-    //   'email': new FormControl('', [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")]),
-    //   'telephone': new FormControl('', [Validators.required, Validators.pattern("[0-9]*$")]),
-    //   'country_citizenship': new FormControl('', [Validators.required]),
-    //   'other_citizenship': new FormControl('', []),
-    //   'country_residence': new FormControl('', [Validators.required]),
-    //   'status_residence': new FormControl('', [Validators.required]),
-    //   'age': new FormControl('', [Validators.required, Validators.min(0), Validators.max(99)]),
-    // });
-
     this.forma = new FormGroup({
       '_id': new FormControl('nuevo'),
       // 'process': new FormControl('', [Validators.required]),
@@ -78,15 +62,11 @@ export class VisitorComponent implements OnInit {
       'other_citizenship': new FormControl('', []),
       'country_residence': new FormControl('', [Validators.required]),
       'status_residence': new FormControl('', [Validators.required]),
-      'status_residence_other': new FormControl({ value: '', disable: true }, [Validators.required]),
+      'status_residence_other': new FormControl({value: '', disabled: true}, [Validators.required]),
       'age': new FormControl('', [Validators.required, Validators.min(0), Validators.max(99)]),
       'destiny': new FormControl('', [Validators.required]),
       'marital_status': new FormControl('', [Validators.required]),
       'number_accompanying': new FormControl(0, [Validators.required]),
-      // 'number_children': new FormControl(null, [Validators.required, Validators.min(0), Validators.max(99)]),
-      // 'spouse_accompanying': new FormControl('', [Validators.required]),
-      // 'number_children': new FormControl(null, []),
-      // 'spouse_accompanying': new FormControl('', []),
       'purpose_visit': new FormControl('', [Validators.required]),
       'letter_invitation': new FormControl('', [Validators.required]),
       'stay_canada': new FormControl('', [Validators.required]),
@@ -97,8 +77,6 @@ export class VisitorComponent implements OnInit {
       'comments': new FormControl('', []),
     });
 
-    // this.forma.get('status_residence_other').disable();
-
     this.forma.controls['status_residence'].valueChanges.subscribe((value: any) => {
       if (value == 5) {
         this.forma.get('status_residence_other').enable();
@@ -107,15 +85,6 @@ export class VisitorComponent implements OnInit {
         this.forma.get('status_residence_other').reset();
       }
     });
-
-    // this.forma.controls['marital_status'].valueChanges.subscribe( (data:any) => {
-    //   if (!data || data == 1 ){
-    //     this.forma.get('number_accompanying').reset();
-    //     this.forma.get('number_accompanying').disable();
-    //   } else {
-    //     this.forma.get('number_accompanying').enable();
-    //   }
-    // });
 
     this._asf.getTitles().subscribe((data) => {
       this.optTitles = data;
@@ -188,7 +157,7 @@ export class VisitorComponent implements OnInit {
     } else {
       this._porcessServices.updateForm(this.process, this.forma.value).subscribe((resp: any) => {
         if ( resp.ok ){
-        this._toastr.toastrGenericMessage(`Saved successfull`, 'Form save', 'success');
+          this._toastr.toastrGenericMessage(`Saved successfull`, 'Form save', 'success');
           // this._router.navigate([this.url[0], this.url[1]]);
           return;
         }
