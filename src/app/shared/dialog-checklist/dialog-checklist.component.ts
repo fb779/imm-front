@@ -10,10 +10,6 @@ import { ChecklistService } from '../../services/services.index';
     <button nbButton size="small" fullWidth (click)="openDialog()" *ngIf="itemNames.length > 0">
         <nb-icon icon="plus-circle-outline"></nb-icon>
     </button>
-    <!-- <button nbButton size="small">
-
-        <nb-icon pack="fas" icon="plus-circle"></nb-icon>
-    </button> -->
   `,
   styleUrls: ['./dialog-checklist.component.scss']
 })

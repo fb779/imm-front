@@ -28,8 +28,8 @@ export class FamilyService {
 
   constructor(private _http: HttpClient) { }
 
-  chageProcess(process: Process) {
-    this.processBS.next(process._id);
+  chageProcess(id_process: string) {
+    this.processBS.next(id_process);
   }
 
   newFamilyMember(process: Process, client: Client): Observable<any> {

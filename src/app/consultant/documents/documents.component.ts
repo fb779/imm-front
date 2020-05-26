@@ -17,7 +17,7 @@ import { Document } from '../../models/Document';
 })
 export class DocumentsComponent implements OnInit {
   @Input("process") process: Process;
-  @Input("client") client: Client;
+  // @Input("client") client: Client;
   status = status;
   loading = false;
 

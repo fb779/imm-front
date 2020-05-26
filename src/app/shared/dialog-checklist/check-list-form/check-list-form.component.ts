@@ -3,7 +3,6 @@ import { NbDialogRef } from '@nebular/theme';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Process } from '../../../models/Process';
 import { ChecklistService, ToastrService } from '../../../services/services.index';
-import { CheckList } from '../../../models/CheckList';
 import { Observable } from 'rxjs';
 
 @Component({

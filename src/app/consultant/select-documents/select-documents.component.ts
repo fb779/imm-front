@@ -31,7 +31,7 @@ export class SelectDocumentsComponent implements OnInit {
   }
 
   loadProcess() {
-    this._familyServices.chageProcess(this.process);
+    // this._familyServices.chageProcess(this.process._id);
   }
 
   saveList(list) {

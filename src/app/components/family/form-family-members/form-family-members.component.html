@@ -1,7 +1,6 @@
-<div class="row">
-    <!-- Formulario de ingreso de familiares -->
-    <div class="col-12">
-        <form [formGroup]="clientForm">
+<form [formGroup]="clientForm">
+    <nb-card class="dialog-card">
+        <nb-card-body>
             <div class="row">
                 <div class="col-12 col-md-6">
                     <div class="form-group">
@@ -140,7 +139,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
 
                 <div class="col-12" *ngIf="visibleClient">
                     <button type="button" nbButton fullWidth status="success" (click)="addMember()">Add Family Member</button>
@@ -165,77 +164,15 @@
 
                 </div>
 
-            </div>
-
-        </form>
-    </div>
-    <!-- Formulario de ingreso de familiares -->
-
-    <div class="clear-fix">&nbsp;</div>
-
-    <div class="col-12">
-        <nb-card size="medium">
-            <!-- <nb-card-header>
-                Some fruits
-            </nb-card-header> -->
-            <nb-list>
-
-                <nb-list-item>
-                    <div class="row text-center">
-                        <div class="col-10 row">
-                            <div class="col-8">
-                                Full Name
-                            </div>
-                            <div class="col-3">
-                                Relationship
-                            </div>
-                            <div class="col-1">
-                                Age
-                            </div>
-                        </div>
-                        <div class="col-2 row">
-                            <div class="col-12">
-                                Options
-                            </div>
-                        </div>
-                    </div>
-                </nb-list-item>
-                <!-- <nb-list-item *ngFor="let client of listFamiliMembers"> -->
-
-                <nb-list-item *ngFor="let client of listFamiliMembers$ | async; let i = index">
-                    <div class="row">
-                        <div class="col-12 col-md-10 row">
-                            <div class="col-8 text-center">
-                                {{ client.first_name | uppercase }} - {{ client.last_name | uppercase }}
-                            </div>
-                            <div class="col-3">
-                                {{ client.relationship }}
-                            </div>
-                            <div class="col-1">
-                                {{ (client.age > 99) ? '' : client.age }}
-                            </div>
-                        </div>
-
-                        <ng-container *ngIf="i > 0; else elseTemplate">
-                            <div class="col-6 col-md-1">
-                                <button type="button" nbButton fullWidth size="small" status="primary" (click)="loadToEditMember(client)">
-                                    <nb-icon pack="far" icon="edit"></nb-icon>
-                                </button>
-                            </div>
-                            <div class="col-6 col-md-1" *ngIf="visibleClient || visibleConsultan">
-                                <button type="button" nbButton fullWidth size="small" status="danger" (click)="removeMenber(client)">
-                                    <nb-icon pack="far" icon="trash-alt"></nb-icon>
-                                </button>
-                            </div>
-                        </ng-container>
-                        <ng-template #elseTemplate>
-                            <div class="col-6 col-md-2 text-center">
-                                Principal Aplicant
-                            </div>
-                        </ng-template>
-                    </div>
-                </nb-list-item>
-            </nb-list>
-        </nb-card>
-    </div>
-</div>
+            </div> -->
+        </nb-card-body>
+        <nb-card-footer class="dialog-footer">
+            <button type="button" nbButton (click)="cancel()">
+              cancelar
+            </button>
+            <button type="button" nbButton>
+                guardar
+            </button>
+        </nb-card-footer>
+    </nb-card>
+</form>

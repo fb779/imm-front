@@ -19,7 +19,6 @@
                                     <div class="card-text text-white" *ngIf="(submitted || f.title.touched) && f.title.errors">
                                         <small *ngIf="f.title.errors?.required" class="text-muted text-muted-danger">Field required</small>
                                     </div>
-
                                 </div>
                             </div>
 
@@ -249,14 +248,16 @@
                     </nb-card-body>
                 </nb-card>
 
-                <nb-card accent="info">
+                <ngx-family [process]="process" [url]="url"></ngx-family>
+
+                <!-- <nb-card accent="info">
                     <nb-card-header>
                         <label for="">FAMILY MEMBERS</label>
                     </nb-card-header>
                     <nb-card-body>
                         <ngx-family-form [process]="process" [url]="url" [members]="f.number_accompanying.value"></ngx-family-form>
                     </nb-card-body>
-                </nb-card>
+                </nb-card> -->
 
                 <nb-card accent="info">
                     <nb-card-header>

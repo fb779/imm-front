@@ -1,31 +1,25 @@
-import { Component, OnInit, Input, Output } from "@angular/core";
-import {
-  FormGroup,
-  FormControl,
-  Validators,
-  FormBuilder,
-} from "@angular/forms";
+import { Component, OnInit, Input } from '@angular/core';
+import { FormGroup, FormControl, Validators, FormBuilder, } from "@angular/forms";
 import { Observable } from "rxjs";
-import {
-  AssessmentFormService,
-  FamilyService,
-  ToastrService,
-} from "../../../services/services.index";
+import { AssessmentFormService, FamilyService, ToastrService, } from "../../../services/services.index";
 import { status, relationships } from "../../../config/config";
-import { Title } from "../../../models/Titlel";
+import { Title } from '../../../models/Titlel';
 import { Country } from "../../../models/Country";
 import { Client } from "../../../models/Client";
 import { Process } from "../../../models/Process";
 
+
+import { NbDialogRef } from '@nebular/theme';
+
 @Component({
-  selector: "ngx-family-form",
-  templateUrl: "./family-form.component.html",
-  styleUrls: ["./family-form.component.scss"],
+  selector: 'ngx-form-family-members',
+  templateUrl: './form-family-members.component.html',
+  styleUrls: ['./form-family-members.component.scss']
 })
-export class FamilyFormComponent implements OnInit {
+export class FormFamilyMembersComponent implements OnInit {
   @Input("process") process: Process;
   @Input("url") url: string[];
-  @Input("members") members: number;
+  // @Input("members") members: number;
 
   status = status;
 
@@ -45,6 +39,7 @@ export class FamilyFormComponent implements OnInit {
   optStatus = [];
 
   constructor(
+    protected ref: NbDialogRef<FormFamilyMembersComponent>,
     private formBuilder: FormBuilder,
     private _asf: AssessmentFormService,
     private _familyServices: FamilyService,
@@ -77,7 +72,6 @@ export class FamilyFormComponent implements OnInit {
 
   ngOnInit() {
     this.buildForm();
-    // this._familyServices.chageProcess(this.process._id);
     // this.loadMembers();
     this.visibleClient = this.process && this.process.status === status.active;
     this.visibleConsultan = this.process && this.process.status !== status.active && this.url[0] !== "pages";
@@ -134,58 +128,65 @@ export class FamilyFormComponent implements OnInit {
     );
   }
 
-  addMember() {
-    if (this.clientForm.invalid) {
-      this.submitted = true;
-      // alert('formulario invalido');
-      return;
-    }
-
-    this._familyServices
-      .newFamilyMember(this.process, this.clientForm.value)
-      .subscribe(
-        (res) => {
-          this._toastr.toastrGenericMessage('Save new family member', 'Family members', 'success');
-          this.clientForm.reset();
-          this.submitted = false;
-        },
-        (err) => this._toastr.toastrGenericMessage('Error to save new family member', 'Family members', 'danger')
-      );
+  cancel(){
+    this.clientForm.reset();
+    this.ref.close();
   }
 
-  loadToEditMember(client: Client) {
-    this.clientForm.setValue(client);
-  }
 
-  updateMember() {
-    if (this.clientForm.invalid) {
-      this.submitted = true;
-      this._toastr.toastrGenericMessage('Form to family member is invalid', 'Family members', 'warning');
-      // alert('formulario invalido');
-      return;
-    }
+  // addMember() {
+  //   if (this.clientForm.invalid) {
+  //     this.submitted = true;
+  //     // alert('formulario invalido');
+  //     return;
+  //   }
 
-    this._familyServices
-      .editFamilyMember(this.process, this.clientForm.value)
-      .subscribe((res) => {
-        if (res.ok) {
-          this._toastr.toastrGenericMessage('Edit family member', 'Family members', 'success');
-          // this.loadMembers();
-          // this._familyServices.chageProcess(this.process);
-          this.clientForm.reset();
-          this.submitted = false;
-        }
-      });
-  }
+  //   this._familyServices
+  //     .newFamilyMember(this.process, this.clientForm.value)
+  //     .subscribe(
+  //       (res) => {
+  //         this._toastr.toastrGenericMessage('Save new family member', 'Family members', 'success');
+  //         this.clientForm.reset();
+  //         this.submitted = false;
+  //       },
+  //       (err) => this._toastr.toastrGenericMessage('Error to save new family member', 'Family members', 'danger')
+  //     );
+  // }
 
-  removeMenber(client: Client) {
-    this._familyServices
-      .removeFamiliMember(this.process, client)
-      .subscribe(() => {
-        // this.loadMembers();
-        this._toastr.toastrGenericMessage('Remove family member', 'Family members', 'success');
-        this.clientForm.reset();
-        this.submitted = false;
-      });
-  }
+  // loadToEditMember(client: Client) {
+  //   this.clientForm.setValue(client);
+  // }
+
+  // updateMember() {
+  //   if (this.clientForm.invalid) {
+  //     this.submitted = true;
+  //     this._toastr.toastrGenericMessage('Form to family member is invalid', 'Family members', 'warning');
+  //     // alert('formulario invalido');
+  //     return;
+  //   }
+
+  //   this._familyServices
+  //     .editFamilyMember(this.process, this.clientForm.value)
+  //     .subscribe((res) => {
+  //       if (res.ok) {
+  //         this._toastr.toastrGenericMessage('Edit family member', 'Family members', 'success');
+  //         // this.loadMembers();
+  //         // this._familyServices.chageProcess(this.process);
+  //         this.clientForm.reset();
+  //         this.submitted = false;
+  //       }
+  //     });
+  // }
+
+  // removeMenber(client: Client) {
+  //   this._familyServices
+  //     .removeFamiliMember(this.process, client)
+  //     .subscribe(() => {
+  //       // this.loadMembers();
+  //       this._toastr.toastrGenericMessage('Remove family member', 'Family members', 'success');
+  //       this.clientForm.reset();
+  //       this.submitted = false;
+  //     });
+  // }
+
 }
