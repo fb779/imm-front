@@ -5,6 +5,9 @@
         </nb-card-header>
         <nb-card-body [nbSpinner]="spinner" *ngIf="documents_list.length > 0; else documentsEmpty">
             <nb-card>
+                <nb-card-header>
+                    Upload Documents
+                </nb-card-header>
                 <nb-card-body>
                     <ngx-upload-document *ngFor="let document_file of documents_list" [document]="document_file" (upload_file)="loadDocuments()"></ngx-upload-document>
                 </nb-card-body>

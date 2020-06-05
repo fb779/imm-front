@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-// import { HttpClientModule } from '@angular/common/http';
 
 import { AuthGuardGuard } from './auth-guard/auth-guard.guard';
 import { AdminProfileGuard } from './auth-guard/admin-profile.guard';
@@ -45,7 +44,6 @@ import { ToastrService } from './toastr/toastr.service';
   ],
   imports: [
     CommonModule,
-    // HttpClientModule
   ]
 })
 export class ServiceModule { }

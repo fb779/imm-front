@@ -1,0 +1,19 @@
+<nb-card>
+    <nb-card-header>
+        List of process
+    </nb-card-header>
+    <nb-list>
+        <nb-list-item *ngFor="let process of list_process">
+            <div class="row">
+                <div class="col-8">
+                    {{ process.visa_category.name }}
+                </div>
+                <div class="col-4">
+                    <button type="button" nbButton fullWidth (click)="goWebChat(process._id )">
+                      <nb-icon icon="link-2-outline"></nb-icon>
+                    </button>
+                </div>
+            </div>
+        </nb-list-item>
+    </nb-list>
+</nb-card>

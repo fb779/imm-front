@@ -1,0 +1,28 @@
+nb-card {
+  margin-bottom: 0;
+}
+
+nb-card-body {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space;
+  align-items: center;
+}
+
+nb-card-body div {
+  text-align: center;
+}
+
+nb-card-body div:first-child {
+  flex: 1 80%;
+}
+
+nb-card-body div:last-child {
+  box-sizing: border-box;
+  padding: 0 5px;
+  flex: 1 20%;
+}
+
+textarea {
+  resize: none;
+}

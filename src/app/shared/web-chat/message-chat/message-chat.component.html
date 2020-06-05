@@ -1,0 +1,14 @@
+<form [formGroup]="messageForm">
+    <nb-card>
+        <nb-card-body>
+            <div>
+                <textarea name="message" rows="3" nbInput fullWidth formControlName="message" placeholder="Message"></textarea>
+            </div>
+            <div>
+                <button nbButton [disabled]="messageForm.invalid || disabled" (click)="sendMessage()">
+                    <nb-icon icon="paper-plane-outline"></nb-icon>
+                </button>
+            </div>
+        </nb-card-body>
+    </nb-card>
+</form>

@@ -67,6 +67,7 @@ export class UserService {
   //  Get user by Id
   // ===================================================
   getUser( id: string ){
+
     // console.log(this.id);
     const url = `${ URL_SERVICIOS }/users/${ id }`;
 

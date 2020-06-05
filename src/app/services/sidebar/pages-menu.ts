@@ -92,6 +92,11 @@ export const CLIENT_MENU_ITEMS: NbMenuItem[] = [
       link: '/pages/billin-invoice',
       hidden: true,
     },
+    {
+      title: 'Messages',
+      icon: 'message-circle-outline',
+      link: '/pages/messages',
+    },
 ];
 
 export const ADMIN_MENU_ITEMS: NbMenuItem[] = [
