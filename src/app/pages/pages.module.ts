@@ -53,6 +53,7 @@ import { FormsGuidesModule } from './forms-guides/forms-guides.module';
 import { DocumentsModule } from './documents/documents.module';
 import { SharedModule } from '../shared/shared.module';
 import { FamilyModule } from './family/family.module';
+import { ClientMessageModule } from './client-messages/client-message.module';
 
 
 @NgModule({
@@ -63,6 +64,7 @@ import { FamilyModule } from './family/family.module';
     // imports form nebular
     ...nebular,
     // modules to application
+    ClientMessageModule,
     AssessmentFormModule,
     DocumentsModule,
     FormsGuidesModule,

@@ -1,0 +1,20 @@
+<nb-card accent="primary" [nbSpinner]="spinner" nbSpinnerStatus="success" nbSpinnerSize="large">
+    <nb-card-header>
+        <div class="row">
+            <div class="col text-right">
+                <button nbButton size="small" (click)="loadMessages()">
+                    <nb-icon icon="sync-outline"></nb-icon>
+                </button>
+            </div>
+        </div>
+    </nb-card-header>
+    <nb-card-body>
+        <ng-container *ngIf="process; else elseTemplate">
+            <ngx-list-chat [messages]="listMessages$ | async"></ngx-list-chat>
+            <ngx-message-chat (send_message)="sendMessage($event)"></ngx-message-chat>
+        </ng-container>
+        <ng-template #elseTemplate>
+            Sin proceso existente
+        </ng-template>
+    </nb-card-body>
+</nb-card>

@@ -53,6 +53,7 @@ import { SharedModule } from "../shared/shared.module";
 import { ChecklistComponent } from './select-documents/checklist/checklist.component';
 import { DocumentsComponent } from './documents/documents.component';
 import { ListDocumentsComponent } from './documents/list-documents/list-documents.component';
+import { WebChatModule } from '../shared/web-chat/web-chat.module';
 
 @NgModule({
   imports: [
@@ -63,6 +64,7 @@ import { ListDocumentsComponent } from './documents/list-documents/list-document
     SharedModule,
     NbDialogModule.forChild(),
     ...consultanttNebular,
+    WebChatModule,
   ],
   declarations: [
     ConsultantComponent,

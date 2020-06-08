@@ -1,26 +1,26 @@
 <nb-card>
-  <nb-card-header>
-    Some fruits
-  </nb-card-header>
-  <nb-list>
-    <nb-list-item *ngFor="let document_file of document_list">
-      <div class="row">
-        <div class="col-8">
-          {{ document_file.name }}
-        </div>
+    <nb-card-header>
+        Status Documents
+    </nb-card-header>
+    <nb-list>
+        <nb-list-item *ngFor="let document_file of document_list">
+            <div class="row">
+                <div class="col-8">
+                    {{ document_file.name }}
+                </div>
 
-        <div class="col-4">
-          <nb-alert size="tyny" [outline]="getStatusClass(document_file.status)">{{ document_file.status }}</nb-alert>
-          <!-- {{ document_file.status }} -->
-        </div>
+                <div class="col-4">
+                    <nb-alert size="tyny" [outline]="getStatusClass(document_file.status)">{{ document_file.status }}</nb-alert>
+                    <!-- {{ document_file.status }} -->
+                </div>
 
-        <ng-container *ngIf="document_file.comments.length > 0 && isVisibleComment(document_file.status)">
-          <div class="col-12">
-            <nb-alert size="tyny" outline="danger">{{ document_file.comments[(document_file.comments.length-1)].comment }}</nb-alert>
-            <!-- <nb-alert status="info">{{ document_file.comments[0].comment }}</nb-alert> -->
-          </div>
-        </ng-container>
-      </div>
-    </nb-list-item>
-  </nb-list>
+                <ng-container *ngIf="document_file.comments.length > 0 && isVisibleComment(document_file.status)">
+                    <div class="col-12">
+                        <nb-alert size="tyny" outline="danger">{{ document_file.comments[(document_file.comments.length-1)].comment }}</nb-alert>
+                        <!-- <nb-alert status="info">{{ document_file.comments[0].comment }}</nb-alert> -->
+                    </div>
+                </ng-container>
+            </div>
+        </nb-list-item>
+    </nb-list>
 </nb-card>

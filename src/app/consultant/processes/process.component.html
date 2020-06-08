@@ -3,53 +3,54 @@
         <label for="">Mi titulo del proceso</label>
     </nb-card-header> -->
     <nb-card-body [nbSpinner]="loading" nbSpinnerStatus="success">
-        <ng-container *ngIf="process && type_visa; else noProcess">
-            <nb-tabset fullWidth>
-                <nb-tab tabTitle="Users">
-                    <div *ngIf="process && type_visa">
-                        <ng-container *ngIf="type_visa === visa_categories.visitor">
-                            <ngx-visitor [process]="process"></ngx-visitor>
-                        </ng-container>
+        <nb-tabset fullWidth>
+            <nb-tab tabTitle="Users" tabIcon="person-outline" responsive>
+                <div *ngIf="process && type_visa">
+                    <ng-container *ngIf="type_visa === visa_categories.visitor">
+                        <ngx-visitor [process]="process"></ngx-visitor>
+                    </ng-container>
 
-                        <!-- <ng-container *ngIf="type_visa === visa_categories.study">
+                    <!-- <ng-container *ngIf="type_visa === visa_categories.study">
                             <ngx-study [process]="process"></ngx-study>
                         </ng-container> -->
-                    </div>
-                </nb-tab>
+                </div>
+            </nb-tab>
 
-                <nb-tab tabTitle="Check List">
-                    <ngx-select-documents *ngIf="process && type_visa" [process]="process"></ngx-select-documents>
-                </nb-tab>
 
-                <nb-tab tabTitle="Documents">
-                    <ngx-documents *ngIf="process && type_visa" [process]="process"></ngx-documents>
-                </nb-tab>
+            <nb-tab tabTitle="Check List" tabIcon="checkmark-square-outline" responsive>
+                <ngx-select-documents *ngIf="process && type_visa" [process]="process"></ngx-select-documents>
+            </nb-tab>
 
-                <nb-tab tabTitle=" Forms ">
-                    <nb-card>
-                        <nb-card-header>
-                            Forms
-                        </nb-card-header>
-                        <nb-card-body *ngIf="process ">
-                            <ngx-forms-guides [processo]="process " type="forms "></ngx-forms-guides>
-                        </nb-card-body>
-                    </nb-card>
-                </nb-tab>
+            <nb-tab tabTitle="Documents" tabIcon="folder-outline" responsive>
+                <!-- <ngx-documents *ngIf="process && type_visa" [process]="process" [client]="process.client"></ngx-documents> -->
+                <ngx-documents *ngIf="process && type_visa" [process]="process"></ngx-documents>
+            </nb-tab>
 
-                <nb-tab tabTitle="Guides ">
-                    <nb-card>
-                        <nb-card-header>
-                            Guides
-                        </nb-card-header>
-                        <nb-card-body *ngIf="process ">
-                            <ngx-forms-guides [processo]="process " type="guides "></ngx-forms-guides>
-                        </nb-card-body>
-                    </nb-card>
-                </nb-tab>
-            </nb-tabset>
-        </ng-container>
-        <ng-template #noProcess>
-            {{ message }}
-        </ng-template>
+            <nb-tab tabTitle="Forms" tabIcon="archive-outline" responsive>
+                <nb-card>
+                    <nb-card-header>
+                        Forms
+                    </nb-card-header>
+                    <nb-card-body *ngIf="process">
+                        <ngx-forms-guides [processo]="process" type="forms"></ngx-forms-guides>
+                    </nb-card-body>
+                </nb-card>
+            </nb-tab>
+
+            <nb-tab tabTitle="Guides" tabIcon="file-text-outline" responsive>
+                <nb-card>
+                    <nb-card-header>
+                        Guides
+                    </nb-card-header>
+                    <nb-card-body *ngIf="process">
+                        <ngx-forms-guides [processo]="process" type="guides"></ngx-forms-guides>
+                    </nb-card-body>
+                </nb-card>
+            </nb-tab>
+            <nb-tab tabTitle="Messages" tabIcon="message-circle-outline" responsive lazyLoad>
+                <ngx-web-chat *ngIf="id_process" [process]="id_process"></ngx-web-chat>
+
+            </nb-tab>
+        </nb-tabset>
     </nb-card-body>
 </nb-card>

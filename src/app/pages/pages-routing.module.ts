@@ -13,12 +13,17 @@ import { FreeResourcesComponent } from './free-resources/free-resources.componen
 import { AdmissionComponent } from './admission/admission.component';
 import { AppoinmentComponent } from './appoinment/appoinment.component';
 import { BillingInvoiceComponent } from './billing-invoice/billing-invoice.component';
-import { FormsGuidesModule } from './forms-guides/forms-guides.module';
 
 const routes: Routes = [{
   path: '',
   component: PagesComponent,
   children: [
+    {
+      path: 'messages',
+      // component: ClientMessageComponent,
+      loadChildren: () => import('./client-messages/client-message.module')
+        .then(m => m.ClientMessageModule),
+    },
     {
       path: 'dashboard',
       component: DashboardComponent,

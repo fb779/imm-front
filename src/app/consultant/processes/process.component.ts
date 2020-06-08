@@ -20,7 +20,11 @@ export class ProcessComponent implements OnInit, OnDestroy {
   status = status;
 
 
-  constructor( private _router: Router, private _activatedRoute: ActivatedRoute, private _processServices: UserProcessService, private _familyServices: FamilyService ) {
+  constructor(
+    private _router: Router, private _activatedRoute: ActivatedRoute,
+    private _processServices: UserProcessService,
+    private _familyServices: FamilyService
+  ) {
     this.loading = true;
     this._activatedRoute.params.subscribe((params) => {
       this.process = null;

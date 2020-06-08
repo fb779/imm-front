@@ -106,7 +106,7 @@ export class UploadFileComponent implements OnInit {
     this.name = '';
     // this.comment = '';
     this.inputFile.nativeElement.value = '';
-    this.spinner = false
+    this.spinner = false;
   }
 
   uploadDocument() {
