@@ -1,5 +1,6 @@
 nb-card.dialog-card {
-  width: 600px;
+  width: 60%;
+  margin: auto;
 }
 
 nb-card.formChecklist {
@@ -11,3 +12,10 @@ nb-card.formChecklist>nb-card-footer {
   justify-content: space-around;
   align-items: stretch;
 }
+
+// @media screen and (max-width:1024px) and (min-width:640px) {
+//   :host .cards {
+//    display: grid;
+//    grid-template-columns: repeat(2, 1fr);
+//  }
+// }

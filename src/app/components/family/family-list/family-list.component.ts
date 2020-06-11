@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Client } from '../../../models/Client';
 
 @Component({
   selector: 'ngx-family-list',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FamilyListComponent implements OnInit {
 
+  @Input('list') listFamilyMembers;
+  @Input('visible') visible: boolean;
+  @Output() update_client: EventEmitter<any> = new EventEmitter();
+  @Output() delete_client: EventEmitter<any> = new EventEmitter();
+
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
 }

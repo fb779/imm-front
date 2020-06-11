@@ -19,7 +19,20 @@ import { NbDialogRef } from '@nebular/theme';
 export class FormFamilyMembersComponent implements OnInit {
   @Input("process") process: Process;
   @Input("url") url: string[];
-  // @Input("members") members: number;
+  @Input("client") client: Client = {
+    _id: '',
+    first_name: '',
+    last_name: '',
+    relationship: '',
+    title: '',
+    sex: '',
+    country_citizenship: '',
+    other_citizenship: '',
+    country_residence: '',
+    status_residence: '',
+    status_residence_other: '',
+    age: null,
+  };
 
   status = status;
 
@@ -72,9 +85,8 @@ export class FormFamilyMembersComponent implements OnInit {
 
   ngOnInit() {
     this.buildForm();
-    // this.loadMembers();
-    this.visibleClient = this.process && this.process.status === status.active;
-    this.visibleConsultan = this.process && this.process.status !== status.active && this.url[0] !== "pages";
+    // this.visibleClient = this.process && this.process.status === status.active;
+    // this.visibleConsultan = this.process && this.process.status !== status.active && this.url[0] !== "pages";
   }
 
   get f() {
@@ -96,15 +108,10 @@ export class FormFamilyMembersComponent implements OnInit {
       other_citizenship: new FormControl("", []),
       country_residence: new FormControl("", [Validators.required]),
       status_residence: new FormControl("", [Validators.required]),
-      status_residence_other: new FormControl({ value: "", disabled: true }, [
-        Validators.required,
-      ]),
-      age: new FormControl({ value: "", disabled: true }, [
-        Validators.required,
-      ]),
+      status_residence_other: new FormControl({ value: "", disabled: true }, [ Validators.required, ]),
+      age: new FormControl({ value: "", disabled: true }, [ Validators.required, ]),
     });
 
-    // this.clientForm.get('status_residence_other').disable();
     this.clientForm.controls["relationship"].valueChanges.subscribe(
       (value: any) => {
         if (value === relationships.child) {
@@ -126,6 +133,8 @@ export class FormFamilyMembersComponent implements OnInit {
         }
       }
     );
+
+    this.clientForm.setValue(this.client);
   }
 
   cancel(){
@@ -134,49 +143,46 @@ export class FormFamilyMembersComponent implements OnInit {
   }
 
 
-  // addMember() {
-  //   if (this.clientForm.invalid) {
-  //     this.submitted = true;
-  //     // alert('formulario invalido');
-  //     return;
-  //   }
+  addMember() {
+    if (this.clientForm.invalid) {
+      this.submitted = true;
+      // alert('formulario invalido');
+      return;
+    }
+    // console.log('Valores colectados',this.clientForm.value);
+    this._familyServices.newFamilyMember(this.process, this.clientForm.value).subscribe(
+      (res) => {
+        this._toastr.toastrGenericMessage('Save new family member', 'Family members', 'success');
+        this.clientForm.reset();
+        this.submitted = false;
+        this.ref.close();
+      },
+      (err) => this._toastr.toastrGenericMessage('Error to save new family member', 'Family members', 'danger')
+    );
+  }
 
-  //   this._familyServices
-  //     .newFamilyMember(this.process, this.clientForm.value)
-  //     .subscribe(
-  //       (res) => {
-  //         this._toastr.toastrGenericMessage('Save new family member', 'Family members', 'success');
-  //         this.clientForm.reset();
-  //         this.submitted = false;
-  //       },
-  //       (err) => this._toastr.toastrGenericMessage('Error to save new family member', 'Family members', 'danger')
-  //     );
-  // }
+  updateMember() {
+    if (this.clientForm.invalid) {
+      this.submitted = true;
+      this._toastr.toastrGenericMessage('Form to family member is invalid', 'Family members', 'warning');
+      // alert('formulario invalido');
+      return;
+    }
 
-  // loadToEditMember(client: Client) {
-  //   this.clientForm.setValue(client);
-  // }
-
-  // updateMember() {
-  //   if (this.clientForm.invalid) {
-  //     this.submitted = true;
-  //     this._toastr.toastrGenericMessage('Form to family member is invalid', 'Family members', 'warning');
-  //     // alert('formulario invalido');
-  //     return;
-  //   }
-
-  //   this._familyServices
-  //     .editFamilyMember(this.process, this.clientForm.value)
-  //     .subscribe((res) => {
-  //       if (res.ok) {
-  //         this._toastr.toastrGenericMessage('Edit family member', 'Family members', 'success');
-  //         // this.loadMembers();
-  //         // this._familyServices.chageProcess(this.process);
-  //         this.clientForm.reset();
-  //         this.submitted = false;
-  //       }
-  //     });
-  // }
+    this._familyServices.editFamilyMember(this.process, this.clientForm.value).subscribe(
+      (res) => {
+        if (res.ok) {
+          this._toastr.toastrGenericMessage('Edit family member', 'Family members', 'success');
+          // this.loadMembers();
+          // this._familyServices.chageProcess(this.process);
+          this.clientForm.reset();
+          this.submitted = false;
+          this.ref.close();
+        }
+      },
+      (err) => this._toastr.toastrGenericMessage('Error to edit family member', 'Family members', 'danger')
+    );
+  }
 
   // removeMenber(client: Client) {
   //   this._familyServices

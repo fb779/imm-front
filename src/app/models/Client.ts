@@ -12,8 +12,8 @@ export class Client {
     country_citizenship?: string;
     other_citizenship?: string;
     country_residence?: string;
-    status_country_residence?: string;
-    status_country_residence_other?: string;
+    status_residence?: string;
+    status_residence_other?: string;
     relationship?: string;
     type?: string;
     active?: boolean;

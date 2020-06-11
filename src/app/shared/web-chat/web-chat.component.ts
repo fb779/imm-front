@@ -47,8 +47,7 @@ export class WebChatComponent implements OnInit {
     }
 
     this._chatService.setMessage(data).subscribe(
-      (response) => {
-        console.log(response);
+      () => {
         this.loadMessages()
       },
       (err) =>  console.log('Hubo un error en la creacion del mensaje', err)

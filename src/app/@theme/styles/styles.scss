@@ -14,16 +14,30 @@
 @import './overrides';
 // install the framework and custom global styles
 @include nb-install() {
-    // framework global styles
-    @include nb-theme-global();
-    @include nb-auth-global();
-    @include ngx-layout();
-    // loading progress bar
-    @include ngx-pace-theme();
-    @include nb-overrides();
+  // framework global styles
+  @include nb-theme-global();
+  @include nb-auth-global();
+  @include ngx-layout();
+  // loading progress bar
+  @include ngx-pace-theme();
+  @include nb-overrides();
 }
 
 ;
 .text-muted-danger {
-    color: #ff3d71 !important;
+  color: #ff3d71 !important;
 }
+
+.tabset {
+  flex-wrap: wrap;
+}
+
+nb-dialog-container {
+  overflow: auto;
+}
+
+// @media screen and (max-width:640px) {
+//   nb-dialog-container {
+//     overflow: auto;
+//   }
+// }

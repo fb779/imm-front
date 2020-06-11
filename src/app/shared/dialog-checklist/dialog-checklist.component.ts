@@ -27,12 +27,14 @@ export class DialogChecklistComponent implements OnInit {
   }
 
   openDialog(){
+    let hasScroll = true;
     this.dialogService.open(CheckListFormComponent, {
       context: {
         title: 'This is a title passed to the dialog component',
         process: this.process,
         items: this.itemNames
       },
+      hasScroll
     }).onClose.subscribe( (res)=>{
       if (res ){
         this.saveCheck.emit(res);

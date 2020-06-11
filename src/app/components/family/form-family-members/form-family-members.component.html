@@ -170,8 +170,11 @@
             <button type="button" nbButton (click)="cancel()">
               cancelar
             </button>
-            <button type="button" nbButton>
+            <button type="button" nbButton status="success" *ngIf="!this.client._id" (click)="addMember()">
                 guardar
+            </button>
+            <button type="button" nbButton status="success" *ngIf="this.client._id" (click)="updateMember()">
+                update
             </button>
         </nb-card-footer>
     </nb-card>

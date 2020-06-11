@@ -58,7 +58,6 @@ export class ProcessComponent implements OnInit, OnDestroy {
   }
 
   // changeForm(){
-
   //   if ( this.type_visa === visa_categories.visitor ){
   //     this.type_visa = visa_categories.study;
   //     return;
@@ -68,7 +67,6 @@ export class ProcessComponent implements OnInit, OnDestroy {
   //     this.type_visa = visa_categories.visitor;
   //     return;
   //   }
-
   // }
 
 }

@@ -5,11 +5,12 @@ import { CheckList } from './CheckList';
 
 export class Process {
     _id: string;
-    status: String;
-    active: Boolean;
+    status: string;
+    active: boolean;
     client: Client;
     visa_category: Category;
-    code?: string;
+    code: string;
+    companion?: number;
     consultant?: User;
     clien_process?: Client[];
     check_list?: CheckList[];

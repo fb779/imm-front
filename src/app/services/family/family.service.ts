@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable, of, BehaviorSubject, Subject } from "rxjs";
+import { Observable, of, BehaviorSubject, Subject, combineLatest } from "rxjs";
 import { map, tap, pluck, filter, switchMap } from "rxjs/operators";
 
 import { Process } from "../../models/Process";
@@ -13,18 +13,32 @@ import { Client } from '../../models/Client';
 export class FamilyService {
   // private processBS = new Subject();
   private processBS = new BehaviorSubject("");
+  private numberFamilyMembersBS = new BehaviorSubject("");
 
   process$ = this.processBS.asObservable();
+
+  numberFamilyMembers: number;
 
   listFamilyMembers$ = this.process$.pipe(
     switchMap((process_id) =>
       this._http.get(`${environment.api_url}/family/${process_id}`)
     ),
     pluck("list"),
+    tap( (x:any)=> {
+      this.numberFamilyMembers = parseInt(x.length);
+    } ),
     map((x: any) => {
       return x.map(({ client }) => ({ ...client }));
-    })
+    }),
+
   );
+
+  // numberFamilyMembers$ = combineLatest(
+  //   this.listFamilyMembers$
+  // ).pipe(
+  //   map( x => x.length )
+  // );
+
 
   constructor(private _http: HttpClient) { }
 
@@ -62,9 +76,7 @@ export class FamilyService {
 
   getDocumentsOfMember(process: Process, client: Client) {
     const url = `${environment.api_url}/documents/${process._id}/${client._id}`;
-
-    return this._http.get(url).pipe(
-    );
+    return this._http.get(url).pipe();
   }
 
   getFamilyMembersByClient(id_client: string): Observable<Client[]> {

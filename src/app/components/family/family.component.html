@@ -5,17 +5,13 @@
                 <label for="">FAMILY MEMBERS</label>
             </div>
             <div class="col text-right">
-                <button type="button" nbButton size="tiny" status="primary" (click)="openDialog()">
+                <button type="button" nbButton size="tiny" status="primary" (click)="openDialog()" *ngIf="isVisible() | async">
                     <nb-icon icon="plus-circle-outline"></nb-icon>
                 </button>
             </div>
         </div>
     </nb-card-header>
-    <nb-card-body>
-        <div class="row">
-            <div class="col">
-                listado de miembros de la familia
-            </div>
-        </div>
-    </nb-card-body>
+
+    <ngx-family-list [list]="listFamilyMembers$ | async" [visible]="isVisible() | async" (update_client)="updateClient($event)" (delete_client)="deleteClient($event)"></ngx-family-list>
+
 </nb-card>

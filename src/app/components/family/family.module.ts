@@ -9,21 +9,22 @@ import {
   NbIconModule,
   NbCardModule,
   NbButtonModule,
-  NbMenuModule,
   NbInputModule,
   NbSelectModule,
-  NbCheckboxModule,
-  NbStepperModule,
   NbListModule,
-  NbDatepickerModule,
-  NbAccordionModule,
   NbSpinnerModule,
   NbAlertModule,
+  NbDialogModule,
+  NbMenuModule,
+  NbCheckboxModule,
+  NbStepperModule,
+  NbDatepickerModule,
+  NbAccordionModule,
   NbActionsModule,
   NbRadioModule,
   NbUserModule,
-  NbDialogModule,
 } from "@nebular/theme";
+import { DeleteFamilyMemberComponent } from './delete-family-member/delete-family-member.component';
 
 
 
@@ -36,11 +37,11 @@ const nebular_family = [
   // NbCheckboxModule,
   NbButtonModule,
   NbSpinnerModule,
-  NbDialogModule.forRoot(),
   NbAlertModule,
+  NbListModule,
+  NbDialogModule.forRoot(),
   // NbDatepickerModule,
   // NbStepperModule,
-  // NbListModule,
   // NbAccordionModule,
   // NbActionsModule,
   // NbRadioModule,
@@ -58,12 +59,14 @@ const nebular_family = [
     FamilyComponent,
     FamilyListComponent,
     FormFamilyMembersComponent,
+    DeleteFamilyMemberComponent,
   ],
   exports:[
     FamilyComponent
   ],
   entryComponents: [
     FormFamilyMembersComponent,
+    DeleteFamilyMemberComponent,
   ],
 })
 export class FamilyModule { }

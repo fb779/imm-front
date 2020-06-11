@@ -46,10 +46,7 @@ export class ChatService {
   // }
 
   setMessage(data: any){
-    console.log(data);
-
     const url = `${ environment.api_url }/chat`;
-
-    return this._http.post( url, data )
+    return this._http.post( url, data ); //.pipe( pluck('ok') )
   }
 }

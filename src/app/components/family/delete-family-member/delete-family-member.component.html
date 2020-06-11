@@ -1,0 +1,17 @@
+<nb-card>
+    <nb-card-body>
+        <div>
+            <p>
+                Do you want to remove {{ client.first_name}} {{ client.last_name }} ?
+            </p>
+        </div>
+    </nb-card-body>
+    <nb-card-footer class="dialog-footer">
+        <button type="button" nbButton (click)="cancel()">
+            <nb-icon icon="close-circle-outline"></nb-icon>
+          </button>
+        <button type="button" nbButton status="success" (click)="delete()">
+            <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+          </button>
+    </nb-card-footer>
+</nb-card>
