@@ -66,7 +66,7 @@ export class VisitorComponent implements OnInit {
       'age': new FormControl('', [Validators.required, Validators.min(0), Validators.max(99)]),
       'destiny': new FormControl('', [Validators.required]),
       'marital_status': new FormControl('', [Validators.required]),
-      'number_accompanying': new FormControl(0, [Validators.required]),
+      // 'number_accompanying': new FormControl(0, [Validators.required]),
       'purpose_visit': new FormControl('', [Validators.required]),
       'letter_invitation': new FormControl('', [Validators.required]),
       'stay_canada': new FormControl('', [Validators.required]),
