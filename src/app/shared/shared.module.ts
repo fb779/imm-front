@@ -16,9 +16,6 @@ import {
   NbAccordionModule,
   NbSpinnerModule,
   NbAlertModule,
-  NbActionsModule,
-  NbRadioModule,
-  NbUserModule,
 } from "@nebular/theme";
 
 const nebular = [
@@ -34,23 +31,18 @@ const nebular = [
   NbListModule,
   NbAccordionModule,
   NbSpinnerModule,
-  NbAlertModule
-  // NbActionsModule,
-  // NbRadioModule,
-  // NbUserModule
+  NbAlertModule,
 ];
 
 import { VisitorComponent } from "./forms/visitor/visitor.component";
 import { TuristComponent } from "./forms/turist/turist.component";
-// import { FamilyFormComponent } from "./forms/family-form/family-form.component";
-import { UploadFileComponent } from './upload-file/upload-file.component';
-import { ClientDocumentsUploadComponent } from './client-documents-upload/client-documents-upload.component';
-import { ListDocumentsComponent } from './client-documents-upload/list-documents/list-documents.component';
-import { UploadDocumentComponent } from './client-documents-upload/upload-document/upload-document.component';
-import { DialogChecklistComponent } from './dialog-checklist/dialog-checklist.component';
-import { CheckListFormComponent } from './dialog-checklist/check-list-form/check-list-form.component';
-import { FamilyModule } from '../components/family/family.module';
-
+import { UploadFileComponent } from "./upload-file/upload-file.component";
+import { ClientDocumentsUploadComponent } from "./client-documents-upload/client-documents-upload.component";
+import { ListDocumentsComponent } from "./client-documents-upload/list-documents/list-documents.component";
+import { UploadDocumentComponent } from "./client-documents-upload/upload-document/upload-document.component";
+import { DialogChecklistComponent } from "./dialog-checklist/dialog-checklist.component";
+import { CheckListFormComponent } from "./dialog-checklist/check-list-form/check-list-form.component";
+import { FamilyModule } from "../components/family/family.module";
 
 @NgModule({
   imports: [
@@ -63,7 +55,6 @@ import { FamilyModule } from '../components/family/family.module';
   declarations: [
     VisitorComponent,
     TuristComponent,
-    // FamilyFormComponent,
     UploadFileComponent,
     ClientDocumentsUploadComponent,
     ListDocumentsComponent,
@@ -79,8 +70,6 @@ import { FamilyModule } from '../components/family/family.module';
     ClientDocumentsUploadComponent,
     DialogChecklistComponent,
   ],
-  entryComponents: [
-    CheckListFormComponent
-  ],
+  entryComponents: [CheckListFormComponent],
 })
-export class SharedModule { }
+export class SharedModule {}
