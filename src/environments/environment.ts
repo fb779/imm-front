@@ -1,4 +1,4 @@
-import { URL_SERVICIOS } from '../app/config/config';
+import { URL_SERVICIOS } from "../app/config/config";
 /**
  * @license
  * Copyright Akveo. All Rights Reserved.
@@ -11,5 +11,6 @@ import { URL_SERVICIOS } from '../app/config/config';
 
 export const environment = {
   production: false,
-  api_url: URL_SERVICIOS,
+  api_url: "http://localhost:3000",
+  api_version: "/api/v1",
 };

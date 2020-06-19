@@ -3,19 +3,23 @@
  * Copyright Akveo. All Rights Reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { environment } from '../environments/environment';
+import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { NgModule } from "@angular/core";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { environment } from "../environments/environment";
 
-import { NbPasswordAuthStrategy, NbAuthModule, NbAuthJWTToken } from '@nebular/auth';
+import {
+  NbPasswordAuthStrategy,
+  NbAuthModule,
+  NbAuthJWTToken,
+} from "@nebular/auth";
 
-import { CoreModule } from './@core/core.module';
-import { ThemeModule } from './@theme/theme.module';
+import { CoreModule } from "./@core/core.module";
+import { ThemeModule } from "./@theme/theme.module";
 
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from "./app.component";
+import { AppRoutingModule } from "./app-routing.module";
 
 import {
   NbChatModule,
@@ -25,13 +29,11 @@ import {
   NbSidebarModule,
   NbToastrModule,
   NbWindowModule,
-} from '@nebular/theme';
+} from "@nebular/theme";
 
-
-import { ServiceModule } from './services/service.module';
-import { AuthGuardGuard } from './services/services.index';
-import { AuthInterceptorService } from './services/interceptor/auth-interceptor.service';
-import { SharedModule } from './shared/shared.module';
+import { ServiceModule } from "./services/service.module";
+import { AuthGuardGuard } from "./services/services.index";
+import { AuthInterceptorService } from "./services/interceptor/auth-interceptor.service";
 
 @NgModule({
   declarations: [AppComponent],
@@ -49,24 +51,24 @@ import { SharedModule } from './shared/shared.module';
     NbWindowModule.forRoot(),
     NbToastrModule.forRoot(),
     NbChatModule.forRoot({
-      messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
+      messageGoogleMapKey: "AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY",
     }),
     CoreModule.forRoot(),
     NbAuthModule.forRoot({
       strategies: [
         NbPasswordAuthStrategy.setup({
-          name: 'email',
-          baseEndpoint: environment.api_url,
+          name: "email",
+          baseEndpoint: `${environment.api_url}${environment.api_version}`,
           token: {
             // class: NbAuthSimpleToken,
             class: NbAuthJWTToken,
             // key: 'token', // this parameter tells where to look for the token
           },
           login: {
-            endpoint: '/login/signin',
-            method: 'post',
+            endpoint: "/login/signin",
+            method: "post",
             redirect: {
-              success : '/pages',
+              success: "/pages",
               failure: null,
             },
             // defaultErrors: ['Login/Email combination is not correct, please try again.'],
@@ -83,10 +85,10 @@ import { SharedModule } from './shared/shared.module';
           //   // defaultMessages: ['You have been successfully logged in.'],
           // },
           logout: {
-            endpoint: '/login/signout',
-            method: 'get',
+            endpoint: "/login/signout",
+            method: "get",
             redirect: {
-              success : '/auth/login',
+              success: "/auth/login",
               failure: null,
             },
           },
@@ -95,9 +97,10 @@ import { SharedModule } from './shared/shared.module';
       forms: {
         login: {
           redirectDelay: 0, // delay before redirect after a successful login, while success message is shown to the user
-          strategy: 'email',  // strategy id key.
+          strategy: "email", // strategy id key.
           // rememberMe: false,   // whether to show or not the `rememberMe` checkbox
-          showMessages: {     // show/not show success/error messages
+          showMessages: {
+            // show/not show success/error messages
             success: true,
             error: true,
           },
@@ -146,7 +149,7 @@ import { SharedModule } from './shared/shared.module';
           email: {
             required: true,
             email: true,
-            pattern: ''
+            pattern: "",
           },
           firstName: {
             required: true,
@@ -161,7 +164,6 @@ import { SharedModule } from './shared/shared.module';
         },
       },
     }),
-
   ],
   providers: [
     // {
@@ -194,9 +196,8 @@ import { SharedModule } from './shared/shared.module';
       useClass: AuthInterceptorService,
       multi: true,
     },
-    AuthGuardGuard
+    AuthGuardGuard,
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}

@@ -5,7 +5,7 @@ import { map, tap, pluck, filter, switchMap } from "rxjs/operators";
 
 import { Process } from "../../models/Process";
 import { environment } from "../../../environments/environment";
-import { Client } from '../../models/Client';
+import { Client } from "../../models/Client";
 
 @Injectable({
   providedIn: "root",
@@ -21,16 +21,17 @@ export class FamilyService {
 
   listFamilyMembers$ = this.process$.pipe(
     switchMap((process_id) =>
-      this._http.get(`${environment.api_url}/family/${process_id}`)
+      this._http.get(
+        `${environment.api_url}${environment.api_version}/family/${process_id}`
+      )
     ),
     pluck("list"),
-    tap( (x:any)=> {
+    tap((x: any) => {
       this.numberFamilyMembers = parseInt(x.length);
-    } ),
+    }),
     map((x: any) => {
       return x.map(({ client }) => ({ ...client }));
-    }),
-
+    })
   );
 
   // numberFamilyMembers$ = combineLatest(
@@ -39,8 +40,7 @@ export class FamilyService {
   //   map( x => x.length )
   // );
 
-
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient) {}
 
   chageProcess(id_process: string) {
     this.processBS.next(id_process);
@@ -49,7 +49,7 @@ export class FamilyService {
   newFamilyMember(process: Process, client: Client): Observable<any> {
     delete client._id;
 
-    let url = `${environment.api_url}/family/${process._id}`;
+    let url = `${environment.api_url}${environment.api_version}/family/${process._id}`;
 
     return this._http.post(url, client).pipe(
       tap(() => this.processBS.next(process._id)),
@@ -58,7 +58,7 @@ export class FamilyService {
   }
 
   editFamilyMember(process: Process, client: Client): Observable<any> {
-    let url = `${environment.api_url}/family/${process._id}`;
+    let url = `${environment.api_url}${environment.api_version}/family/${process._id}`;
 
     return this._http.put(url, client).pipe(
       tap(() => this.processBS.next(process._id)),
@@ -67,23 +67,21 @@ export class FamilyService {
   }
 
   removeFamiliMember(process: Process, client: Client): Observable<any> {
-    const url = `${environment.api_url}/family/${process._id}/${client._id}`;
+    const url = `${environment.api_url}${environment.api_version}/family/${process._id}/${client._id}`;
 
-    return this._http.delete(url).pipe(
-      tap(() => this.processBS.next(process._id))
-    );
+    return this._http
+      .delete(url)
+      .pipe(tap(() => this.processBS.next(process._id)));
   }
 
   getDocumentsOfMember(process: Process, client: Client) {
-    const url = `${environment.api_url}/documents/${process._id}/${client._id}`;
+    const url = `${environment.api_url}${environment.api_version}/documents/${process._id}/${client._id}`;
     return this._http.get(url).pipe();
   }
 
   getFamilyMembersByClient(id_client: string): Observable<Client[]> {
-    const url = `${environment.api_url}/family/client/${id_client}`;
+    const url = `${environment.api_url}${environment.api_version}/family/client/${id_client}`;
 
-    return this._http.get(url).pipe(
-      pluck('list')
-    );
+    return this._http.get(url).pipe(pluck("list"));
   }
 }
