@@ -10,6 +10,7 @@ import {
   USER_MENU_ITEMS as USER,
   CLIENT_MENU_ITEMS as CLIENT
 } from './pages-menu';
+import { roles } from '../../config/config';
 
 
 @Injectable({
@@ -27,22 +28,17 @@ export class SidebarService {
         return;
       }
 
-      if (dt.user.role === 'ADMIN_ROLE'){
+      if (dt.user.role === roles.admin){
         this.menu = ADMIN;
       }
 
-      if (dt.user.role === 'USER_ROLE'){
+      if (dt.user.role === roles.user){
         this.menu = USER;
-        // this.menu = [];
       }
 
-      if (dt.user.role === 'CLIENT_ROLE'){
+      if (dt.user.role === roles.client){
         this.menu = CLIENT;
       }
-
-      // if (dt.user.role !== 'ADMIN_ROLE'){
-      //   this.menu = CLIENT;
-      // }
     });
   }
 

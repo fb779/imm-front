@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { NbAuthService, NbAuthJWTToken } from '@nebular/auth';
+import { roles } from '../../config/config';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class AdminProfileGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       console.log('snapshot', next);
       console.log('guarda de tipo administrador', this.payload);
-      if (!this.payload || this.payload.user.role !== 'ADMIN_ROLE' ){
+      if (!this.payload || this.payload.user.role !== roles.admin ){
         console.log('sin permiso');
         this._router.navigate(['pages']);
         return false;

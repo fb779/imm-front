@@ -2,6 +2,12 @@ import { IOption, IOptionNumber } from '../models/Option';
 import { Title } from "../models/Titlel";
 import { Country } from '../models/Country';
 
+export const opsRoles: IOption[] = [
+  {value: "ADMIN_ROLE", name: "ADMIN"},
+  {value: "CLIENT_ROLE", name: "CLIENT"},
+  {value: "USER_ROLE", name: "USER"},
+];
+
 export const opsAccompanying: IOptionNumber[] = [
   {value: 0, name: "0" },
   {value: 1, name: "1" },

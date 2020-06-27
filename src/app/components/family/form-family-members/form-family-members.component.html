@@ -12,6 +12,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col-12 col-md-6">
                     <div class="form-group">
                         <label for="name">Last Name</label>
@@ -32,7 +33,6 @@
                         <div class="card-text text-white" *ngIf="(submitted || f.relationship.touched) && f.relationship.errors">
                             <small *ngIf="f.relationship.errors?.required" class="text-muted text-muted-danger">Field required</small>
                         </div>
-
                     </div>
                 </div>
 
@@ -46,7 +46,6 @@
                         <div class="card-text text-white" *ngIf="(submitted || f.title.touched) && f.title.errors">
                             <small *ngIf="f.title.errors?.required" class="text-muted text-muted-danger">Field required</small>
                         </div>
-
                     </div>
                 </div>
 
@@ -139,32 +138,6 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="row">
-
-                <div class="col-12" *ngIf="visibleClient">
-                    <button type="button" nbButton fullWidth status="success" (click)="addMember()">Add Family Member</button>
-                </div>
-
-                <div class="col-12" *ngIf="visibleConsultan">
-                    <button type="button" nbButton fullWidth status="success" (click)="addMember()" *ngIf="!f._id.value">
-                        Add Family Member
-                    </button>
-                    <div class="row" *ngIf="f._id.value">
-                        <div class="col">
-                            <button type="button" nbButton fullWidth status="primary" (click)="updateMember()">
-                                Update Information
-                            </button>
-                        </div>
-                        <div class="col">
-                            <button type="button" nbButton fullWidth status="danger" (click)="clientForm.reset()">
-                                Cancel
-                            </button>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div> -->
         </nb-card-body>
         <nb-card-footer class="dialog-footer">
             <button type="button" nbButton (click)="cancel()">

@@ -4,6 +4,10 @@ import { Router } from '@angular/router';
 import { NbAuthService } from '@nebular/auth';
 import { NbIconLibraries } from '@nebular/theme';
 import { SidebarService, UserService } from '../services/services.index';
+import { roles } from '../config/config';
+
+
+
 
 @Component({
   selector: 'ngx-pages',
@@ -35,15 +39,15 @@ export class PagesComponent implements OnInit {
         let user = token.getPayload()['user'];
 
         switch (user.role) {
-          case 'ADMIN_ROLE':{
+          case roles.admin:{
             this._router.navigate(['/admin']);
           }break;
 
-          case 'CLIENT_ROLE':{
+          case roles.client:{
             // this._router.navigate(['/client']);
           }break;
 
-          case 'USER_ROLE':{
+          case roles.user:{
             this._router.navigate(['/consultant']);
           }break;
 

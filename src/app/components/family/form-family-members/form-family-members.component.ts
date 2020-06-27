@@ -1,36 +1,44 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder, } from "@angular/forms";
+import { Component, OnInit, Input } from "@angular/core";
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  FormBuilder,
+} from "@angular/forms";
 import { Observable } from "rxjs";
-import { AssessmentFormService, FamilyService, ToastrService, } from "../../../services/services.index";
+import {
+  AssessmentFormService,
+  FamilyService,
+  ToastrService,
+} from "../../../services/services.index";
 import { status, relationships } from "../../../config/config";
-import { Title } from '../../../models/Titlel';
+import { Title } from "../../../models/Titlel";
 import { Country } from "../../../models/Country";
 import { Client } from "../../../models/Client";
 import { Process } from "../../../models/Process";
 
-
-import { NbDialogRef } from '@nebular/theme';
+import { NbDialogRef } from "@nebular/theme";
 
 @Component({
-  selector: 'ngx-form-family-members',
-  templateUrl: './form-family-members.component.html',
-  styleUrls: ['./form-family-members.component.scss']
+  selector: "ngx-form-family-members",
+  templateUrl: "./form-family-members.component.html",
+  styleUrls: ["./form-family-members.component.scss"],
 })
 export class FormFamilyMembersComponent implements OnInit {
   @Input("process") process: Process;
   @Input("url") url: string[];
   @Input("client") client: Client = {
-    _id: '',
-    first_name: '',
-    last_name: '',
-    relationship: '',
-    title: '',
-    sex: '',
-    country_citizenship: '',
-    other_citizenship: '',
-    country_residence: '',
-    status_residence: '',
-    status_residence_other: '',
+    _id: "",
+    first_name: "",
+    last_name: "",
+    relationship: "",
+    title: "",
+    sex: "",
+    country_citizenship: "",
+    other_citizenship: "",
+    country_residence: "",
+    status_residence: "",
+    status_residence_other: "",
     age: null,
   };
 
@@ -42,7 +50,8 @@ export class FormFamilyMembersComponent implements OnInit {
   clientForm: FormGroup;
   submitted = false;
 
-  listFamiliMembers$: Observable<Client[]> = this._familyServices.listFamilyMembers$;
+  listFamiliMembers$: Observable<Client[]> = this._familyServices
+    .listFamilyMembers$;
 
   optAges = [];
   optRelationships = [];
@@ -108,8 +117,12 @@ export class FormFamilyMembersComponent implements OnInit {
       other_citizenship: new FormControl("", []),
       country_residence: new FormControl("", [Validators.required]),
       status_residence: new FormControl("", [Validators.required]),
-      status_residence_other: new FormControl({ value: "", disabled: true }, [ Validators.required, ]),
-      age: new FormControl({ value: "", disabled: true }, [ Validators.required, ]),
+      status_residence_other: new FormControl({ value: "", disabled: true }, [
+        Validators.required,
+      ]),
+      age: new FormControl({ value: "", disabled: true }, [
+        Validators.required,
+      ]),
     });
 
     this.clientForm.controls["relationship"].valueChanges.subscribe(
@@ -137,11 +150,10 @@ export class FormFamilyMembersComponent implements OnInit {
     this.clientForm.setValue(this.client);
   }
 
-  cancel(){
+  cancel() {
     this.clientForm.reset();
     this.ref.close();
   }
-
 
   addMember() {
     if (this.clientForm.invalid) {
@@ -150,38 +162,64 @@ export class FormFamilyMembersComponent implements OnInit {
       return;
     }
     // console.log('Valores colectados',this.clientForm.value);
-    this._familyServices.newFamilyMember(this.process, this.clientForm.value).subscribe(
-      (res) => {
-        this._toastr.toastrGenericMessage('Save new family member', 'Family members', 'success');
-        this.clientForm.reset();
-        this.submitted = false;
-        this.ref.close();
-      },
-      (err) => this._toastr.toastrGenericMessage('Error to save new family member', 'Family members', 'danger')
-    );
+    this._familyServices
+      .newFamilyMember(this.process, this.clientForm.value)
+      .subscribe(
+        (res) => {
+          this._toastr.toastrGenericMessage(
+            "Save new family member",
+            "Family members",
+            "success"
+          );
+          this.clientForm.reset();
+          this.submitted = false;
+          this.ref.close();
+        },
+        (err) =>
+          this._toastr.toastrGenericMessage(
+            "Error to save new family member",
+            "Family members",
+            "danger"
+          )
+      );
   }
 
   updateMember() {
     if (this.clientForm.invalid) {
       this.submitted = true;
-      this._toastr.toastrGenericMessage('Form to family member is invalid', 'Family members', 'warning');
+      this._toastr.toastrGenericMessage(
+        "Form to family member is invalid",
+        "Family members",
+        "warning"
+      );
       // alert('formulario invalido');
       return;
     }
 
-    this._familyServices.editFamilyMember(this.process, this.clientForm.value).subscribe(
-      (res) => {
-        if (res.ok) {
-          this._toastr.toastrGenericMessage('Edit family member', 'Family members', 'success');
-          // this.loadMembers();
-          // this._familyServices.chageProcess(this.process);
-          this.clientForm.reset();
-          this.submitted = false;
-          this.ref.close();
-        }
-      },
-      (err) => this._toastr.toastrGenericMessage('Error to edit family member', 'Family members', 'danger')
-    );
+    this._familyServices
+      .editFamilyMember(this.process, this.clientForm.value)
+      .subscribe(
+        (res) => {
+          if (res.ok) {
+            this._toastr.toastrGenericMessage(
+              "Edit family member",
+              "Family members",
+              "success"
+            );
+            // this.loadMembers();
+            // this._familyServices.chageProcess(this.process);
+            this.clientForm.reset();
+            this.submitted = false;
+            this.ref.close();
+          }
+        },
+        (err) =>
+          this._toastr.toastrGenericMessage(
+            "Error to edit family member",
+            "Family members",
+            "danger"
+          )
+      );
   }
 
   // removeMenber(client: Client) {
@@ -194,5 +232,4 @@ export class FormFamilyMembersComponent implements OnInit {
   //       this.submitted = false;
   //     });
   // }
-
 }

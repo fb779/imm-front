@@ -18,7 +18,7 @@
             <tbody>
                 <tr *ngFor="let user of users">
                     <td>
-                        <img [src]="user.img" width="75px" alt="">
+                        <img [src]="user.img" width="75px" alt="" *ngIf="user.img">
                     </td>
                     <td>{{user.first_name}}</td>
                     <td>{{ user.last_name }}</td>
@@ -28,15 +28,15 @@
                         <div class="row">
                             <div class="col">
                                 <!-- <button nbButton fullWidth size="small" status="success" (click)="editUser( user )"> -->
-                                <button nbButton fullWidth size="small" status="success" [routerLink]="['user', user._id]">
-                                    <nb-icon icon="edit" pack="far"></nb-icon>
+                                <button nbButton size="small" [status]="(user.active) ? 'success':'primary'" [routerLink]="[user._id]">
+                                    <nb-icon icon="edit-2-outline"></nb-icon>
                                 </button>
                             </div>
-                            <div class="col">
-                                <button nbButton fullWidth size="small" status="info">
+                            <!-- <div class="col">
+                                <button nbButton fullWidth size="small" status="info" (click)="verUsusario(user)">
                                     <nb-icon icon="edit" pack="far"></nb-icon>
                                 </button>
-                            </div>
+                            </div> -->
                         </div>
 
                     </td>

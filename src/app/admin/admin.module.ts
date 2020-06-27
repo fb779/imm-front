@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
-import { ThemeModule } from '../@theme/theme.module';
+import { ThemeModule } from "../@theme/theme.module";
 import {
   NbMenuModule,
   NbCardModule,
@@ -14,8 +14,8 @@ import {
   NbDatepickerModule,
   NbIconModule,
   NbRadioModule,
-  NbUserModule
-} from '@nebular/theme';
+  NbUserModule,
+} from "@nebular/theme";
 
 const nebular = [
   ThemeModule,
@@ -32,20 +32,19 @@ const nebular = [
   // NbUserModule
 ];
 
-import { AdminRoutingModule } from './admin-routing.module';
-import { AdminComponent } from './admin.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { AdminRoutingModule } from "./admin-routing.module";
+import { AdminComponent } from "./admin.component";
+import { DashboardComponent } from "./dashboard/dashboard.component";
 
 @NgModule({
   imports: [
     CommonModule,
     AdminRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     ...nebular,
   ],
-  declarations: [
-    AdminComponent,
-    DashboardComponent,
-  ],
+  exports: [],
+  declarations: [AdminComponent, DashboardComponent],
 })
-export class AdminModule { }
+export class AdminModule {}

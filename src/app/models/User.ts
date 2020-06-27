@@ -6,7 +6,7 @@ export class User {
     last_name: string;
     email: string;
     role: string;
-    active: string;
+    active: boolean;
     img?: string;
     client?: Client;
     createdAt?: string;

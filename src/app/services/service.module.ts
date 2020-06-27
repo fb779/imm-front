@@ -8,7 +8,6 @@ import { SidebarService } from './sidebar/sidebar.service';
 import { AssessmentFormService } from './assessment-form/assessment-form.service';
 import { FormsGuidesService } from './forms-guides/forms-guides.service';
 import { UserService } from './user/user.service';
-import { UsersService } from './users/users.service';
 import { UserProcessService } from './process/user-process.service';
 import { AdminProcessService } from './process/admin-process.service';
 import { ConsultantService } from './consultant/consultant.service';
@@ -30,7 +29,6 @@ import { ToastrService } from './toastr/toastr.service';
     AssessmentFormService,
     FormsGuidesService,
     UserService,
-    UsersService,
     UserProcessService,
     AdminProcessService,
     ConsultantService,

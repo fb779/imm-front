@@ -82,10 +82,6 @@ export class FamilyComponent implements OnInit {
           });
         }
       });
-
-
-
-
   }
 
 }

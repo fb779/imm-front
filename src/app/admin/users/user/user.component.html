@@ -1,3 +1,79 @@
-<p>
-    user works - {{ id }}
-</p>
+<form novalidate autocomplete="off" [formGroup]="formClient">
+    <nb-card>
+        <nb-card-header>
+            {{ user.first_name | uppercase }} - {{ user.last_name | uppercase }}
+        </nb-card-header>
+        <nb-card-body>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="">First Name</label>
+                        <input type="text" name="first_name" formControlName="first_name" nbInput fullWidth [status]=" (submitted || f.first_name.touched) && f.first_name.errors ? 'danger' : '' " />
+                        <div *ngIf="(submitted || f.first_name.touched) && f.first_name.errors" class="card-text">
+                            <small *ngIf="f.first_name.errors?.required" class="text-muted text-muted-danger">Field required</small>
+                            <small *ngIf="f.first_name.errors?.existe" class="text-muted text-muted-danger">campo con errores</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="name">Last Name</label>
+                        <input type="text" name="last_name" formControlName="last_name" nbInput fullWidth [status]="((submitted || f.last_name.touched) && f.last_name.errors)?'danger':''" />
+                        <div *ngIf="(submitted || f.last_name.touched) && f.last_name.errors" class="card-text">
+                            <small *ngIf="f.last_name.errors?.required" class="text-muted text-muted-danger">Field required</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-12">
+                    <div class="form-group">
+                        <label for="name">Email</label>
+                        <input type="text" name="email" formControlName="email" nbInput fullWidth [status]="((submitted || f.email.touched) && f.email.errors)?'danger':''" />
+                        <div *ngIf="(submitted || f.email.touched) && f.email.errors" class="card-text">
+                            <small *ngIf="f.email.errors?.required" class="text-muted text-muted-danger">Field required</small>
+                            <small *ngIf="f.email.errors?.pattern" class="text-muted text-muted-danger">Email invalid</small>
+                            <small *ngIf="f.email.errors?.existe" class="text-muted text-muted-danger">The email already exist</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="name">Role</label>
+                        <!-- <input type="text" name="role" formControlName="role" nbInput fullWidth [status]="((submitted || f.role.touched) && f.role.errors)?'danger':''" /> -->
+                        <nb-select name="role" placeholder="Select Showcase" fullWidth formControlName="role" [status]="((submitted || f.role.touched) && f.role.errors)?'danger':''">
+                            <nb-option value="">Select...</nb-option>
+                            <nb-option *ngFor="let item of roles$ | async" [value]='item.value'> {{ item.name }}</nb-option>
+                        </nb-select>
+                        <div *ngIf="(submitted || f.role.touched) && f.role.errors" class="card-text">
+                            <small *ngIf="f.role.errors?.required" class="text-muted text-muted-danger">Field required</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="name">Status</label>
+                        <div>
+                            <nb-checkbox name="active" formControlName="active">
+                                {{ status }}
+                            </nb-checkbox>
+                        </div>
+                        <div *ngIf="(submitted || f.active.touched) && f.active.errors" class="card-text">
+                            <small *ngIf="f.active.errors?.required" class="text-muted text-muted-danger">Field required</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nb-card-body>
+        <nb-card-footer>
+            <button nbButton status="danger" ngRouter [routerLink]="[ '/admin', 'users' ]">
+              <nb-icon icon="close-circle-outline" ></nb-icon>
+            </button>
+            <button nbButton status="success" (click)="saveUser()">
+              <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+            </button>
+        </nb-card-footer>
+    </nb-card>
+</form>

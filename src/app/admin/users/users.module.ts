@@ -1,51 +1,45 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { UsersRoutingModule } from './users-routing.module';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { UsersRoutingModule } from "./users-routing.module";
 
-import { ThemeModule } from '../../@theme/theme.module';
+import { ThemeModule } from "../../@theme/theme.module";
 
 import {
   NbMenuModule,
+  NbIconModule,
   NbCardModule,
+  NbButtonModule,
   NbInputModule,
   NbSelectModule,
-  NbActionsModule,
-  NbButtonModule,
   NbCheckboxModule,
-  NbDatepickerModule,
-  NbIconModule,
-  NbRadioModule,
-  NbUserModule
-} from '@nebular/theme';
+} from "@nebular/theme";
 
 const user_nebular = [
   ThemeModule,
   NbMenuModule,
   NbCardModule,
-  // NbInputModule,
-  // NbSelectModule,
-  // NbActionsModule,
-  NbButtonModule,
-  // NbCheckboxModule,
-  // NbDatepickerModule,
   NbIconModule,
-  // NbRadioModule,
-  // NbUserModule
+  NbButtonModule,
+  NbInputModule,
+  NbSelectModule,
+  NbCheckboxModule,
 ];
 
-import { UsersComponent } from './users.component';
-import { UserComponent } from './user/user.component';
+import { UsersComponent } from "./users.component";
+import { UserComponent } from "./user/user.component";
+import { UsersService } from './users.service';
 
 @NgModule({
   imports: [
     CommonModule,
     UsersRoutingModule,
-    ...user_nebular
+    FormsModule,
+    ReactiveFormsModule,
+    ...user_nebular,
   ],
   exports: [],
-  declarations: [
-    UsersComponent,
-    UserComponent,
-  ]
+  declarations: [UsersComponent, UserComponent],
+  providers: [ UsersService ]
 })
-export class UsersModule { }
+export class UsersModule {}
