@@ -163,8 +163,6 @@ export class UserComponent implements OnInit {
       return;
     }
 
-    console.log('valores del formulario ',this.formUser.value );
-
     if ( this.id === 'new' ){
       this._usersService.createUser( this.formUser.value ).subscribe(
         (response)=> {
