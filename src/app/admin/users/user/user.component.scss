@@ -3,3 +3,22 @@ nb-card>nb-card-footer {
   justify-content: space-around;
   align-items: stretch;
 }
+
+.input-group {
+  flex-wrap: nowrap;
+}
+
+.input-group>input {
+  // border: solid red 1px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+// .input-group:first-child {
+//   border: solid red 1px;
+// }
+.input-group>div>button {
+  // border: solid green 1px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}

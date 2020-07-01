@@ -1,0 +1,35 @@
+nb-card-header {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.item section {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+
+.item .img {
+  border: solid red 1px;
+}
+
+.item .info {
+  border: solid green 1px;
+}
+
+.item .options {
+  border: solid skyblue 1px;
+}
+
+@media screen and (max-width:767px) {
+  .title {
+    display: none;
+  }
+}

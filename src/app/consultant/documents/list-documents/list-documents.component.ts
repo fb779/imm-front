@@ -61,7 +61,6 @@ export class ListDocumentsComponent implements OnInit {
 
   reject(document_file: Document, comment: string){
     if (!comment){
-      alert('The comment is required');
       this._toastr.toastrGenericMessage('The comment is require', 'Documents', 'warning');
       return;
     }

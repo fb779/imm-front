@@ -13,6 +13,7 @@ import {
   NbInputModule,
   NbSelectModule,
   NbCheckboxModule,
+  NbListModule,
 } from "@nebular/theme";
 
 const user_nebular = [
@@ -24,6 +25,7 @@ const user_nebular = [
   NbInputModule,
   NbSelectModule,
   NbCheckboxModule,
+  NbListModule,
 ];
 
 import { UsersComponent } from "./users.component";

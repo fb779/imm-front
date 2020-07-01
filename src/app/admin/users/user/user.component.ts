@@ -15,7 +15,8 @@ import { UsersService } from '../users.service';
 import { User } from "../../../models/User";
 import { emailRegex } from '../../../config/config';
 import { opsRoles } from '../../../mocks/titles';
-import { of } from 'rxjs';
+import { of, Observable } from 'rxjs';
+import { Client } from '../../../models/Client';
 
 @Component({
   selector: "ngx-user",
@@ -24,7 +25,7 @@ import { of } from 'rxjs';
 })
 export class UserComponent implements OnInit {
   id: string;
-  formClient: FormGroup;
+  formUser: FormGroup;
   user: User = {
     _id: "",
     first_name: "",
@@ -48,7 +49,12 @@ export class UserComponent implements OnInit {
   ) {
     this._activateRoute.params.subscribe((params) => {
       this.id = params["id"];
-      if (this.id && this.id !== "new") {
+      // this.getUser(this.id);
+      if (!this.id) {
+        this._router.navigate(['/admin', 'users']);
+      }
+
+      if (this.id !== "new"){
         this.getUser(this.id);
       }
     });
@@ -59,19 +65,23 @@ export class UserComponent implements OnInit {
   }
 
   build() {
-    this.formClient = this.formBuilder.group({
-      _id: new FormControl("", [Validators.required]),
+    this.formUser = this.formBuilder.group({
+      _id: new FormControl(""),
       first_name: new FormControl("", [Validators.required]),
       last_name: new FormControl("", [Validators.required]),
-      email: new FormControl("", [
+      email: new FormControl("",  [
         Validators.required,
         Validators.pattern(emailRegex),
+      ],
+      [
+        this.existEmail.bind(this)
       ]),
       role: new FormControl("", [Validators.required]),
       active: new FormControl(false, [Validators.required]),
+      password: new FormControl('', [Validators.required]),
     });
 
-    this.formClient.controls["active"].valueChanges.subscribe(
+    this.formUser.get("active").valueChanges.subscribe(
       (value: any) => {
         if (value){
           this.status = 'Active';
@@ -80,32 +90,70 @@ export class UserComponent implements OnInit {
         }
       }
     );
+
+    this.formUser.get("_id").valueChanges.subscribe(
+      (value: any) => {
+        if (value) {
+          // this.formUser.get('email').clearAsyncValidators();
+          // this.formUser.get('email').reset();
+          this.formUser.get('password').clearValidators();
+          this.formUser.get('password').reset();
+        }
+      }
+    );
   }
 
   get f() {
-    return this.formClient.controls;
+    return this.formUser.controls;
   }
 
   getUser(id: string) {
     // this._userService.getUser(id).subscribe(
     this._usersService.getUser(id).subscribe(
-      (user) => {
-        this.user = user;
-
-        let loadUser = user;
+      (user:User) => {
+        let loadUser = this.user = user;
         delete loadUser.img;
         delete loadUser.client;
         delete loadUser.createdAt;
         delete loadUser.updatedAt;
 
-        this.formClient.setValue(loadUser);
+        this.formUser.setValue(loadUser);
       },
-      (err) => console.log("Error al cargar el usuario")
+      // (err) => console.log("Error al cargar el usuario")
+      (err) => {
+        this._toastr.toastrGenericMessage(`User doesn't exist`,'User Information', 'danger');
+        this._router.navigate(['/admin', 'users']);
+      }
+    );
+  }
+
+  randomPassword(){
+    this.formUser.get('password').setValue(this._usersService.randomPassword());
+  }
+
+  /**
+   * validacion asincrona del email de usuario
+   * -  se realiza verificacion de existencia de ID y comparacion con emial
+   * -  caso especial para la modificacion del usuario, valida si el email es diferente
+   */
+  existEmail( control: FormControl ): Observable<any>|Promise<any> {
+    return new Promise(
+      (resolve, reject) => {
+        if ( !this.user._id || this.user.email !== control.value ){
+          this._usersService.validEmail(control.value).subscribe(
+            (response) => {
+              return ( !response ) ? resolve(null) : resolve({ emailExist: true });
+            }
+          );
+        } else {
+          resolve(null);
+        }
+      }
     );
   }
 
   saveUser() {
-    if (this.formClient.invalid) {
+    if (this.formUser.invalid) {
       this.submitted = true;
       this._toastr.toastrGenericMessage(
         "Complete the information",
@@ -115,30 +163,33 @@ export class UserComponent implements OnInit {
       return;
     }
 
-    // if ( this.id === 'new' ){
-    //   this._usersService.createUser( this.formClient.value ).subscribe(
-    //     (response)=> console.log(`Llegada de informacion`, response)
-    //   );
-    // }
+    console.log('valores del formulario ',this.formUser.value );
 
-    if ( this.formClient.value._id ){
-      this._usersService.updateUser( this.id, this.formClient.value ).subscribe(
+    if ( this.id === 'new' ){
+      this._usersService.createUser( this.formUser.value ).subscribe(
         (response)=> {
-          console.log(`Edicion de informacion`, response)
+          console.log(`Llegada de informacion`, response)
           this._toastr.toastrGenericMessage(
-            `User edit successfull ${ this.formClient.value.first_name } ${ this.formClient.value.last_name }`,
+            `User create successfull ${ this.formUser.value.first_name } ${ this.formUser.value.last_name }`,
+            "User",
+            "success"
+          );
+          this._router.navigate(['/admin/users']);
+        }
+      );
+    }
+
+    if ( this.formUser.value._id ){
+      this._usersService.updateUser( this.id, this.formUser.value ).subscribe(
+        (response)=> {
+          this._toastr.toastrGenericMessage(
+            `User edit successfull ${ this.formUser.value.first_name } ${ this.formUser.value.last_name }`,
             "User information",
             "success"
           );
           this._router.navigate(['/admin/users']);
         }
-
       );
     }
-
-
-
-
-
   }
 }

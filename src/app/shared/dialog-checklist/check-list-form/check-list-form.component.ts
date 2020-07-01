@@ -81,7 +81,6 @@ export class CheckListFormComponent implements OnInit {
     if ( this.checklistFormGroup.invalid ){
       this.submited = true;
       this._toastr.toastrGenericMessage(`Form is invalid`,'Check list', 'warning');
-      // alert('Fomr is invalid');
       return;
     }
 

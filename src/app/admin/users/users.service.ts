@@ -10,14 +10,12 @@ import { of } from 'rxjs';
 })
 export class UsersService {
 
-
   constructor( private _http: HttpClient ) { }
 
   getUsers(...params) {
     let fields = params.reduce((acc, cur)=> (acc) ? `${acc}&${cur.field}=${cur.value}` : `?${cur.field}=${cur.value}`,'');
-    console.log(fields);
+    // console.log(fields);
     let url = `${environment.api_url}${environment.api_version}/users${fields}`;
-
 
     return this._http.get(url).pipe(
       map((resp: any) => resp.data)
@@ -25,12 +23,10 @@ export class UsersService {
   }
 
   getUser(id: string){
-    console.log(`id del usuario a consultar ${ id }`);
-
     const url = `${environment.api_url}${environment.api_version}/users/${id}`;
     return this._http.get(url).pipe(
       map((resp: any) => {
-        let user: User = resp.data.user;
+        let user: User = {...resp.data.user, password: ''};
         return user;
       })
     );
@@ -38,26 +34,24 @@ export class UsersService {
 
   createUser(user: User){
     console.log(`'nuevo ususario para crear' ${ user.first_name}`);
-    return of({user});
-
-    // const url = `${environment.api_url}${environment.api_version}/users/${id}`;
-    // return this._http.post( url, user ).pipe();
+    delete user._id;
+    const url = `${environment.api_url}${environment.api_version}/users`;
+    return this._http.post( url, user ).pipe();
   }
 
   updateUser(id: string, user: User){
-    // console.log(`Id: ${id}, ususario para editar ${ user.first_name}`);
-    // return of({id, user});
     const url = `${environment.api_url}${environment.api_version}/users/${id}`;
-    return this._http.put(url, user).pipe(
-      // tap( (data) => console.log(data) )
+    return this._http.put(url, user).pipe();
+  }
+
+  randomPassword(){
+    return Math.random().toString(36).slice(-8);
+  }
+
+  validEmail(email: string){
+    const url = `${environment.api_url}${environment.api_version}/users/valid?email=${ email }`;
+    return this._http.get( url ).pipe(
+      map( (el: any)=> el.data )
     );
   }
-
-  deleteUser(id: string){
-    console.log(`id del usuario a eliminar ${ id }`);
-    return of({id});
-    // const url = `${environment.api_url}${environment.api_version}/users/${id}`;
-    // return this._http.delete(url).pipe();
-  }
-
 }

@@ -4,8 +4,8 @@ import { Country } from '../models/Country';
 
 export const opsRoles: IOption[] = [
   {value: "ADMIN_ROLE", name: "ADMIN"},
-  {value: "CLIENT_ROLE", name: "CLIENT"},
   {value: "USER_ROLE", name: "USER"},
+  // {value: "CLIENT_ROLE", name: "CLIENT"},
 ];
 
 export const opsAccompanying: IOptionNumber[] = [

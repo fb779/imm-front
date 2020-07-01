@@ -158,7 +158,6 @@ export class FormFamilyMembersComponent implements OnInit {
   addMember() {
     if (this.clientForm.invalid) {
       this.submitted = true;
-      // alert('formulario invalido');
       return;
     }
     // console.log('Valores colectados',this.clientForm.value);
@@ -192,7 +191,6 @@ export class FormFamilyMembersComponent implements OnInit {
         "Family members",
         "warning"
       );
-      // alert('formulario invalido');
       return;
     }
 

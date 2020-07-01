@@ -1,7 +1,12 @@
-<form novalidate autocomplete="off" [formGroup]="formClient">
+<form novalidate autocomplete="off" [formGroup]="formUser">
     <nb-card>
         <nb-card-header>
-            {{ user.first_name | uppercase }} - {{ user.last_name | uppercase }}
+            <ng-container *ngIf="f.first_name.value; else elseNewUser">
+                {{ f.first_name.value | uppercase }} {{ f.last_name.value | uppercase }}
+            </ng-container>
+            <ng-template #elseNewUser>
+                New User
+            </ng-template>
         </nb-card-header>
         <nb-card-body>
             <div class="row">
@@ -33,7 +38,7 @@
                         <div *ngIf="(submitted || f.email.touched) && f.email.errors" class="card-text">
                             <small *ngIf="f.email.errors?.required" class="text-muted text-muted-danger">Field required</small>
                             <small *ngIf="f.email.errors?.pattern" class="text-muted text-muted-danger">Email invalid</small>
-                            <small *ngIf="f.email.errors?.existe" class="text-muted text-muted-danger">The email already exist</small>
+                            <small *ngIf="f.email.errors?.emailExist" class="text-muted text-muted-danger">The email already exist</small>
                         </div>
                     </div>
                 </div>
@@ -65,7 +70,27 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="name">Password</label>
+                        <!-- <div> </div> -->
+                        <div class="input-group">
+                            <input type="text" class="" placeholder="Password" formControlName="password" nbInput fullWidth [status]="((submitted || f.password.touched) && f.password.errors)?'danger':''">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" nbButton fullWidth (click)="randomPassword()">
+                                    <nb-icon icon="refresh"></nb-icon>
+                                </button>
+                            </div>
+                        </div>
+                        <div *ngIf="(submitted || f.password.touched) && f.password.errors" class="card-text">
+                            <small *ngIf="f.password.errors?.required" class="text-muted text-muted-danger">Field required</small>
+                        </div>
+                    </div>
+                </div>
+
             </div>
+            <!-- <form [formGroup]="formClient"> </form> -->
         </nb-card-body>
         <nb-card-footer>
             <button nbButton status="danger" ngRouter [routerLink]="[ '/admin', 'users' ]">

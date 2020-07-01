@@ -141,8 +141,7 @@ export class VisitorComponent implements OnInit {
     this.submitted = true;
 
     if (this.forma.invalid) {
-      this._toastr.toastrGenericMessage(`Form is nvalid`, '', 'warning');
-      alert('Fomr is invalid');
+      this._toastr.toastrGenericMessage(`Form is nvalid`, 'Form', 'warning');
       return;
     }
 
