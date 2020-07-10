@@ -8,15 +8,12 @@ import {
 } from "@angular/forms";
 import {
   ToastrService,
-  AssessmentFormService,
-  UserService,
 } from "../../../services/services.index";
 import { UsersService } from '../users.service';
 import { User } from "../../../models/User";
 import { emailRegex } from '../../../config/config';
 import { opsRoles } from '../../../mocks/titles';
 import { of, Observable } from 'rxjs';
-import { Client } from '../../../models/Client';
 
 @Component({
   selector: "ngx-user",
@@ -33,6 +30,7 @@ export class UserComponent implements OnInit {
     active: false,
     role: "",
     email: "",
+    client: null
   };
   submitted = false;
   status: string = 'Inactive';
@@ -42,8 +40,6 @@ export class UserComponent implements OnInit {
     private _router: Router,
     private _activateRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private _asf: AssessmentFormService,
-    private _userService: UserService,
     private _usersService: UsersService,
     private _toastr: ToastrService
   ) {
@@ -94,8 +90,6 @@ export class UserComponent implements OnInit {
     this.formUser.get("_id").valueChanges.subscribe(
       (value: any) => {
         if (value) {
-          // this.formUser.get('email').clearAsyncValidators();
-          // this.formUser.get('email').reset();
           this.formUser.get('password').clearValidators();
           this.formUser.get('password').reset();
         }
@@ -108,7 +102,6 @@ export class UserComponent implements OnInit {
   }
 
   getUser(id: string) {
-    // this._userService.getUser(id).subscribe(
     this._usersService.getUser(id).subscribe(
       (user:User) => {
         let loadUser = this.user = user;
@@ -119,7 +112,6 @@ export class UserComponent implements OnInit {
 
         this.formUser.setValue(loadUser);
       },
-      // (err) => console.log("Error al cargar el usuario")
       (err) => {
         this._toastr.toastrGenericMessage(`User doesn't exist`,'User Information', 'danger');
         this._router.navigate(['/admin', 'users']);

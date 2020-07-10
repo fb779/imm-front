@@ -9,22 +9,6 @@
     </nb-card-header>
 
     <nb-list>
-        <!-- <nb-list-item class="item">
-            <section class="img">
-                <img src="https://picsum.photos/75" width="75px" alt="">
-            </section>
-            <section class="info">
-                <div class="text-center col-12 col-md">Name: {{'Nelson Fabian Forero Rodriguez'}}</div>
-                <div class="text-center col-12 col-md">Role: {{'Admin'}}</div>
-                <div class="text-center col-12 col-md">Email: {{'fabian@dominio.com'}}</div>
-            </section>
-            <section class="options">
-                <button nbButton size="tiny">
-                    <nb-icon icon="edit-2-outline"></nb-icon>
-                </button>
-            </section>
-        </nb-list-item> -->
-
         <nb-list-item class="title">
             <div class="row">
                 <div class="text-center col-12 col-md">Img</div>
@@ -53,46 +37,4 @@
             </div>
         </nb-list-item>
     </nb-list>
-
-    <!-- <nb-card-body>
-
-        <table class="table table-strip">
-            <thead>
-                <tr>
-                    <th>img</th>
-                    <th class="text-center">first_name</th>
-                    <th class="text-center">last_name</th>
-                    <th class="text-center">email</th>
-                    <th class="text-center">Options</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let user of users">
-                    <td>
-                        <img [src]="user.img" width="75px" alt="" *ngIf="user.img">
-                    </td>
-                    <td>{{user.first_name}}</td>
-                    <td>{{ user.last_name }}</td>
-                    <td>{{ user.email }}</td>
-
-                    <td>
-                        <div class="row">
-                            <div class="col">
-
-                                <button nbButton size="small" [status]="(user.active) ? 'success':'primary'" [routerLink]="[user._id]">
-                                    <nb-icon icon="edit-2-outline"></nb-icon>
-                                </button>
-                            </div>
-                            <! -- <div class="col">
-                                <button nbButton fullWidth size="small" status="info" (click)="verUsusario(user)">
-                                    <nb-icon icon="edit" pack="far"></nb-icon>
-                                </button>
-                            </div> -- >
-                        </div>
-
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </nb-card-body> -->
 </nb-card>

@@ -1,119 +1,125 @@
-import { IOption, IOptionNumber } from '../models/Option';
+import { IOption, IOptionNumber } from "../models/Option";
 import { Title } from "../models/Titlel";
-import { Country } from '../models/Country';
+import { Country } from "../models/Country";
+
+export const visaCategories: IOption[] = [
+  { value: "VISITOR", name: "Visitor" },
+  { value: "TURIST", name: "Turist" },
+  { value: "STUDY", name: "Study" },
+];
 
 export const opsRoles: IOption[] = [
-  {value: "ADMIN_ROLE", name: "ADMIN"},
-  {value: "USER_ROLE", name: "USER"},
+  { value: "ADMIN_ROLE", name: "ADMIN" },
+  { value: "USER_ROLE", name: "USER" },
   // {value: "CLIENT_ROLE", name: "CLIENT"},
 ];
 
 export const opsAccompanying: IOptionNumber[] = [
-  {value: 0, name: "0" },
-  {value: 1, name: "1" },
-  {value: 2, name: "2" },
-  {value: 3, name: "3" },
-  {value: 4, name: "4" },
-  {value: 5, name: "5" },
-  {value: 6, name: "6" },
-  {value: 7, name: "7" },
-  {value: 8, name: "8" },
-  {value: 9, name: "9" },
-  {value: 10, name: "10" },
+  { value: 0, name: "0" },
+  { value: 1, name: "1" },
+  { value: 2, name: "2" },
+  { value: 3, name: "3" },
+  { value: 4, name: "4" },
+  { value: 5, name: "5" },
+  { value: 6, name: "6" },
+  { value: 7, name: "7" },
+  { value: 8, name: "8" },
+  { value: 9, name: "9" },
+  { value: 10, name: "10" },
 ];
 
 export const opsAges: IOptionNumber[] = [
-  {value: 1, name: "1" },
-  {value: 2, name: "2" },
-  {value: 3, name: "3" },
-  {value: 4, name: "4" },
-  {value: 5, name: "5" },
-  {value: 6, name: "6" },
-  {value: 7, name: "7" },
-  {value: 8, name: "8" },
-  {value: 9, name: "9" },
-  {value: 10, name: "10" },
-  {value: 11, name: "11" },
-  {value: 12, name: "12" },
-  {value: 13, name: "13" },
-  {value: 14, name: "14" },
-  {value: 15, name: "15" },
-  {value: 16, name: "16" },
-  {value: 17, name: "17" },
-  {value: 18, name: "18" },
-  {value: 19, name: "19" },
-  {value: 20, name: "20" },
-  {value: 21, name: "21" },
-  {value: 999, name: "22 and over (with disability)" },
+  { value: 1, name: "1" },
+  { value: 2, name: "2" },
+  { value: 3, name: "3" },
+  { value: 4, name: "4" },
+  { value: 5, name: "5" },
+  { value: 6, name: "6" },
+  { value: 7, name: "7" },
+  { value: 8, name: "8" },
+  { value: 9, name: "9" },
+  { value: 10, name: "10" },
+  { value: 11, name: "11" },
+  { value: 12, name: "12" },
+  { value: 13, name: "13" },
+  { value: 14, name: "14" },
+  { value: 15, name: "15" },
+  { value: 16, name: "16" },
+  { value: 17, name: "17" },
+  { value: 18, name: "18" },
+  { value: 19, name: "19" },
+  { value: 20, name: "20" },
+  { value: 21, name: "21" },
+  { value: 999, name: "22 and over (with disability)" },
 ];
 
 export const opsRelationships: IOption[] = [
-  {value: "SPOUSE", name: "Spouse" },
-  {value: "PARTNER", name: "Common-law / Partner" },
-  {value: "CHILDREN", name: "Dependent Child" },
+  { value: "SPOUSE", name: "Spouse" },
+  { value: "PARTNER", name: "Common-law / Partner" },
+  { value: "CHILDREN", name: "Dependent Child" },
 ];
 
 export const opsTitles: Title[] = [
-  { value: 'mr', name:'Mr'},
-  { value: 'mrs', name:'Mrs'},
-  { value: 'miss', name:'Miss'},
-  { value: 'ms', name:'Ms' },
+  { value: "mr", name: "Mr" },
+  { value: "mrs", name: "Mrs" },
+  { value: "miss", name: "Miss" },
+  { value: "ms", name: "Ms" },
 ];
 
 export const opsYesNo: IOption[] = [
-  {value: '1', name: 'Yes'},
-  {value: '2', name: 'No'},
+  { value: "1", name: "Yes" },
+  { value: "2", name: "No" },
 ];
 
-export const opsSex: IOption[]= [
-  { value: '1', name:'Male'},
-  { value: '2', name:'Female'},
+export const opsSex: IOption[] = [
+  { value: "1", name: "Male" },
+  { value: "2", name: "Female" },
 ];
 
 export const opsStatus: IOption[] = [
-  {value: '1', name: 'Citizen'},
-  {value: '2', name: 'Visitor'},
-  {value: '3', name: 'Student'},
-  {value: '4', name: 'Worker'},
-  {value: '5', name: 'Other'},
+  { value: "1", name: "Citizen" },
+  { value: "2", name: "Visitor" },
+  { value: "3", name: "Student" },
+  { value: "4", name: "Worker" },
+  { value: "5", name: "Other" },
 ];
 
 export const opsProvinces: IOption[] = [
-  {value: '1', name: 'Ontario'},
-  {value: '2', name: 'Quebec'},
-  {value: '3', name: 'British Columbia'},
-  {value: '4', name: 'Alberta'},
-  {value: '5', name: 'Manitoba'},
-  {value: '6', name: 'Saskatchewan'},
-  {value: '7', name: 'Nova Scotia'},
-  {value: '8', name: 'New Brunswick'},
-  {value: '9', name: 'Newfoundland and Labrador'},
-  {value: '10', name: 'Prince Edward Island'},
-  {value: '11', name: 'Northwest Territories'},
-  {value: '12', name: 'Nunavut'},
-  {value: '13', name: 'Yukon'},
+  { value: "1", name: "Ontario" },
+  { value: "2", name: "Quebec" },
+  { value: "3", name: "British Columbia" },
+  { value: "4", name: "Alberta" },
+  { value: "5", name: "Manitoba" },
+  { value: "6", name: "Saskatchewan" },
+  { value: "7", name: "Nova Scotia" },
+  { value: "8", name: "New Brunswick" },
+  { value: "9", name: "Newfoundland and Labrador" },
+  { value: "10", name: "Prince Edward Island" },
+  { value: "11", name: "Northwest Territories" },
+  { value: "12", name: "Nunavut" },
+  { value: "13", name: "Yukon" },
 ];
 
 export const opsMaritalStatus: IOption[] = [
-  {value: '1', name: 'single'},
-  {value: '2', name: 'married or common law' },
-  {value: '3', name: 'separated'},
-  {value: '4', name: 'divorced' },
-  {value: '5', name: 'widowed'},
+  { value: "1", name: "single" },
+  { value: "2", name: "married or common law" },
+  { value: "3", name: "separated" },
+  { value: "4", name: "divorced" },
+  { value: "5", name: "widowed" },
 ];
 
 export const opsPropousVisit: IOption[] = [
-  {value: '1', name: 'business'},
-  {value: '2', name: 'tourism'},
-  {value: '3', name: 'visiting relatives'},
-  {value: '4', name: 'visiting friends'},
-  {value: '5', name: 'medical treatment '},
-  {value: '6', name: 'other'},
+  { value: "1", name: "business" },
+  { value: "2", name: "tourism" },
+  { value: "3", name: "visiting relatives" },
+  { value: "4", name: "visiting friends" },
+  { value: "5", name: "medical treatment " },
+  { value: "6", name: "other" },
 ];
 
 export const opsStayCanada: IOption[] = [
-  {value: '1', name: '0-6 months'},
-  {value: '2', name: '6 months or more'},
+  { value: "1", name: "0-6 months" },
+  { value: "2", name: "6 months or more" },
 ];
 
 export const opsCountries: IOption[] = [
@@ -366,5 +372,5 @@ export const opsCountries: IOption[] = [
   { name: "Western Sahara", value: "EH" },
   { name: "Yemen", value: "YE" },
   { name: "Zambia", value: "ZM" },
-  { name: "Zimbabwe", value: "ZW" }
+  { name: "Zimbabwe", value: "ZW" },
 ];

@@ -109,23 +109,15 @@ export const ADMIN_MENU_ITEMS: NbMenuItem[] = [
     },
     {
       title: 'Users',
-      icon: 'people-outline',
+      icon: 'settings-2-outline',
       // icon: { icon: 'user-shield', pack: 'fas' },
       link: '/admin/users',
-      // children: [
-      //   {
-      //     title: 'Visitor',
-      //     link: '/pages/assessment-form/visit',
-      //   },
-      //   {
-      //     title: 'Student',
-      //     link: '/pages/assessment-form/study',
-      //   },
-      //   {
-      //     title: 'Work Permit',
-      //     link: '/pages/assessment-form/work-permit',
-      //   },
-      // ]
+    },
+    {
+      title: 'Clients',
+      icon: 'people-outline',
+      // icon: { icon: 'user-shield', pack: 'fas' },
+      link: '/admin/clients',
     },
     {
       title: 'Processes',

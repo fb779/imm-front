@@ -13,11 +13,9 @@ import { Client } from "../../models/Client";
 export class FamilyService {
   // private processBS = new Subject();
   private processBS = new BehaviorSubject("");
-  private numberFamilyMembersBS = new BehaviorSubject("");
+  private numberFamilyMembersBS = new BehaviorSubject(0);
 
   process$ = this.processBS.asObservable();
-
-  numberFamilyMembers: number;
 
   listFamilyMembers$ = this.process$.pipe(
     switchMap((process_id) =>
@@ -26,12 +24,18 @@ export class FamilyService {
       )
     ),
     pluck("list"),
-    tap((x: any) => {
-      this.numberFamilyMembers = parseInt(x.length);
-    }),
+    // tap((x: any) => {
+    //   console.warn("cantidad de mienbros de la familia", x);
+    //   this.numberFamilyMembersBS.next(parseInt(x.length));
+    //   // this.numberFamilyMembers = parseInt(x.length);
+    // }),
     map((x: any) => {
       return x.map(({ client }) => ({ ...client }));
     })
+  );
+
+  numberFamilyMembers$ = this.listFamilyMembers$.pipe(
+    map((el) => parseInt(el.length))
   );
 
   // numberFamilyMembers$ = combineLatest(
@@ -45,6 +49,10 @@ export class FamilyService {
   chageProcess(id_process: string) {
     this.processBS.next(id_process);
   }
+
+  // numberFamilyMembers() {
+  //   this.numberFamilyMembers$;
+  // }
 
   newFamilyMember(process: Process, client: Client): Observable<any> {
     delete client._id;

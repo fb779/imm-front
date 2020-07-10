@@ -1,0 +1,36 @@
+<nb-card>
+  <nb-card-header>
+    <label for=""> Clients </label>
+    <div>
+      <button nbButton size="tiny" [routerLink]="['new']">
+        <nb-icon icon="plus-circle-outline"></nb-icon>
+      </button>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <section class="wrapper">
+      <nb-card class="client-card" *ngFor="let user of clients">
+        <nb-card-body>
+          <!-- <section class="img">
+            <img src="http://via.placeholder.com/320x180" alt="" />
+          </section> -->
+          <section class="info text-center">
+            <span> {{ user.first_name }} {{ user.last_name }} </span>
+            <span> {{ user.email }} </span>
+          </section>
+        </nb-card-body>
+        <nb-card-footer>
+          <button
+            nbButton
+            size="tiny"
+            fullWidth
+            [status]="'success'"
+            [routerLink]="user._id"
+          >
+            <nb-icon icon="edit-2-outline"></nb-icon>
+          </button>
+        </nb-card-footer>
+      </nb-card>
+    </section>
+  </nb-card-body>
+</nb-card>

@@ -1,0 +1,250 @@
+<form novalidate autocomplete="off" [formGroup]="formUser">
+  <nb-card>
+    <nb-card-header>
+      <ng-container *ngIf="userForm.first_name.value; else elseNewUser">
+        {{ userForm.first_name.value | uppercase }}
+        {{ userForm.last_name.value | uppercase }}
+      </ng-container>
+      <ng-template #elseNewUser>
+        New User
+      </ng-template>
+    </nb-card-header>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="">First Name</label>
+            <input
+              type="text"
+              name="first_name"
+              formControlName="first_name"
+              nbInput
+              fullWidth
+              [status]="
+                (submitted || userForm.first_name.touched) &&
+                userForm.first_name.errors
+                  ? 'danger'
+                  : ''
+              "
+            />
+            <div
+              *ngIf="
+                (submitted || userForm.first_name.touched) &&
+                userForm.first_name.errors
+              "
+              class="card-text"
+            >
+              <small
+                *ngIf="userForm.first_name.errors?.required"
+                class="text-muted text-muted-danger"
+                >Field required</small
+              >
+              <small
+                *ngIf="userForm.first_name.errors?.existe"
+                class="text-muted text-muted-danger"
+                >campo con errores</small
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="name">Last Name</label>
+            <input
+              type="text"
+              name="last_name"
+              formControlName="last_name"
+              nbInput
+              fullWidth
+              [status]="
+                (submitted || userForm.last_name.touched) &&
+                userForm.last_name.errors
+                  ? 'danger'
+                  : ''
+              "
+            />
+            <div
+              *ngIf="
+                (submitted || userForm.last_name.touched) &&
+                userForm.last_name.errors
+              "
+              class="card-text"
+            >
+              <small
+                *ngIf="userForm.last_name.errors?.required"
+                class="text-muted text-muted-danger"
+                >Field required</small
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-12">
+          <div class="form-group">
+            <label for="name">Email</label>
+            <input
+              type="text"
+              name="email"
+              formControlName="email"
+              nbInput
+              fullWidth
+              [status]="
+                (submitted || userForm.email.touched) && userForm.email.errors
+                  ? 'danger'
+                  : ''
+              "
+            />
+            <div
+              *ngIf="
+                (submitted || userForm.email.touched) && userForm.email.errors
+              "
+              class="card-text"
+            >
+              <small
+                *ngIf="userForm.email.errors?.required"
+                class="text-muted text-muted-danger"
+                >Field required</small
+              >
+              <small
+                *ngIf="userForm.email.errors?.pattern"
+                class="text-muted text-muted-danger"
+                >Email invalid</small
+              >
+              <small
+                *ngIf="userForm.email.errors?.emailExist"
+                class="text-muted text-muted-danger"
+                >The email already exist</small
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6" [ngClass]="{ hidden: true }">
+          <div class="form-group">
+            <label for="">Process</label>
+            <nb-select
+              name="process"
+              placeholder="Select Showcase"
+              fullWidth
+              formControlName="process"
+              [status]="
+                (submitted || userForm.process.touched) &&
+                userForm.process.errors
+                  ? 'danger'
+                  : ''
+              "
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option
+                *ngFor="let item of visaCategories$"
+                [value]="item.value"
+              >
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <div
+              class="card-text text-white"
+              *ngIf="
+                (submitted || userForm.process.touched) &&
+                userForm.process.errors
+              "
+            >
+              <small
+                *ngIf="userForm.process.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="name">Status</label>
+            <div>
+              <nb-checkbox name="active" formControlName="active">
+                {{ status }}
+              </nb-checkbox>
+            </div>
+            <div
+              *ngIf="
+                (submitted || userForm.active.touched) && userForm.active.errors
+              "
+              class="card-text"
+            >
+              <small
+                *ngIf="userForm.active.errors?.required"
+                class="text-muted text-muted-danger"
+                >Field required</small
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="form-group">
+            <label for="name">Password</label>
+            <!-- <div> </div> -->
+            <div class="input-group">
+              <input
+                type="text"
+                class=""
+                placeholder="Password"
+                formControlName="password"
+                nbInput
+                fullWidth
+                [status]="
+                  (submitted || userForm.password.touched) &&
+                  userForm.password.errors
+                    ? 'danger'
+                    : ''
+                "
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-outline-secondary"
+                  type="button"
+                  nbButton
+                  fullWidth
+                  (click)="randomPassword()"
+                >
+                  <nb-icon icon="refresh"></nb-icon>
+                </button>
+              </div>
+            </div>
+            <div
+              *ngIf="
+                (submitted || userForm.password.touched) &&
+                userForm.password.errors
+              "
+              class="card-text"
+            >
+              <small
+                *ngIf="userForm.password.errors?.required"
+                class="text-muted text-muted-danger"
+                >Field required</small
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <form [formGroup]="formClient"> </form> -->
+    </nb-card-body>
+    <nb-card-footer>
+      <button
+        type="button"
+        nbButton
+        status="danger"
+        ngRouter
+        [routerLink]="['/admin', 'clients']"
+      >
+        <nb-icon icon="close-circle-outline"></nb-icon>
+      </button>
+      <button nbButton status="success" type="button" (click)="saveUser()">
+        <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+      </button>
+    </nb-card-footer>
+  </nb-card>
+</form>
