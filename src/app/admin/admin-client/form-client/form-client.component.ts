@@ -17,6 +17,7 @@ import {
   ToastrService,
   AssessmentFormService,
 } from "../../../services/services.index";
+import { AdminClientService } from "../admin-client.service";
 
 @Component({
   selector: "ngx-form-client",
@@ -38,7 +39,8 @@ export class FormClientComponent implements OnInit {
   };
   submitted = false;
   status: string = "Inactive";
-  visaCategories$ = visaCategories;
+  // visaCategories$ = visaCategories;
+  visaCategories$ = this._adminClientService.getVisaCategories();
   _roles = roles;
 
   constructor(
@@ -47,6 +49,7 @@ export class FormClientComponent implements OnInit {
     private formBuilder: FormBuilder,
     private _asf: AssessmentFormService,
     private _usersService: UsersService,
+    private _adminClientService: AdminClientService,
     private _toastr: ToastrService
   ) {
     this._activateRoute.params.subscribe((params) => {

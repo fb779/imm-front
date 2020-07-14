@@ -137,7 +137,7 @@
             >
               <nb-option value="">Select...</nb-option>
               <nb-option
-                *ngFor="let item of visaCategories$"
+                *ngFor="let item of visaCategories$ | async"
                 [value]="item.value"
               >
                 {{ item.name }}
