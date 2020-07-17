@@ -11,7 +11,6 @@ import { Observable, of } from "rxjs";
 import { User } from "../../../models/User";
 import { emailRegex, roles } from "../../../config/config";
 import { UsersService } from "../../users/users.service";
-import { visaCategories } from "../../../mocks/titles";
 
 import {
   ToastrService,
@@ -39,7 +38,6 @@ export class FormClientComponent implements OnInit {
   };
   submitted = false;
   status: string = "Inactive";
-  // visaCategories$ = visaCategories;
   visaCategories$ = this._adminClientService.getVisaCategories();
   _roles = roles;
 

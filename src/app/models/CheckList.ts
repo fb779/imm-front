@@ -1,10 +1,11 @@
-import { Category } from './Category';
+import { Category } from "./Category";
 
-export class CheckList{
-    _id: string;
-    name: string;
-    group?: string;
-    required?: boolean;
-    visa_categories?: Category[];
-    description?: string;
+export interface CheckList {
+  _id: string;
+  name: string;
+  state?: boolean;
+  group?: string;
+  required?: boolean;
+  visa_categories?: Category[];
+  description?: string;
 }

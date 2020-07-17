@@ -51,6 +51,9 @@ export class ChecklistService {
 
   createCheckList(checklist: any) {
     const url = `${environment.api_url}${environment.api_version}/check-list`;
+
+    checklist.visa_categories = [checklist.visa_categories];
+
     return this._http.post(url, checklist).pipe(catchError((err) => of(err)));
   }
 }

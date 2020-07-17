@@ -1,0 +1,209 @@
+<nb-card class="dialog-card">
+  <form
+    novalidate
+    autocomplete="off"
+    [formGroup]="checkForm"
+    (submit)="saveChecklist()"
+  >
+    <!-- <nb-card-body> -->
+    <nb-card class="formChecklist" [nbSpinner]="spinner">
+      <nb-card-header>
+        <ng-container *ngIf="f._id.value; else elseNewCheck">
+          Edit Checklist
+        </ng-container>
+        <ng-template #elseNewCheck>
+          New Checklist
+        </ng-template>
+      </nb-card-header>
+      <nb-card-body>
+        <div class="row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="">Name</label>
+              <input
+                type="text"
+                name="name"
+                placeholder="Name"
+                nbInput
+                fullWidth
+                formControlName="name"
+                [status]="
+                  (submited || f.name.touched) && f.name.errors ? 'danger' : ''
+                "
+              />
+              <div
+                class="card-text text-white"
+                *ngIf="(submited || f.name.touched) && f.name.errors"
+              >
+                <small
+                  *ngIf="f.name.errors?.required"
+                  class="text-muted text-muted-danger"
+                >
+                  Field required
+                </small>
+                <small
+                  *ngIf="f.name.errors?.nameExist"
+                  class="text-muted text-muted-danger"
+                >
+                  This name alredy exist
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md">
+            <div class="form-group">
+              <label for="">Group</label>
+              <input
+                type="text"
+                name="group"
+                placeholder="Name"
+                nbInput
+                fullWidth
+                formControlName="group"
+                [status]="
+                  (submited || f.group.touched) && f.group.errors
+                    ? 'danger'
+                    : ''
+                "
+              />
+              <div
+                class="card-text text-white"
+                *ngIf="(submited || f.group.touched) && f.group.errors"
+              >
+                <small
+                  *ngIf="f.group.errors?.required"
+                  class="text-muted text-muted-danger"
+                >
+                  Field required
+                </small>
+                <small
+                  *ngIf="f.group.errors?.existName"
+                  class="text-muted text-muted-danger"
+                >
+                  This group alredy exist
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <div class="form-group">
+              <label for="name">State</label>
+              <div>
+                <nb-checkbox name="state" formControlName="state">
+                  {{ stateText }}
+                </nb-checkbox>
+              </div>
+              <div
+                *ngIf="(submitted || f.state.touched) && f.state.errors"
+                class="card-text"
+              >
+                <small
+                  *ngIf="f.active.errors?.required"
+                  class="text-muted text-muted-danger"
+                  >Field required</small
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="form-group">
+              <label for="">Visa Category</label>
+
+              <nb-select
+                name="visa_categories"
+                placeholder="Select Showcase"
+                multiple
+                fullWidth
+                formControlName="visa_categories"
+                [status]="
+                  (submitted || f.visa_categories.touched) &&
+                  f.visa_categories.errors
+                    ? 'danger'
+                    : ''
+                "
+              >
+                <nb-option
+                  *ngFor="let item of visaCategories"
+                  [value]="item._id"
+                >
+                  {{ item.name }}
+                </nb-option>
+              </nb-select>
+
+              <div
+                class="card-text text-white"
+                *ngIf="
+                  (submited || f.visa_categories.touched) &&
+                  f.visa_categories.errors
+                "
+              >
+                <small
+                  *ngIf="f.visa_categories.errors?.required"
+                  class="text-muted text-muted-danger"
+                  >Field required</small
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="form-group">
+              <label for="">Description</label>
+              <textarea
+                name="description"
+                rows="5"
+                placeholder="Text Area"
+                nbInput
+                fullWidth
+                shape="semi-round"
+                formControlName="description"
+                [status]="
+                  (submited || f.description.touched) && f.description.errors
+                    ? 'danger'
+                    : ''
+                "
+              >
+              </textarea>
+              <div
+                *ngIf="
+                  (submited || f.description.touched) && f.description.errors
+                "
+                class="card-text"
+              >
+                <small
+                  *ngIf="f.description.errors?.required"
+                  class="text-muted text-muted-danger"
+                >
+                  Field required
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <pre>
+            {{ f.valid | json }}
+          </pre>
+        </div>
+      </nb-card-body>
+      <nb-card-footer>
+        <button
+          type="button"
+          nbButton
+          status="primary"
+          [routerLink]="['/admin', 'checklist']"
+        >
+          <nb-icon icon="close-circle-outline"></nb-icon>
+        </button>
+
+        <button type="submit" nbButton status="success">
+          <nb-icon icon="save-outline"></nb-icon>
+        </button>
+      </nb-card-footer>
+    </nb-card>
+    <!-- </nb-card-body> -->
+  </form>
+</nb-card>

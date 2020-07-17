@@ -33,7 +33,6 @@ export class UsersService {
   }
 
   createUser(user: User) {
-    console.log(`'nuevo ususario para crear' ${user.first_name}`);
     delete user._id;
     const url = `${environment.api_url}${environment.api_version}/users`;
     return this._http.post(url, user).pipe();

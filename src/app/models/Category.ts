@@ -1,7 +1,6 @@
-
-export class Category {
-    _id: string;
-    name: string;
-    description: string;
-    active: boolean;
+export interface Category {
+  _id: string;
+  name: string;
+  description?: string;
+  active?: boolean;
 }

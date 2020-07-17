@@ -1,8 +1,8 @@
-import { Routes, RouterModule } from "@angular/router";
 import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
 
-import { AdminClientComponent } from "./admin-client.component";
-import { FormClientComponent } from "./form-client/form-client.component";
+import { AdminChecklistComponent } from "./admin-checklist.component";
+import { AdminChecklistFormComponent } from "./admin-checklist-form/admin-checklist-form.component";
 
 const routes: Routes = [
   {
@@ -10,16 +10,15 @@ const routes: Routes = [
     children: [
       {
         path: "",
-        component: AdminClientComponent,
+        component: AdminChecklistComponent,
       },
       {
         path: ":id",
-        component: FormClientComponent,
+        component: AdminChecklistFormComponent,
       },
     ],
   },
 
-  // { path: '**', component: PageNotFoundComponent },
   //{ path: 'path/:routeParam', component: MyComponent },
   //{ path: 'staticPath', component: ... },
   //{ path: '**', component: ... },
@@ -31,4 +30,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AdminClientsRoutingModule {}
+export class AdminChecklistRoutingModule {}

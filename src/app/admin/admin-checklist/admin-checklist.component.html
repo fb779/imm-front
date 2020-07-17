@@ -1,0 +1,74 @@
+<nb-card>
+  <nb-card-header>
+    <label for=""> Check List </label>
+    <div>
+      <button nbButton size="tiny" [routerLink]="['new']">
+        <nb-icon icon="plus-circle-outline"></nb-icon>
+      </button>
+    </div>
+  </nb-card-header>
+  <nb-list>
+    <!-- <nb-list-item class="search">
+      <div class="input-group mb-3">
+        <input #texto type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2" (keyup)="search(texto.value)" />
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="search(texto.value)" >
+            <nb-icon icon="search"></nb-icon>
+          </button>
+        </div>
+      </div>
+    </nb-list-item> -->
+
+    <nb-list-item class="title">
+      <div class="row">
+        <div class="text-center col-12 col-md">Name</div>
+        <div class="text-center col-12 col-md">Group</div>
+        <div class="text-center col-12 col-md">Options</div>
+      </div>
+    </nb-list-item>
+
+    <nb-list-item *ngFor="let checklist of list_checklist">
+      <div class="row">
+        <div class="text-center col-12 col-md">
+          <label for="">{{ checklist.name }}</label>
+        </div>
+        <div class="text-center col-12 col-md">
+          <label for="">{{ checklist.group }}</label>
+        </div>
+        <div class="text-center col-12 col-md">
+          <button
+            type="button"
+            nbButton
+            size="tiny"
+            [routerLink]="checklist._id"
+          >
+            <nb-icon icon="edit-outline"></nb-icon>
+          </button>
+        </div>
+      </div>
+    </nb-list-item>
+  </nb-list>
+  <!-- <nb-card-body>
+    <section class="wrapper">
+      <!-- <nb-card class="client-card" *ngFor="let user of clients">
+        <nb-card-body>
+          <section class="info text-center">
+            <span> {{ user.first_name }} {{ user.last_name }} </span>
+            <span> {{ user.email }} </span>
+          </section>
+        </nb-card-body>
+        <nb-card-footer>
+          <button
+            nbButton
+            size="tiny"
+            fullWidth
+            [status]="'success'"
+            [routerLink]="user._id"
+          >
+            <nb-icon icon="edit-2-outline"></nb-icon>
+          </button>
+        </nb-card-footer>
+      </nb-card> -- >
+    </section>
+  </nb-card-body> -->
+</nb-card>

@@ -4,8 +4,8 @@ import { Country } from "../models/Country";
 
 export const visaCategories: IOption[] = [
   { value: "VISITOR", name: "Visitor" },
-  { value: "TURIST", name: "Turist" },
-  { value: "STUDY", name: "Study" },
+  // { value: "TURIST", name: "Turist" },
+  // { value: "STUDY", name: "Study" },
 ];
 
 export const opsRoles: IOption[] = [
