@@ -6,12 +6,11 @@ import {
   FormControl,
   Validators,
 } from "@angular/forms";
-// import { emailRegex, visa_categories } from '../../../config/config';
-import { Category } from "../../../models/Category";
-import { AdminChecklistService } from "../admin-checklist.service";
-import { CheckList } from "../../../models/CheckList";
 import { Observable } from "rxjs";
+import { Category } from "../../../models/Category";
+import { CheckList } from "../../../models/CheckList";
 import { ToastrService } from "../../../services/services.index";
+import { AdminChecklistService } from "../admin-checklist.service";
 
 @Component({
   selector: "ngx-admin-checklist-form",
@@ -20,9 +19,12 @@ import { ToastrService } from "../../../services/services.index";
 })
 export class AdminChecklistFormComponent implements OnInit {
   id: string;
-  check: CheckList;
-  checkForm: FormGroup;
-  submitted = false;
+  check: CheckList = {
+    _id: "",
+    name: "",
+  };
+  formCheck: FormGroup;
+  submited = false;
   stateText: string = "Inactive";
   visaCategories: Category[] = [];
 
@@ -54,20 +56,20 @@ export class AdminChecklistFormComponent implements OnInit {
   }
 
   build() {
-    this.checkForm = this.formBuilder.group({
+    this.formCheck = this.formBuilder.group({
       _id: new FormControl(""),
       name: new FormControl(
         "",
         [Validators.required],
         [this.nameExist.bind(this)]
       ),
-      group: new FormControl(null, [Validators.required]),
+      group: new FormControl("", [Validators.required]),
       state: new FormControl(false, []),
       visa_categories: new FormControl([], [Validators.required]),
       description: new FormControl("", []),
     });
 
-    this.checkForm.get("state").valueChanges.subscribe((value: any) => {
+    this.formCheck.get("state").valueChanges.subscribe((value: any) => {
       if (value) {
         this.stateText = "Active";
       } else {
@@ -77,7 +79,7 @@ export class AdminChecklistFormComponent implements OnInit {
   }
 
   get f() {
-    return this.checkForm.controls;
+    return this.formCheck.controls;
   }
 
   /**
@@ -104,7 +106,7 @@ export class AdminChecklistFormComponent implements OnInit {
       (check: CheckList) => {
         this.check = check;
         delete check.required;
-        this.checkForm.setValue(check);
+        this.formCheck.setValue(check);
       },
       (err) => {
         this._toastr.toastrGenericMessage(
@@ -118,9 +120,8 @@ export class AdminChecklistFormComponent implements OnInit {
   }
 
   saveChecklist() {
-    console.log("informacion", this.checkForm.value);
-    if (this.checkForm.invalid) {
-      this.submitted = true;
+    if (this.formCheck.invalid) {
+      this.submited = true;
       this._toastr.toastrGenericMessage(
         "Complete the information",
         "Check-list information",
@@ -131,11 +132,11 @@ export class AdminChecklistFormComponent implements OnInit {
 
     if (this.id === "new") {
       this._adminChecklistService
-        .createChecklist(this.checkForm.value)
+        .createChecklist(this.formCheck.value)
         .subscribe((response) => {
           console.log(`Llegada de informacion`, response);
           this._toastr.toastrGenericMessage(
-            `Check-list create successfull ${this.checkForm.value.name}`,
+            `Check-list create successfull ${this.formCheck.value.name}`,
             "Check-list",
             "success"
           );
@@ -143,12 +144,12 @@ export class AdminChecklistFormComponent implements OnInit {
         });
     }
 
-    if (this.checkForm.value._id) {
+    if (this.formCheck.value._id) {
       this._adminChecklistService
-        .updateChecklist(this.id, this.checkForm.value)
+        .updateChecklist(this.id, this.formCheck.value)
         .subscribe((response) => {
           this._toastr.toastrGenericMessage(
-            `Check-list edit successfull ${this.checkForm.value.name}`,
+            `Check-list edit successfull ${this.formCheck.value.name}`,
             "Check-list information",
             "success"
           );

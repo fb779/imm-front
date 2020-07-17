@@ -1,12 +1,7 @@
 <nb-card class="dialog-card">
-  <form
-    novalidate
-    autocomplete="off"
-    [formGroup]="checkForm"
-    (submit)="saveChecklist()"
-  >
+  <form novalidate autocomplete="off" [formGroup]="formCheck">
     <!-- <nb-card-body> -->
-    <nb-card class="formChecklist" [nbSpinner]="spinner">
+    <nb-card class="" [nbSpinner]="spinner">
       <nb-card-header>
         <ng-container *ngIf="f._id.value; else elseNewCheck">
           Edit Checklist
@@ -96,14 +91,15 @@
                 </nb-checkbox>
               </div>
               <div
-                *ngIf="(submitted || f.state.touched) && f.state.errors"
+                *ngIf="(submited || f.state.touched) && f.state.errors"
                 class="card-text"
               >
                 <small
                   *ngIf="f.active.errors?.required"
                   class="text-muted text-muted-danger"
-                  >Field required</small
                 >
+                  Field required
+                </small>
               </div>
             </div>
           </div>
@@ -119,7 +115,7 @@
                 fullWidth
                 formControlName="visa_categories"
                 [status]="
-                  (submitted || f.visa_categories.touched) &&
+                  (submited || f.visa_categories.touched) &&
                   f.visa_categories.errors
                     ? 'danger'
                     : ''
@@ -183,11 +179,6 @@
             </div>
           </div>
         </div>
-        <div>
-          <pre>
-            {{ f.valid | json }}
-          </pre>
-        </div>
       </nb-card-body>
       <nb-card-footer>
         <button
@@ -199,7 +190,12 @@
           <nb-icon icon="close-circle-outline"></nb-icon>
         </button>
 
-        <button type="submit" nbButton status="success">
+        <button
+          type="button"
+          nbButton
+          status="success"
+          (click)="saveChecklist()"
+        >
           <nb-icon icon="save-outline"></nb-icon>
         </button>
       </nb-card-footer>
