@@ -126,6 +126,12 @@ export const ADMIN_MENU_ITEMS: NbMenuItem[] = [
     link: "/admin/checklist",
   },
   {
+    title: "Visa Category",
+    icon: "book-open-outline",
+    // icon: { icon: "user-shield", pack: "fas" },
+    link: "/admin/visa-category",
+  },
+  {
     title: "Processes",
     icon: "archive-outline",
     // icon: { icon: 'home', pack: 'fas' },

@@ -1,0 +1,124 @@
+<form novalidate autocomplete="off" [formGroup]="formVisaCategory">
+  <nb-card>
+    <nb-card-header>
+      <ng-container *ngIf="f._id.value; else elseNewVisa">
+        Edit Visa Category
+      </ng-container>
+      <ng-template #elseNewVisa>
+        New Visa Category
+      </ng-template>
+    </nb-card-header>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="">Name</label>
+            <input
+              type="text"
+              name="name"
+              placeholder="Name"
+              nbInput
+              fullWidth
+              formControlName="name"
+              [status]="
+                (submited || f.name.touched) && f.name.errors ? 'danger' : ''
+              "
+            />
+            <div
+              class="card-text text-white"
+              *ngIf="(submited || f.name.touched) && f.name.errors"
+            >
+              <small
+                *ngIf="f.name.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+              <small
+                *ngIf="f.name.errors?.nameExist"
+                class="text-muted text-muted-danger"
+              >
+                This name alredy exist
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="name">Active</label>
+            <div>
+              <nb-checkbox name="active" formControlName="active">
+                {{ activeText }}
+              </nb-checkbox>
+            </div>
+            <div
+              *ngIf="(submited || f.active.touched) && f.active.errors"
+              class="card-text"
+            >
+              <small
+                *ngIf="f.active.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="form-group">
+            <label for="">Description</label>
+            <textarea
+              name="description"
+              rows="5"
+              placeholder="Text Area"
+              nbInput
+              fullWidth
+              shape="semi-round"
+              formControlName="description"
+              [status]="
+                (submited || f.description.touched) && f.description.errors
+                  ? 'danger'
+                  : ''
+              "
+            >
+            </textarea>
+            <div
+              *ngIf="
+                (submited || f.description.touched) && f.description.errors
+              "
+              class="card-text"
+            >
+              <small
+                *ngIf="f.description.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+    <nb-card-footer>
+      <button
+        type="button"
+        nbButton
+        status="primary"
+        [routerLink]="['/admin', 'visa-category']"
+      >
+        <nb-icon icon="close-circle-outline"></nb-icon>
+      </button>
+
+      <button
+        type="button"
+        nbButton
+        status="success"
+        (click)="saveVisaCategory()"
+      >
+        <nb-icon icon="save-outline"></nb-icon>
+      </button>
+    </nb-card-footer>
+  </nb-card>
+</form>
