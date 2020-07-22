@@ -1,0 +1,38 @@
+<nb-card>
+  <nb-card-header>
+    <label for="">Visa Categori List</label>
+    <div>
+      <button nbButton size="tiny" [routerLink]="['new']">
+        <nb-icon icon="plus-circle-outline"></nb-icon>
+      </button>
+    </div>
+  </nb-card-header>
+  <!-- <nb-card-body>
+    body
+  </nb-card-body> -->
+  <nb-list>
+    <nb-list-item class="title">
+      <div class="row">
+        <div class="text-center col-12 col-md">Name</div>
+        <div class="text-center col-12 col-md">Options</div>
+      </div>
+    </nb-list-item>
+    <nb-list-item *ngFor="let visa_category of list_visa_categories$ | async">
+      <div class="row">
+        <div class="text-center col-12 col-md">
+          <label for="">{{ visa_category.name }}</label>
+        </div>
+        <div class="text-center col-12 col-md">
+          <button
+            type="button"
+            nbButton
+            size="tiny"
+            [routerLink]="visa_category._id"
+          >
+            <nb-icon icon="edit-outline"></nb-icon>
+          </button>
+        </div>
+      </div>
+    </nb-list-item>
+  </nb-list>
+</nb-card>

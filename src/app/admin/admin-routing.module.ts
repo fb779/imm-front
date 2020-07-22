@@ -3,7 +3,6 @@ import { NgModule } from "@angular/core";
 
 import { AdminComponent } from "./admin.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
-// import { NotFoundComponent } from '../pages/miscellaneous/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -31,6 +30,13 @@ const routes: Routes = [
         loadChildren: () =>
           import("./admin-checklist/admin-checklist.module").then(
             (m) => m.AdminChecklistModule
+          ),
+      },
+      {
+        path: "visa-category",
+        loadChildren: () =>
+          import("./admin-visa-categories/admin-visa-categories.module").then(
+            (m) => m.AdminVisaCategoriesModule
           ),
       },
       {

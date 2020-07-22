@@ -1,0 +1,15 @@
+nb-card-header {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.form-control:focus {
+  box-shadow: none;
+}
+
+@media screen and (max-width: 767px) {
+  .title {
+    display: none;
+  }
+}
