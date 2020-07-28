@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule } from "@angular/core";
 import {
   NbActionsModule,
   NbButtonModule,
@@ -9,11 +9,12 @@ import {
   NbSelectModule,
   NbListModule,
   NbIconModule,
-} from '@nebular/theme';
-import { NgxEchartsModule } from 'ngx-echarts';
+  NbProgressBarModule,
+} from "@nebular/theme";
+import { NgxEchartsModule } from "ngx-echarts";
 
-import { ThemeModule } from '../../@theme/theme.module';
-import { DashboardComponent } from './dashboard.component';
+import { ThemeModule } from "../../@theme/theme.module";
+import { DashboardComponent } from "./dashboard.component";
 // import { StatusCardComponent } from './status-card/status-card.component';
 // import { ContactsComponent } from './contacts/contacts.component';
 // import { RoomsComponent } from './rooms/rooms.component';
@@ -29,41 +30,19 @@ import { DashboardComponent } from './dashboard.component';
 // import { PlayerComponent } from './rooms/player/player.component';
 // import { TrafficComponent } from './traffic/traffic.component';
 // import { TrafficChartComponent } from './traffic/traffic-chart.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule } from "@angular/forms";
+import { CountdownComponent } from "./countdown/countdown.component";
 
 @NgModule({
   imports: [
     FormsModule,
     ThemeModule,
     NbCardModule,
-    NbUserModule,
-    NbButtonModule,
-    NbTabsetModule,
-    NbActionsModule,
-    NbRadioModule,
-    NbSelectModule,
-    NbListModule,
     NbIconModule,
     NbButtonModule,
+    NbProgressBarModule,
     NgxEchartsModule,
   ],
-  declarations: [
-    DashboardComponent,
-    // StatusCardComponent,
-    // TemperatureDraggerComponent,
-    // ContactsComponent,
-    // RoomSelectorComponent,
-    // TemperatureComponent,
-    // RoomsComponent,
-    // KittenComponent,
-    // SecurityCamerasComponent,
-    // ElectricityComponent,
-    // ElectricityChartComponent,
-    // WeatherComponent,
-    // PlayerComponent,
-    // SolarComponent,
-    // TrafficComponent,
-    // TrafficChartComponent,
-  ],
+  declarations: [DashboardComponent, CountdownComponent],
 })
-export class DashboardModule { }
+export class DashboardModule {}

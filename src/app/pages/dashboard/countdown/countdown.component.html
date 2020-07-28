@@ -1,0 +1,28 @@
+<ng-container *ngIf="date; else elseTemplate">
+  <div class="">
+    <nb-card>
+      <nb-card-body>
+        <label for="">Dias para realizar la solicitud</label>
+
+        <nb-progress-bar
+          [value]="calcular()"
+          [status]="color_status"
+          displayValue="true"
+        >
+        </nb-progress-bar>
+
+        <div class="info">
+          <section>
+            {{ start_date.format(format).toString() }}
+          </section>
+          <section>{{ time }} - Days</section>
+          <section>
+            {{ end_date.format(format).toString() }}
+          </section>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</ng-container>
+
+<ng-template #elseTemplate> </ng-template>
