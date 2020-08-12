@@ -5,7 +5,6 @@ import { FormFamilyMembersComponent } from "./form-family-members/form-family-me
 import { DeleteFamilyMemberComponent } from "./delete-family-member/delete-family-member.component";
 import { FamilyService, ToastrService } from "../../services/services.index";
 import { status } from "../../config/config";
-import { of } from "rxjs";
 
 @Component({
   selector: "ngx-family",
@@ -28,11 +27,6 @@ export class FamilyComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(
-      "Proceso cargado en componente de miembros de familia",
-      this.process
-    );
-    console.log("url cargada", this.url);
     this._familyServices.chageProcess(this.process._id);
     this._familyServices.numberFamilyMembers$.subscribe((response) => {
       this.numberFamilyMembers = response;

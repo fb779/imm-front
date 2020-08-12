@@ -167,4 +167,10 @@ export const USER_MENU_ITEMS: NbMenuItem[] = [
     //   },
     // ]
   },
+  {
+    title: "Appointment",
+    icon: "bookmark-outline",
+    // icon: { icon: 'home', pack: 'fas' },
+    link: "/consultant/appointment",
+  },
 ];

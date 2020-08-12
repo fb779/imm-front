@@ -1,0 +1,36 @@
+.wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-content: center;
+}
+
+.client-card {
+  width: 15em;
+}
+
+// .client-card nb-card-header {
+//   border: solid red 1px;
+// }
+
+.client-card .img {
+  text-align: center;
+  overflow: hidden;
+}
+
+.client-card img {
+  // border: solid blue 1px;
+  border-radius: 50%;
+  width: 100%;
+}
+
+.client-card nb-card-footer {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-content: stretch;
+}
+
+// .client-card nb-card-footer button {
+//   margin: 0 0.25em;
+// }

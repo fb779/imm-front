@@ -1,0 +1,205 @@
+<nb-card class="ap-dialog-card">
+  <form novalidate autocomplete="off" [formGroup]="formAppointment">
+    <nb-card class="ap-form">
+      <nb-card-header>
+        Form Appointment
+      </nb-card-header>
+      <nb-card-body>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis,
+          veniam.
+        </p>
+        <div class="row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="">Consultan</label>
+              <nb-select
+                name="consultant"
+                placeholder="Select Consultant"
+                formControlName="consultant"
+                fullWidth
+                [status]="
+                  (submitted || f.consultant.touched) && f.consultant.errors
+                    ? 'danger'
+                    : ''
+                "
+              >
+                <!-- <nb-option value="">Select...</nb-option> -->
+                <nb-option *ngFor="let item of consultants" [value]="item._id">
+                  {{ item.first_name }} {{ item.last_name }} - {{ item.email }}
+                </nb-option>
+              </nb-select>
+              <div
+                *ngIf="
+                  (submitted || f.consultant.touched) && f.consultant.errors
+                "
+                class="card-text"
+              >
+                <small
+                  *ngIf="f.consultant.errors?.required"
+                  class="text-muted text-muted-danger"
+                >
+                  Field required
+                </small>
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-group">
+              <label for="">Client</label>
+              <!-- <input type="text" name="client" formControlName="client" nbInput fullWidth [status]=" (submitted || f.client.touched) && f.client.errors ? 'danger' : '' " /> -->
+              <nb-select
+                name="client"
+                formControlName="client"
+                placeholder="Select Client"
+                fullWidth
+                [status]="
+                  (submitted || f.client.touched) && f.client.errors
+                    ? 'danger'
+                    : ''
+                "
+              >
+                <!-- <nb-option value="">Select...</nb-option> -->
+                <nb-option *ngFor="let item of clients" [value]="item._id">
+                  {{ item.email }} - {{ item.first_name }} {{ item.last_name }}
+                </nb-option>
+              </nb-select>
+              <div
+                *ngIf="(submitted || f.client.touched) && f.client.errors"
+                class="card-text"
+              >
+                <small
+                  *ngIf="f.client.errors?.required"
+                  class="text-muted text-muted-danger"
+                >
+                  Field required
+                </small>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="form-group">
+              <label for="">Date</label>
+              <input
+                placeholder="Pick Date"
+                [nbDatepicker]="formpicker"
+                formControlName="date"
+                nbInput
+                fullWidth
+                readonly
+                [status]="
+                  (submitted || f.date.touched) &&
+                  (f.date.errors || errors?.appointmentExist)
+                    ? 'danger'
+                    : ''
+                "
+              />
+              <nb-datepicker
+                #formpicker
+                [showHeader]="false"
+                [min]="min"
+                [max]="max"
+              ></nb-datepicker>
+              <div
+                *ngIf="(submitted || f.date.touched) && f.date.errors"
+                class="card-text"
+              >
+                <small
+                  *ngIf="f.date.errors?.required"
+                  class="text-muted text-muted-danger"
+                >
+                  Field required
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <div class="form-group">
+              <label for="">Hour</label>
+              <nb-select
+                name="hour"
+                formControlName="hour"
+                placeholder="Select Hour"
+                fullWidth
+                [status]="
+                  (submitted || f.hour.touched) &&
+                  (f.hour.errors || errors?.appointmentExist)
+                    ? 'danger'
+                    : ''
+                "
+              >
+                <!-- <nb-option value="">Select...</nb-option> -->
+                <nb-option
+                  *ngFor="let item of optiosHours$ | async"
+                  [value]="item.value"
+                >
+                  {{ item.name }}
+                </nb-option>
+              </nb-select>
+              <div
+                *ngIf="(submitted || f.hour.touched) && f.hour.errors"
+                class="card-text"
+              >
+                <small
+                  *ngIf="f.hour.errors?.required"
+                  class="text-muted text-muted-danger"
+                >
+                  Field required
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <div class="form-group">
+              <label for="">Time</label>
+              <nb-select
+                name="time"
+                formControlName="time"
+                placeholder="Select Time"
+                fullWidth
+                [status]="
+                  (submitted || f.time.touched) && f.time.errors ? 'danger' : ''
+                "
+              >
+                <!-- <nb-option value="">Select...</nb-option> -->
+                <nb-option
+                  *ngFor="let item of optiosTime$ | async"
+                  [value]="item.value"
+                >
+                  {{ item.name }}
+                </nb-option>
+              </nb-select>
+              <!-- <input type="text" name="time" formControlName="time" nbInput fullWidth [status]=" (submitted || f.time.touched) && f.time.errors ? 'danger' : '' " /> -->
+              <div
+                *ngIf="(submitted || f.time.touched) && f.time.errors"
+                class="card-text"
+              >
+                <small
+                  *ngIf="f.time.errors?.required"
+                  class="text-muted text-muted-danger"
+                >
+                  Field required
+                </small>
+              </div>
+            </div>
+          </div>
+          <div class="col-12" *ngIf="errors !== null">
+            <nb-alert *ngIf="errors?.appointmentExist" outline="danger">
+              The date and time is already assigned
+            </nb-alert>
+          </div>
+        </div>
+      </nb-card-body>
+      <nb-card-footer class="ap-form-footer">
+        <button type="button" nbButton status="danger" (click)="cancel()">
+          <nb-icon icon="close-circle-outline"></nb-icon>
+        </button>
+        <button nbButton status="success" type="button" (click)="submit()">
+          <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+        </button>
+      </nb-card-footer>
+    </nb-card>
+  </form>
+</nb-card>

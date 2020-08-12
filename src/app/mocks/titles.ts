@@ -1,6 +1,5 @@
 import { IOption, IOptionNumber } from "../models/Option";
 import { Title } from "../models/Titlel";
-import { Country } from "../models/Country";
 
 export const visaCategories: IOption[] = [
   { value: "VISITOR", name: "Visitor" },
