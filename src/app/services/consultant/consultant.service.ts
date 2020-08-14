@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { map, pluck } from "rxjs/operators";
+import { map, pluck, tap } from "rxjs/operators";
 import { environment } from "../../../environments/environment";
 import { CheckList } from "../../models/CheckList";
 import { Process } from "../../models/Process";
@@ -37,5 +37,11 @@ export class ConsultantService {
     const url = `${environment.api_url}${environment.api_version}/check-list?type=${type}`;
 
     return this._http.get(url).pipe(pluck("list"));
+  }
+
+  getConsultantAppointments(id: string) {
+    const url = `${environment.api_url}${environment.api_version}/appointment/${id}`;
+
+    return this._http.get(url).pipe();
   }
 }

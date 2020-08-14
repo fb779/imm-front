@@ -32,6 +32,7 @@ import { DashboardComponent } from "./dashboard.component";
 // import { TrafficChartComponent } from './traffic/traffic-chart.component';
 import { FormsModule } from "@angular/forms";
 import { CountdownComponent } from "./countdown/countdown.component";
+import { AppointmentModule } from "../../shared/appointment/appointment.module";
 
 @NgModule({
   imports: [
@@ -42,6 +43,7 @@ import { CountdownComponent } from "./countdown/countdown.component";
     NbButtonModule,
     NbProgressBarModule,
     NgxEchartsModule,
+    AppointmentModule,
   ],
   declarations: [DashboardComponent, CountdownComponent],
 })

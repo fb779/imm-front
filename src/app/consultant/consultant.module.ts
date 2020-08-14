@@ -50,10 +50,12 @@ import { ProcessComponent } from "./processes/process.component";
 import { FormsGuidesComponent } from "./forms-guides/forms-guides.component";
 import { SelectDocumentsComponent } from "./select-documents/select-documents.component";
 import { SharedModule } from "../shared/shared.module";
-import { ChecklistComponent } from './select-documents/checklist/checklist.component';
-import { DocumentsComponent } from './documents/documents.component';
-import { ListDocumentsComponent } from './documents/list-documents/list-documents.component';
-import { WebChatModule } from '../shared/web-chat/web-chat.module';
+import { ChecklistComponent } from "./select-documents/checklist/checklist.component";
+import { DocumentsComponent } from "./documents/documents.component";
+import { ListDocumentsComponent } from "./documents/list-documents/list-documents.component";
+import { WebChatModule } from "../shared/web-chat/web-chat.module";
+import { AppointmentModule } from "../shared/appointment/appointment.module";
+import { AppointmentComponent } from './appointment/appointment.component';
 
 @NgModule({
   imports: [
@@ -65,6 +67,7 @@ import { WebChatModule } from '../shared/web-chat/web-chat.module';
     NbDialogModule.forChild(),
     ...consultanttNebular,
     WebChatModule,
+    AppointmentModule,
   ],
   declarations: [
     ConsultantComponent,
@@ -76,7 +79,8 @@ import { WebChatModule } from '../shared/web-chat/web-chat.module';
     ChecklistComponent,
     DocumentsComponent,
     ListDocumentsComponent,
+    AppointmentComponent,
   ],
   exports: [],
 })
-export class ConsultantModule { }
+export class ConsultantModule {}

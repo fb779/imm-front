@@ -1,0 +1,30 @@
+<nb-card size="medium">
+  <nb-card-header>
+    <div class="row">
+      <div class="col">
+        <label for="">List Appointment</label>
+      </div>
+      <div class="col text-right">
+        <button
+          type="button"
+          nbButton
+          outline
+          size="tiny"
+          status="primary"
+          (click)="loadAppointments()"
+        >
+          <nb-icon icon="refresh-outline"></nb-icon>
+        </button>
+      </div>
+    </div>
+  </nb-card-header>
+  <nb-list>
+    <nb-list-item *ngFor="let appointment of list_appointment">
+      <label for="">
+        <span>{{ appointment.date | date }} </span> -
+        <span> {{ appointment.hour }} </span> -
+        <span> {{ appointment.consultant.email }} </span>
+      </label>
+    </nb-list-item>
+  </nb-list>
+</nb-card>

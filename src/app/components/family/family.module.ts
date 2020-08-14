@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { FamilyComponent } from './family.component';
-import { FormFamilyMembersComponent } from './form-family-members/form-family-members.component';
-import { FamilyListComponent } from './family-list/family-list.component';
+import { FamilyComponent } from "./family.component";
+import { FormFamilyMembersComponent } from "./form-family-members/form-family-members.component";
+import { FamilyListComponent } from "./family-list/family-list.component";
 
 import {
   NbIconModule,
@@ -24,9 +24,7 @@ import {
   NbRadioModule,
   NbUserModule,
 } from "@nebular/theme";
-import { DeleteFamilyMemberComponent } from './delete-family-member/delete-family-member.component';
-
-
+import { DeleteFamilyMemberComponent } from "./delete-family-member/delete-family-member.component";
 
 const nebular_family = [
   // NbMenuModule,
@@ -39,7 +37,7 @@ const nebular_family = [
   NbSpinnerModule,
   NbAlertModule,
   NbListModule,
-  NbDialogModule.forRoot(),
+  // NbDialogModule.forRoot(),
   // NbDatepickerModule,
   // NbStepperModule,
   // NbAccordionModule,
@@ -49,24 +47,14 @@ const nebular_family = [
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    ...nebular_family,
-  ],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, ...nebular_family],
   declarations: [
     FamilyComponent,
     FamilyListComponent,
     FormFamilyMembersComponent,
     DeleteFamilyMemberComponent,
   ],
-  exports:[
-    FamilyComponent
-  ],
-  entryComponents: [
-    FormFamilyMembersComponent,
-    DeleteFamilyMemberComponent,
-  ],
+  exports: [FamilyComponent],
+  entryComponents: [FormFamilyMembersComponent, DeleteFamilyMemberComponent],
 })
-export class FamilyModule { }
+export class FamilyModule {}
