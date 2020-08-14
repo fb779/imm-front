@@ -127,7 +127,6 @@ export class FormAppointmentComponent implements OnInit {
       this._appointmentService
         .createAppointment(this.formAppointment.value)
         .subscribe((res) => {
-          console.log("Creacion del appointment", res);
           this.dialogRef.close(true);
         });
     }
@@ -139,7 +138,6 @@ export class FormAppointmentComponent implements OnInit {
           this.formAppointment.value
         )
         .subscribe((res) => {
-          console.log("edicion del appointment", res);
           this.dialogRef.close(true);
         });
     }

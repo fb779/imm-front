@@ -1,46 +1,71 @@
 <div class="cards">
-    <nb-card class="horizontal" accent="info">
-        <nb-card-body class="horizontal-body">
-            <div>
-                <button nbButton fullWidth outline class="out-line" (click)="navigateLink('/pages/assessment-form')">
-                    <nb-icon class="font-size-custom" icon="edit-2-outline"></nb-icon>
-                    <span>Assessment-Form</span>
-                </button>
-            </div>
-        </nb-card-body>
-    </nb-card>
+  <nb-card class="horizontal" accent="info">
+    <nb-card-body class="horizontal-body">
+      <div>
+        <button
+          nbButton
+          fullWidth
+          outline
+          class="out-line"
+          (click)="navigateLink('/pages/assessment-form')"
+        >
+          <nb-icon class="font-size-custom" icon="edit-2-outline"></nb-icon>
+          <span>Assessment-Form</span>
+        </button>
+      </div>
+    </nb-card-body>
+  </nb-card>
 
-    <nb-card class="horizontal" accent="success">
-        <nb-card-body class="horizontal-body">
-            <div>
-                <a nbButton fullWidth outline class="out-line" (click)="navigateLink('/pages/forms-guides')">
-                    <nb-icon class="font-size-custom" icon="file-text-outline"></nb-icon>
-                    <span>Forms & Guides</span>
-                </a>
-            </div>
-        </nb-card-body>
-    </nb-card>
+  <nb-card class="horizontal" accent="success">
+    <nb-card-body class="horizontal-body">
+      <div>
+        <a
+          nbButton
+          fullWidth
+          outline
+          class="out-line"
+          (click)="navigateLink('/pages/forms-guides')"
+        >
+          <nb-icon class="font-size-custom" icon="file-text-outline"></nb-icon>
+          <span>Forms & Guides</span>
+        </a>
+      </div>
+    </nb-card-body>
+  </nb-card>
 
-    <nb-card class="horizontal" accent="warning">
-        <nb-card-body class="horizontal-body">
-            <div>
-                <button nbButton fullWidth outline class="out-line" (click)="navigateLink('/pages/documents')">
-                    <nb-icon class="font-size-custom" icon="folder-outline"></nb-icon>
-                    <span>My Documents</span>
-                </button>
-            </div>
-        </nb-card-body>
-    </nb-card>
+  <nb-card class="horizontal" accent="warning">
+    <nb-card-body class="horizontal-body">
+      <div>
+        <button
+          nbButton
+          fullWidth
+          outline
+          class="out-line"
+          (click)="navigateLink('/pages/documents')"
+        >
+          <nb-icon class="font-size-custom" icon="folder-outline"></nb-icon>
+          <span>My Documents</span>
+        </button>
+      </div>
+    </nb-card-body>
+  </nb-card>
 
-    <nb-card class="horizontal" accent="danger">
-        <nb-card-body class="horizontal-body">
-            <div>
-                <button nbButton fullWidth outline class="out-line" (click)="navigateLink('/pages/family')">
-                    <nb-icon class="font-size-custom" icon="people-outline"></nb-icon>
-                    <span>My Family</span>
-                </button>
-            </div>
-        </nb-card-body>
-    </nb-card>
-
+  <nb-card class="horizontal" accent="danger">
+    <nb-card-body class="horizontal-body">
+      <div>
+        <button
+          nbButton
+          fullWidth
+          outline
+          class="out-line"
+          (click)="navigateLink('/pages/family')"
+        >
+          <nb-icon class="font-size-custom" icon="people-outline"></nb-icon>
+          <span>My Family</span>
+        </button>
+      </div>
+    </nb-card-body>
+  </nb-card>
 </div>
+
+<ngx-show-appointment></ngx-show-appointment>
