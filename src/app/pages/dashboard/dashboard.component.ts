@@ -31,7 +31,6 @@ export class DashboardComponent implements OnDestroy {
     private _processServices: UserProcessService
   ) {
     this._processServices.getUserProcesses().subscribe((list_process) => {
-      console.log(list_process);
       this.processes = list_process;
     });
   }

@@ -15,6 +15,7 @@ export class CountdownComponent implements OnInit {
   end_date;
   today = moment();
   time;
+  left_days;
   color_status = "default";
   constructor() {}
 
@@ -23,6 +24,7 @@ export class CountdownComponent implements OnInit {
       this.start_date = moment(this.date);
       this.end_date = moment(this.date).add(this.finish_time, "days");
       this.time = this.today.diff(this.start_date, "days");
+      this.left_days = this.finish_time - this.time;
     }
   }
 
