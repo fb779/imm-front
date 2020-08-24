@@ -1,12 +1,9 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
-import { Observable } from "rxjs";
-import { map, catchError, tap } from "rxjs/operators";
-
+import { map } from "rxjs/operators";
 import { User } from "../../models/User";
-
-import { NbAuthService, NbAuthJWTToken } from "@nebular/auth";
+import { NbAuthService } from "@nebular/auth";
 import { environment } from "../../../environments/environment";
 
 @Injectable({
@@ -23,14 +20,6 @@ export class UserService {
     private authService: NbAuthService
   ) {
     this.loadStorage();
-    // this.saveStorage();
-    // this.authService.onTokenChange().subscribe(( token: NbAuthJWTToken)=>{
-    //   if( token.isValid() ){
-    //     this.token = token.getValue();
-    //     this.id = token.getPayload().sub;
-    //     // this.user = token.getPayload().user;
-    //   }
-    // });
   }
 
   // ===================================================
@@ -50,7 +39,6 @@ export class UserService {
       if (token.isValid()) {
         this.token = token.getValue();
         this.id = token.getPayload().sub;
-        // this.user = token.getPayload().user;
       }
     });
 
@@ -68,11 +56,8 @@ export class UserService {
   //  Get user by Id
   // ===================================================
   getUser(id: string) {
-    // console.log(this.id);
     const url = `${environment.api_url}${environment.api_version}/users/${id}`;
-
     return this._http.get(url).pipe(
-      // tap((r)=> console.log('datos que llegaron', r ) ),
       map((resp: any) => {
         let user: User = resp.data.user;
         this.saveStorage(user);
@@ -86,7 +71,6 @@ export class UserService {
   // ===================================================
   getUsers() {
     const url = `${environment.api_url}${environment.api_version}/users`;
-
     return this._http.get(url).pipe(map((resp: any) => resp.data));
   }
 }

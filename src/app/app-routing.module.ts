@@ -1,59 +1,53 @@
-import { ExtraOptions, RouterModule, Routes } from '@angular/router';
-import { NgModule } from '@angular/core';
+import { ExtraOptions, RouterModule, Routes } from "@angular/router";
+import { NgModule } from "@angular/core";
 
 import {
-  NbAuthComponent,
-  NbLoginComponent,
-  NbLogoutComponent,
-  NbRegisterComponent,
-  NbRequestPasswordComponent,
-  NbResetPasswordComponent,
-} from '@nebular/auth';
-
-import { AuthGuardGuard, AdminProfileGuard, UserTypeGuard } from './services/services.index';
+  AuthGuardGuard,
+  AdminProfileGuard,
+  UserTypeGuard,
+} from "./services/services.index";
 
 const routes: Routes = [
   {
-    path: 'auth',
+    path: "auth",
     // canActivate: [AuthGuardGuard],
-    loadChildren: () => import('./auth/auth.module')
-    .then(m => m.AuthModule),
+    loadChildren: () => import("./auth/auth.module").then((m) => m.AuthModule),
   },
   {
-    path: 'pages',
+    path: "pages",
     canActivate: [AuthGuardGuard],
-    loadChildren: () => import('./pages/pages.module')
-    .then(m => m.PagesModule),
+    loadChildren: () =>
+      import("./pages/pages.module").then((m) => m.PagesModule),
   },
   {
-    path: 'admin',
+    path: "admin",
     canActivate: [AuthGuardGuard, UserTypeGuard],
-    loadChildren: () => import('./admin/admin.module')
-    .then(m => m.AdminModule),
+    loadChildren: () =>
+      import("./admin/admin.module").then((m) => m.AdminModule),
     data: {
-      role: 'ADMIN_ROLE'
-    }
+      role: "ADMIN_ROLE",
+    },
   },
   {
-    path: 'client',
+    path: "client",
     canActivate: [AuthGuardGuard, UserTypeGuard],
-    loadChildren: () => import('./client/client.module')
-    .then(m => m.ClientModule),
+    loadChildren: () =>
+      import("./client/client.module").then((m) => m.ClientModule),
     data: {
-      role: 'CLIENT_ROLE'
-    }
+      role: "CLIENT_ROLE",
+    },
   },
   {
-    path: 'consultant',
+    path: "consultant",
     canActivate: [AuthGuardGuard, UserTypeGuard],
-    loadChildren: () => import('./consultant/consultant.module')
-    .then(m => m.ConsultantModule),
+    loadChildren: () =>
+      import("./consultant/consultant.module").then((m) => m.ConsultantModule),
     data: {
-      role: 'USER_ROLE'
-    }
+      role: "USER_ROLE",
+    },
   },
-  { path: '', redirectTo: 'pages', pathMatch: 'full' },
-  { path: '**', redirectTo: 'pages' },
+  { path: "", redirectTo: "pages", pathMatch: "full" },
+  { path: "**", redirectTo: "pages" },
 ];
 
 const config: ExtraOptions = {
@@ -64,5 +58,4 @@ const config: ExtraOptions = {
   imports: [RouterModule.forRoot(routes, config)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}

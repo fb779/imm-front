@@ -53,8 +53,9 @@ export const CLIENT_MENU_ITEMS: NbMenuItem[] = [
   {
     title: "My Consultant",
     icon: "hard-drive-outline",
-    link: "/pages/consultant",
-    hidden: true,
+    // icon: "person-outline",
+    link: "/pages/my-consultant",
+    hidden: false,
   },
   {
     title: "Add-Ons",
@@ -97,6 +98,12 @@ export const CLIENT_MENU_ITEMS: NbMenuItem[] = [
     icon: "message-circle-outline",
     link: "/pages/messages",
   },
+  {
+    title: "Log Out",
+    icon: "power-outline",
+    // icon: { icon: 'home', pack: 'fas' },
+    link: "/auth/logout",
+  },
 ];
 
 export const ADMIN_MENU_ITEMS: NbMenuItem[] = [
@@ -137,6 +144,12 @@ export const ADMIN_MENU_ITEMS: NbMenuItem[] = [
     // icon: { icon: 'home', pack: 'fas' },
     link: "/admin/processes",
   },
+  {
+    title: "Log Out",
+    icon: "power-outline",
+    // icon: { icon: 'home', pack: 'fas' },
+    link: "/auth/logout",
+  },
 ];
 
 export const USER_MENU_ITEMS: NbMenuItem[] = [
@@ -172,5 +185,11 @@ export const USER_MENU_ITEMS: NbMenuItem[] = [
     icon: "bookmark-outline",
     // icon: { icon: 'home', pack: 'fas' },
     link: "/consultant/appointment",
+  },
+  {
+    title: "Log Out",
+    icon: "power-outline",
+    // icon: { icon: 'home', pack: 'fas' },
+    link: "/auth/logout",
   },
 ];

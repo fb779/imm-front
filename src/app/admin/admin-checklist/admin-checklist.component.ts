@@ -13,9 +13,7 @@ export class AdminChecklistComponent implements OnInit {
   bk_list_checklist: CheckList[] = [];
   list_checklist: CheckList[] = [];
 
-  constructor(private _adminChecklistService: AdminChecklistService) {
-    // this.loadListChecklist();
-  }
+  constructor(private _adminChecklistService: AdminChecklistService) {}
 
   ngOnInit() {
     this.loadListChecklist();
@@ -41,7 +39,5 @@ export class AdminChecklistComponent implements OnInit {
         );
       });
     }
-
-    // console.log("tamaño de la lista", this.list_checklist.length);
   }
 }

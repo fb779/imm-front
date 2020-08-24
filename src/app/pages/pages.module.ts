@@ -29,6 +29,7 @@ import { DocumentsModule } from "./documents/documents.module";
 import { SharedModule } from "../shared/shared.module";
 import { FamilyModule } from "./family/family.module";
 import { ClientMessageModule } from "./client-messages/client-message.module";
+import { MyConsultantModule } from "./my-consultant/my-consultant.module";
 
 @NgModule({
   imports: [
@@ -45,6 +46,7 @@ import { ClientMessageModule } from "./client-messages/client-message.module";
     FamilyModule,
     // others modules
     DashboardModule,
+    MyConsultantModule,
     MiscellaneousModule,
   ],
   declarations: [

@@ -1,0 +1,20 @@
+nb-card {
+  width: 20rem;
+  margin: auto;
+}
+
+nb-card-body {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nb-card-body section {
+  margin: 10px 0;
+  flex: 1;
+}
+
+img {
+  width: 100%;
+}

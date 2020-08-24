@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { NbAuthComponent } from '@nebular/auth';
+import { Component, OnInit } from "@angular/core";
+import { NbAuthComponent } from "@nebular/auth";
 
 @Component({
-  selector: 'ngx-auth',
-  styleUrls: ['./auth.component.scss'],
-  // templateUrl: './auth.component.html',
+  selector: "ngx-auth",
+  styleUrls: ["./auth.component.scss"],
   template: `
     <nb-layout>
       <nb-layout-column>
@@ -27,8 +26,5 @@ import { NbAuthComponent } from '@nebular/auth';
   `,
 })
 export class AuthComponent extends NbAuthComponent implements OnInit {
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

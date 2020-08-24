@@ -17,20 +17,7 @@ import {
   NbUserModule,
 } from "@nebular/theme";
 
-const nebular = [
-  ThemeModule,
-  NbMenuModule,
-  NbCardModule,
-  // NbInputModule,
-  // NbSelectModule,
-  // NbActionsModule,
-  // NbButtonModule,
-  // NbCheckboxModule,
-  // NbDatepickerModule,
-  // NbIconModule,
-  // NbRadioModule,
-  // NbUserModule
-];
+const nebular = [ThemeModule, NbMenuModule, NbCardModule];
 
 import { AdminRoutingModule } from "./admin-routing.module";
 import { AdminComponent } from "./admin.component";

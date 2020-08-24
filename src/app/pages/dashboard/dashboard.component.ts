@@ -10,21 +10,7 @@ import { Process } from "../../models/Process";
 })
 export class DashboardComponent implements OnDestroy {
   private alive = true;
-  processes: Process[] = [
-    // {
-    //   _id: "",
-    //   status: "",
-    //   active: true,
-    //   client: {
-    //     _id: "jsjsjs",
-    //     first_name: "akdhakjshdka",
-    //     last_name: "jjdjdjd",
-    //   },
-    //   visa_category: { _id: "wwww", name: "ksksksksks" },
-    //   code: "",
-    //   createdAt: "2020-06-26T21:04:55.481Z",
-    // },
-  ];
+  processes: Process[] = [];
 
   constructor(
     private _router: Router,

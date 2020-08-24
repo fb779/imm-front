@@ -24,7 +24,6 @@ export class AdminChecklistService {
           if (a.group < b.group) {
             return 1;
           }
-          // a must be equal to b
           return 0;
         })
       )

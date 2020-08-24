@@ -34,17 +34,11 @@ export class FamilyComponent implements OnInit {
     });
   }
 
-  // isVisible( url: string[], process: Process, NumberFamily: number  ){
   isVisible() {
     this.visible = false;
 
     if (this.url[0] === "pages") {
-      // console.log("miembros de la familia cargados", this.numberFamilyMembers);
-      // console.log("acompañantes permitidos", this.process.companion);
-      if (
-        this.process.status === status.active
-        // && this.numberFamilyMembers < parseInt(this.process.companion + 1)
-      ) {
+      if (this.process.status === status.active) {
         this.visible = true;
         console.log("entramos al caso de verdad", this.visible);
       }
@@ -74,7 +68,6 @@ export class FamilyComponent implements OnInit {
   }
 
   updateClient(ev) {
-    // console.log('actualizar cliente',ev);
     this.dialogService.open(FormFamilyMembersComponent, {
       context: {
         process: this.process,
@@ -85,7 +78,6 @@ export class FamilyComponent implements OnInit {
   }
 
   deleteClient(ev) {
-    // console.log('eliminar cliente',ev);
     this.dialogService
       .open(DeleteFamilyMemberComponent, {
         context: { client: ev },

@@ -41,6 +41,7 @@
             nbButton
             size="tiny"
             [routerLink]="checklist._id"
+            [status]="checklist.state === true ? 'success' : 'primary'"
           >
             <nb-icon icon="edit-outline"></nb-icon>
           </button>

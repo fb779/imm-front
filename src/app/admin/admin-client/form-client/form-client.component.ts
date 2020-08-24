@@ -52,7 +52,7 @@ export class FormClientComponent implements OnInit {
   ) {
     this._activateRoute.params.subscribe((params) => {
       this.id = params["id"];
-      // this.getUser(this.id);
+
       if (!this.id) {
         this._router.navigate(["/admin", "users"]);
       }
@@ -60,8 +60,6 @@ export class FormClientComponent implements OnInit {
       if (this.id !== "new") {
         this.getUser(this.id);
       }
-
-      // console.log("Form client user", this.id);
     });
   }
 
@@ -86,23 +84,6 @@ export class FormClientComponent implements OnInit {
       process: new FormControl("", [Validators.required]),
     });
 
-    // this.formClient = this.formBuilder.group({
-    //   _id: new FormControl(""),
-    //   first_name: new FormControl("", [Validators.required]),
-    //   last_name: new FormControl("", [Validators.required]),
-    //   relationship: new FormControl("", [Validators.required]),
-    //   title: new FormControl("", [Validators.required]),
-    //   sex: new FormControl("", [Validators.required]),
-    //   country_citizenship: new FormControl("", [Validators.required]),
-    //   other_citizenship: new FormControl("", []),
-    //   country_residence: new FormControl("", [Validators.required]),
-    //   status_residence: new FormControl("", [Validators.required]),
-    //   status_residence_other: new FormControl({ value: "", disabled: true }, [
-    //      Validators.required,
-    //   ]),
-    //   age: new FormControl({ value: "", disabled: true }, [ Validators.required, ]),
-    // });
-
     this.formUser.get("active").valueChanges.subscribe((value: any) => {
       if (value) {
         this.status = "Active";
@@ -126,16 +107,11 @@ export class FormClientComponent implements OnInit {
     return this.formUser.controls;
   }
 
-  // get clientForm() {
-  //   return this.userForm.client;
-  // }
-
   getUser(id: string) {
     this._usersService.getUser(id).subscribe(
       (user: User) => {
         let loadUser = (this.user = user);
         delete loadUser.img;
-        // delete loadUser.client;
         delete loadUser.createdAt;
         delete loadUser.updatedAt;
         loadUser["process"] = "";

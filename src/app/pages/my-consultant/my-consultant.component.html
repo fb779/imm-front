@@ -1,0 +1,34 @@
+<ng-container *ngIf="consultants.length > 0; else elseTemplate">
+  <nb-card>
+    <nb-card-body>
+      <nb-tabset fullWidth>
+        <nb-tab
+          [tabTitle]="consultant.first_name | uppercase"
+          *ngFor="let consultant of consultants"
+        >
+          <ngx-card-consultant [consultant]="consultant"></ngx-card-consultant>
+          <!-- <ngx-client-documents-upload
+            [client]="consultant"
+          ></ngx-client-documents-upload> -->
+        </nb-tab>
+      </nb-tabset>
+    </nb-card-body>
+  </nb-card>
+</ng-container>
+<ng-template #elseTemplate>
+  <nb-card>
+    <nb-card-body>
+      <div>
+        No registered Consultant in the process
+      </div>
+    </nb-card-body>
+  </nb-card>
+</ng-template>
+
+<!-- <nb-card accent="info">
+  <nb-card-body>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, quia, non
+    praesentium cum aliquam eaque repudiandae voluptates veritatis ex quos
+    dolor, possimus earum sint? Ea aperiam ipsam a alias expedita!
+  </nb-card-body>
+</nb-card> -->

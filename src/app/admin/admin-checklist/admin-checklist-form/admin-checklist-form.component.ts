@@ -140,7 +140,7 @@ export class AdminChecklistFormComponent implements OnInit {
             "Check-list",
             "success"
           );
-          // this._router.navigate(["/admin/checklist"]);
+          this._router.navigate(["/admin/checklist"]);
         });
     }
 

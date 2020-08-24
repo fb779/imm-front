@@ -1,0 +1,19 @@
+<nb-card accent="info">
+  <nb-card-body>
+    <section class="img-fluid">
+      <img [src]="img" />
+    </section>
+    <section>
+      <div class="row">
+        <div class="col-12 col-md">
+          {{ consultant.first_name }} {{ consultant.last_name }}
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="row">
+        <div class="col-12 col-md">{{ consultant.email }}</div>
+      </div>
+    </section>
+  </nb-card-body>
+</nb-card>

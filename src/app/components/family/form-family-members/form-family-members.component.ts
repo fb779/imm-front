@@ -160,7 +160,7 @@ export class FormFamilyMembersComponent implements OnInit {
       this.submitted = true;
       return;
     }
-    // console.log('Valores colectados',this.clientForm.value);
+
     this._familyServices
       .newFamilyMember(this.process, this.clientForm.value)
       .subscribe(

@@ -6,14 +6,12 @@ import {
   FormControl,
   Validators,
 } from "@angular/forms";
-import {
-  ToastrService,
-} from "../../../services/services.index";
-import { UsersService } from '../users.service';
+import { ToastrService } from "../../../services/services.index";
+import { UsersService } from "../users.service";
 import { User } from "../../../models/User";
-import { emailRegex } from '../../../config/config';
-import { opsRoles } from '../../../mocks/titles';
-import { of, Observable } from 'rxjs';
+import { emailRegex } from "../../../config/config";
+import { opsRoles } from "../../../mocks/titles";
+import { of, Observable } from "rxjs";
 
 @Component({
   selector: "ngx-user",
@@ -30,10 +28,10 @@ export class UserComponent implements OnInit {
     active: false,
     role: "",
     email: "",
-    client: null
+    client: null,
   };
   submitted = false;
-  status: string = 'Inactive';
+  status: string = "Inactive";
   roles$ = of(opsRoles);
 
   constructor(
@@ -45,12 +43,12 @@ export class UserComponent implements OnInit {
   ) {
     this._activateRoute.params.subscribe((params) => {
       this.id = params["id"];
-      // this.getUser(this.id);
+
       if (!this.id) {
-        this._router.navigate(['/admin', 'users']);
+        this._router.navigate(["/admin", "users"]);
       }
 
-      if (this.id !== "new"){
+      if (this.id !== "new") {
         this.getUser(this.id);
       }
     });
@@ -65,36 +63,30 @@ export class UserComponent implements OnInit {
       _id: new FormControl(""),
       first_name: new FormControl("", [Validators.required]),
       last_name: new FormControl("", [Validators.required]),
-      email: new FormControl("",  [
-        Validators.required,
-        Validators.pattern(emailRegex),
-      ],
-      [
-        this.existEmail.bind(this)
-      ]),
+      email: new FormControl(
+        "",
+        [Validators.required, Validators.pattern(emailRegex)],
+        [this.existEmail.bind(this)]
+      ),
       role: new FormControl("", [Validators.required]),
       active: new FormControl(false, [Validators.required]),
-      password: new FormControl('', [Validators.required]),
+      password: new FormControl("", [Validators.required]),
     });
 
-    this.formUser.get("active").valueChanges.subscribe(
-      (value: any) => {
-        if (value){
-          this.status = 'Active';
-        } else {
-          this.status = 'Inactive';
-        }
+    this.formUser.get("active").valueChanges.subscribe((value: any) => {
+      if (value) {
+        this.status = "Active";
+      } else {
+        this.status = "Inactive";
       }
-    );
+    });
 
-    this.formUser.get("_id").valueChanges.subscribe(
-      (value: any) => {
-        if (value) {
-          this.formUser.get('password').clearValidators();
-          this.formUser.get('password').reset();
-        }
+    this.formUser.get("_id").valueChanges.subscribe((value: any) => {
+      if (value) {
+        this.formUser.get("password").clearValidators();
+        this.formUser.get("password").reset();
       }
-    );
+    });
   }
 
   get f() {
@@ -103,8 +95,8 @@ export class UserComponent implements OnInit {
 
   getUser(id: string) {
     this._usersService.getUser(id).subscribe(
-      (user:User) => {
-        let loadUser = this.user = user;
+      (user: User) => {
+        let loadUser = (this.user = user);
         delete loadUser.img;
         delete loadUser.client;
         delete loadUser.createdAt;
@@ -113,14 +105,18 @@ export class UserComponent implements OnInit {
         this.formUser.setValue(loadUser);
       },
       (err) => {
-        this._toastr.toastrGenericMessage(`User doesn't exist`,'User Information', 'danger');
-        this._router.navigate(['/admin', 'users']);
+        this._toastr.toastrGenericMessage(
+          `User doesn't exist`,
+          "User Information",
+          "danger"
+        );
+        this._router.navigate(["/admin", "users"]);
       }
     );
   }
 
-  randomPassword(){
-    this.formUser.get('password').setValue(this._usersService.randomPassword());
+  randomPassword() {
+    this.formUser.get("password").setValue(this._usersService.randomPassword());
   }
 
   /**
@@ -128,20 +124,16 @@ export class UserComponent implements OnInit {
    * -  se realiza verificacion de existencia de ID y comparacion con emial
    * -  caso especial para la modificacion del usuario, valida si el email es diferente
    */
-  existEmail( control: FormControl ): Observable<any>|Promise<any> {
-    return new Promise(
-      (resolve, reject) => {
-        if ( !this.user._id || this.user.email !== control.value ){
-          this._usersService.validEmail(control.value).subscribe(
-            (response) => {
-              return ( !response ) ? resolve(null) : resolve({ emailExist: true });
-            }
-          );
-        } else {
-          resolve(null);
-        }
+  existEmail(control: FormControl): Observable<any> | Promise<any> {
+    return new Promise((resolve, reject) => {
+      if (!this.user._id || this.user.email !== control.value) {
+        this._usersService.validEmail(control.value).subscribe((response) => {
+          return !response ? resolve(null) : resolve({ emailExist: true });
+        });
+      } else {
+        resolve(null);
       }
-    );
+    });
   }
 
   saveUser() {
@@ -155,31 +147,31 @@ export class UserComponent implements OnInit {
       return;
     }
 
-    if ( this.id === 'new' ){
-      this._usersService.createUser( this.formUser.value ).subscribe(
-        (response)=> {
-          console.log(`Llegada de informacion`, response)
+    if (this.id === "new") {
+      this._usersService
+        .createUser(this.formUser.value)
+        .subscribe((response) => {
+          console.log(`Llegada de informacion`, response);
           this._toastr.toastrGenericMessage(
-            `User create successfull ${ this.formUser.value.first_name } ${ this.formUser.value.last_name }`,
+            `User create successfull ${this.formUser.value.first_name} ${this.formUser.value.last_name}`,
             "User",
             "success"
           );
-          this._router.navigate(['/admin/users']);
-        }
-      );
+          this._router.navigate(["/admin/users"]);
+        });
     }
 
-    if ( this.formUser.value._id ){
-      this._usersService.updateUser( this.id, this.formUser.value ).subscribe(
-        (response)=> {
+    if (this.formUser.value._id) {
+      this._usersService
+        .updateUser(this.id, this.formUser.value)
+        .subscribe((response) => {
           this._toastr.toastrGenericMessage(
-            `User edit successfull ${ this.formUser.value.first_name } ${ this.formUser.value.last_name }`,
+            `User edit successfull ${this.formUser.value.first_name} ${this.formUser.value.last_name}`,
             "User information",
             "success"
           );
-          this._router.navigate(['/admin/users']);
-        }
-      );
+          this._router.navigate(["/admin/users"]);
+        });
     }
   }
 }

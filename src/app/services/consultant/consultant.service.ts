@@ -14,34 +14,21 @@ export class ConsultantService {
 
   getConsultantProcesses(): Observable<Process[]> {
     let url = `${environment.api_url}${environment.api_version}/process`;
-
-    return this._http.get(url).pipe(
-      // tap( x => console.log('recibido en el tap', x) ),
-      map((data: any) => data.list)
-    );
+    return this._http.get(url).pipe(map((data: any) => data.list));
   }
 
   getFormProcess(id: string): Observable<any> {
-    // return observableOf({});
-    // console.log(id)
     let url = `${environment.api_url}${environment.api_version}/process/${id}/form`;
-    return this._http
-      .get(url)
-      .pipe
-      // tap( x => console.log('recibido en el tap',x) )
-      ();
+    return this._http.get(url).pipe();
   }
 
-  // getDocumentsOfConsultant( type: string ): Observable<Document[]>{
   getDocumentsOfConsultant(type: string): Observable<CheckList[]> {
     const url = `${environment.api_url}${environment.api_version}/check-list?type=${type}`;
-
     return this._http.get(url).pipe(pluck("list"));
   }
 
   getConsultantAppointments(id: string) {
     const url = `${environment.api_url}${environment.api_version}/appointment/${id}`;
-
     return this._http.get(url).pipe();
   }
 }

@@ -60,9 +60,7 @@ import { AuthInterceptorService } from "./services/interceptor/auth-interceptor.
           name: "email",
           baseEndpoint: `${environment.api_url}${environment.api_version}`,
           token: {
-            // class: NbAuthSimpleToken,
             class: NbAuthJWTToken,
-            // key: 'token', // this parameter tells where to look for the token
           },
           login: {
             endpoint: "/login/signin",
@@ -166,31 +164,6 @@ import { AuthInterceptorService } from "./services/interceptor/auth-interceptor.
     }),
   ],
   providers: [
-    // {
-    //   provide: NB_AUTH_TOKEN_INTERCEPTOR_FILTER,
-    //   useValue: function (req: HttpRequest<any>) {
-    //     if (req.url === `${environment.api_url}/login/signin`) {
-    //       return true;
-    //     }
-
-    //     if (req.url === `${environment.api_url}/login/refresh-token`) {
-    //       return true;
-    //     }
-
-    //     return false;
-
-    //  },
-    // },
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: NbAuthJWTInterceptor,
-    //   multi: true,
-    // },
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: TokenInterceptorService,
-    //   multi: true,
-    // },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

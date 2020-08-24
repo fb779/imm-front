@@ -16,7 +16,7 @@ export class UsersService {
         acc ? `${acc}&${cur.field}=${cur.value}` : `?${cur.field}=${cur.value}`,
       ""
     );
-    // console.log(fields);
+
     let url = `${environment.api_url}${environment.api_version}/users${fields}`;
 
     return this._http.get(url).pipe(map((resp: any) => resp.data));

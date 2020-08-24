@@ -65,9 +65,8 @@ export class FormAppointmentComponent implements OnInit {
     private _appointmentService: AppointmentService,
     private _toastr: ToastrService
   ) {
-    this.min = moment().toDate(); // this.dateService.addDay(this.dateService.today(), 1);
-    this.max = moment().add(1, "month").toDate(); //this.dateService.addMonth(this.dateService.today(), 1);
-    // console.log(this.user);
+    this.min = moment().toDate();
+    this.max = moment().add(1, "month").toDate();
   }
 
   ngOnInit() {
@@ -114,12 +113,7 @@ export class FormAppointmentComponent implements OnInit {
           ? "The date and time is already assigned"
           : "Complete the information required";
       this.submitted = true;
-      this._toastr.toastrGenericMessage(
-        // "Complete the information required",
-        msg,
-        "Form Apointment",
-        "warning"
-      );
+      this._toastr.toastrGenericMessage(msg, "Form Apointment", "warning");
       return;
     }
 

@@ -14,7 +14,7 @@ export class ProcessesComponent implements OnInit {
 
   constructor( private _process: AdminProcessService ) {
     this._process.getConsultans().subscribe((data: any)=>{
-      // console.log('Consultores encontrados', data);
+
       this.consultants = data;
     });
 
