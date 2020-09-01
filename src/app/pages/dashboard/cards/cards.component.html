@@ -1,12 +1,49 @@
-<div *ngIf="processes.length > 0">
-  <ngx-countdown *ngFor="let process of processes" [date]="process.createdAt">
-  </ngx-countdown>
-</div>
+<div class="cards">
+  <!-- <nb-card class="horizontal" accent="info">
+    <nb-card-body class="card-body">
+      <section class="card-img">
+        <img src="https://picsum.photos/200/300?random=2" alt="" srcset="" />
+      </section>
 
-<ngx-cards></ngx-cards>
+      <section class="card-sub-title">
+        <span>Lorem ipsum dolor sit amet.</span>
+      </section>
 
-<!-- <div class="cards">
-  <nb-card class="horizontal" accent="info">
+      <section class="card-description">
+        <span>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam,
+          facere.
+        </span>
+      </section>
+    </nb-card-body>
+  </nb-card> -->
+
+  <nb-card
+    class="horizontal"
+    [accent]="item.accent"
+    *ngFor="let item of data"
+    (click)="goto(item.link)"
+  >
+    <nb-card-body class="card-body">
+      <ng-container *ngIf="item?.img">
+        <section class="card-img">
+          <img [src]="item.img" alt="" srcset="" />
+        </section>
+      </ng-container>
+
+      <section class="card-sub-title">
+        <span>{{ item.sub_title }}</span>
+      </section>
+
+      <section class="card-description">
+        <span>
+          {{ item.description }}
+        </span>
+      </section>
+    </nb-card-body>
+  </nb-card>
+
+  <!-- <nb-card class="horizontal" accent="info">
     <nb-card-body class="horizontal-body">
       <div>
         <button
@@ -21,9 +58,9 @@
         </button>
       </div>
     </nb-card-body>
-  </nb-card>
+  </nb-card> -->
 
-  <nb-card class="horizontal" accent="success">
+  <!-- <nb-card class="horizontal" accent="success">
     <nb-card-body class="horizontal-body">
       <div>
         <a
@@ -72,7 +109,5 @@
         </button>
       </div>
     </nb-card-body>
-  </nb-card>
-</div> -->
-
-<ngx-show-appointment></ngx-show-appointment>
+  </nb-card> -->
+</div>

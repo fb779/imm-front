@@ -12,6 +12,7 @@ import { NgxEchartsModule } from "ngx-echarts";
 import { DashboardComponent } from "./dashboard.component";
 import { CountdownComponent } from "./countdown/countdown.component";
 import { AppointmentModule } from "../../shared/appointment/appointment.module";
+import { CardsComponent } from './cards/cards.component';
 
 @NgModule({
   imports: [
@@ -24,6 +25,6 @@ import { AppointmentModule } from "../../shared/appointment/appointment.module";
     NgxEchartsModule,
     AppointmentModule,
   ],
-  declarations: [DashboardComponent, CountdownComponent],
+  declarations: [DashboardComponent, CountdownComponent, CardsComponent],
 })
 export class DashboardModule {}
