@@ -7,6 +7,7 @@ import { ProcessesComponent } from "./processes/processes.component";
 import { ProcessComponent } from "./processes/process.component";
 import { AppointmentComponent } from "./appointment/appointment.component";
 // import { MakeAppointmentComponent } from "../shared/appointment/make-appointment/make-appointment.component";
+import { ConsultantProfileComponent } from "./consultant-profile/consultant-profile.component";
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
       {
         path: "dashboard",
         component: DashboardComponent,
+      },
+      {
+        path: "profile",
+        component: ConsultantProfileComponent,
       },
       {
         path: "processes",

@@ -4,6 +4,8 @@ import { environment } from "../../../environments/environment";
 import { map, tap } from "rxjs/operators";
 import { User } from "../../models/User";
 
+import * as _ from "underscore";
+
 @Injectable({
   providedIn: "root",
 })
@@ -50,5 +52,14 @@ export class UsersService {
   validEmail(email: string) {
     const url = `${environment.api_url}${environment.api_version}/users/valid?email=${email}`;
     return this._http.get(url).pipe(map((el: any) => el.data));
+  }
+
+  changePassword(id: string, data: any) {
+    const url = `${environment.api_url}${environment.api_version}/users/${id}`;
+    // data = _.pick(data, ["old_password", "new_password"]);
+    return this._http.patch(url, data).pipe(
+      tap((el) => console.log(el)),
+      map((el: any) => el.data)
+    );
   }
 }

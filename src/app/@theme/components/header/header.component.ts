@@ -7,13 +7,13 @@ import {
   NbThemeService,
 } from "@nebular/theme";
 
-import { UserData } from "../../../@core/data/users";
 import { LayoutService } from "../../../@core/utils";
 import { map, takeUntil, filter, tap } from "rxjs/operators";
 import { Subject } from "rxjs";
 
 import { UserService } from "../../../services/services.index";
 import { User } from "../../../models/User";
+import { roles } from "../../../config/config";
 
 @Component({
   selector: "ngx-header",
@@ -23,7 +23,7 @@ import { User } from "../../../models/User";
 export class HeaderComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject<void>();
   userPictureOnly: boolean = false;
-  user: User;
+  user: User = this._userService.user;
 
   themes = [
     {
@@ -47,7 +47,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   currentTheme = "corporate";
 
   userMenu = [
-    // { title: 'Profile' },
+    // { title: "Profile", link: "pages/profile", icon: "person-outline" },
     { title: "Log out", link: "auth/logout", icon: "power-outline" },
   ];
 
@@ -58,13 +58,30 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private layoutService: LayoutService,
     private breakpointService: NbMediaBreakpointsService,
     private authService: NbAuthService,
-    private _userService: UserService
+    public _userService: UserService
   ) {
     this.authService.onTokenChange().subscribe((token: NbAuthJWTToken) => {
       if (token.isValid()) {
         let dt = token.getPayload();
         this._userService.getUser(dt.sub).subscribe((user) => {
-          this.user = user;
+          // this.user = user;
+
+          switch (user.role) {
+            case roles.user:
+              this.userMenu.unshift({
+                title: "Profile",
+                link: "consultant/profile",
+                icon: "person-outline",
+              });
+              break;
+            case roles.client:
+              this.userMenu.unshift({
+                title: "Profile",
+                link: "pages/profile",
+                icon: "person-outline",
+              });
+              break;
+          }
         });
       }
     });

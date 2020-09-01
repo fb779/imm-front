@@ -4,29 +4,18 @@ export const CLIENT_MENU_ITEMS: NbMenuItem[] = [
   {
     title: "Dashboard",
     icon: "home-outline",
-    // icon: { icon: 'home', pack: 'fas' },
     link: "/pages/dashboard",
     home: true,
   },
   {
+    title: "Profile",
+    icon: "person-outline",
+    link: "/pages/profile",
+  },
+  {
     title: "Assessment Form",
     icon: "edit-2-outline",
-    // icon: { icon: 'angry', pack: 'fas' },
     link: "/pages/assessment-form",
-    // children: [
-    //   {
-    //     title: 'Visitor',
-    //     link: '/pages/assessment-form/visit',
-    //   },
-    //   {
-    //     title: 'Student',
-    //     link: '/pages/assessment-form/study',
-    //   },
-    //   {
-    //     title: 'Work Permit',
-    //     link: '/pages/assessment-form/work-permit',
-    //   },
-    // ]
   },
   {
     title: "Forms & Guides",
@@ -48,14 +37,11 @@ export const CLIENT_MENU_ITEMS: NbMenuItem[] = [
     title: "My Family",
     icon: "people-outline",
     link: "/pages/family",
-    hidden: false,
   },
   {
     title: "My Consultant",
     icon: "hard-drive-outline",
-    // icon: "person-outline",
     link: "/pages/my-consultant",
-    hidden: false,
   },
   {
     title: "Add-Ons",
@@ -101,7 +87,6 @@ export const CLIENT_MENU_ITEMS: NbMenuItem[] = [
   {
     title: "Log Out",
     icon: "power-outline",
-    // icon: { icon: 'home', pack: 'fas' },
     link: "/auth/logout",
   },
 ];
@@ -110,44 +95,43 @@ export const ADMIN_MENU_ITEMS: NbMenuItem[] = [
   {
     title: "Dashboard",
     icon: "home-outline",
-    // icon: { icon: 'home', pack: 'fas' },
     link: "/admin/dashboard",
     home: true,
   },
   {
+    title: "Profile",
+    icon: "person-outline",
+    link: "/pages/profile",
+    hidden: true,
+  },
+  {
     title: "Users",
     icon: "settings-2-outline",
-    // icon: { icon: 'user-shield', pack: 'fas' },
     link: "/admin/users",
   },
   {
     title: "Clients",
     icon: "people-outline",
-    // icon: { icon: 'user-shield', pack: 'fas' },
     link: "/admin/clients",
   },
   {
     title: "Checklist",
     icon: "checkmark-square-outline",
-    // icon: { icon: 'user-shield', pack: 'fas' },
     link: "/admin/checklist",
   },
   {
     title: "Visa Category",
     icon: "book-open-outline",
-    // icon: { icon: "user-shield", pack: "fas" },
     link: "/admin/visa-category",
   },
   {
     title: "Processes",
     icon: "archive-outline",
-    // icon: { icon: 'home', pack: 'fas' },
     link: "/admin/processes",
   },
   {
     title: "Log Out",
     icon: "power-outline",
-    // icon: { icon: 'home', pack: 'fas' },
     link: "/auth/logout",
   },
 ];
@@ -156,40 +140,27 @@ export const USER_MENU_ITEMS: NbMenuItem[] = [
   {
     title: "Dashboard",
     icon: "home-outline",
-    // icon: { icon: 'home', pack: 'fas' },
     link: "/consultant/dashboard",
     home: true,
   },
   {
+    title: "Profile",
+    icon: "person-outline",
+    link: "/consultant/profile",
+  },
+  {
     title: "Processes",
     icon: "edit-2-outline",
-    // icon: { icon: 'angry', pack: 'fas' },
     link: "/consultant/processes",
-    // children: [
-    //   {
-    //     title: 'Visitor',
-    //     link: '/pages/assessment-form/visit',
-    //   },
-    //   {
-    //     title: 'Student',
-    //     link: '/pages/assessment-form/study',
-    //   },
-    //   {
-    //     title: 'Work Permit',
-    //     link: '/pages/assessment-form/work-permit',
-    //   },
-    // ]
   },
   {
     title: "Appointment",
     icon: "bookmark-outline",
-    // icon: { icon: 'home', pack: 'fas' },
     link: "/consultant/appointment",
   },
   {
     title: "Log Out",
     icon: "power-outline",
-    // icon: { icon: 'home', pack: 'fas' },
     link: "/auth/logout",
   },
 ];

@@ -1,28 +1,42 @@
 <div class="header-container">
-    <div class="logo-container">
-        <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
-            <nb-icon icon="menu-2-outline"></nb-icon>
-        </a>
-        <a class="logo" href="#" (click)="navigateHome()"><span>Immigrative</span></a>
-    </div>
-    <nb-select [selected]="currentTheme" (selectedChange)="changeTheme($event)" status="primary">
-        <nb-option *ngFor="let theme of themes" [value]="theme.value"> {{ theme.name }}</nb-option>
-    </nb-select>
+  <div class="logo-container">
+    <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
+      <nb-icon icon="menu-2-outline"></nb-icon>
+    </a>
+    <a class="logo" href="#" (click)="navigateHome()"
+      ><span>Immigrative</span></a
+    >
+  </div>
+  <nb-select
+    [selected]="currentTheme"
+    (selectedChange)="changeTheme($event)"
+    status="primary"
+  >
+    <nb-option *ngFor="let theme of themes" [value]="theme.value">
+      {{ theme.name }}</nb-option
+    >
+  </nb-select>
 </div>
 
 <div class="header-container">
-    <nb-actions size="small">
-
-        <!-- <nb-action class="control-item">
+  <nb-actions size="small">
+    <!-- <nb-action class="control-item">
             <nb-search type="rotate-layout"></nb-search>
         </nb-action> -->
-        <!-- <nb-action class="control-item" icon="email-outline"></nb-action> -->
-        <!-- <nb-action class="control-item" icon="bell-outline"></nb-action> -->
+    <!-- <nb-action class="control-item" icon="email-outline"></nb-action> -->
+    <!-- <nb-action class="control-item" icon="bell-outline"></nb-action> -->
 
-        <!-- <nb-action class="control-item" icon="message-circle-outline" link="/pages/messages" routerLinkActive="active-action"></nb-action> -->
-        <nb-action class="user-action" *nbIsGranted="['view', 'user']">
-            <nb-user [nbContextMenu]="userMenu" [onlyPicture]="userPictureOnly" [picture]="user?.img" [name]="user?.first_name + ' ' + user?.last_name">
-            </nb-user>
-        </nb-action>
-    </nb-actions>
+    <!-- <nb-action class="control-item" icon="message-circle-outline" link="/pages/messages" routerLinkActive="active-action"></nb-action> -->
+    <nb-action class="user-action" *nbIsGranted="['view', 'user']">
+      <nb-user
+        [nbContextMenu]="userMenu"
+        [onlyPicture]="userPictureOnly"
+        [picture]="_userService.user?.img"
+        [name]="
+          _userService.user?.first_name + ' ' + _userService.user?.last_name
+        "
+      >
+      </nb-user>
+    </nb-action>
+  </nb-actions>
 </div>

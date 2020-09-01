@@ -26,9 +26,8 @@ export class UserService {
   //  Metodo de guardado en storage
   // ===================================================
   saveStorage(user: any) {
-    localStorage.setItem("user", JSON.stringify(user));
-
     this.user = user;
+    localStorage.setItem("user", JSON.stringify(user));
   }
 
   loadStorage() {

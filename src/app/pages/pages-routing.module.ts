@@ -14,6 +14,7 @@ import { AdmissionComponent } from "./admission/admission.component";
 import { AppoinmentComponent } from "./appoinment/appoinment.component";
 import { BillingInvoiceComponent } from "./billing-invoice/billing-invoice.component";
 import { MyConsultantComponent } from "./my-consultant/my-consultant.component";
+import { ClientProfileComponent } from "./client-profile/client-profile.component";
 
 const routes: Routes = [
   {
@@ -21,16 +22,12 @@ const routes: Routes = [
     component: PagesComponent,
     children: [
       {
-        path: "messages",
-        // component: ClientMessageComponent,
-        loadChildren: () =>
-          import("./client-messages/client-message.module").then(
-            (m) => m.ClientMessageModule
-          ),
-      },
-      {
         path: "dashboard",
         component: DashboardComponent,
+      },
+      {
+        path: "profile",
+        component: ClientProfileComponent,
       },
       {
         path: "assessment-form",
@@ -65,6 +62,14 @@ const routes: Routes = [
         //   import("./my-consultant/my-consultant.module").then(
         //     (m) => m.MyConsultantModule
         //   ),
+      },
+      {
+        path: "messages",
+        // component: ClientMessageComponent,
+        loadChildren: () =>
+          import("./client-messages/client-message.module").then(
+            (m) => m.ClientMessageModule
+          ),
       },
       {
         path: "add-ons",

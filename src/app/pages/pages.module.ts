@@ -30,6 +30,8 @@ import { SharedModule } from "../shared/shared.module";
 import { FamilyModule } from "./family/family.module";
 import { ClientMessageModule } from "./client-messages/client-message.module";
 import { MyConsultantModule } from "./my-consultant/my-consultant.module";
+import { ClientProfileComponent } from "./client-profile/client-profile.component";
+import { ProfileModule } from "../shared/profile/profile.module";
 
 @NgModule({
   imports: [
@@ -46,6 +48,7 @@ import { MyConsultantModule } from "./my-consultant/my-consultant.module";
     FamilyModule,
     // others modules
     DashboardModule,
+    ProfileModule,
     MyConsultantModule,
     MiscellaneousModule,
   ],
@@ -58,6 +61,7 @@ import { MyConsultantModule } from "./my-consultant/my-consultant.module";
     AdmissionComponent,
     AppoinmentComponent,
     BillingInvoiceComponent,
+    ClientProfileComponent,
   ],
 })
 export class PagesModule {}

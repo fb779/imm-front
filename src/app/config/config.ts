@@ -30,6 +30,10 @@ export const emailRegex = new RegExp(
   /^[-\w.%+]+@(?:[A-Z0-9-]{2,20}\.){1,5}[A-Z]{2,4}$/im
 );
 
+export const passwordRegex = new RegExp(
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/
+);
+
 export const roles = {
   admin: "ADMIN_ROLE",
   client: "CLIENT_ROLE",

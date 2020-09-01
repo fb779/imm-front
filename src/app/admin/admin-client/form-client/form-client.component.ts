@@ -26,7 +26,6 @@ import { AdminClientService } from "../admin-client.service";
 export class FormClientComponent implements OnInit {
   id: string;
   formUser: FormGroup;
-  formClient: FormGroup;
   user: User = {
     _id: "",
     first_name: "",
