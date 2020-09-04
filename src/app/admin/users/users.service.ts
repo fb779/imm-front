@@ -57,9 +57,6 @@ export class UsersService {
   changePassword(id: string, data: any) {
     const url = `${environment.api_url}${environment.api_version}/users/${id}`;
     // data = _.pick(data, ["old_password", "new_password"]);
-    return this._http.patch(url, data).pipe(
-      tap((el) => console.log(el)),
-      map((el: any) => el.data)
-    );
+    return this._http.patch(url, data).pipe(map((el: any) => el.data));
   }
 }

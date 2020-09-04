@@ -65,7 +65,6 @@ export class UploadDocumentComponent implements OnInit {
     this.name = "";
 
     if (!archivo) {
-      console.log("without file");
       this._toastr.toastrGenericMessage(
         "You need select a file",
         "Upload File",
@@ -76,7 +75,6 @@ export class UploadDocumentComponent implements OnInit {
     }
 
     if (!this.validType(archivo.type)) {
-      console.log("File isn't authorizing");
       this._toastr.toastrGenericMessage(
         `File isn't authorizing`,
         "Upload File",

@@ -75,13 +75,10 @@ export class ProfilePasswordComponent implements OnInit {
       return;
     }
 
-    console.log(this.formPassword.value);
-
     this._usersService
       .changePassword(this.user._id, this.formPassword.value)
       .subscribe(
         (res) => {
-          console.log(res);
           if (res) {
             this.formPassword.reset();
             this.submitted = false;
@@ -93,7 +90,6 @@ export class ProfilePasswordComponent implements OnInit {
           }
         },
         (err) => {
-          console.log(err);
           this._toastr.toastrGenericMessage(
             err.message,
             "Change Pasword",

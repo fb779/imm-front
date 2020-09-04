@@ -1,17 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { NbRegisterComponent } from '@nebular/auth';
+import { Component, OnInit } from "@angular/core";
+import { NbRegisterComponent } from "@nebular/auth";
 
 @Component({
-  selector: 'ngx-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  selector: "ngx-register",
+  templateUrl: "./register.component.html",
+  styleUrls: ["./register.component.scss"],
 })
 export class RegisterComponent extends NbRegisterComponent implements OnInit {
-
-  ngOnInit() {
-    console.log('Validaciones del registro',this.getConfigValue('forms.validation'));
-  }
-
-
-
+  ngOnInit() {}
 }

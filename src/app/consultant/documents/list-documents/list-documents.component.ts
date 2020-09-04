@@ -56,8 +56,6 @@ export class ListDocumentsComponent implements OnInit {
   }
 
   approbe(document_file: Document) {
-    console.log("Aprobacion de documento", document_file);
-
     this._documentService.setApproveDocument(document_file._id).subscribe(
       (res: any) => {
         if (res.ok) {

@@ -20,4 +20,10 @@ export class ProfileComponent implements OnInit {
     this.user = userUpdated;
     this._userService.saveStorage(userUpdated);
   }
+
+  updatedUserPhoto(userUpdated: User) {
+    this.user.img = userUpdated.img;
+    this._userService.saveStorage(this.user);
+    this._userService.loadPhoto(this.user.img).subscribe();
+  }
 }

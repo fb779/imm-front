@@ -13,12 +13,7 @@ export class AdminProcessService {
   setAsignConsultan(process: any) {
     let url = `${environment.api_url}${environment.api_version}/process/${process._id}`;
     process.status = "ASIGNED";
-    return this._http.put(url, { ...process }).pipe(
-      tap((d) => console.log("lo recibido en tap 1", d))
-      // map((dt: any)=>{
-      //   return dt.data;
-      // }),
-    );
+    return this._http.put(url, { ...process }).pipe();
   }
 
   // metodo para cargar los consultores
@@ -26,11 +21,9 @@ export class AdminProcessService {
     let url = `${environment.api_url}${environment.api_version}/users/consultants`;
 
     return this._http.get(url).pipe(
-      // tap(d => console.log('lo recibido en tap 1', d)),
       map((dt: any) => {
         return dt.data.consultants;
       })
-      // tap(d => console.log('lo recibido en tap 2', d)),
     );
   }
 
@@ -39,11 +32,9 @@ export class AdminProcessService {
     let url = `${environment.api_url}${environment.api_version}/process`;
 
     return this._http.get(url).pipe(
-      // tap(d => console.log('lo recibido en tap 1', d)),
       map((dt: any) => {
         return dt.list;
       })
-      // tap(d => console.log('lo recibido en tap 2', d)),
     );
   }
 }

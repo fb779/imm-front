@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { of } from "rxjs";
-import { tap, catchError } from "rxjs/operators";
+import { tap, catchError, map } from "rxjs/operators";
 import { Process } from "../../models/Process";
 import { Client } from "../../models/Client";
 import { environment } from "../../../environments/environment";
@@ -48,5 +48,20 @@ export class UploadFileService {
       // tap(console.log),
       // catchError((err) => of({}))
       ();
+  }
+
+  uploadPhoto(file: File, id: string) {
+    const url = `${environment.api_url}${environment.api_version}/upload/photo/${id}`;
+
+    var form_data: FormData = new FormData();
+    form_data.append("photo", file);
+    // form_data.append('type_document', type_upload);
+    // form_data.append('description', description);
+
+    return this._http.post(url, form_data);
+    // .pipe
+    // tap(console.log),
+    // catchError((err) => of({}))
+    // ();
   }
 }

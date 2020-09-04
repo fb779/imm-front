@@ -9,7 +9,7 @@ import {
 
 import { LayoutService } from "../../../@core/utils";
 import { map, takeUntil, filter, tap } from "rxjs/operators";
-import { Subject } from "rxjs";
+import { Subject, Observable } from "rxjs";
 
 import { UserService } from "../../../services/services.index";
 import { User } from "../../../models/User";
@@ -65,19 +65,27 @@ export class HeaderComponent implements OnInit, OnDestroy {
         let dt = token.getPayload();
         this._userService.getUser(dt.sub).subscribe((user) => {
           // this.user = user;
+          this._userService.loadPhoto(user.img).subscribe(() => {});
 
           switch (user.role) {
+            case roles.admin:
+              this.userMenu.unshift({
+                title: "Settings",
+                link: "admin/settings",
+                icon: "person-outline",
+              });
+              break;
             case roles.user:
               this.userMenu.unshift({
-                title: "Profile",
-                link: "consultant/profile",
+                title: "Settings",
+                link: "consultant/settings",
                 icon: "person-outline",
               });
               break;
             case roles.client:
               this.userMenu.unshift({
-                title: "Profile",
-                link: "pages/profile",
+                title: "Settings",
+                link: "pages/settings",
                 icon: "person-outline",
               });
               break;
@@ -89,7 +97,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.changeTheme(this.currentTheme);
-    this.currentTheme = this.themeService.currentTheme;
+    // this.currentTheme = this.themeService.currentTheme;
 
     const { xl, md } = this.breakpointService.getBreakpointsMap();
     this.themeService

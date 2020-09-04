@@ -134,7 +134,6 @@ export class AdminChecklistFormComponent implements OnInit {
       this._adminChecklistService
         .createChecklist(this.formCheck.value)
         .subscribe((response) => {
-          console.log(`Llegada de informacion`, response);
           this._toastr.toastrGenericMessage(
             `Check-list create successfull ${this.formCheck.value.name}`,
             "Check-list",

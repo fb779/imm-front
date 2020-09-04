@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 
+import { ThemeModule } from "../../@theme/theme.module";
 import {
   NbCardModule,
   NbInputModule,
@@ -9,9 +10,11 @@ import {
   NbIconModule,
   NbCheckboxModule,
   NbAlertModule,
+  NbSpinnerModule,
 } from "@nebular/theme";
 
 const nebular_profile = [
+  ThemeModule,
   NbCardModule,
   NbIconModule,
   NbButtonModule,
@@ -19,6 +22,7 @@ const nebular_profile = [
   NbSelectModule,
   NbCheckboxModule,
   NbAlertModule,
+  NbSpinnerModule,
 ];
 
 import { ProfileComponent } from "./profile.component";

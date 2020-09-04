@@ -30,7 +30,7 @@ export class ProfileClientComponent implements OnInit {
   @Input("user") user: User;
   @Output() userSave: EventEmitter<User> = new EventEmitter<User>();
 
-  userClient: Client;
+  userClient: any;
   formClient: FormGroup;
   submitted = false;
   status = status;
@@ -48,21 +48,21 @@ export class ProfileClientComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.userClient = _.pick(this.user.client, [
+    this.userClient = _.pick(this.user, [
       "_id",
       "first_name",
       "last_name",
-      "title",
-      "sex",
+      // "title",
+      // "sex",
       "email",
-      "telephone",
+      // "telephone",
       // "birthday",
-      "age",
-      "country_citizenship",
-      "other_citizenship",
-      "country_residence",
-      "status_residence",
-      "status_residence_other",
+      // "age",
+      // "country_citizenship",
+      // "other_citizenship",
+      // "country_residence",
+      // "status_residence",
+      // "status_residence_other",
       // "relationship",
       // "type",
       // "active",
@@ -84,39 +84,39 @@ export class ProfileClientComponent implements OnInit {
         Validators.minLength(2),
         Validators.maxLength(25),
       ]),
-      title: new FormControl("", [Validators.required], []),
-      sex: new FormControl("", [Validators.required], []),
+      // title: new FormControl("", [Validators.required], []),
+      // sex: new FormControl("", [Validators.required], []),
       email: new FormControl(
         "",
         [Validators.required, Validators.pattern(emailRegex)],
         [this.existEmail.bind(this)]
       ),
-      telephone: new FormControl("", [Validators.required], []),
+      // telephone: new FormControl("", [Validators.required], []),
       // birthday: new FormControl("", [Validators.required], []),
-      age: new FormControl("", [
-        Validators.required,
-        Validators.min(0),
-        Validators.max(99),
-      ]),
-      country_citizenship: new FormControl("", [Validators.required], []),
-      other_citizenship: new FormControl("", [], []),
-      country_residence: new FormControl("", [Validators.required], []),
-      status_residence: new FormControl("", [Validators.required], []),
-      status_residence_other: new FormControl("", [Validators.required], []),
+      // age: new FormControl("", [
+      //   Validators.required,
+      //   Validators.min(0),
+      //   Validators.max(99),
+      // ]),
+      // country_citizenship: new FormControl("", [Validators.required], []),
+      // other_citizenship: new FormControl("", [], []),
+      // country_residence: new FormControl("", [Validators.required], []),
+      // status_residence: new FormControl("", [Validators.required], []),
+      // status_residence_other: new FormControl("", [Validators.required], []),
       // relationship: new FormControl("", [Validators.required], []),
       // active: new FormControl("", [Validators.required], []),
     });
 
-    this.formClient.controls["status_residence"].valueChanges.subscribe(
-      (value: any) => {
-        if (value == 5) {
-          this.formClient.get("status_residence_other").enable();
-        } else {
-          this.formClient.get("status_residence_other").disable();
-          this.formClient.get("status_residence_other").reset();
-        }
-      }
-    );
+    // this.formClient.controls["status_residence"].valueChanges.subscribe(
+    //   (value: any) => {
+    //     if (value == 5) {
+    //       this.formClient.get("status_residence_other").enable();
+    //     } else {
+    //       this.formClient.get("status_residence_other").disable();
+    //       this.formClient.get("status_residence_other").reset();
+    //     }
+    //   }
+    // );
 
     this.formClient.setValue(this.userClient);
   }
@@ -162,8 +162,4 @@ export class ProfileClientComponent implements OnInit {
         }
       });
   }
-
-  changeImage() {}
-
-  changePassword() {}
 }

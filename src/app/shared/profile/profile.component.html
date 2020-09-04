@@ -1,14 +1,17 @@
 <nb-card>
   <nb-card-body>
     <div *ngIf="user; else notUserLoad">
-      <ng-container *ngIf="user.role === roles.client; else otherProfile">
-        <ngx-profile-client
-          [user]="user"
-          (userSave)="updatedUser($event)"
-        ></ngx-profile-client>
-      </ng-container>
+      <!-- <ng-container *ngIf="user.role === roles.client; else otherProfile"> -->
+      <ngx-profile-client
+        [user]="user"
+        (userSave)="updatedUser($event)"
+      ></ngx-profile-client>
+      <!-- </ng-container> -->
 
-      <!-- <ngx-profile-image [user]="user"></ngx-profile-image> -->
+      <ngx-profile-image
+        [user]="user"
+        (uploadImage)="updatedUserPhoto($event)"
+      ></ngx-profile-image>
 
       <ngx-profile-password [user]="user"></ngx-profile-password>
     </div>
@@ -19,6 +22,6 @@
   <p>The user can't load</p>
 </ng-template>
 
-<ng-template #otherProfile>
+<!-- <ng-template #otherProfile>
   <ngx-profile-consultant></ngx-profile-consultant>
-</ng-template>
+</ng-template> -->

@@ -21,7 +21,6 @@ export class HomeComponent implements OnInit {
   ) {
     this._processServices.getUserProcesses().subscribe(
       (processes) => {
-        // console.log('listado de procesos: ', processes );
         this.list_process = processes;
       },
       (err) => {
@@ -33,7 +32,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {}
 
   goWebChat(process: string) {
-    // this._router.navigate(['',process]);
     this._router.navigate(["/pages/messages/", process]);
   }
 }

@@ -33,8 +33,6 @@ export class ProcessService {
   createProcess(process: Process, form) {
     let url = `${environment.api_url}${environment.api_version}/process/${process._id}/form`;
 
-    return this._http
-      .post(url, form)
-      .pipe(tap((dt) => console.log("respuesta formulario", dt)));
+    return this._http.post(url, form).pipe();
   }
 }

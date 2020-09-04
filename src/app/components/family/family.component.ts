@@ -40,7 +40,6 @@ export class FamilyComponent implements OnInit {
     if (this.url[0] === "pages") {
       if (this.process.status === status.active) {
         this.visible = true;
-        console.log("entramos al caso de verdad", this.visible);
       }
     } else {
       if (this.process.status !== status.form) {

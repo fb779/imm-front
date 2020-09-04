@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
-import { map } from "rxjs/operators";
-import { User } from "../../models/User";
+import { map, tap } from "rxjs/operators";
 import { NbAuthService } from "@nebular/auth";
+import { User } from "../../models/User";
 import { environment } from "../../../environments/environment";
 
 @Injectable({
@@ -12,6 +12,7 @@ import { environment } from "../../../environments/environment";
 export class UserService {
   private id: string;
   public user: User;
+  public img: string;
   public token: string;
 
   constructor(
@@ -48,6 +49,7 @@ export class UserService {
 
   clearStorage() {
     this.user = null;
+    this.img = null;
     localStorage.removeItem("user");
   }
 
@@ -57,10 +59,12 @@ export class UserService {
   getUser(id: string) {
     const url = `${environment.api_url}${environment.api_version}/users/${id}`;
     return this._http.get(url).pipe(
-      map((resp: any) => {
+      tap((resp: any) => {
         let user: User = resp.data.user;
         this.saveStorage(user);
-        return user;
+      }),
+      map((resp: any) => {
+        return resp.data.user;
       })
     );
   }
@@ -71,5 +75,13 @@ export class UserService {
   getUsers() {
     const url = `${environment.api_url}${environment.api_version}/users`;
     return this._http.get(url).pipe(map((resp: any) => resp.data));
+  }
+
+  loadPhoto(name: string) {
+    const url = `${environment.api_url}${environment.api_version}/photo/${name}`;
+    return this._http.get(url).pipe(
+      tap((el: any) => (this.img = el.data)),
+      map((el: any) => el.data)
+    );
   }
 }

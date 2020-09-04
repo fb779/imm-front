@@ -11,6 +11,7 @@ import * as moment from "moment";
 })
 export class ListChatComponent implements OnInit {
   @Input() messages: IMessage[] = [];
+  chatMessages: HTMLElement;
 
   constructor() {}
 

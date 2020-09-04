@@ -10,7 +10,7 @@ export class CardsComponent implements OnInit {
   data: any = [
     {
       img: `assets/images/card-user-profile.svg`,
-      sub_title: `Profile`,
+      sub_title: `Settings`,
       description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam,facere.`,
       accent: `primary`,
       link: "/pages/profile",

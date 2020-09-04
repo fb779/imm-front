@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 
 import { AdminComponent } from "./admin.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
+import { AdminProfileComponent } from "./admin-profile/admin-profile.component";
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
       {
         path: "dashboard",
         component: DashboardComponent,
+      },
+      {
+        path: "settings",
+        component: AdminProfileComponent,
       },
       {
         path: "users",

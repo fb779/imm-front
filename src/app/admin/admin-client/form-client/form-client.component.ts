@@ -150,7 +150,6 @@ export class FormClientComponent implements OnInit {
   }
 
   saveUser() {
-    console.log("informacion del formulario del cliente", this.formUser.value);
     if (this.formUser.invalid) {
       this.submitted = true;
       this._toastr.toastrGenericMessage(
@@ -165,7 +164,6 @@ export class FormClientComponent implements OnInit {
       this._usersService
         .createUser(this.formUser.value)
         .subscribe((response) => {
-          console.log(`Llegada de informacion`, response);
           this._toastr.toastrGenericMessage(
             `User create successfull ${this.formUser.value.first_name} ${this.formUser.value.last_name}`,
             "User",

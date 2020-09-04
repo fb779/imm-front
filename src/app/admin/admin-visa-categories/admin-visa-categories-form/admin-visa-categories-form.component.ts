@@ -114,7 +114,6 @@ export class AdminVisaCategoriesFormComponent implements OnInit {
   }
 
   saveVisaCategory() {
-    console.log(this.formVisaCategory.value);
     if (this.formVisaCategory.invalid) {
       this.submited = true;
       this._toastr.toastrGenericMessage(

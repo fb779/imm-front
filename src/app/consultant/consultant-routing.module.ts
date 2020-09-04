@@ -19,7 +19,7 @@ const routes: Routes = [
         component: DashboardComponent,
       },
       {
-        path: "profile",
+        path: "settings",
         component: ConsultantProfileComponent,
       },
       {

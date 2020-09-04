@@ -8,9 +8,9 @@ export const CLIENT_MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
-    title: "Profile",
+    title: "Settings",
     icon: "person-outline",
-    link: "/pages/profile",
+    link: "/pages/settings",
   },
   {
     title: "Assessment Form",
@@ -99,10 +99,9 @@ export const ADMIN_MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
-    title: "Profile",
+    title: "Settings",
     icon: "person-outline",
-    link: "/pages/profile",
-    hidden: true,
+    link: "/admin/settings",
   },
   {
     title: "Users",
@@ -144,9 +143,9 @@ export const USER_MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
-    title: "Profile",
+    title: "Settings",
     icon: "person-outline",
-    link: "/consultant/profile",
+    link: "/consultant/settings",
   },
   {
     title: "Processes",

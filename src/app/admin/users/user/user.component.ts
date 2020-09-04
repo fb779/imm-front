@@ -151,7 +151,6 @@ export class UserComponent implements OnInit {
       this._usersService
         .createUser(this.formUser.value)
         .subscribe((response) => {
-          console.log(`Llegada de informacion`, response);
           this._toastr.toastrGenericMessage(
             `User create successfull ${this.formUser.value.first_name} ${this.formUser.value.last_name}`,
             "User",

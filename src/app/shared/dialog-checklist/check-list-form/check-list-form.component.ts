@@ -99,7 +99,6 @@ export class CheckListFormComponent implements OnInit {
         }
       },
       (err) => {
-        console.log(err);
         this._toastr.toastrGenericMessage(
           `Error to save new check lsit item`,
           "Check list",

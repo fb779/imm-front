@@ -11,74 +11,6 @@
       <div class="row">
         <div class="col-12 col-md-6">
           <div class="form-group">
-            <label for="">Title</label>
-            <nb-select
-              name="title"
-              placeholder="Select Showcase"
-              fullWidth
-              formControlName="title"
-              [status]="
-                (submitted || f.title.touched) && f.title.errors ? 'danger' : ''
-              "
-            >
-              <nb-option value="">Select...</nb-option>
-              <nb-option
-                *ngFor="let item of optTitles$ | async"
-                [value]="item.value"
-              >
-                {{ item.name }}
-              </nb-option>
-            </nb-select>
-            <div
-              class="card-text text-white"
-              *ngIf="(submitted || f.title.touched) && f.title.errors"
-            >
-              <small
-                *ngIf="f.title.errors?.required"
-                class="text-muted text-muted-danger"
-              >
-                Field required
-              </small>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-md-6">
-          <div class="form-group">
-            <label for="">Sex</label>
-            <nb-select
-              name="sex"
-              placeholder="Select Showcase"
-              fullWidth
-              formControlName="sex"
-              [status]="
-                (submitted || f.sex.touched) && f.sex.errors ? 'danger' : ''
-              "
-            >
-              <nb-option value="">Select...</nb-option>
-              <nb-option
-                *ngFor="let item of optSex$ | async"
-                [value]="item.value"
-              >
-                {{ item.name }}
-              </nb-option>
-            </nb-select>
-            <div
-              class="card-text text-white"
-              *ngIf="(submitted || f.sex.touched) && f.sex.errors"
-            >
-              <small
-                *ngIf="f.sex.errors?.required"
-                class="text-muted text-muted-danger"
-              >
-                Field required
-              </small>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-md-6">
-          <div class="form-group">
             <label for="">First Name</label>
             <input
               type="text"
@@ -99,8 +31,9 @@
               <small
                 *ngIf="f.first_name.errors?.required"
                 class="text-muted text-muted-danger"
-                >Field required</small
               >
+                Field required
+              </small>
               <small
                 *ngIf="f.first_name.errors?.minlength"
                 class="text-muted text-muted-danger"
@@ -186,266 +119,20 @@
               <small
                 *ngIf="f.email.errors?.required"
                 class="text-muted text-muted-danger"
-                >Field required</small
               >
+                Field required
+              </small>
               <small
                 *ngIf="f.email.errors?.pattern"
                 class="text-muted text-muted-danger"
-                >Email invalid</small
               >
+                Email invalid
+              </small>
               <small
                 *ngIf="f.email.errors?.emailExist"
                 class="text-muted text-muted-danger"
-                >The email already exist</small
               >
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-md-6">
-          <div class="form-group">
-            <label for="">Telephone</label>
-            <input
-              type="text"
-              name="telephone"
-              formControlName="telephone"
-              nbInput
-              fullWidth
-              [status]="
-                (submitted || f.telephone.touched) && f.telephone.errors
-                  ? 'danger'
-                  : ''
-              "
-            />
-            <div
-              class="card-text text-white"
-              *ngIf="(submitted || f.telephone.touched) && f.telephone.errors"
-            >
-              <small
-                *ngIf="f.telephone.errors?.required"
-                class="text-muted text-muted-danger"
-              >
-                Field required
-              </small>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-md-6">
-          <div class="form-group">
-            <label for="">Country of Citizenship</label>
-            <nb-select
-              name="country_citizenship"
-              placeholder="Select Showcase"
-              fullWidth
-              formControlName="country_citizenship"
-              [status]="
-                (submitted || f.country_citizenship.touched) &&
-                f.country_citizenship.errors
-                  ? 'danger'
-                  : ''
-              "
-            >
-              <nb-option value="">Select...</nb-option>
-              <nb-option
-                *ngFor="let item of optCountries$ | async"
-                [value]="item.value"
-              >
-                {{ item.name }}
-              </nb-option>
-            </nb-select>
-            <div
-              class="card-text text-white"
-              *ngIf="
-                (submitted || f.country_citizenship.touched) &&
-                f.country_citizenship.errors
-              "
-            >
-              <small
-                *ngIf="f.country_citizenship.errors?.required"
-                class="text-muted text-muted-danger"
-              >
-                Field required
-              </small>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-md-6">
-          <div class="form-group">
-            <label for="">Other Citizenship</label>
-            <nb-select
-              name="other_citizenship"
-              placeholder="Select Showcase"
-              fullWidth
-              formControlName="other_citizenship"
-              [status]="
-                (submitted || f.other_citizenship.touched) &&
-                f.other_citizenship.errors
-                  ? 'danger'
-                  : ''
-              "
-            >
-              <nb-option value="">Select...</nb-option>
-              <nb-option
-                *ngFor="let item of optCountries$ | async"
-                [value]="item.value"
-              >
-                {{ item.name }}
-              </nb-option>
-            </nb-select>
-            <div
-              class="card-text text-white"
-              *ngIf="
-                (submitted || f.other_citizenship.touched) &&
-                f.other_citizenship.errors
-              "
-            >
-              <small
-                *ngIf="f.other_citizenship.errors?.required"
-                class="text-muted text-muted-danger"
-              >
-                Field required
-              </small>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-md-6">
-          <div class="form-group">
-            <label for="">Country Residence</label>
-            <nb-select
-              name="country_residence"
-              placeholder="Select Showcase"
-              fullWidth
-              formControlName="country_residence"
-              [status]="
-                (submitted || f.country_residence.touched) &&
-                f.country_residence.errors
-                  ? 'danger'
-                  : ''
-              "
-            >
-              <nb-option value="">Select...</nb-option>
-              <nb-option
-                *ngFor="let item of optCountries$ | async"
-                [value]="item.value"
-              >
-                {{ item.name }}
-              </nb-option>
-            </nb-select>
-            <div
-              class="card-text text-white"
-              *ngIf="
-                (submitted || f.country_residence.touched) &&
-                f.country_residence.errors
-              "
-            >
-              <small
-                *ngIf="f.country_residence.errors?.required"
-                class="text-muted text-muted-danger"
-              >
-                Field required
-              </small>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-md-6">
-          <div class="form-group">
-            <label for="">Status Residence</label>
-            <nb-select
-              name="status_residence"
-              placeholder="Select Showcase"
-              fullWidth
-              formControlName="status_residence"
-              [status]="
-                (submitted || f.status_residence.touched) &&
-                f.status_residence.errors
-                  ? 'danger'
-                  : ''
-              "
-            >
-              <nb-option value="">Select...</nb-option>
-              <nb-option
-                *ngFor="let item of optStatus$ | async"
-                [value]="item.value"
-              >
-                {{ item.name }}
-              </nb-option>
-            </nb-select>
-            <div
-              class="card-text text-white"
-              *ngIf="
-                (submitted || f.status_residence.touched) &&
-                f.status_residence.errors
-              "
-            >
-              <small
-                *ngIf="f.status_residence.errors?.required"
-                class="text-muted text-muted-danger"
-              >
-                Field required
-              </small>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-md-6">
-          <div class="form-group">
-            <label for="">Other Status Residence</label>
-            <input
-              type="text"
-              name="status_residence_other"
-              formControlName="status_residence_other"
-              nbInput
-              fullWidth
-              [status]="
-                (submitted || f.status_residence_other.touched) &&
-                f.status_residence_other.errors
-                  ? 'danger'
-                  : ''
-              "
-            />
-            <div
-              class="card-text text-white"
-              *ngIf="
-                (submitted || f.status_residence_other.touched) &&
-                f.status_residence_other.errors
-              "
-            >
-              <small
-                *ngIf="f.status_residence_other.errors?.required"
-                class="text-muted text-muted-danger"
-              >
-                Field required
-              </small>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-md-6">
-          <div class="form-group">
-            <label for="">Age</label>
-            <input
-              type="text"
-              name="age"
-              formControlName="age"
-              nbInput
-              fullWidth
-              [status]="
-                (submitted || f.age.touched) && f.age.errors ? 'danger' : ''
-              "
-            />
-            <div
-              class="card-text text-white"
-              *ngIf="(submitted || f.age.touched) && f.age.errors"
-            >
-              <small
-                *ngIf="f.age.errors?.required"
-                class="text-muted text-muted-danger"
-              >
-                Field required
+                The email already exist
               </small>
             </div>
           </div>
@@ -460,7 +147,7 @@
         <nb-icon icon="close-circle-outline"></nb-icon>
       </button> -->
       <button nbButton status="success" type="button" (click)="saveUser()">
-        <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+        Save
       </button>
     </nb-card-footer>
   </nb-card>
