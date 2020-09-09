@@ -26,12 +26,10 @@ export class UploadFileService {
     form_data.append("type_document", type_upload);
     form_data.append("description", description);
 
-    return this._http
-      .post(url, form_data)
-      .pipe
-      // tap(console.log),
-      // catchError((err) => of({}))
-      ();
+    return this._http.post(url, form_data);
+    // .pipe(
+    //   catchError((err) => of({}))
+    // );
   }
 
   uploadDocument(file: File, id_document: string) {
@@ -39,15 +37,9 @@ export class UploadFileService {
 
     var form_data: FormData = new FormData();
     form_data.append("document", file);
-    // form_data.append('type_document', type_upload);
-    // form_data.append('description', description);
 
-    return this._http
-      .post(url, form_data)
-      .pipe
-      // tap(console.log),
-      // catchError((err) => of({}))
-      ();
+    return this._http.post(url, form_data);
+    // .pipe(catchError((err) => of({}));
   }
 
   uploadPhoto(file: File, id: string) {
@@ -55,13 +47,11 @@ export class UploadFileService {
 
     var form_data: FormData = new FormData();
     form_data.append("photo", file);
-    // form_data.append('type_document', type_upload);
-    // form_data.append('description', description);
 
     return this._http.post(url, form_data);
-    // .pipe
-    // tap(console.log),
-    // catchError((err) => of({}))
-    // ();
+    // .pipe(
+    //   tap(console.log),
+    //   catchError((err) => of({}))
+    // );
   }
 }

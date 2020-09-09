@@ -1,5 +1,5 @@
 nb-card {
-  width: 20rem;
+  max-width: 40rem;
   margin: auto;
 }
 
@@ -16,5 +16,9 @@ nb-card-body section {
 }
 
 img {
-  width: 100%;
+  max-width: 100%;
+}
+
+.bio {
+  text-align: justify;
 }

@@ -15,5 +15,11 @@
         <div class="col-12 col-md">{{ consultant.email }}</div>
       </div>
     </section>
+    <section *ngIf="consultant.bio">
+      <div class="row">
+        <div class="col-12">Bio:</div>
+        <div class="col-12 bio">{{ consultant.bio }}</div>
+      </div>
+    </section>
   </nb-card-body>
 </nb-card>

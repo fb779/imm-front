@@ -11,6 +11,7 @@ import {
   NbCheckboxModule,
   NbAlertModule,
   NbSpinnerModule,
+  NbBadgeModule,
 } from "@nebular/theme";
 
 const nebular_profile = [
@@ -23,6 +24,7 @@ const nebular_profile = [
   NbCheckboxModule,
   NbAlertModule,
   NbSpinnerModule,
+  NbBadgeModule,
 ];
 
 import { ProfileComponent } from "./profile.component";

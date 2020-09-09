@@ -138,6 +138,40 @@
           </div>
         </div>
 
+        <div class="col-12" *ngIf="showBio">
+          <div class="form-group">
+            <label for="name">Bio</label>
+            <nb-badge [text]="f.bio.value.length" position="top right">
+            </nb-badge>
+            <textarea
+              name="bio"
+              rows="5"
+              placeholder="Text Area"
+              nbInput
+              fullWidth
+              shape="semi-round"
+              formControlName="bio"
+              [status]="
+                (submitted || f.bio.touched) && f.bio.errors ? 'danger' : ''
+              "
+            ></textarea>
+            <div
+              *ngIf="(submitted || f.bio.touched) && f.bio.errors"
+              class="card-text"
+            >
+              <div>
+                {{ f.bio.errors | json }}
+              </div>
+              <small
+                *ngIf="f.bio.errors?.maxlength"
+                class="text-muted text-muted-danger"
+              >
+                Email invalid
+              </small>
+            </div>
+          </div>
+        </div>
+
         <div class="clearFix"></div>
       </div>
       <!-- <form [formGroup]="formClient"> </form> -->

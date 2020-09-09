@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../../environments/environment";
-import { tap, map } from "rxjs/operators";
+import { tap, map, pluck } from "rxjs/operators";
 import { Process } from "../../models/Process";
 
 @Injectable({
@@ -64,5 +64,13 @@ export class UserProcessService {
     const url = `${environment.api_url}${environment.api_version}/process/${process._id}/form`;
 
     return this._http.put(url, form).pipe(map((x: any) => x.data));
+  }
+
+  loadPhoto(name: string) {
+    const url = `${environment.api_url}${environment.api_version}/photo/${name}`;
+    return this._http.get(url).pipe(
+      pluck("data")
+      // map((el: any) => el.data)
+    );
   }
 }

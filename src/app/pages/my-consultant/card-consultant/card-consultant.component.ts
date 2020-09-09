@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
+import { UserProcessService } from "../../../services/services.index";
 import { User } from "../../../models/User";
 
 @Component({
@@ -9,11 +10,13 @@ import { User } from "../../../models/User";
 export class CardConsultantComponent implements OnInit {
   @Input() consultant: User;
   img: string = "assets/images/person-profile.svg";
-  constructor() {}
+  constructor(private _userProcessServices: UserProcessService) {}
 
   ngOnInit() {
     if (this.consultant.img) {
-      this.img = this.consultant.img;
+      this._userProcessServices
+        .loadPhoto(this.consultant.img)
+        .subscribe((foto: string) => (this.img = foto));
     }
   }
 }

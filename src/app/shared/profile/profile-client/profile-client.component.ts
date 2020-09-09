@@ -6,8 +6,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { Observable } from "rxjs";
-import { Client } from "../../../models/Client";
-import { emailRegex } from "../../../config/config";
+import { emailRegex, roles } from "../../../config/config";
 import { UsersService } from "../../../admin/users/users.service";
 import {
   ToastrService,
@@ -34,6 +33,7 @@ export class ProfileClientComponent implements OnInit {
   formClient: FormGroup;
   submitted = false;
   status = status;
+  showBio = true;
 
   optTitles$: Observable<Title[]> = this._asf.getTitles();
   optSex$: Observable<IOption[]> = this._asf.getSex();
@@ -52,9 +52,10 @@ export class ProfileClientComponent implements OnInit {
       "_id",
       "first_name",
       "last_name",
+      "email",
+      "bio",
       // "title",
       // "sex",
-      "email",
       // "telephone",
       // "birthday",
       // "age",
@@ -84,13 +85,15 @@ export class ProfileClientComponent implements OnInit {
         Validators.minLength(2),
         Validators.maxLength(25),
       ]),
-      // title: new FormControl("", [Validators.required], []),
-      // sex: new FormControl("", [Validators.required], []),
+
       email: new FormControl(
         "",
         [Validators.required, Validators.pattern(emailRegex)],
         [this.existEmail.bind(this)]
       ),
+      bio: new FormControl("", [Validators.maxLength(500)], []),
+      // title: new FormControl("", [Validators.required], []),
+      // sex: new FormControl("", [Validators.required], []),
       // telephone: new FormControl("", [Validators.required], []),
       // birthday: new FormControl("", [Validators.required], []),
       // age: new FormControl("", [
@@ -107,16 +110,11 @@ export class ProfileClientComponent implements OnInit {
       // active: new FormControl("", [Validators.required], []),
     });
 
-    // this.formClient.controls["status_residence"].valueChanges.subscribe(
-    //   (value: any) => {
-    //     if (value == 5) {
-    //       this.formClient.get("status_residence_other").enable();
-    //     } else {
-    //       this.formClient.get("status_residence_other").disable();
-    //       this.formClient.get("status_residence_other").reset();
-    //     }
-    //   }
-    // );
+    if (this.user.role === roles.client) {
+      this.showBio = false;
+      this.formClient.get("bio").disable();
+      this.formClient.get("bio").reset();
+    }
 
     this.formClient.setValue(this.userClient);
   }
