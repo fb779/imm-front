@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import {
   UserProcessService,
@@ -6,6 +6,7 @@ import {
 } from "../../services/services.index";
 import { Process } from "../../models/Process";
 import { status, visa_categories } from "../../config/config";
+import { NbTabComponent } from "@nebular/theme";
 
 @Component({
   selector: "ngx-process",
@@ -20,6 +21,9 @@ export class ProcessComponent implements OnInit {
   type_visa: string = "";
   visa_categories = visa_categories;
   status = status;
+
+  showMessage = true;
+  tabTitleMessages = "Messages";
 
   constructor(
     private _router: Router,
@@ -48,4 +52,11 @@ export class ProcessComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  displayMessage(ev: NbTabComponent) {
+    console.log("activamos la mensajeria", ev.tabTitle);
+    ev.tabTitle == this.tabTitleMessages && ev.active
+      ? (this.showMessage = true)
+      : (this.showMessage = false);
+  }
 }

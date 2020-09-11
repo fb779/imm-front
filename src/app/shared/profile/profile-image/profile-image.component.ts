@@ -34,7 +34,7 @@ export class ProfileImageComponent implements OnInit {
   spinner: Boolean = false;
 
   // types permited
-  ext: string[] = ["image"];
+  ext: string[] = ["jpg", "jpeg", "png", "svg"];
 
   reader = new FileReader();
 

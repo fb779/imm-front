@@ -1,0 +1,69 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  // grid-template-rows: repeat(4, 1fr);
+  grid-gap: 10px;
+}
+
+nb-card {
+  width: 100%;
+  margin: 0 auto;
+  font-size: 0.8rem;
+  color: #565454;
+}
+
+nb-card-body {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  align-items: stretch;
+}
+
+nb-card-body section {
+  margin: 5px 0;
+}
+
+.money {
+  background-image: url("assets/images/payments.svg");
+  background-origin: content-box;
+  background-repeat: no-repeat;
+  background-position: top right;
+  background-size: 40px;
+}
+
+.pay {
+  background-image: url("assets/images/money_on.svg");
+  background-origin: content-box;
+  background-repeat: no-repeat;
+  background-position: top right;
+  background-size: 40px;
+}
+
+.date {
+  text-align: right;
+}
+
+.description {
+  // background-color: #d4d4d463;
+  // color: #565454;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  align-items: stretch;
+}
+
+@media screen and (max-width: 640px) {
+  :host .grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 640px) {
+  :host .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  // :host nb-card {
+  //   max-width: 300px;
+  // }
+}

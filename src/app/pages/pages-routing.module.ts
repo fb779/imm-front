@@ -15,6 +15,7 @@ import { AppoinmentComponent } from "./appoinment/appoinment.component";
 import { BillingInvoiceComponent } from "./billing-invoice/billing-invoice.component";
 import { MyConsultantComponent } from "./my-consultant/my-consultant.component";
 import { ClientProfileComponent } from "./client-profile/client-profile.component";
+import { FaqComponent } from "../components/faq/faq.component";
 
 const routes: Routes = [
   {
@@ -58,14 +59,9 @@ const routes: Routes = [
       {
         path: "my-consultant",
         component: MyConsultantComponent,
-        // loadChildren: () =>
-        //   import("./my-consultant/my-consultant.module").then(
-        //     (m) => m.MyConsultantModule
-        //   ),
       },
       {
         path: "messages",
-        // component: ClientMessageComponent,
         loadChildren: () =>
           import("./client-messages/client-message.module").then(
             (m) => m.ClientMessageModule
@@ -74,6 +70,10 @@ const routes: Routes = [
       {
         path: "add-ons",
         component: AddOnsComponent,
+      },
+      {
+        path: "faq",
+        component: FaqComponent,
       },
       {
         path: "coupons",

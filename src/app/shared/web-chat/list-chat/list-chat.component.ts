@@ -1,19 +1,41 @@
-import { Component, OnInit, Input } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  OnChanges,
+  Input,
+  ViewChild,
+  ElementRef,
+} from "@angular/core";
 import { IMessage } from "../../../models/Message";
-import { User } from "../../../models/User";
-
-import * as moment from "moment";
 
 @Component({
   selector: "ngx-list-chat",
   templateUrl: "./list-chat.component.html",
   styleUrls: ["./list-chat.component.scss"],
 })
-export class ListChatComponent implements OnInit {
+export class ListChatComponent implements OnInit, OnChanges {
   @Input() messages: IMessage[] = [];
-  chatMessages: HTMLElement;
+  // chatMessages: HTMLElement;
+  @ViewChild("chatMessages", { static: false, read: ElementRef })
+  chatMessages: ElementRef<any>;
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnChanges(): void {
+    this.refreshScroll();
+  }
+
+  ngOnInit() {
+    // this.refreshScroll();
+  }
+
+  // ngAfterViewInit(): void {
+  //   console.log("AfterViewInit");
+  // }
+
+  refreshScroll() {
+    setTimeout(() => {
+      this.chatMessages.nativeElement.scrollTop = this.chatMessages.nativeElement.scrollHeight;
+    }, 0);
+  }
 }

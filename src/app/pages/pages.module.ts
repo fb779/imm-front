@@ -32,6 +32,8 @@ import { ClientMessageModule } from "./client-messages/client-message.module";
 import { MyConsultantModule } from "./my-consultant/my-consultant.module";
 import { ClientProfileComponent } from "./client-profile/client-profile.component";
 import { ProfileModule } from "../shared/profile/profile.module";
+import { FaqModule } from "../components/faq/faq.module";
+import { CuponsComponent } from './add-ons/cupons/cupons.component';
 
 @NgModule({
   imports: [
@@ -51,6 +53,7 @@ import { ProfileModule } from "../shared/profile/profile.module";
     ProfileModule,
     MyConsultantModule,
     MiscellaneousModule,
+    FaqModule,
   ],
   declarations: [
     PagesComponent,
@@ -62,6 +65,7 @@ import { ProfileModule } from "../shared/profile/profile.module";
     AppoinmentComponent,
     BillingInvoiceComponent,
     ClientProfileComponent,
+    CuponsComponent,
   ],
 })
 export class PagesModule {}

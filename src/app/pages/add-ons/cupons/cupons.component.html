@@ -1,0 +1,28 @@
+<div class="grid">
+  <nb-card class="" [accent]="'success'" *ngFor="let item of coupons">
+    <nb-card-body class="card-body">
+      <section [class]="'code ' + item.class">
+        <label>{{ item.code | uppercase }}</label>
+        <div class="code-text"></div>
+        <div class="code-percent">
+          <label>{{ item.percent }}%</label>
+        </div>
+      </section>
+
+      <section class="date">
+        <div class="date-created">
+          <span>Activation: {{ item.createDate | date }}</span>
+        </div>
+        <div class="date-expiry">
+          <span>Expiry: {{ item.endDate | date }}</span>
+        </div>
+      </section>
+      <section class="description">
+        <div class="description-type">
+          <span>Type: {{ item.type | uppercase }}</span>
+        </div>
+      </section>
+    </nb-card-body>
+    <!-- <nb-card-footer> </nb-card-footer> -->
+  </nb-card>
+</div>

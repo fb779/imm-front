@@ -1,18 +1,10 @@
 <nb-card>
-  <!-- <nb-card-header>
-        <label for="">Mi titulo del proceso</label>
-    </nb-card-header> -->
-  <!-- <nb-card-body [nbSpinner]="loading" nbSpinnerStatus="success"> -->
-  <nb-tabset fullWidth justified="true">
+  <nb-tabset fullWidth justified="true" (changeTab)="displayMessage($event)">
     <nb-tab tabTitle="Users" tabIcon="person-outline" responsive>
       <div *ngIf="process && type_visa">
         <ng-container *ngIf="type_visa === visa_categories.visitor">
           <ngx-visitor [process]="process"></ngx-visitor>
         </ng-container>
-
-        <!-- <ng-container *ngIf="type_visa === visa_categories.study">
-                            <ngx-study [process]="process"></ngx-study>
-                        </ng-container> -->
       </div>
     </nb-tab>
 
@@ -24,7 +16,6 @@
     </nb-tab>
 
     <nb-tab tabTitle="Documents" tabIcon="folder-outline" responsive>
-      <!-- <ngx-documents *ngIf="process && type_visa" [process]="process" [client]="process.client"></ngx-documents> -->
       <ngx-documents
         *ngIf="process && type_visa"
         [process]="process"
@@ -33,9 +24,7 @@
 
     <nb-tab tabTitle="Forms" tabIcon="archive-outline" responsive>
       <nb-card>
-        <nb-card-header>
-          Forms
-        </nb-card-header>
+        <nb-card-header> Forms </nb-card-header>
         <nb-card-body *ngIf="process">
           <ngx-forms-guides
             [processo]="process"
@@ -47,9 +36,7 @@
 
     <nb-tab tabTitle="Guides" tabIcon="file-text-outline" responsive>
       <nb-card>
-        <nb-card-header>
-          Guides
-        </nb-card-header>
+        <nb-card-header> Guides </nb-card-header>
         <nb-card-body *ngIf="process">
           <ngx-forms-guides
             [processo]="process"
@@ -58,13 +45,16 @@
         </nb-card-body>
       </nb-card>
     </nb-tab>
+
     <nb-tab
-      tabTitle="Messages"
+      [tabTitle]="tabTitleMessages"
       tabIcon="message-circle-outline"
       responsive
-      lazyLoad
     >
-      <ngx-web-chat *ngIf="id_process" [process]="id_process"></ngx-web-chat>
+      <ngx-web-chat
+        *ngIf="id_process && showMessage"
+        [process]="id_process"
+      ></ngx-web-chat>
     </nb-tab>
   </nb-tabset>
   <!-- </nb-card-body> -->

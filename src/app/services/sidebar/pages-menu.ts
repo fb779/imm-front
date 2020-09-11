@@ -47,7 +47,6 @@ export const CLIENT_MENU_ITEMS: NbMenuItem[] = [
     title: "Add-Ons",
     icon: "keypad-outline",
     link: "/pages/add-ons",
-    hidden: true,
   },
   {
     title: "Coupons",
@@ -83,6 +82,11 @@ export const CLIENT_MENU_ITEMS: NbMenuItem[] = [
     title: "Messages",
     icon: "message-circle-outline",
     link: "/pages/messages",
+  },
+  {
+    title: "FAQ",
+    icon: "question-mark-circle-outline",
+    link: "/pages/faq",
   },
   {
     title: "Log Out",
