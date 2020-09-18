@@ -18,7 +18,6 @@ import { MiscellaneousModule } from "./miscellaneous/miscellaneous.module";
 // import { DocumentsComponent } from './documents/documents.component';
 import { VisaComponent } from "./visa/visa.component";
 import { AddOnsComponent } from "./add-ons/add-ons.component";
-import { CouponsComponent } from "./coupons/coupons.component";
 import { FreeResourcesComponent } from "./free-resources/free-resources.component";
 import { AdmissionComponent } from "./admission/admission.component";
 import { AppoinmentComponent } from "./appoinment/appoinment.component";
@@ -33,7 +32,7 @@ import { MyConsultantModule } from "./my-consultant/my-consultant.module";
 import { ClientProfileComponent } from "./client-profile/client-profile.component";
 import { ProfileModule } from "../shared/profile/profile.module";
 import { FaqModule } from "../components/faq/faq.module";
-import { CuponsComponent } from './add-ons/cupons/cupons.component';
+import { CouponsModule } from "../components/coupons/coupons.module";
 
 @NgModule({
   imports: [
@@ -54,18 +53,17 @@ import { CuponsComponent } from './add-ons/cupons/cupons.component';
     MyConsultantModule,
     MiscellaneousModule,
     FaqModule,
+    CouponsModule,
   ],
   declarations: [
     PagesComponent,
     VisaComponent,
     AddOnsComponent,
-    CouponsComponent,
     FreeResourcesComponent,
     AdmissionComponent,
     AppoinmentComponent,
     BillingInvoiceComponent,
     ClientProfileComponent,
-    CuponsComponent,
   ],
 })
 export class PagesModule {}

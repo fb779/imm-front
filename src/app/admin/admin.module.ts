@@ -24,6 +24,8 @@ import { AdminRoutingModule } from "./admin-routing.module";
 import { AdminComponent } from "./admin.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { AdminProfileComponent } from "./admin-profile/admin-profile.component";
+import { AdminAddOnsComponent } from "./admin-add-ons/admin-add-ons.component";
+import { CouponsModule } from "../components/coupons/coupons.module";
 
 @NgModule({
   imports: [
@@ -31,10 +33,16 @@ import { AdminProfileComponent } from "./admin-profile/admin-profile.component";
     AdminRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    ProfileModule,
     ...nebular,
+    ProfileModule,
+    CouponsModule,
   ],
   exports: [],
-  declarations: [AdminComponent, DashboardComponent, AdminProfileComponent],
+  declarations: [
+    AdminComponent,
+    DashboardComponent,
+    AdminProfileComponent,
+    AdminAddOnsComponent,
+  ],
 })
 export class AdminModule {}

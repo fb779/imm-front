@@ -111,6 +111,7 @@ export class FormClientComponent implements OnInit {
       (user: User) => {
         let loadUser = (this.user = user);
         delete loadUser.img;
+        delete loadUser.bio;
         delete loadUser.createdAt;
         delete loadUser.updatedAt;
         loadUser["process"] = "";

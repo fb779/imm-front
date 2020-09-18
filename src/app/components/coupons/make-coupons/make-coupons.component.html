@@ -1,0 +1,162 @@
+<form novalidate autocomplete="off" [formGroup]="form_coupon">
+  <nb-card>
+    <nb-card-header> Management Coupons </nb-card-header>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="">Code</label>
+
+            <input
+              type="text"
+              name="code"
+              placeholder="Code"
+              nbInput
+              fullWidth
+              formControlName="code"
+              [status]="
+                (submited || f.code.touched) && f.code.errors ? 'danger' : ''
+              "
+            />
+            <div
+              class="card-text text-white"
+              *ngIf="(submited || f.code.touched) && f.code.errors"
+            >
+              <small
+                *ngIf="f.code.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+              <small
+                *ngIf="f.code.errors?.codeexist"
+                class="text-muted text-muted-danger"
+              >
+                This code alredy exist
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="">Percent</label>
+
+            <input
+              type="text"
+              name="percent"
+              placeholder="percent"
+              nbInput
+              fullWidth
+              formControlName="percent"
+              [status]="
+                (submited || f.percent.touched) && f.percent.errors
+                  ? 'danger'
+                  : ''
+              "
+            />
+            <div
+              class="card-text text-white"
+              *ngIf="(submited || f.percent.touched) && f.percent.errors"
+            >
+              <small
+                *ngIf="f.percent.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+              <small
+                *ngIf="f.percent.errors?.max"
+                class="text-muted text-muted-danger"
+              >
+                Maximun value is {{ f.percent.errors.max.max }}
+              </small>
+              <small
+                *ngIf="f.percent.errors?.onlynumber"
+                class="text-muted text-muted-danger"
+              >
+                Field is numeric
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="">Activation</label>
+            <input
+              placeholder="Activation Date"
+              [nbDatepicker]="activationformpicker"
+              formControlName="activation"
+              nbInput
+              fullWidth
+              readonly
+              [status]="
+                (submited || f.activation.touched) && f.activation?.errors
+                  ? 'danger'
+                  : ''
+              "
+            />
+            <nb-datepicker
+              #activationformpicker
+              [showHeader]="false"
+              [min]="min"
+              [max]="max"
+            ></nb-datepicker>
+            <div
+              class="card-text text-white"
+              *ngIf="(submited || f.activation.touched) && f.activation?.errors"
+            >
+              <small
+                *ngIf="f.activation.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="">Expiration</label>
+            <input
+              placeholder="Activation Date"
+              [nbDatepicker]="expirationformpicker"
+              formControlName="expiration"
+              nbInput
+              fullWidth
+              readonly
+              [status]="
+                (submited || f.expiration.touched) && f.expiration.errors
+                  ? 'danger'
+                  : ''
+              "
+            />
+            <nb-datepicker
+              #expirationformpicker
+              [showHeader]="false"
+              [min]="min"
+            ></nb-datepicker>
+            <div
+              class="card-text text-white"
+              *ngIf="(submited || f.expiration.touched) && f.expiration.errors"
+            >
+              <small
+                *ngIf="f.expiration.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+    <nb-card-footer>
+      <button nbButton size="small" accent="primary" fullWidth (click)="save()">
+        Create
+      </button>
+    </nb-card-footer>
+  </nb-card>
+</form>

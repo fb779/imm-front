@@ -1,76 +1,92 @@
-import { Injectable } from '@angular/core';
-import { NbToastrService, NbComponentStatus, NbGlobalLogicalPosition, NbPosition, NbIconConfig } from '@nebular/theme';
+import { Injectable } from "@angular/core";
+import {
+  NbToastrService,
+  NbComponentStatus,
+  NbGlobalLogicalPosition,
+  NbPosition,
+  NbIconConfig,
+} from "@nebular/theme";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class ToastrService {
+  private limit = 3;
+  private duration = {
+    fast: 2000,
+    regular: 3000,
+    long: 4000,
+  };
 
-  private limit : 3;
+  constructor(private _toastrService: NbToastrService) {}
 
-  constructor(private _toastrService: NbToastrService) { }
-
-  toastMessageWarning(message, title, inp_status = null){
-    const status: NbComponentStatus = inp_status || 'warning';
+  toastMessageWarning(message, title, inp_status = null) {
+    const status: NbComponentStatus = inp_status || "warning";
     const position = NbGlobalLogicalPosition.TOP_END;
-    const duration = 4000;
-    const icon = (status === 'success') ? 'done-all-outline' : 'alert-triangle-outline' ;
-    const iconPack = 'eva';
 
-    this._toastrService.warning(
-      message,
-      title,
-      {
-        position,
-        duration,
-        icon,
-        iconPack,
-        limit: this.limit
-      }
-    );
+    const icon =
+      status === "success" ? "done-all-outline" : "alert-triangle-outline";
+    const iconPack = "eva";
+
+    this._toastrService.warning(message, title, {
+      position,
+      duration: this.duration.regular,
+      icon,
+      iconPack,
+      limit: this.limit,
+    });
   }
 
-  toastrGenericMessage(message, title, inp_status = null){
-    const status: NbComponentStatus = inp_status || 'success';
+  toastrGenericMessage(message, title, inp_status = null) {
+    const status: NbComponentStatus = inp_status || "success";
     const position = NbGlobalLogicalPosition.TOP_END;
-    const duration = (status === 'danger') ? 4000 : 2000;
-    const icon = (status === 'success') ? 'done-all-outline' : 'alert-triangle-outline' ;
-    const iconPack = 'eva';
+    const duration =
+      status === "danger" ? this.duration.long : this.duration.regular;
+    const icon =
+      status === "success" ? "done-all-outline" : "alert-triangle-outline";
+    const iconPack = "eva";
 
-    this._toastrService.show( message, title, {
+    this._toastrService.show(message, title, {
       status,
       position,
       duration,
       icon,
       iconPack,
-      limit: this.limit
+      limit: this.limit,
     });
   }
 
-  toastrDownload(message, title, inp_status = null, inp_icon = 'cloud-download-outline'){
-    const status: NbComponentStatus = inp_status || 'success';
+  toastrDownload(
+    message,
+    title,
+    inp_status = null,
+    inp_icon = "cloud-download-outline"
+  ) {
+    const status: NbComponentStatus = inp_status || "success";
     const position = NbGlobalLogicalPosition.TOP_END;
-    const duration = (inp_status === 'danger') ? 4000 : 2000;
+    const duration =
+      inp_status === "danger" ? this.duration.long : this.duration.regular;
     const icon = inp_icon;
-    const iconPack = 'eva';
+    const iconPack = "eva";
 
-    this._toastrService.show( message, title, {
+    this._toastrService.show(message, title, {
       status,
       position,
       duration,
       icon,
       iconPack,
-      limit: this.limit
+      limit: this.limit,
     });
   }
 
-  toastrGenericErrorHttp(message, title ){
+  toastrGenericErrorHttp(message, title, status = "danger") {
     const position = NbGlobalLogicalPosition.TOP_END;
-    const duration = (status === 'danger') ? 4000 : 2000;
-    const icon = 'alert-circle-outline' || 'alert-triangle-outline';
-    const iconPack = 'eva';
+    const duration =
+      status === "danger" ? this.duration.long : this.duration.regular;
+    const icon = "alert-circle-outline" || "alert-triangle-outline";
+    const iconPack = "eva";
 
-    this._toastrService.danger( message, title, {
+    this._toastrService.danger(message, title, {
       position,
       duration,
       icon,

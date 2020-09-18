@@ -4,6 +4,7 @@ import { NgModule } from "@angular/core";
 import { AdminComponent } from "./admin.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { AdminProfileComponent } from "./admin-profile/admin-profile.component";
+import { AdminAddOnsComponent } from "./admin-add-ons/admin-add-ons.component";
 
 const routes: Routes = [
   {
@@ -48,6 +49,10 @@ const routes: Routes = [
         path: "processes",
         loadChildren: () =>
           import("./processes/processes.module").then((m) => m.ProcessesModule),
+      },
+      {
+        path: "add-ons",
+        component: AdminAddOnsComponent,
       },
 
       { path: "", redirectTo: "dashboard", pathMatch: "full" },

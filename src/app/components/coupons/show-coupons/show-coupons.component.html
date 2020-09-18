@@ -1,0 +1,39 @@
+<div class="grid">
+  <ng-container *ngIf="coupons.length > 0; else elseCouponsTemplate">
+    <nb-card class="" [accent]="'success'" *ngFor="let item of coupons">
+      <nb-card-body class="card-body">
+        <section class="code money">
+          <label>{{ item.code | uppercase }}</label>
+          <div class="code-text"></div>
+          <div class="code-percent">
+            <ng-container *ngIf="item.percent; else elsePercent">
+              <label>{{ item.percent }} %</label>
+            </ng-container>
+            <ng-template #elsePercent>
+              <label> &nbsp; </label>
+            </ng-template>
+          </div>
+        </section>
+
+        <section class="date">
+          <div class="date-created">
+            <span>Activation: {{ item.activation | date }}</span>
+          </div>
+          <div class="date-expiry">
+            <span>Expiry: {{ item.expiration | date }}</span>
+          </div>
+        </section>
+        <!-- <section class="description">
+          <div class="description-type">
+            <span>Type: {{ item.type | uppercase }}</span>
+          </div>
+        </section> -->
+      </nb-card-body>
+      <!-- <nb-card-footer> </nb-card-footer> -->
+    </nb-card>
+  </ng-container>
+
+  <ng-template #elseCouponsTemplate>
+    <p>There aren't coupons</p>
+  </ng-template>
+</div>

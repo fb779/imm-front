@@ -8,7 +8,6 @@ import { DocumentsComponent } from "./documents/documents.component";
 import { VisaComponent } from "./visa/visa.component";
 import { FamilyComponent } from "./family/family.component";
 import { AddOnsComponent } from "./add-ons/add-ons.component";
-import { CouponsComponent } from "./coupons/coupons.component";
 import { FreeResourcesComponent } from "./free-resources/free-resources.component";
 import { AdmissionComponent } from "./admission/admission.component";
 import { AppoinmentComponent } from "./appoinment/appoinment.component";
@@ -74,10 +73,6 @@ const routes: Routes = [
       {
         path: "faq",
         component: FaqComponent,
-      },
-      {
-        path: "coupons",
-        component: CouponsComponent,
       },
       {
         path: "free-resources",

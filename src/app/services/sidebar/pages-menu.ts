@@ -44,15 +44,14 @@ export const CLIENT_MENU_ITEMS: NbMenuItem[] = [
     link: "/pages/my-consultant",
   },
   {
+    title: "Messages",
+    icon: "message-circle-outline",
+    link: "/pages/messages",
+  },
+  {
     title: "Add-Ons",
     icon: "keypad-outline",
     link: "/pages/add-ons",
-  },
-  {
-    title: "Coupons",
-    icon: "gift-outline",
-    link: "/pages/coupons",
-    hidden: true,
   },
   {
     title: "Free Resources",
@@ -60,28 +59,12 @@ export const CLIENT_MENU_ITEMS: NbMenuItem[] = [
     link: "/pages/free-resources",
     hidden: true,
   },
-  {
-    title: "Admission",
-    icon: "done-all-outline",
-    link: "/pages/admission",
-    hidden: true,
-  },
-  {
-    title: "Appointment",
-    icon: "bookmark-outline",
-    link: "/pages/appoinment",
-    hidden: true,
-  },
+
   {
     title: "Billin & Invoice",
     icon: "trending-up-outline",
     link: "/pages/billin-invoice",
     hidden: true,
-  },
-  {
-    title: "Messages",
-    icon: "message-circle-outline",
-    link: "/pages/messages",
   },
   {
     title: "FAQ",
@@ -131,6 +114,11 @@ export const ADMIN_MENU_ITEMS: NbMenuItem[] = [
     title: "Processes",
     icon: "archive-outline",
     link: "/admin/processes",
+  },
+  {
+    title: "AddOns",
+    icon: "keypad-outline",
+    link: "/admin/add-ons",
   },
   {
     title: "Log Out",
