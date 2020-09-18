@@ -6,6 +6,6 @@
  */
 export const environment = {
   production: true,
-  api_url: "http://locales:3000",
+  api_url: "http://localhost:3000",
   api_version: "/api/v1",
 };
