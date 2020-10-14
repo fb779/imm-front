@@ -52,10 +52,14 @@ const routes: Routes = [
       },
       {
         path: "add-ons",
-        component: AdminAddOnsComponent,
+        // component: AdminAddOnsComponent,
+        loadChildren: () =>
+          import("./admin-add-ons/admin-add-ons.module").then(
+            (m) => m.AdminAddOnsModule
+          ),
       },
 
-      { path: "", redirectTo: "dashboard", pathMatch: "full" },
+      { path: "**", redirectTo: "dashboard", pathMatch: "full" },
     ],
   },
 ];

@@ -29,10 +29,6 @@ export class ListChatComponent implements OnInit, OnChanges {
     // this.refreshScroll();
   }
 
-  // ngAfterViewInit(): void {
-  //   console.log("AfterViewInit");
-  // }
-
   refreshScroll() {
     setTimeout(() => {
       this.chatMessages.nativeElement.scrollTop = this.chatMessages.nativeElement.scrollHeight;

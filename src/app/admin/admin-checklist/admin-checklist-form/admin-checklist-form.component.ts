@@ -44,16 +44,14 @@ export class AdminChecklistFormComponent implements OnInit {
       if (!this.id) {
         this._router.navigate(["/admin", "checklist"]);
       }
-
+      this.build();
       if (this.id !== "new") {
         this.getChecklist(this.id);
       }
     });
   }
 
-  ngOnInit() {
-    this.build();
-  }
+  ngOnInit() {}
 
   build() {
     this.formCheck = this.formBuilder.group({

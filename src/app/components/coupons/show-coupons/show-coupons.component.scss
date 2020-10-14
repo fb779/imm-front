@@ -23,6 +23,12 @@ nb-card-body section {
   margin: 5px 0;
 }
 
+nb-card-footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+}
+
 .money {
   background-image: url("assets/images/payments.svg");
   background-origin: content-box;

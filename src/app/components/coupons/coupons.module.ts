@@ -11,7 +11,9 @@ import {
   NbButtonModule,
   NbInputModule,
   NbDatepickerModule,
+  NbSelectModule,
 } from "@nebular/theme";
+import { DeleteCouponComponent } from "./delete-coupon/delete-coupon.component";
 
 const nebular = [
   NbMenuModule,
@@ -20,11 +22,16 @@ const nebular = [
   NbButtonModule,
   NbInputModule,
   NbDatepickerModule,
+  NbSelectModule,
 ];
 
 @NgModule({
-  declarations: [ShowCouponsComponent, MakeCouponsComponent],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, ...nebular],
+  declarations: [
+    ShowCouponsComponent,
+    MakeCouponsComponent,
+    DeleteCouponComponent,
+  ],
   exports: [ShowCouponsComponent, MakeCouponsComponent],
 })
 export class CouponsModule {}

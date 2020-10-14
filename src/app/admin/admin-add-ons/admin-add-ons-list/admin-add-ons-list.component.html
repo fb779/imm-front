@@ -1,0 +1,9 @@
+<div class="new">
+  <button nbButton size="tiny" (click)="newAddons()">
+    <nb-icon icon="plus-circle-outline"></nb-icon>
+  </button>
+</div>
+<ngx-show-coupons
+  [listCoupons]="list"
+  (isDelete)="loadCoupons()"
+></ngx-show-coupons>

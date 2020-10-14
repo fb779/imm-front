@@ -1,5 +1,8 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { Coupon } from "../../../models/coupon";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { Coupon } from "../../../models/Coupon";
+import { roles } from "../../../config/config";
+import { UserService } from "../../../services/services.index";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "ngx-show-coupons",
@@ -8,34 +11,37 @@ import { Coupon } from "../../../models/coupon";
 })
 export class ShowCouponsComponent implements OnInit {
   @Input("listCoupons") coupons: Coupon[] = [];
-  // coupons: Coupon[] = [
-  //   {
-  //     _id: "1",
-  //     code: "abababcdcdcd",
-  //     percent: null,
-  //     activation: new Date(),
-  //     expiration: new Date(),
-  //     group: "General",
-  //   },
-  //   {
-  //     _id: "2",
-  //     code: "dededefgfgfg",
-  //     percent: 50,
-  //     activation: new Date(),
-  //     expiration: new Date(),
-  //     group: "General",
-  //   },
-  //   {
-  //     _id: "1",
-  //     code: "usasdiuaysiudyaisdia",
-  //     percent: 75,
-  //     activation: new Date(),
-  //     expiration: new Date(),
-  //     group: "General",
-  //   },
-  // ];
+  @Output() isDelete: EventEmitter<boolean> = new EventEmitter<boolean>();
+  role: string;
 
-  constructor() {}
+  showFooter: boolean = false;
+  isAdmin: boolean = false;
 
-  ngOnInit() {}
+  constructor(private _router: Router, private _userService: UserService) {}
+
+  ngOnInit() {
+    this.role = this._userService.user.role;
+
+    switch (this.role) {
+      case roles.admin:
+        this.showFooter = true;
+        this.isAdmin = true;
+        break;
+      case roles.user:
+        this.showFooter = true;
+        this.isAdmin = false;
+        break;
+      default:
+        this.showFooter = false;
+        break;
+    }
+  }
+
+  editCoupon(id: string) {
+    this._router.navigate(["/admin", "add-ons", id]);
+  }
+
+  deleteCoupon(ev: boolean) {
+    this.isDelete.emit(ev);
+  }
 }

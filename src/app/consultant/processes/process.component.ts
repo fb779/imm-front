@@ -54,7 +54,6 @@ export class ProcessComponent implements OnInit {
   ngOnInit() {}
 
   displayMessage(ev: NbTabComponent) {
-    console.log("activamos la mensajeria", ev.tabTitle);
     ev.tabTitle == this.tabTitleMessages && ev.active
       ? (this.showMessage = true)
       : (this.showMessage = false);

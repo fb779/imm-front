@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { Coupon } from "../../models/coupon";
 import { CouponsService } from "../../components/coupons/coupons.service";
+import { Coupon } from "../../models/Coupon";
 
 @Component({
   selector: "ngx-admin-add-ons",
@@ -8,13 +8,7 @@ import { CouponsService } from "../../components/coupons/coupons.service";
   styleUrls: ["./admin-add-ons.component.scss"],
 })
 export class AdminAddOnsComponent implements OnInit {
-  list: Coupon[] = [];
-
-  constructor(private _couponService: CouponsService) {
-    this._couponService.getListCoupon().subscribe((resp: Coupon[]) => {
-      this.list = resp;
-    });
-  }
+  constructor() {}
 
   ngOnInit() {}
 }

@@ -19,14 +19,9 @@ export class HomeComponent implements OnInit {
     private _userService: UserService,
     private _processServices: UserProcessService
   ) {
-    this._processServices.getUserProcesses().subscribe(
-      (processes) => {
-        this.list_process = processes;
-      },
-      (err) => {
-        console.log("no se cargaron los procesos");
-      }
-    );
+    this._processServices.getUserProcesses().subscribe((processes) => {
+      this.list_process = processes;
+    });
   }
 
   ngOnInit() {}

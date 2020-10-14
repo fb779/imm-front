@@ -65,7 +65,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
         let dt = token.getPayload();
         this._userService.getUser(dt.sub).subscribe((user) => {
           // this.user = user;
-          this._userService.loadPhoto(user.img).subscribe(() => {});
+          if (user.img) {
+            this._userService.loadPhoto(user.img).subscribe(() => {});
+          }
 
           switch (user.role) {
             case roles.admin:

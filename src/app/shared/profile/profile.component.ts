@@ -24,6 +24,8 @@ export class ProfileComponent implements OnInit {
   updatedUserPhoto(userUpdated: User) {
     this.user.img = userUpdated.img;
     this._userService.saveStorage(this.user);
-    this._userService.loadPhoto(this.user.img).subscribe();
+    if (this.user.img) {
+      this._userService.loadPhoto(this.user.img).subscribe();
+    }
   }
 }

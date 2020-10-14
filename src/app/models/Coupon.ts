@@ -4,8 +4,13 @@ export interface Coupon {
   activation: Date;
   expiration: Date;
   _id?: string;
-  share?: string[];
+  share?: Share[];
   group?: string;
   description?: string;
   state?: boolean;
+}
+
+interface Share {
+  to: any;
+  from: any;
 }
