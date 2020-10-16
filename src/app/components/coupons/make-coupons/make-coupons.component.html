@@ -1,6 +1,7 @@
 <form novalidate autocomplete="off" [formGroup]="form_coupon">
   <nb-card>
     <nb-card-header> Management Coupons </nb-card-header>
+
     <nb-card-body>
       <div class="row">
         <div class="col-12 col-md-6">
@@ -197,21 +198,9 @@
       </div>
     </nb-card-body>
     <nb-card-footer>
-      <ng-container *ngIf="isAdmin; else elseIsAdminTemplate">
-        <button
-          nbButton
-          size="small"
-          accent="primary"
-          fullWidth
-          (click)="save()"
-        >
-          {{ isNew }}
-        </button>
-      </ng-container>
+      <button nbButton size="small" accent="primary" fullWidth (click)="save()">
+        {{ isNew }}
+      </button>
     </nb-card-footer>
   </nb-card>
 </form>
-
-<ng-template #elseIsAdminTemplate>
-  <button nbButton size="small" accent="primary" fullWidth>edit</button>
-</ng-template>

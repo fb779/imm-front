@@ -150,6 +150,11 @@ export const USER_MENU_ITEMS: NbMenuItem[] = [
     link: "/consultant/appointment",
   },
   {
+    title: "AddOns",
+    icon: "keypad-outline",
+    link: "/consultant/add-ons",
+  },
+  {
     title: "Log Out",
     icon: "power-outline",
     link: "/auth/logout",

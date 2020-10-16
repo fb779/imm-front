@@ -49,8 +49,6 @@ export class DeleteCouponComponent implements OnInit {
               this.isDelete.emit(resp.ok);
             }
           });
-        } else {
-          console.log("NO eliminar el coupon", data);
         }
       });
   }

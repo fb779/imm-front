@@ -8,6 +8,7 @@ import { ProcessComponent } from "./processes/process.component";
 import { AppointmentComponent } from "./appointment/appointment.component";
 // import { MakeAppointmentComponent } from "../shared/appointment/make-appointment/make-appointment.component";
 import { ConsultantProfileComponent } from "./consultant-profile/consultant-profile.component";
+import { ConsultantAddOnsModule } from "./consultant-add-ons/consultant-add-ons.module";
 
 const routes: Routes = [
   {
@@ -33,6 +34,14 @@ const routes: Routes = [
       {
         path: "appointment",
         component: AppointmentComponent,
+      },
+      {
+        path: "add-ons",
+        // component: AdminAddOnsComponent,
+        loadChildren: () =>
+          import("./consultant-add-ons/consultant-add-ons.module").then(
+            (m) => m.ConsultantAddOnsModule
+          ),
       },
       { path: "", redirectTo: "dashboard", pathMatch: "full" },
     ],

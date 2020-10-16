@@ -7,7 +7,6 @@ import {
   Validators,
   FormControl,
 } from "@angular/forms";
-import { NbDateService } from "@nebular/theme";
 import { Coupon } from "../../../models/Coupon";
 import { CouponsService } from "../coupons.service";
 import { ToastrService, UserService } from "../../../services/services.index";
@@ -22,14 +21,8 @@ import { roles } from "../../../config/config";
   styleUrls: ["./make-coupons.component.scss"],
 })
 export class MakeCouponsComponent implements OnInit {
-  // @Input("coupon") coupon: Coupon = {
-  //   code: "",
-  //   percent: 0,
-  //   activation: null,
-  //   expiration: null,
-  //   _id: "new",
-  // };
   id: string;
+  url: string[];
   coupon: Coupon = {
     code: "",
     percent: 0,
@@ -59,13 +52,15 @@ export class MakeCouponsComponent implements OnInit {
     private _toastr: ToastrService,
     private _couponServices: CouponsService
   ) {
+    this.url = this._router.url.split("/").filter((x) => x.trim() !== "");
+
     this.isAdmin = this._userService.user.role === roles.admin;
 
     this._activateRoute.params.subscribe((params) => {
       this.id = params["id"];
 
       if (!this.id) {
-        this._router.navigate(["/admin", "add-ons"]);
+        this._router.navigate([`/${this.url[0]}`, "add-ons"]);
       }
 
       this.getListShare();
@@ -178,7 +173,7 @@ export class MakeCouponsComponent implements OnInit {
           "Coupon Information",
           "danger"
         );
-        this._router.navigate(["/admin", "add-ons"]);
+        this._router.navigate([`/${this.url[0]}`, "add-ons"]);
       }
     );
   }
@@ -202,9 +197,8 @@ export class MakeCouponsComponent implements OnInit {
             "Coupon form",
             "success"
           );
-          this._router.navigate(["/admin", "add-ons"]);
+          this._router.navigate([`/${this.url[0]}`, "add-ons"]);
         }
-        // (err) => console.log("Fallo esta joda ", err)
       );
     }
 
@@ -218,9 +212,8 @@ export class MakeCouponsComponent implements OnInit {
               "Coupon form",
               "success"
             );
-            this._router.navigate(["/admin", "add-ons"]);
+            this._router.navigate([`/${this.url[0]}`, "add-ons"]);
           }
-          // (err) => console.log("Fallo esta joda ", err)
         );
     }
   }

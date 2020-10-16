@@ -31,20 +31,15 @@
       </nb-card-body>
 
       <nb-card-footer *ngIf="showFooter">
-        <!-- <ng-container *ngIf="isAdmin; else elseIsAdminTemplate"> -->
         <ng-container *ngIf="isAdmin">
-          <!-- <button
-            nbButton
-            size="tiny"
-            status="danger"
-            (click)="deleteCoupon(item._id)"
-          >
-            <nb-icon icon="trash-outline"></nb-icon>
-          </button> -->
           <ngx-delete-coupon
             [coupon]="item"
-            (isDelete)="deleteCoupon($event)"
+            (isDelete)="loadCoupons()"
           ></ngx-delete-coupon>
+          <!-- <ngx-delete-coupon
+            [coupon]="item"
+            (isDelete)="deleteCoupon($event)"
+          ></ngx-delete-coupon> -->
         </ng-container>
         <button
           nbButton
@@ -62,9 +57,3 @@
 <ng-template #elseCouponsTemplate>
   <p>There aren't coupons</p>
 </ng-template>
-
-<!-- <ng-template #elseIsAdminTemplate>
-  <button nbButton size="tiny" status="primary">
-    <nb-icon icon="edit-outline"></nb-icon>
-  </button>
-</ng-template> -->

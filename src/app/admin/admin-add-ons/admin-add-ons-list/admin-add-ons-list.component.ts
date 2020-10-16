@@ -9,22 +9,9 @@ import { Router } from "@angular/router";
   styleUrls: ["./admin-add-ons-list.component.scss"],
 })
 export class AdminAddOnsListComponent implements OnInit {
-  list: Coupon[] = [];
+  constructor(private _router: Router) {}
 
-  constructor(
-    private _router: Router,
-    private _couponService: CouponsService
-  ) {}
-
-  ngOnInit() {
-    this.loadCoupons();
-  }
-
-  loadCoupons() {
-    this._couponService.getListCoupon().subscribe((resp: Coupon[]) => {
-      this.list = resp;
-    });
-  }
+  ngOnInit() {}
 
   newAddons() {
     this._router.navigate(["/admin/add-ons/new"]);
