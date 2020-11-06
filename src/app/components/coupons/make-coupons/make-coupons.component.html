@@ -169,7 +169,7 @@
               fullWidth
               multiple
               [status]="
-                (submitted || f.share.touched) && f.share.errors ? 'danger' : ''
+                (submited || f.share.touched) && f.share.errors ? 'danger' : ''
               "
             >
               <nb-option *ngFor="let item of listShare" [value]="item._id">
