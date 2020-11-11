@@ -80,7 +80,10 @@ export class MakeCouponsComponent implements OnInit {
   ngOnInit() {}
 
   setMinMax(date: string = null) {
-    this.min = !date ? moment().toDate() : moment(date).toDate();
+    this.min =
+      !date || moment().isBefore(moment(date))
+        ? moment().subtract(1, "day").toDate()
+        : moment(date).subtract(1, "day").toDate();
     this.max = moment().add(6, "months").toDate();
   }
 
@@ -115,13 +118,23 @@ export class MakeCouponsComponent implements OnInit {
     this.form_coupon
       .get("activation")
       .valueChanges.subscribe((value: string) => {
-        let expiration = this.form_coupon.get("expiration");
-        if (!expiration.enabled) {
-          expiration.enable();
+        let expiration = this.f.expiration.value;
+        const exp_min = moment(value).add(1, "days");
+        const exp_max = moment(value).add(6, "months");
+
+        if (!this.f.expiration.enabled) {
+          this.f.expiration.enable();
         }
 
-        this.exp_min = moment(value).add(1, "days").toDate();
-        expiration.reset();
+        this.exp_min = exp_min.toDate();
+        this.exp_max = exp_max.toDate();
+
+        if (
+          exp_min.isAfter(moment(expiration)) ||
+          exp_max.isBefore(moment(expiration))
+        ) {
+          this.f.expiration.reset();
+        }
       });
   }
 
@@ -164,8 +177,8 @@ export class MakeCouponsComponent implements OnInit {
     this._couponServices.getCouponId(id).subscribe(
       (coupon: Coupon) => {
         this.coupon = coupon;
-        this.setMinMax(coupon.activation.toISOString());
         this.form_coupon.setValue(coupon);
+        this.setMinMax(coupon.activation.toISOString());
       },
       (err) => {
         this._toastr.toastrGenericMessage(
@@ -190,31 +203,29 @@ export class MakeCouponsComponent implements OnInit {
     }
 
     if (this.id === "new") {
-      this._couponServices.createCoupon(this.form_coupon.value).subscribe(
-        (resp) => {
+      this._couponServices
+        .createCoupon(this.form_coupon.value)
+        .subscribe((resp) => {
           this._toastr.toastrGenericMessage(
             "Save create",
             "Coupon form",
             "success"
           );
           this._router.navigate([`/${this.url[0]}`, "add-ons"]);
-        }
-      );
+        });
     }
 
     if (this.form_coupon.value._id) {
       this._couponServices
         .editCoupon(this.id, this.form_coupon.value)
-        .subscribe(
-          (resp) => {
-            this._toastr.toastrGenericMessage(
-              "Save edit",
-              "Coupon form",
-              "success"
-            );
-            this._router.navigate([`/${this.url[0]}`, "add-ons"]);
-          }
-        );
+        .subscribe((resp) => {
+          this._toastr.toastrGenericMessage(
+            "Save edit",
+            "Coupon form",
+            "success"
+          );
+          this._router.navigate([`/${this.url[0]}`, "add-ons"]);
+        });
     }
   }
 }
