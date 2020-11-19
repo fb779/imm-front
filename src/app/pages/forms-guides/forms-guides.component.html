@@ -1,37 +1,35 @@
-<!-- <router-outlet></router-outlet> -->
 <nb-card>
-    <nb-card-header>
-        Forms
-    </nb-card-header>
-    <nb-card-body>
-        <ng-container *ngIf="forms.length > 0; else elseForms">
-            <div class="cards">
-                <ngx-card-documents class="card" [form_guide]="form" *ngFor="let form of forms"></ngx-card-documents>
-            </div>
-        </ng-container>
-        <ng-template #elseForms>
-            <p>Not upload information</p>
-        </ng-template>
-
-
-
-    </nb-card-body>
+  <nb-card-header> Forms </nb-card-header>
+  <nb-card-body>
+    <ng-container *ngIf="forms.length > 0; else elseForms">
+      <div class="cards">
+        <ngx-card-documents
+          class="card"
+          [form_guide]="form"
+          *ngFor="let form of forms"
+        ></ngx-card-documents>
+      </div>
+    </ng-container>
+    <ng-template #elseForms>
+      <p>Not upload information</p>
+    </ng-template>
+  </nb-card-body>
 </nb-card>
 
 <nb-card>
-    <nb-card-header>
-        Guides
-    </nb-card-header>
-    <nb-card-body>
-        <ng-container *ngIf="guides.length > 0; else elseGuides">
-            <div class="cards">
-                <ngx-card-documents class="card" [form_guide]="guide" *ngFor="let guide of guides"></ngx-card-documents>
-            </div>
-        </ng-container>
-        <ng-template #elseGuides>
-            <p>Not upload information</p>
-        </ng-template>
-
-
-    </nb-card-body>
+  <nb-card-header> Guides </nb-card-header>
+  <nb-card-body>
+    <ng-container *ngIf="guides.length > 0; else elseGuides">
+      <div class="cards">
+        <ngx-card-documents
+          class="card"
+          [form_guide]="guide"
+          *ngFor="let guide of guides"
+        ></ngx-card-documents>
+      </div>
+    </ng-container>
+    <ng-template #elseGuides>
+      <p>Not upload information</p>
+    </ng-template>
+  </nb-card-body>
 </nb-card>

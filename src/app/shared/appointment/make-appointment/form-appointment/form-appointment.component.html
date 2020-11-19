@@ -1,9 +1,7 @@
 <nb-card class="ap-dialog-card">
   <form novalidate autocomplete="off" [formGroup]="formAppointment">
     <nb-card class="ap-form">
-      <nb-card-header>
-        Form Appointment
-      </nb-card-header>
+      <nb-card-header> Form Appointment </nb-card-header>
       <nb-card-body>
         <div class="row">
           <div class="col-12">
@@ -20,7 +18,6 @@
                     : ''
                 "
               >
-                <!-- <nb-option value="">Select...</nb-option> -->
                 <nb-option *ngFor="let item of consultants" [value]="item._id">
                   {{ item.first_name }} {{ item.last_name }} - {{ item.email }}
                 </nb-option>
@@ -43,7 +40,7 @@
           <div class="col-12">
             <div class="form-group">
               <label for="">Client</label>
-              <!-- <input type="text" name="client" formControlName="client" nbInput fullWidth [status]=" (submitted || f.client.touched) && f.client.errors ? 'danger' : '' " /> -->
+
               <nb-select
                 name="client"
                 formControlName="client"
@@ -55,7 +52,6 @@
                     : ''
                 "
               >
-                <!-- <nb-option value="">Select...</nb-option> -->
                 <nb-option *ngFor="let item of clients" [value]="item._id">
                   {{ item.email }} - {{ item.first_name }} {{ item.last_name }}
                 </nb-option>
@@ -125,7 +121,6 @@
                     : ''
                 "
               >
-                <!-- <nb-option value="">Select...</nb-option> -->
                 <nb-option
                   *ngFor="let item of optiosHours$ | async"
                   [value]="item.value"
@@ -159,7 +154,6 @@
                   (submitted || f.time.touched) && f.time.errors ? 'danger' : ''
                 "
               >
-                <!-- <nb-option value="">Select...</nb-option> -->
                 <nb-option
                   *ngFor="let item of optiosTime$ | async"
                   [value]="item.value"
@@ -167,7 +161,7 @@
                   {{ item.name }}
                 </nb-option>
               </nb-select>
-              <!-- <input type="text" name="time" formControlName="time" nbInput fullWidth [status]=" (submitted || f.time.touched) && f.time.errors ? 'danger' : '' " /> -->
+
               <div
                 *ngIf="(submitted || f.time.touched) && f.time.errors"
                 class="card-text"

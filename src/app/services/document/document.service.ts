@@ -17,17 +17,7 @@ export class DocumentService {
   getDocumentsByClient(id_client: String): Observable<Document[]> {
     const url = `${environment.api_url}${environment.api_version}/documents/${id_client}`;
 
-    return this._http.get(url).pipe(
-      // tap(console.log),
-      pluck("list")
-      // map((el: any) => el.map(x => {
-      //   if (x._id == "5eab4a882d374b35ee9c8f95") {
-      //     x.status = 'LOADED';
-      //   }
-      //   return x;
-      // })),
-      // tap(console.log),
-    );
+    return this._http.get(url).pipe(pluck("list"));
   }
 
   setApproveDocument(id_document: string) {

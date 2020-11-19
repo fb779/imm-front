@@ -1,26 +1,29 @@
 <nb-card>
-    <nb-card-body>
-        <div class="row">
-            <div class="col">
-                <div class="form-group">
-                    <label>Select the process</label>
-                    <nb-select name="form" placeholder="Select Showcase" fullWidth [(ngModel)]="form">
-                        <nb-option value="">Select...</nb-option>
-                        <nb-option *ngFor="let item of opts" [value]='item.value'> {{ item.name }}</nb-option>
-                    </nb-select>
-
-                </div>
-            </div>
+  <nb-card-body>
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label>Select the process</label>
+          <nb-select
+            name="form"
+            placeholder="Select Showcase"
+            fullWidth
+            [(ngModel)]="form"
+          >
+            <nb-option value="">Select...</nb-option>
+            <nb-option *ngFor="let item of opts" [value]="item.value">
+              {{ item.name }}</nb-option
+            >
+          </nb-select>
         </div>
-
-    </nb-card-body>
+      </div>
+    </div>
+  </nb-card-body>
 </nb-card>
 
 <div *ngIf="form === 1">
-    <ngx-visit></ngx-visit>
+  <ngx-visit></ngx-visit>
 </div>
 <div *ngIf="form === 2">
-    <ngx-study></ngx-study>
+  <ngx-study></ngx-study>
 </div>
-
-<!-- <router-outlet></router-outlet> -->

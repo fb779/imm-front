@@ -15,7 +15,6 @@ export class ChecklistService {
     const url = `${environment.api_url}${environment.api_version}/documents/${id_client}`;
     return this._http.get(url).pipe(
       pluck("list"),
-      // tap(console.log),
       map((x: any) => x.map((el) => el.checklist))
     );
   }
@@ -27,7 +26,6 @@ export class ChecklistService {
     const url = `${environment.api_url}${environment.api_version}/documents/${id_process}/${id_client}`;
     return this._http.get(url).pipe(
       pluck("list"),
-      // tap(console.log),
       map((x: any) => x.map((el) => el.checklist))
     );
   }

@@ -14,9 +14,6 @@ export class ClientService {
   getClientById(id_client): Observable<Client> {
     const url = `${environment.api_url}${environment.api_version}/clients/${id_client}`;
 
-    return this._http.get(url).pipe(
-      pluck("data", "client")
-      // tap(console.log),
-    );
+    return this._http.get(url).pipe(pluck("data", "client"));
   }
 }

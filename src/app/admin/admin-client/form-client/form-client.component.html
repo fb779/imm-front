@@ -5,9 +5,7 @@
         {{ userForm.first_name.value | uppercase }}
         {{ userForm.last_name.value | uppercase }}
       </ng-container>
-      <ng-template #elseNewUser>
-        New User
-      </ng-template>
+      <ng-template #elseNewUser> New User </ng-template>
     </nb-card-header>
     <nb-card-body>
       <div class="row">
@@ -186,7 +184,7 @@
         <div class="col-12">
           <div class="form-group">
             <label for="name">Password</label>
-            <!-- <div> </div> -->
+
             <div class="input-group">
               <input
                 type="text"
@@ -230,7 +228,6 @@
           </div>
         </div>
       </div>
-      <!-- <form [formGroup]="formClient"> </form> -->
     </nb-card-body>
     <nb-card-footer>
       <button

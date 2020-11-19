@@ -111,6 +111,11 @@ export const ADMIN_MENU_ITEMS: NbMenuItem[] = [
     link: "/admin/visa-category",
   },
   {
+    title: "Steps",
+    icon: "layers-outline",
+    link: "/admin/steps",
+  },
+  {
     title: "Processes",
     icon: "archive-outline",
     link: "/admin/processes",

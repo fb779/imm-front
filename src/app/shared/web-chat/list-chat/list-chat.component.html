@@ -1,12 +1,5 @@
 <nb-card>
-  <!-- <nb-card-body id="chat-messages"> -->
   <nb-card-body #chatMessages>
-    <!-- <div>
-            <nb-alert outline="primary">Primary. You have been successfully authenticated!</nb-alert>
-        </div> -->
-    <!-- <div>
-            <nb-alert outline="info">Info. You have been successfully authenticated!</nb-alert>
-        </div> -->
     <div *ngFor="let message of messages; let id = index">
       <nb-alert [outline]="message.status">
         <p>
@@ -14,7 +7,6 @@
           {{ message.date }}
         </p>
         <p>{{ message.message }}</p>
-        <!-- {{ id }} - Success. You have been successfully authenticated! -->
       </nb-alert>
     </div>
   </nb-card-body>

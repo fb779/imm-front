@@ -2,9 +2,6 @@
   <ng-container *ngIf="list !== null; else elseTemplate">
     <nb-card class="client-card" *ngFor="let item of list">
       <nb-card-body>
-        <!-- <section class="img">
-        <img src="http://via.placeholder.com/320x180" alt="" />
-      </section> -->
         <section class="info text-center">
           <span>
             {{ item.client.first_name }} {{ item.client.last_name }}
@@ -17,15 +14,6 @@
         </section>
       </nb-card-body>
       <nb-card-footer>
-        <!-- <button
-          nbButton
-          size="tiny"
-          fullWidth
-          [status]="'success'"
-          (click)="modify.emit(item)"
-        >
-          <nb-icon icon="edit-2-outline"></nb-icon>
-        </button> -->
         <button
           nbButton
           size="tiny"
@@ -39,8 +27,6 @@
     </nb-card>
   </ng-container>
   <ng-template #elseTemplate>
-    <p>
-      Sin registros
-    </p>
+    <p>Sin registros</p>
   </ng-template>
 </section>

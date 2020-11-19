@@ -49,9 +49,5 @@ export class UploadFileService {
     form_data.append("photo", file);
 
     return this._http.post(url, form_data);
-    // .pipe(
-    //   tap(console.log),
-    //   catchError((err) => of({}))
-    // );
   }
 }

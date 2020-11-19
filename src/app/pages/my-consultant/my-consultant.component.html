@@ -7,9 +7,6 @@
           *ngFor="let consultant of consultants"
         >
           <ngx-card-consultant [consultant]="consultant"></ngx-card-consultant>
-          <!-- <ngx-client-documents-upload
-            [client]="consultant"
-          ></ngx-client-documents-upload> -->
         </nb-tab>
       </nb-tabset>
     </nb-card-body>
@@ -18,17 +15,7 @@
 <ng-template #elseTemplate>
   <nb-card>
     <nb-card-body>
-      <div>
-        No registered Consultant in the process
-      </div>
+      <div>No registered Consultant in the process</div>
     </nb-card-body>
   </nb-card>
 </ng-template>
-
-<!-- <nb-card accent="info">
-  <nb-card-body>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, quia, non
-    praesentium cum aliquam eaque repudiandae voluptates veritatis ex quos
-    dolor, possimus earum sint? Ea aperiam ipsam a alias expedita!
-  </nb-card-body>
-</nb-card> -->

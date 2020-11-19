@@ -1,30 +1,46 @@
 <div class="form-group">
-    <div class="input-group" [nbSpinner]="spinner" nbSpinnerStatus="success">
-        <div class="custom-file">
-            <input type="file" class="custom-file-input" nbInput fullWidth #inputFile [disabled]="input_enabled" (change)="seleccionarImagen( $event.target.files[0] )" [disabled]="input_enabled">
-            <label class="custom-file-label" #labelFile>{{ name || title }}</label>
-        </div>
-        <div class="input-group-append">
-            <button nbButton status="danger" size="small" shape="rectangle" [disabled]="!file_upload || input_enabled" type="button" (click)="clearFile()">
-              <span>
-                  <nb-icon icon="eraser" pack="fas"></nb-icon>
-              </span>
-          </button>
-        </div>
-        <div class="input-group-append">
-            <button nbButton size="small" shape="rectangle" type=" button" [disabled]="!file_upload || input_enabled" (click)="uploadDocument()">
-              <span>
-                  <nb-icon icon="upload" pack="fas"></nb-icon>
-              </span>
-          </button>
-        </div>
+  <div class="input-group" [nbSpinner]="spinner" nbSpinnerStatus="success">
+    <div class="custom-file">
+      <input
+        type="file"
+        class="custom-file-input"
+        nbInput
+        fullWidth
+        #inputFile
+        [disabled]="input_enabled"
+        (change)="seleccionarImagen($event.target.files[0])"
+        [disabled]="input_enabled"
+      />
+      <label class="custom-file-label" #labelFile>{{ name || title }}</label>
     </div>
-</div>
-<!-- <div>
-    <button nbButton size="small" type="button" (click)="desabilitar()">
+    <div class="input-group-append">
+      <button
+        nbButton
+        status="danger"
+        size="small"
+        shape="rectangle"
+        [disabled]="!file_upload || input_enabled"
+        type="button"
+        (click)="clearFile()"
+      >
         <span>
-            <nb-icon icon="star" *ngIf="input_enabled"></nb-icon>
-            <nb-icon icon="upload" pack="fas" *ngIf="!input_enabled"></nb-icon>
+          <nb-icon icon="eraser" pack="fas"></nb-icon>
         </span>
-    </button>
-</div> -->
+      </button>
+    </div>
+    <div class="input-group-append">
+      <button
+        nbButton
+        size="small"
+        shape="rectangle"
+        type=" button"
+        [disabled]="!file_upload || input_enabled"
+        (click)="uploadDocument()"
+      >
+        <span>
+          <nb-icon icon="upload" pack="fas"></nb-icon>
+        </span>
+      </button>
+    </div>
+  </div>
+</div>

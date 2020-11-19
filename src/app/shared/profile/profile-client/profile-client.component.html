@@ -159,9 +159,6 @@
               *ngIf="(submitted || f.bio.touched) && f.bio.errors"
               class="card-text"
             >
-              <div>
-                {{ f.bio.errors | json }}
-              </div>
               <small
                 *ngIf="f.bio.errors?.maxlength"
                 class="text-muted text-muted-danger"
@@ -174,12 +171,8 @@
 
         <div class="clearFix"></div>
       </div>
-      <!-- <form [formGroup]="formClient"> </form> -->
     </nb-card-body>
     <nb-card-footer>
-      <!-- <button type="button" nbButton status="danger">
-        <nb-icon icon="close-circle-outline"></nb-icon>
-      </button> -->
       <button nbButton status="success" type="button" (click)="saveUser()">
         Save
       </button>
