@@ -3,8 +3,8 @@
     <nb-card-body>
       <nb-tabset fullWidth>
         <nb-tab
-          [tabTitle]="consultant.first_name | uppercase"
           *ngFor="let consultant of consultants"
+          [tabTitle]="consultant.first_name | uppercase"
         >
           <ngx-card-consultant [consultant]="consultant"></ngx-card-consultant>
         </nb-tab>
@@ -12,6 +12,7 @@
     </nb-card-body>
   </nb-card>
 </ng-container>
+
 <ng-template #elseTemplate>
   <nb-card>
     <nb-card-body>

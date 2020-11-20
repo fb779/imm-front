@@ -9,11 +9,13 @@ import { UserProcessService } from "../../services/services.index";
 export class MyConsultantComponent implements OnInit {
   consultants: any[] = [];
 
-  constructor(private _processServices: UserProcessService) {
+  constructor(private _processServices: UserProcessService) {}
+
+  ngOnInit() {
     this._processServices.getUserProcesses().subscribe((list_process) => {
-      this.consultants = list_process.map((el) => el.consultant);
+      this.consultants = list_process
+        .filter((el) => el.consultant)
+        .map((el) => el.consultant);
     });
   }
-
-  ngOnInit() {}
 }
