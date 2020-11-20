@@ -1,0 +1,19 @@
+<nb-card>
+  <nb-card-header>
+    <section><span> Admin list of Steps</span></section>
+    <section>
+      <button nbButton size="tiny" (click)="newStep()">
+        <nb-icon icon="plus-circle-outline"></nb-icon>
+      </button>
+    </section>
+  </nb-card-header>
+  <nb-card-body>
+    <section>
+      <ngx-step-list
+        [list]="stepList"
+        (deleteStep)="deleteStep($event)"
+        (editStep)="editStep($event)"
+      ></ngx-step-list>
+    </section>
+  </nb-card-body>
+</nb-card>

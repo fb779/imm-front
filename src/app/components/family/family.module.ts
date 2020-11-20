@@ -37,7 +37,7 @@ const nebular_family = [
   NbSpinnerModule,
   NbAlertModule,
   NbListModule,
-  // NbDialogModule.forRoot(),
+  NbDialogModule.forRoot(),
   // NbDatepickerModule,
   // NbStepperModule,
   // NbAccordionModule,

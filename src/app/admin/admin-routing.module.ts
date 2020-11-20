@@ -4,7 +4,6 @@ import { NgModule } from "@angular/core";
 import { AdminComponent } from "./admin.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { AdminProfileComponent } from "./admin-profile/admin-profile.component";
-import { AdminAddOnsComponent } from "./admin-add-ons/admin-add-ons.component";
 
 const routes: Routes = [
   {
@@ -43,6 +42,13 @@ const routes: Routes = [
         loadChildren: () =>
           import("./admin-visa-categories/admin-visa-categories.module").then(
             (m) => m.AdminVisaCategoriesModule
+          ),
+      },
+      {
+        path: "steps",
+        loadChildren: () =>
+          import("./admin-steps/admin-steps.module").then(
+            (m) => m.AdminStepsModule
           ),
       },
       {

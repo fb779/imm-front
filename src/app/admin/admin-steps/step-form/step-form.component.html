@@ -1,0 +1,205 @@
+<form novalidate autocomplete="off" [formGroup]="stepForm">
+  <nb-card class="dialog-card">
+    <nb-card-body>
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="registeredOn">Name</label>
+            <input
+              type="text"
+              name="name"
+              formControlName="name"
+              nbInput
+              fullWidth
+              [status]="
+                (submitted || f.name.touched) && f.name.errors ? 'danger' : ''
+              "
+            />
+            <div
+              *ngIf="(submitted || f.name.touched) && f.name.errors"
+              class="card-text"
+            >
+              <small
+                *ngIf="f.name.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+              <small
+                *ngIf="f.name.errors?.pattern"
+                class="text-muted text-muted-danger"
+              >
+                Field is just alphabetic
+              </small>
+              <small
+                *ngIf="f.name.errors?.nameExist"
+                class="text-muted text-muted-danger"
+              >
+                The name already exist
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="name">Order</label>
+            <input
+              type="text"
+              name="order"
+              maxlength="2"
+              formControlName="order"
+              nbInput
+              fullWidth
+              [status]="
+                (submitted || f.order.touched) && f.order.errors ? 'danger' : ''
+              "
+            />
+            <div
+              *ngIf="(submitted || f.order.touched) && f.order.errors"
+              class="card-text"
+            >
+              <small
+                *ngIf="f.order.errors?.required"
+                class="text-muted text-muted-danger"
+                >Field required</small
+              >
+              <small
+                *ngIf="f.order.errors?.pattern"
+                class="text-muted text-muted-danger"
+                >Field is just numeric</small
+              >
+              <small
+                *ngIf="f.order.errors?.min"
+                class="text-muted text-muted-danger"
+                >The minimum value is {{ f.order.errors.min.min }}
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="">Active</label>
+            <nb-select
+              name="active"
+              placeholder="Select Showcase"
+              fullWidth
+              formControlName="active"
+              [status]="
+                (submitted || f.active.touched) && f.active.errors
+                  ? 'danger'
+                  : ''
+              "
+            >
+              <nb-option value="ACTIVE">Active</nb-option>
+              <nb-option value="INACTIVE">Inactive</nb-option>
+            </nb-select>
+            <div
+              class="card-text text-white"
+              *ngIf="(submitted || f.active.touched) && f.active.errors"
+            >
+              <small
+                *ngIf="f.active.errors?.required"
+                class="text-muted text-muted-danger"
+                >Field required</small
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="">Visa</label>
+            <nb-select
+              name="visa_categorie"
+              placeholder="Select Showcase"
+              fullWidth
+              formControlName="visa_categorie"
+              [status]="
+                (submitted || f.visa_categorie.touched) &&
+                f.visa_categorie.errors
+                  ? 'danger'
+                  : ''
+              "
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option *ngFor="let item of visaList" [value]="item.value">
+                {{ item.name }}</nb-option
+              >
+            </nb-select>
+            <div
+              class="card-text text-white"
+              *ngIf="
+                (submitted || f.visa_categorie.touched) &&
+                f.visa_categorie.errors
+              "
+            >
+              <small
+                *ngIf="f.visa_categorie.errors?.required"
+                class="text-muted text-muted-danger"
+                >Field required</small
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="form-group">
+            <label for="name">Description</label>
+            <textarea
+              name="description"
+              rows="5"
+              placeholder="Text Area"
+              nbInput
+              fullWidth
+              shape="semi-round"
+              formControlName="description"
+              [status]="
+                (submitted || f.description.touched) && f.description.errors
+                  ? 'danger'
+                  : ''
+              "
+            ></textarea>
+            <div
+              *ngIf="
+                (submitted || f.description.touched) && f.description.errors
+              "
+              class="card-text"
+            >
+              <small
+                *ngIf="f.description.errors?.pattern"
+                class="text-muted text-muted-danger"
+              >
+                Field allow alphabetic and numeric caracter
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="clearFix"></div>
+      </div>
+    </nb-card-body>
+    <nb-card-footer class="dialog-footer">
+      <button type="button" nbButton (click)="cancel()">cancelar</button>
+      <button
+        type="button"
+        nbButton
+        status="success"
+        *ngIf="!this.step._id"
+        (click)="createStep()"
+      >
+        guardar
+      </button>
+      <button
+        type="button"
+        nbButton
+        status="success"
+        *ngIf="this.step._id"
+        (click)="editStep()"
+      >
+        update
+      </button>
+    </nb-card-footer>
+  </nb-card>
+</form>

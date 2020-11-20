@@ -1,0 +1,39 @@
+<div class="step-grid">
+  <!-- contenedor -->
+  <nb-card *ngFor="let step of list">
+    <nb-card-body>
+      <!-- <nb-badge [text]="step.order" [status]="'info'" position="top start">
+      </nb-badge> -->
+      <nb-badge
+        [text]="step.active | uppercase"
+        [status]="step.active === 'ACTIVE' ? 'success' : 'primary'"
+        position="top end"
+      >
+      </nb-badge>
+      <section class="step-name">
+        {{ step.name }}
+      </section>
+      <section class="step-name">
+        {{ step.visa_categorie.name }}
+      </section>
+      <section class="step-buttons">
+        <button
+          nbButton
+          status="danger"
+          size="tiny"
+          (click)="deleteStep.emit(step)"
+        >
+          <nb-icon icon="trash-2-outline"></nb-icon>
+        </button>
+        <button
+          nbButton
+          status="info"
+          size="tiny"
+          (click)="editStep.emit(step)"
+        >
+          <nb-icon icon="edit-2-outline"></nb-icon>
+        </button>
+      </section>
+    </nb-card-body>
+  </nb-card>
+</div>

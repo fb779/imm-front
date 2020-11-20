@@ -1,0 +1,22 @@
+<nb-card>
+  <nb-card-body>
+    <section>
+      Eliminacion del step:
+      {{ step.name }}
+    </section>
+  </nb-card-body>
+  <nb-card-footer class="dialog-footer">
+    <button type="button" nbButton size="tiny" (click)="cancel()">
+      <nb-icon icon="close-circle-outline"></nb-icon>
+    </button>
+    <button
+      type="button"
+      nbButton
+      size="tiny"
+      status="success"
+      (click)="deleteStep()"
+    >
+      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+    </button>
+  </nb-card-footer>
+</nb-card>

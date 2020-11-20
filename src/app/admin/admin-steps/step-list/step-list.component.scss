@@ -1,0 +1,67 @@
+.step-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+}
+
+nb-card {
+  margin-bottom: 0;
+  height: 200px;
+}
+
+nb-card-body {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  align-items: stretch;
+}
+
+nb-card-body .step-name {
+  text-align: center;
+  font-size: 1rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+nb-card-body .step-buttons {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: stretch;
+}
+
+// nb-card-body .buttons > button {
+//   flex: 1;
+// }
+
+@media screen and (max-width: 400px) {
+  :host .step-grid {
+    grid-template-columns: repeat(1, 1fr);
+    justify-items: center;
+  }
+
+  :host nb-card {
+    max-width: 200px;
+    max-height: 150px;
+  }
+}
+
+@media screen and (min-width: 400px) and (max-width: 640px) {
+  :host .step-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  :host nb-card {
+    max-width: 200px;
+    max-height: 150px;
+  }
+}
+
+@media screen and (min-width: 640px) and (max-width: 940px) {
+  :host .step-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  // :host nb-card {
+  //   max-width: 300px;
+  // }
+}
