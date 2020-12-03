@@ -8,6 +8,7 @@ import { SharedModule } from "../shared/shared.module";
 import { WebChatModule } from "../shared/web-chat/web-chat.module";
 import { AppointmentModule } from "../shared/appointment/appointment.module";
 import { ProfileModule } from "../shared/profile/profile.module";
+import { StepModule } from "../components/step/step.module";
 
 import {
   NbMenuModule,
@@ -42,9 +43,6 @@ const consultanttNebular = [
   NbDatepickerModule,
   NbSpinnerModule,
   NbAccordionModule,
-  // NbActionsModule,
-  // NbRadioModule,
-  // NbUserModule
 ];
 
 import { ConsultantComponent } from "./consultant.component";
@@ -71,6 +69,7 @@ import { ConsultantProfileComponent } from "./consultant-profile/consultant-prof
     WebChatModule,
     AppointmentModule,
     ProfileModule,
+    StepModule,
   ],
   declarations: [
     ConsultantComponent,

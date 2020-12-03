@@ -1,0 +1,19 @@
+<nb-card class="dialog-card">
+  <nb-card-body>
+    <section *ngFor="let step of steps">
+      <label for="">{{ step.name | uppercase }}</label>
+      <nb-select
+        name="state"
+        fullWidth
+        formControlName="state"
+        [(selected)]="step.status"
+      >
+        <nb-option value="COMPLETE">COMPLETE</nb-option>
+        <nb-option value="IN-PROGRES">IN-PROGRES</nb-option>
+      </nb-select>
+      <button nbButton size="tiny" (click)="save(step)">
+        <nb-icon icon="save-outline"></nb-icon>
+      </button>
+    </section>
+  </nb-card-body>
+</nb-card>

@@ -1,0 +1,10 @@
+<div class="line-advance">
+  <div
+    class="arrow"
+    [ngClass]="{ success: step.status === stValues.complete }"
+    *ngFor="let step of steps"
+  >
+    {{ step.name }}
+    <!-- <nb-icon icon="info-outline"></nb-icon> -->
+  </div>
+</div>

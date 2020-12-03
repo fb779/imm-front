@@ -1,0 +1,10 @@
+nb-card.dialog-card {
+  margin: auto;
+  width: 100vh;
+}
+
+nb-card.formChecklist > nb-card-footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+}

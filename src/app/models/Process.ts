@@ -2,6 +2,7 @@ import { User } from "./User";
 import { Client } from "./Client";
 import { Category } from "./Category";
 import { CheckList } from "./CheckList";
+import { ProcessStep } from "./ProcessStep.model";
 
 export class Process {
   _id: string;
@@ -14,4 +15,5 @@ export class Process {
   consultant?: User;
   clien_process?: Client[];
   check_list?: CheckList[];
+  steps?: ProcessStep[];
 }

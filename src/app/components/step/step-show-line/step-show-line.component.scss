@@ -1,0 +1,84 @@
+// .success {
+//   background-color: var(--success);
+// }
+.line-advance {
+  --arrow-border-with: 1rem;
+  --arrow-space-positive: 1rem;
+  --arrow-space-negative: -1rem;
+  --arrow-padding-left: 1rem;
+  --arrow-margin-right: 1.3rem;
+
+  box-sizing: border-box;
+  padding-left: var(--arrow-padding-left);
+
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+
+  .arrow {
+    background-color: var(--primary);
+    color: var(--white);
+    box-sizing: border-box;
+    margin-right: var(--arrow-margin-right);
+    margin-bottom: 0.25rem;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+
+    &::before,
+    &::after {
+      height: 0px;
+      content: "";
+      border-style: solid;
+      border-width: var(--arrow-border-with);
+    }
+
+    &::before {
+      border-right-width: 0em;
+      border-color: var(--primary) transparent;
+      position: relative;
+      left: var(--arrow-space-negative);
+    }
+
+    &::after {
+      border-right-width: 0em;
+      border-color: transparent var(--primary);
+      position: relative;
+      left: 1rem;
+    }
+  }
+
+  .success {
+    background-color: var(--success);
+    &::before {
+      border-color: var(--success) transparent;
+    }
+
+    &::after {
+      border-color: transparent var(--success);
+    }
+  }
+}
+
+/* Dispay between to 640px and 940px*/
+// @media screen and (min-width: 640px) and (max-width: 940px) {
+//   .line-advance {
+//     background-color: skyblue;
+//     flex-flow: column nowrap;
+//     justify-content: space-between;
+//     align-items: center;
+//     .arrow {
+//       // box-sizing: border-box;
+//       // padding: 0.5rem;
+//       margin: 0.25rem 0;
+//     }
+//   }
+// }
+
+// @media screen and (max-width: 940px) {
+//   .line-advance {
+//     display: none;
+//   }
+// }

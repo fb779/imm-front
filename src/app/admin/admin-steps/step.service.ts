@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observer, Subject, Observable, combineLatest } from "rxjs";
-import { tap, pluck, map, switchMap } from "rxjs/operators";
+import { tap, pluck, map, switchMap, shareReplay } from "rxjs/operators";
 import { Step } from "../../models/Step.model";
 import { environment } from "../../../environments/environment";
 
@@ -14,7 +14,9 @@ export class StepService {
   constructor(private _http: HttpClient) {}
 
   getStepList(): Observable<Step[]> {
-    return this._http.get<Step[]>(this.url).pipe(pluck("data"));
+    return this._http
+      .get<Step[]>(this.url)
+      .pipe(pluck("data"), shareReplay<Step[]>());
   }
 
   getStepId(id: string) {

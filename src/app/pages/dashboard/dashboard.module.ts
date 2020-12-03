@@ -12,7 +12,8 @@ import { NgxEchartsModule } from "ngx-echarts";
 import { DashboardComponent } from "./dashboard.component";
 import { CountdownComponent } from "./countdown/countdown.component";
 import { AppointmentModule } from "../../shared/appointment/appointment.module";
-import { CardsComponent } from './cards/cards.component';
+import { CardsComponent } from "./cards/cards.component";
+import { StepModule } from "../../components/step/step.module";
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import { CardsComponent } from './cards/cards.component';
     NbProgressBarModule,
     NgxEchartsModule,
     AppointmentModule,
+    StepModule,
   ],
   declarations: [DashboardComponent, CountdownComponent, CardsComponent],
 })

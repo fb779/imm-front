@@ -1,3 +1,10 @@
+<ng-container *ngIf="process?.steps.length > 0">
+  <section>
+    <ngx-step-show-line [steps]="process.steps"></ngx-step-show-line>
+    <ngx-step-button [steps]="process.steps"></ngx-step-button>
+  </section>
+</ng-container>
+
 <nb-card>
   <nb-tabset fullWidth justified="true" (changeTab)="displayMessage($event)">
     <nb-tab tabTitle="Users" tabIcon="person-outline" responsive>

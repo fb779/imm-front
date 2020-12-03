@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { environment } from "../../../environments/environment";
 import { HttpClient } from "@angular/common/http";
-import { pluck } from "rxjs/operators";
+import { pluck, shareReplay } from "rxjs/operators";
 import { Category } from "../../models/Category";
 import { Observable } from "rxjs";
 
@@ -14,7 +14,9 @@ export class AdminVisaCategoriesService {
   getListVisaCategories(): Observable<Category[]> {
     const url = `${environment.api_url}${environment.api_version}/visa-category`;
 
-    return this._http.get(url).pipe(pluck("list"));
+    return this._http
+      .get<Category[]>(url)
+      .pipe(pluck("list"), shareReplay<Category[]>());
   }
 
   getVisaCategory(id: string) {
