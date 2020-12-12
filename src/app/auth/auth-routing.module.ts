@@ -13,6 +13,8 @@ import {
 import { AuthComponent } from "./auth.component";
 import { LoginComponent } from "./login/login.component";
 // import { RegisterComponent } from './register/register.component';
+import { RequestPasswordComponent } from "./request-password/request-password.component";
+import { ResetPasswordComponent } from "./reset-password/reset-password.component";
 
 const routes: Routes = [
   {
@@ -40,14 +42,14 @@ const routes: Routes = [
         path: "logout",
         component: NbLogoutComponent,
       },
-      // {
-      //     path: 'request-password',
-      //     component: NbRequestPasswordComponent,
-      // },
-      // {
-      //     path: 'reset-password',
-      //     component: NbResetPasswordComponent,
-      // },
+      {
+        path: "request-password",
+        component: RequestPasswordComponent,
+      },
+      {
+        path: "reset-password",
+        component: ResetPasswordComponent,
+      },
     ],
   },
 ];

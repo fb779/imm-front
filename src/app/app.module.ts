@@ -34,6 +34,8 @@ import {
 import { ServiceModule } from "./services/service.module";
 import { AuthGuardGuard } from "./services/services.index";
 import { AuthInterceptorService } from "./services/interceptor/auth-interceptor.service";
+import { passwordRegex } from "./config/config";
+// import { passwordRegex } from "./config/config";
 
 @NgModule({
   declarations: [AppComponent],
@@ -63,33 +65,62 @@ import { AuthInterceptorService } from "./services/interceptor/auth-interceptor.
             class: NbAuthJWTToken,
           },
           login: {
-            endpoint: "/login/signin",
+            endpoint: "/auth/signin",
             method: "post",
             redirect: {
               success: "/pages",
               failure: null,
             },
-            // defaultErrors: ['Login/Email combination is not correct, please try again.'],
-            // defaultMessages: ['You have been successfully logged in.'],
+            // defaultErrors: ["Login/Email combination is not correct."],
+            // defaultMessages: ["You have been successfully logged in."],
           },
           // register: {
-          //   endpoint: '/login/signup',
-          //   method: 'post',
+          //   endpoint: "/login/signup",
+          //   method: "post",
           //   redirect: {
-          //     success : '/auth/login',
+          //     success: "/auth/login",
           //     failure: null,
           //   },
-          //   // defaultErrors: ['Login/Email combination is not correct, please try again.'],
-          //   // defaultMessages: ['You have been successfully logged in.'],
+          //   // defaultErrors: ["Something went wrong, please try again."],
+          //   // defaultMessages: ["You have been successfully registered."],
           // },
           logout: {
-            endpoint: "/login/signout",
+            endpoint: "/auth/signout",
             method: "get",
             redirect: {
               success: "/auth/login",
               failure: null,
             },
           },
+          requestPass: {
+            endpoint: "/auth/request-pass",
+            method: "post",
+            redirect: {
+              success: "/auth/login",
+              failure: null,
+            },
+            // defaultErrors: ["Something went wrong, please try again."],
+            // defaultMessages: [
+            //   "Reset password instructions have been sent to your email.",
+            // ],
+          },
+          resetPass: {
+            endpoint: "/auth/reset-pass",
+            method: "put",
+            resetPasswordTokenKey: "token",
+            requireValidToken: false,
+            redirect: {
+              success: "/auth/login",
+              failure: null,
+            },
+            // defaultErrors: ['Login/Email combination is not correct, please try again.'],
+            // defaultMessages: ['You have been successfully logged in.'],
+          },
+          // errors: {
+          //   getter: (module, res, options) => {
+          //     return res ? res.errors : options[module].defaultErrors;
+          //   },
+          // },
         }),
       ],
       forms: {
@@ -104,7 +135,6 @@ import { AuthInterceptorService } from "./services/interceptor/auth-interceptor.
           },
           // socialLinks: socialLinks, // social links at the bottom of a page
         },
-
         // register: {
         //   redirectDelay: 100, // delay before redirect after a successful login, while success message is shown to the user
         //   strategy: 'email',  // strategy id key.
@@ -115,25 +145,24 @@ import { AuthInterceptorService } from "./services/interceptor/auth-interceptor.
         //   },
         //   // socialLinks: socialLinks, // social links at the bottom of a page
         // },
-
-        // requestPassword: {
-        //   redirectDelay: 500,
-        //   strategy: 'email',
-        //   showMessages: {
-        //     success: true,
-        //     error: true,
-        //   },
-        //   // socialLinks: socialLinks,
-        // },
-        // resetPassword: {
-        //   redirectDelay: 500,
-        //   strategy: 'email',
-        //   showMessages: {
-        //     success: true,
-        //     error: true,
-        //   },
-        //   // socialLinks: socialLinks,
-        // },
+        requestPassword: {
+          redirectDelay: 5000,
+          strategy: "email",
+          showMessages: {
+            success: true,
+            error: true,
+          },
+          // socialLinks: socialLinks,
+        },
+        resetPassword: {
+          redirectDelay: 1000,
+          strategy: "email",
+          showMessages: {
+            success: true,
+            error: true,
+          },
+          // socialLinks: socialLinks,
+        },
         // logout: {
         //   redirectDelay: 500,
         //   strategy: 'email',
@@ -143,6 +172,9 @@ import { AuthInterceptorService } from "./services/interceptor/auth-interceptor.
             required: true,
             minLength: 4,
             maxLength: 50,
+            pattern: passwordRegex,
+            regexp:
+              "/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/",
           },
           email: {
             required: true,
