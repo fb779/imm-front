@@ -102,6 +102,8 @@ export class UserComponent implements OnInit {
         delete loadUser.client;
         delete loadUser.createdAt;
         delete loadUser.updatedAt;
+        delete loadUser.account_expiration;
+        delete loadUser.isActive;
 
         this.formUser.setValue(loadUser);
       },

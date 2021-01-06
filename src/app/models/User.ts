@@ -10,6 +10,8 @@ export class User {
   img?: string;
   client?: Client;
   bio?: string;
+  isActive?: Boolean;
+  account_expiration?: Date;
   createdAt?: string;
   updatedAt?: string;
 }

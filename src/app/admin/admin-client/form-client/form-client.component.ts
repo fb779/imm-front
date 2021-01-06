@@ -114,6 +114,8 @@ export class FormClientComponent implements OnInit {
         delete loadUser.bio;
         delete loadUser.createdAt;
         delete loadUser.updatedAt;
+        delete loadUser.account_expiration;
+        delete loadUser.isActive;
         loadUser["process"] = "";
 
         this.formUser.setValue(loadUser);

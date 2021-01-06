@@ -24,8 +24,6 @@ export class StepDialogComponent implements OnInit {
   save(step: ProcessStep) {
     this.processStepService
       .setStatusStep(step._id, step.status)
-      .subscribe((resp) => {
-        console.log(resp);
-      });
+      .subscribe((resp) => {});
   }
 }

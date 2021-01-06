@@ -12,9 +12,7 @@ export class StepButtonComponent implements OnInit {
   @Input("steps") steps: ProcessStep[];
   constructor(private dialogService: NbDialogService) {}
 
-  ngOnInit() {
-    console.log("Pasos cargados", this.steps);
-  }
+  ngOnInit() {}
 
   openDialog() {
     this.dialogService.open(StepDialogComponent, {

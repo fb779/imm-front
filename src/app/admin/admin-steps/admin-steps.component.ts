@@ -6,8 +6,6 @@ import { map } from "rxjs/operators";
 import { Step } from "../../models/Step.model";
 import { StepDeleteComponent } from "./step-delete/step-delete.component";
 import { StepService } from "./step.service";
-import { Observable } from "rxjs";
-import { visa_categories } from "../../config/config";
 
 @Component({
   selector: "ngx-admin-steps",

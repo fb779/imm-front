@@ -12,7 +12,7 @@ export class ProcessStepService {
 
   setStatusStep(stepId: string, status: string) {
     const url = `${environment.api_url}${environment.api_version}/process/${stepId}/step`;
-    console.log("envio de la url", url);
-    return this._http.put(url, { status }).pipe(tap(console.log));
+
+    return this._http.put(url, { status }).pipe();
   }
 }

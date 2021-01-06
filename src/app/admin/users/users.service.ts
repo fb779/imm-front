@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../../environments/environment";
-import { map, tap } from "rxjs/operators";
+import { map, tap, pluck } from "rxjs/operators";
 import { User } from "../../models/User";
 
 import * as _ from "underscore";
@@ -27,8 +27,9 @@ export class UsersService {
   getUser(id: string) {
     const url = `${environment.api_url}${environment.api_version}/users/${id}`;
     return this._http.get(url).pipe(
-      map((resp: any) => {
-        let user: User = { ...resp.data.user, password: "" };
+      pluck("data", "user"),
+      map((us: any) => {
+        let user: User = { ...us, password: "" };
         return user;
       })
     );

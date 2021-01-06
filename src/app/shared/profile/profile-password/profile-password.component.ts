@@ -39,7 +39,7 @@ export class ProfilePasswordComponent implements OnInit {
         new_password: this._fb.control("", [
           Validators.required,
           Validators.minLength(8),
-          Validators.maxLength(20),
+          // Validators.maxLength(20),
           Validators.pattern(passwordRegex),
         ]),
         con_password: this._fb.control("", [Validators.required]),
