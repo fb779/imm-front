@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { pluck } from "rxjs/operators";
+import { pluck, tap } from "rxjs/operators";
 import { environment } from "../../../environments/environment";
 import { Document } from "../../models/Document";
 
@@ -14,7 +14,19 @@ import { ToastrService } from "../toastr/toastr.service";
 export class DocumentService {
   constructor(private _http: HttpClient, private _toastr: ToastrService) {}
 
-  getDocumentsByClient(id_client: String): Observable<Document[]> {
+  getDocumentsByProcessClient(
+    id_process: string,
+    id_client: string
+  ): Observable<Document[]> {
+    const url = `${environment.api_url}${environment.api_version}/documents/${id_process}/${id_client}`;
+
+    return this._http.get(url).pipe(
+      // tap((re) => console.log("documentso del proceso y el cliente", re)),
+      pluck("list")
+    );
+  }
+
+  getDocumentsByClient(id_client: string): Observable<Document[]> {
     const url = `${environment.api_url}${environment.api_version}/documents/${id_client}`;
 
     return this._http.get(url).pipe(pluck("list"));

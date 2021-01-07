@@ -1,26 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { UserProcessService } from '../../../services/services.index';
-import { Router } from '@angular/router';
-import { Process } from '../../../models/Process';
-import { status, visa_categories } from '../../../config/config';
-
-
+import { Component, OnInit } from "@angular/core";
+import { UserProcessService } from "../../../services/services.index";
+import { Router } from "@angular/router";
+import { Process } from "../../../models/Process";
+import { status, visaCategories } from "../../../config/config";
 
 @Component({
-  selector: 'ngx-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  selector: "ngx-dashboard",
+  templateUrl: "./dashboard.component.html",
+  styleUrls: ["./dashboard.component.scss"],
 })
 export class DashboardComponent implements OnInit {
   processes: Process[] = [];
-  status:any = status;
+  status: any = status;
 
-  constructor(private _router: Router, private _processServices: UserProcessService) {
+  constructor(
+    private _router: Router,
+    private _processServices: UserProcessService
+  ) {
     this.getProcesses();
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   getProcesses() {
     this._processServices.getUserProcesses().subscribe((dt: Process[]) => {
@@ -29,24 +29,36 @@ export class DashboardComponent implements OnInit {
   }
 
   goProcess(process: Process) {
-    let routeForm = null;
+    const {
+      _id: id,
+      visa_category: { name: visa },
+    } = process;
 
-    switch (process.visa_category.name) {
-      case visa_categories.visitor: {
-        routeForm = 'visit';
-      } break;
+    this._router.navigate([
+      "/pages/assessment-form/",
+      visa.replace(/\s/, "-").toLocaleLowerCase(),
+      id,
+    ]);
 
-      case visa_categories.turist: {
-        routeForm = 'turist';
-      } break;
+    // let routeForm = null;
 
-      case visa_categories.study: {
-        routeForm = 'study';
-      } break;
-    }
+    // switch (process.visa_category.name) {
+    //   case visaCategories.visitor: {
+    //     routeForm = 'visit';
+    //   } break;
 
-    if (routeForm) {
-      this._router.navigate(['/pages/assessment-form/', routeForm, process._id]);
-    }
+    //   case visaCategories.turist: {
+    //     routeForm = 'turist';
+    //   } break;
+
+    //   case visaCategories.study: {
+    //     routeForm = 'study';
+    //   } break;
+    // }
+
+    // if (routeForm) {
+    //   this._router.navigate(['/pages/assessment-form/', routeForm, process._id]);
+
+    // }
   }
 }

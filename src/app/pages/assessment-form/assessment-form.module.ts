@@ -44,6 +44,7 @@ import { SkilledWorkerComponent } from './skilled-worker/skilled-worker.componen
 import { WorkPermitComponent } from './work-permit/work-permit.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SharedModule } from '../../shared/shared.module';
+import { FormsComponent } from './forms/forms.component';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { SharedModule } from '../../shared/shared.module';
     SkilledWorkerComponent,
     WorkPermitComponent,
     DashboardComponent,
+    FormsComponent,
   ],
   exports: [
     AssessmentFormComponent,

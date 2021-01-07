@@ -9,8 +9,11 @@
   <nb-tabset fullWidth justified="true" (changeTab)="displayMessage($event)">
     <nb-tab tabTitle="Users" tabIcon="person-outline" responsive>
       <div *ngIf="process && type_visa">
-        <ng-container *ngIf="type_visa === visa_categories.visitor">
+        <ng-container *ngIf="type_visa === vsCategories.visitor">
           <ngx-visitor [process]="process"></ngx-visitor>
+        </ng-container>
+        <ng-container *ngIf="type_visa === vsCategories.expressentry">
+          <p>Express entry</p>
         </ng-container>
       </div>
     </nb-tab>

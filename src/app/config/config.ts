@@ -14,8 +14,10 @@ export const documentStatus = {
   rejected: "REJECTED",
 };
 
-export const visa_categories = {
+export const visaCategories = {
   visitor: "VISITOR",
+  expressentry: "EXPRESS-ENTRY",
+  workpermit: "WORK PERMIT",
   turist: "TURIST",
   study: "STUDY",
 };

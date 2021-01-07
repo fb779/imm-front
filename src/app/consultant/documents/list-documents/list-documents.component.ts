@@ -16,7 +16,7 @@ import { documentStatus } from "../../../config/config";
 export class ListDocumentsComponent implements OnInit {
   @Input("process") process: Process;
   @Input("client") client: Client;
-  listDocuments: Document[];
+  listDocuments: Document[] = [];
   documentStatus = documentStatus;
   comments = {};
   // comment = 'Mis comentarios por defecto';
@@ -32,6 +32,7 @@ export class ListDocumentsComponent implements OnInit {
 
   loadDocuments() {
     this._documentService
+      // .getDocumentsByProcessClient(this.process._id, this.client._id)
       .getDocumentsByClient(this.client._id)
       .subscribe((response) => {
         this.listDocuments = response;

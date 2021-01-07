@@ -1,19 +1,22 @@
 <nb-card>
-    <nb-card-header>
-        Review Documents
-    </nb-card-header>
-    <nb-card-body>
-        <nb-accordion [nbSpinner]="loading">
-            <nb-accordion-item *ngFor="let familyMember of listFamiliMembers$ | async">
-                <nb-accordion-item-header>
-                    {{ familyMember.first_name }} - {{ familyMember.last_name }}
-                </nb-accordion-item-header>
-                <nb-accordion-item-body>
-                    <div>
-                        <ngx-list-documents [client]="familyMember"></ngx-list-documents>
-                    </div>
-                </nb-accordion-item-body>
-            </nb-accordion-item>
-        </nb-accordion>
-    </nb-card-body>
+  <nb-card-header> Review Documents </nb-card-header>
+  <nb-card-body>
+    <nb-accordion [nbSpinner]="loading">
+      <nb-accordion-item
+        *ngFor="let familyMember of listFamiliMembers$ | async"
+      >
+        <nb-accordion-item-header>
+          {{ familyMember.first_name }} - {{ familyMember.last_name }}
+        </nb-accordion-item-header>
+        <nb-accordion-item-body>
+          <div>
+            <ngx-list-documents
+              [process]="process"
+              [client]="familyMember"
+            ></ngx-list-documents>
+          </div>
+        </nb-accordion-item-body>
+      </nb-accordion-item>
+    </nb-accordion>
+  </nb-card-body>
 </nb-card>
