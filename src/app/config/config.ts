@@ -15,11 +15,9 @@ export const documentStatus = {
 };
 
 export const visaCategories = {
-  visitor: "VISITOR",
-  expressentry: "EXPRESS-ENTRY",
-  workpermit: "WORK PERMIT",
-  turist: "TURIST",
-  study: "STUDY",
+  visitor: "FormVisitor",
+  expressentry: "FormExpressEntry",
+  workpermit: "FormWorkPermit",
 };
 
 export const relationships = {

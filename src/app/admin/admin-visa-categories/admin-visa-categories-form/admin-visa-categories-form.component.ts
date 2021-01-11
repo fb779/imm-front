@@ -9,7 +9,8 @@ import {
   Validators,
 } from "@angular/forms";
 import { ToastrService } from "../../../services/services.index";
-import { Observable } from "rxjs";
+import { Observable, of } from "rxjs";
+import { visaCategories } from "../../../config/config";
 
 @Component({
   selector: "ngx-admin-visa-categories-form",
@@ -21,10 +22,14 @@ export class AdminVisaCategoriesFormComponent implements OnInit {
   visa_category: Category = {
     _id: "",
     name: "",
+    title: "",
   };
   formVisaCategory: FormGroup;
   submited = false;
   activeText: string = "Inactive";
+  optionVsCategories$ = of(
+    Object.values(visaCategories).map((item) => ({ name: item, value: item }))
+  );
 
   constructor(
     private _router: Router,
@@ -55,14 +60,15 @@ export class AdminVisaCategoriesFormComponent implements OnInit {
 
   build() {
     this.formVisaCategory = this.formBuilder.group({
-      _id: new FormControl(""),
-      name: new FormControl(
+      _id: this.formBuilder.control(""),
+      name: this.formBuilder.control(
         "",
         [Validators.required],
         [this.nameExist.bind(this)]
       ),
-      description: new FormControl("", []),
-      active: new FormControl(false),
+      title: this.formBuilder.control("", [Validators.required]),
+      description: this.formBuilder.control("", []),
+      active: this.formBuilder.control(false),
     });
 
     this.formVisaCategory.get("active").valueChanges.subscribe((value: any) => {
@@ -100,7 +106,12 @@ export class AdminVisaCategoriesFormComponent implements OnInit {
     this._adminVisaCategoriesService.getVisaCategory(id).subscribe(
       (visa: Category) => {
         this.visa_category = visa;
-        this.formVisaCategory.setValue(visa);
+        // let oldVisa = { ...visa };
+        // delete oldVisa.title;
+        this.formVisaCategory.setValue({
+          ...this.formVisaCategory.value,
+          ...visa,
+        });
       },
       (err) => {
         this._toastr.toastrGenericMessage(

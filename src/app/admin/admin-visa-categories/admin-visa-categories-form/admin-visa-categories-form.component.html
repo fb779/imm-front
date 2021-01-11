@@ -4,13 +4,11 @@
       <ng-container *ngIf="f._id.value; else elseNewVisa">
         Edit Visa Category
       </ng-container>
-      <ng-template #elseNewVisa>
-        New Visa Category
-      </ng-template>
+      <ng-template #elseNewVisa> New Visa Category </ng-template>
     </nb-card-header>
     <nb-card-body>
       <div class="row">
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-4">
           <div class="form-group">
             <label for="">Name</label>
             <input
@@ -44,7 +42,41 @@
           </div>
         </div>
 
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-4">
+          <div class="form-group">
+            <label for="">Title</label>
+            <nb-select
+              name="title"
+              placeholder="Select Showcase"
+              fullWidth
+              formControlName="title"
+              [status]="
+                (submited || f.title.touched) && f.title.errors ? 'danger' : ''
+              "
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option
+                *ngFor="let item of optionVsCategories$ | async"
+                [value]="item.value"
+              >
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <div
+              class="card-text text-white"
+              *ngIf="(submitted || f.title.touched) && f.title.errors"
+            >
+              <small
+                *ngIf="f.title.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-4">
           <div class="form-group">
             <label for="name">Active</label>
             <div>

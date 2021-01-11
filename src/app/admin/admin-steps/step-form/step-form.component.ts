@@ -24,7 +24,7 @@ export class StepFormComponent implements OnInit {
     name: "",
     description: "",
     order: "",
-    visa_categorie: { _id: "", name: "" },
+    visa_categorie: { _id: "", name: "", title: "" },
     active: "ACTIVE",
   };
 
