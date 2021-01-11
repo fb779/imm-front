@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
-import { ThemeModule } from '../../@theme/theme.module';
+import { ThemeModule } from "../../@theme/theme.module";
 import {
   NbMenuModule,
   NbCardModule,
@@ -13,16 +13,11 @@ import {
   NbStepperModule,
   NbListModule,
   NbDatepickerModule,
-  NbActionsModule,
-  NbIconModule,
-  NbRadioModule,
-  NbUserModule,
-} from '@nebular/theme';
+} from "@nebular/theme";
 
 const nebular = [
   ThemeModule,
   NbMenuModule,
-  // NbIconModule,
   NbCardModule,
   NbInputModule,
   NbSelectModule,
@@ -30,43 +25,27 @@ const nebular = [
   NbDatepickerModule,
   NbButtonModule,
   NbStepperModule,
-  NbListModule
-  // NbActionsModule,
-  // NbRadioModule,
-  // NbUserModule
+  NbListModule,
 ];
 
-import { AssessmentFormRoutingModule } from './assessment-form-routing.module';
-import { AssessmentFormComponent } from './assessment-form.component';
-import { VisitComponent } from './visit/visit.component';
-import { StudyComponent } from './study/study.component';
-import { SkilledWorkerComponent } from './skilled-worker/skilled-worker.component';
-import { WorkPermitComponent } from './work-permit/work-permit.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { SharedModule } from '../../shared/shared.module';
-import { FormsComponent } from './forms/forms.component';
-
+import { AssessmentFormRoutingModule } from "./assessment-form-routing.module";
+import { SharedModule } from "../../shared/shared.module";
+import { VisaFormsModule } from "../../shared/visa-forms/visa-forms.module";
+import { AssessmentFormComponent } from "./assessment-form.component";
+import { DashboardComponent } from "./dashboard/dashboard.component";
+import { FormsComponent } from "./forms/forms.component";
 
 @NgModule({
-  declarations: [
-    AssessmentFormComponent,
-    VisitComponent,
-    StudyComponent,
-    SkilledWorkerComponent,
-    WorkPermitComponent,
-    DashboardComponent,
-    FormsComponent,
-  ],
-  exports: [
-    AssessmentFormComponent,
-  ],
+  declarations: [AssessmentFormComponent, DashboardComponent, FormsComponent],
+  exports: [AssessmentFormComponent],
   imports: [
     CommonModule,
-    SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    ...nebular,
     AssessmentFormRoutingModule,
-  ]
+    ...nebular,
+    SharedModule,
+    VisaFormsModule,
+  ],
 })
-export class AssessmentFormModule { }
+export class AssessmentFormModule {}

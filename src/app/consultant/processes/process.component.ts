@@ -17,8 +17,7 @@ export class ProcessComponent implements OnInit {
   id_process: string;
   loading = false;
   process: Process;
-  type_visa: string = "";
-  message: string = "";
+  message: String = "";
   status = status;
   vsCategories = visaCategories;
 
@@ -33,6 +32,7 @@ export class ProcessComponent implements OnInit {
   ) {
     this.loading = true;
     this._activatedRoute.params.subscribe((params) => {
+      this.process = null;
       this.id_process = params["id"];
       this.loadProcess();
     });
@@ -41,13 +41,9 @@ export class ProcessComponent implements OnInit {
   ngOnInit() {}
 
   loadProcess() {
-    this.process = null;
-    this.type_visa = "";
-
     this._processServices.getUserProcess(this.id_process).subscribe(
       (resp: any) => {
         this.process = resp;
-        this.type_visa = this.process.visa_category.title;
         this._familyServices.chageProcess(this.id_process);
         this.loading = false;
       },

@@ -1,0 +1,21 @@
+<ng-container *ngIf="process" [ngSwitch]="visa">
+  <ng-template [ngSwitchCase]="vsCategories.visitor">
+    <ngx-visitor [process]="process"></ngx-visitor>
+  </ng-template>
+
+  <ng-template [ngSwitchCase]="vsCategories.expressentry">
+    <div>
+      <ngx-express-entry [process]="process"></ngx-express-entry>
+    </div>
+  </ng-template>
+
+  <ng-template [ngSwitchCase]="vsCategories.workpermit">
+    <div>
+      <ngx-work-permit [process]="process"></ngx-work-permit>
+    </div>
+  </ng-template>
+
+  <ng-template ngSwitchDefault>
+    <div>This is default</div>
+  </ng-template>
+</ng-container>

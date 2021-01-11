@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../../environments/environment";
-import { tap, map, pluck } from "rxjs/operators";
+import { tap, map, pluck, catchError } from "rxjs/operators";
 import { Process } from "../../models/Process";
+import { of } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -37,18 +38,10 @@ export class UserProcessService {
     const url = `${environment.api_url}${environment.api_version}/process/${id}/form/`;
 
     return this._http.get(url).pipe(
-      map((dt: any) => {
-        let client = dt.form.client;
-        delete client.__v;
-        delete client.birthday;
-        delete dt.form.process;
-        delete dt.form.client;
-        delete dt.form.createdAt;
-        delete dt.form.updatedAt;
-        delete dt.form.__v;
-
-        let ndt = Object.assign(client, dt.form);
-        return ndt;
+      pluck("form"),
+      catchError((e) => {
+        console.log("error en la consulta", e);
+        return of(null);
       })
     );
   }

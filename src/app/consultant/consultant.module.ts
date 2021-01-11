@@ -21,9 +21,6 @@ import {
   NbSelectModule,
   NbCheckboxModule,
   NbDatepickerModule,
-  NbActionsModule,
-  NbRadioModule,
-  NbUserModule,
   NbSpinnerModule,
   NbAccordionModule,
   NbDialogModule,
@@ -44,6 +41,8 @@ const consultanttNebular = [
   NbSpinnerModule,
   NbAccordionModule,
 ];
+
+import { VisaFormsModule } from "../shared/visa-forms/visa-forms.module";
 
 import { ConsultantComponent } from "./consultant.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
@@ -70,6 +69,7 @@ import { ConsultantProfileComponent } from "./consultant-profile/consultant-prof
     AppointmentModule,
     ProfileModule,
     StepModule,
+    VisaFormsModule,
   ],
   declarations: [
     ConsultantComponent,

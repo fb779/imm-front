@@ -29,36 +29,7 @@ export class DashboardComponent implements OnInit {
   }
 
   goProcess(process: Process) {
-    const {
-      _id: id,
-      visa_category: { name: visa },
-    } = process;
-
-    this._router.navigate([
-      "/pages/assessment-form/",
-      visa.replace(/\s/, "-").toLocaleLowerCase(),
-      id,
-    ]);
-
-    // let routeForm = null;
-
-    // switch (process.visa_category.name) {
-    //   case visaCategories.visitor: {
-    //     routeForm = 'visit';
-    //   } break;
-
-    //   case visaCategories.turist: {
-    //     routeForm = 'turist';
-    //   } break;
-
-    //   case visaCategories.study: {
-    //     routeForm = 'study';
-    //   } break;
-    // }
-
-    // if (routeForm) {
-    //   this._router.navigate(['/pages/assessment-form/', routeForm, process._id]);
-
-    // }
+    const { _id: id } = process;
+    this._router.navigate(["/pages/assessment-form/", id]);
   }
 }

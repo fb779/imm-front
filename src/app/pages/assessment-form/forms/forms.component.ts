@@ -1,8 +1,6 @@
 import { Component, OnInit, TemplateRef, ViewChild } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
-import { visaCategories } from "../../../config/config";
 import { UserProcessService } from "../../../services/services.index";
-import { Process } from "../../../models/Process";
 
 @Component({
   selector: "ngx-forms",
@@ -13,8 +11,6 @@ export class FormsComponent implements OnInit {
   id: string;
   visa: string;
   process: any;
-
-  vsCategories = visaCategories;
 
   constructor(
     private _router: Router,
@@ -29,7 +25,6 @@ export class FormsComponent implements OnInit {
 
   ngOnInit() {
     this._processServices.getUserProcess(this.id).subscribe((process) => {
-      // console.log("caraga del proceso", process);
       this.process = process;
     });
   }

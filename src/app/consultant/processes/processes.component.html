@@ -1,33 +1,41 @@
 <nb-card>
   <nb-card-header> Process Assigned </nb-card-header>
-  <nb-list>
-    <nb-list-item *ngFor="let process of processes">
-      <div class="row">
-        <div class="col-12 col-md">
-          {{ process.client.first_name | uppercase }}
-          {{ process.client.last_name | uppercase }}
+  <ng-container *ngIf="processes.length > 0; else noProcesses">
+    <nb-list>
+      <nb-list-item *ngFor="let process of processes">
+        <div class="row">
+          <div class="col-12 col-md">
+            {{ process.client.first_name | uppercase }}
+            {{ process.client.last_name | uppercase }}
+          </div>
+          <div class="col-12 col-md">
+            {{ process.client.email }}
+          </div>
+          <div class="col-12 col-md">
+            {{ process.code }}
+          </div>
+          <div class="col-12 col-md">
+            {{ process.visa_category.name }}
+          </div>
+          <div class="col-12 col-md-2">
+            <button
+              nbButton
+              fullWidth
+              size="small"
+              [disabled]="!process"
+              (click)="select(process)"
+            >
+              <nb-icon pack="far" icon="eye"></nb-icon>
+            </button>
+          </div>
         </div>
-        <div class="col-12 col-md">
-          {{ process.client.email }}
-        </div>
-        <div class="col-12 col-md">
-          {{ process.code }}
-        </div>
-        <div class="col-12 col-md">
-          {{ process.visa_category.name }}
-        </div>
-        <div class="col-12 col-md-2">
-          <button
-            nbButton
-            fullWidth
-            size="small"
-            [disabled]="!process"
-            (click)="select(process)"
-          >
-            <nb-icon pack="far" icon="eye"></nb-icon>
-          </button>
-        </div>
-      </div>
-    </nb-list-item>
-  </nb-list>
+      </nb-list-item>
+    </nb-list>
+  </ng-container>
 </nb-card>
+
+<ng-template #noProcesses>
+  <nb-card-body>
+    <p>Sin processos</p>
+  </nb-card-body>
+</ng-template>

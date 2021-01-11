@@ -8,28 +8,20 @@
 <nb-card>
   <nb-tabset fullWidth justified="true" (changeTab)="displayMessage($event)">
     <nb-tab tabTitle="Users" tabIcon="person-outline" responsive>
-      <div *ngIf="process && type_visa">
-        <ng-container *ngIf="type_visa === vsCategories.visitor">
-          <ngx-visitor [process]="process"></ngx-visitor>
-        </ng-container>
-        <ng-container *ngIf="type_visa === vsCategories.expressentry">
-          <p>Express entry</p>
-        </ng-container>
-      </div>
+      <ng-container *ngIf="process">
+        <ngx-visa-forms [process]="process"></ngx-visa-forms>
+      </ng-container>
     </nb-tab>
 
     <nb-tab tabTitle="Check List" tabIcon="checkmark-square-outline" responsive>
       <ngx-select-documents
-        *ngIf="process && type_visa"
+        *ngIf="process"
         [process]="process"
       ></ngx-select-documents>
     </nb-tab>
 
     <nb-tab tabTitle="Documents" tabIcon="folder-outline" responsive>
-      <ngx-documents
-        *ngIf="process && type_visa"
-        [process]="process"
-      ></ngx-documents>
+      <ngx-documents *ngIf="process" [process]="process"></ngx-documents>
     </nb-tab>
 
     <nb-tab tabTitle="Forms" tabIcon="archive-outline" responsive>

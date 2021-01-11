@@ -32,8 +32,8 @@ export class ListDocumentsComponent implements OnInit {
 
   loadDocuments() {
     this._documentService
-      // .getDocumentsByProcessClient(this.process._id, this.client._id)
-      .getDocumentsByClient(this.client._id)
+      .getDocumentsByProcessClient(this.process._id, this.client._id)
+      // .getDocumentsByClient(this.client._id)
       .subscribe((response) => {
         this.listDocuments = response;
         this.comments = {};
