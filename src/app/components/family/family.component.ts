@@ -5,6 +5,7 @@ import { FormFamilyMembersComponent } from "./form-family-members/form-family-me
 import { DeleteFamilyMemberComponent } from "./delete-family-member/delete-family-member.component";
 import { FamilyService, ToastrService } from "../../services/services.index";
 import { status } from "../../config/config";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "ngx-family",
@@ -13,7 +14,7 @@ import { status } from "../../config/config";
 })
 export class FamilyComponent implements OnInit {
   @Input() process: Process;
-  @Input() url: string[];
+  url: string[];
 
   visible: boolean = true; // define la visibilidad de los botones de editar y eliminar
 
@@ -21,12 +22,14 @@ export class FamilyComponent implements OnInit {
   numberFamilyMembers: number;
 
   constructor(
+    private _router: Router,
     private _toastr: ToastrService,
     private dialogService: NbDialogService,
     private _familyServices: FamilyService
   ) {}
 
   ngOnInit() {
+    this.url = this._router.url.split("/").filter((x) => x.trim() !== "");
     this._familyServices.chageProcess(this.process._id);
     this._familyServices.numberFamilyMembers$.subscribe((response) => {
       this.numberFamilyMembers = response;

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { Router, ActivatedRoute } from "@angular/router";
+import { Router } from "@angular/router";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 import { status } from "../../../config/config";
@@ -40,7 +40,6 @@ export class VisitorComponent implements OnInit {
 
   constructor(
     private _router: Router,
-    private _activatedRoute: ActivatedRoute,
     public _sidebarServices: SidebarService,
     private _porcessServices: UserProcessService,
     private _asf: AssessmentFormService,
@@ -155,7 +154,6 @@ export class VisitorComponent implements OnInit {
       this._porcessServices
         .getUserForm(this.process._id)
         .subscribe((form: any) => {
-          console.log("llegada del form", form);
           if (!form) return;
           const { client, ...rest } = form;
 

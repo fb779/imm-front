@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { of as observableOf, Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { of as observableOf, Observable } from "rxjs";
 
-import { Title } from '../../models/Titlel';
-import { Country } from '../../models/Country';
+import { Title } from "../../models/Titlel";
+import { Country } from "../../models/Country";
 
 import {
   opsAccompanying,
@@ -17,86 +17,70 @@ import {
   opsProvinces,
   opsMaritalStatus,
   opsPropousVisit,
-  opsStayCanada
-} from '../../mocks/titles';
-
+  opsStayCanada,
+  opsLevelEducation,
+  opsYearsEducation,
+} from "../../mocks/titles";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class AssessmentFormService {
-  accompanying: any[] = [];
-  ages: any[] = [];
-  relationships: any[] = [];
-  titles: Title[] = [];
-  sex = [];
-  yesNo =[];
-  countries: Country[]=[];
-  status =[];
-  provinces =[];
-  maritalStatus =[];
-  propousVisit =[];
-  stayCanada =[];
+  constructor(private _http: HttpClient) {}
 
-  constructor( private _http: HttpClient) { }
-
-  getAccompanying(): Observable<any[]>{
-    this.accompanying = opsAccompanying;
-    return observableOf(this.accompanying);
+  getAccompanying(): Observable<any[]> {
+    return observableOf(opsAccompanying);
   }
 
-  getAges(): Observable<any[]>{
-    this.ages = opsAges;
-    return observableOf(this.ages)
+  getAges(): Observable<any[]> {
+    return observableOf(opsAges);
   }
 
-  getRelationships(): Observable<any[]>{
-    this.relationships = opsRelationships;
-    return observableOf(this.relationships)
+  getRelationships(): Observable<any[]> {
+    return observableOf(opsRelationships);
   }
 
-  getTitles(): Observable<Title[]>{
-    this.titles = opsTitles;
-    return observableOf(this.titles);
+  getTitles(): Observable<Title[]> {
+    return observableOf(opsTitles);
   }
 
-  getSex(): Observable<any[]>{
-    this.sex = opsSex;
-    return observableOf(this.sex);
+  getSex(): Observable<any[]> {
+    return observableOf(opsSex);
   }
 
-  getYesNo(): Observable<any[]>{
-    this.yesNo = opsYesNo;
-    return observableOf(this.yesNo);
+  getYesNo(): Observable<any[]> {
+    return observableOf(opsYesNo);
   }
 
-  getCountries(): Observable<Country[]>{
-    this.countries = opsCountries;
-    return observableOf(this.countries);
+  getCountries(): Observable<Country[]> {
+    return observableOf(opsCountries);
   }
 
-  getStatus(): Observable<any[]>{
-    this.status = opsStatus;
-    return observableOf(this.status);
+  getStatus(): Observable<any[]> {
+    return observableOf(opsStatus);
   }
 
-  getProvinces(): Observable<any[]>{
-    this.provinces = opsProvinces;
-    return observableOf(this.provinces);
+  getProvinces(): Observable<any[]> {
+    return observableOf(opsProvinces);
   }
 
-  getMaritalStatus(): Observable<any[]>{
-    this.maritalStatus = opsMaritalStatus;
-    return observableOf(this.maritalStatus);
+  getMaritalStatus(): Observable<any[]> {
+    return observableOf(opsMaritalStatus);
   }
 
-  getPropousVisit(): Observable<any[]>{
-    this.propousVisit = opsPropousVisit;
-    return observableOf(this.propousVisit);
+  getPropousVisit(): Observable<any[]> {
+    return observableOf(opsPropousVisit);
   }
 
-  getStayCanada(): Observable<any[]>{
-    this.stayCanada = opsStayCanada;
-    return observableOf(this.stayCanada);
+  getStayCanada(): Observable<any[]> {
+    return observableOf(opsStayCanada);
+  }
+
+  getLevelEducation(): Observable<any[]> {
+    return observableOf(opsLevelEducation);
+  }
+
+  getYearsEducation(): Observable<any[]> {
+    return observableOf(opsYearsEducation);
   }
 }

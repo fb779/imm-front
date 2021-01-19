@@ -1,12 +1,6 @@
 import { IOption, IOptionNumber } from "../models/Option";
 import { Title } from "../models/Titlel";
 
-export const visaCategories: IOption[] = [
-  { value: "VISITOR", name: "Visitor" },
-  // { value: "TURIST", name: "Turist" },
-  // { value: "STUDY", name: "Study" },
-];
-
 export const opsRoles: IOption[] = [
   { value: "ADMIN_ROLE", name: "ADMIN" },
   { value: "USER_ROLE", name: "USER" },
@@ -100,11 +94,11 @@ export const opsProvinces: IOption[] = [
 ];
 
 export const opsMaritalStatus: IOption[] = [
-  { value: "1", name: "single" },
-  { value: "2", name: "married or common law" },
-  { value: "3", name: "separated" },
-  { value: "4", name: "divorced" },
-  { value: "5", name: "widowed" },
+  { value: "1", name: "Single" },
+  { value: "2", name: "Married or Common-law" },
+  { value: "3", name: "Separated" },
+  { value: "4", name: "Divorced" },
+  { value: "5", name: "Widowed" },
 ];
 
 export const opsPropousVisit: IOption[] = [
@@ -372,4 +366,30 @@ export const opsCountries: IOption[] = [
   { name: "Yemen", value: "YE" },
   { name: "Zambia", value: "ZM" },
   { name: "Zimbabwe", value: "ZW" },
+];
+
+export const opsLevelEducation: IOption[] = [
+  { value: "9", name: "Ph.D./ Doctoral Certificate" },
+  { value: "8", name: "Post Graduate Certificate or Post Graduate Diploma" },
+  { value: "7", name: "Master's or Professional Degree to Practice" },
+  { value: "6", name: "Bachelor's Degree" },
+  { value: "5", name: "Trade Certificate" },
+  { value: "4", name: "Associate Degree" },
+  { value: "3", name: "Non-trades certificate or Diploma" },
+  { value: "2", name: "High School" },
+  { value: "1", name: "Below High School" },
+];
+
+export const opsYearsEducation: IOption[] = [
+  { value: "1", name: "12- months" },
+  { value: "2", name: "1 years" },
+  { value: "3", name: "2 years" },
+  { value: "4", name: "3 years" },
+  { value: "5", name: "4 years" },
+  { value: "6", name: "5 years" },
+  { value: "7", name: "6 years" },
+  { value: "8", name: "7 years" },
+  { value: "9", name: "8 years" },
+  { value: "10", name: "9 years" },
+  { value: "11", name: "10+ years" },
 ];
