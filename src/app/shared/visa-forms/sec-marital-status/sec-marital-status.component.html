@@ -1,0 +1,100 @@
+<!-- marital status -->
+<ng-container [formGroup]="parentForm">
+  <nb-card accent="info" [formGroupName]="nameSection">
+    <nb-card-header>
+      <label for="">Marital Status</label>
+    </nb-card-header>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="p_marital_001">Marital Status:</label>
+            <nb-select
+              name="p_marital_001"
+              placeholder="Select Showcase"
+              fullWidth
+              formControlName="p_marital_001"
+              [status]="
+                (submitted || f.p_marital_001.touched) && f.p_marital_001.errors
+                  ? 'danger'
+                  : ''
+              "
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option
+                *ngFor="let item of optMaritalStatus"
+                [value]="item.value"
+              >
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <div
+              class="card-text text-white"
+              *ngIf="
+                (submitted || f.p_marital_001.touched) && f.p_marital_001.errors
+              "
+            >
+              <small
+                *ngIf="f.p_marital_001.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="p_marital_002">
+              Is your spouse or common-law partner a citizen or permanent
+              resident of Canada?
+            </label>
+            <nb-select
+              name="p_marital_002"
+              placeholder="Select Showcase"
+              fullWidth
+              formControlName="p_marital_002"
+              [status]="
+                (submitted || f.p_marital_002.touched) && f.p_marital_002.errors
+                  ? 'danger'
+                  : ''
+              "
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option *ngFor="let item of optYesNo" [value]="item.value">
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <!-- <div class="card-text text-white" *ngIf=" (submitted || f.p_marital_002.touched) && f.p_marital_002.errors " > <small *ngIf="f.p_marital_002.errors?.required" class="text-muted text-muted-danger" > Field required </small> </div> -->
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="p_marital_003">
+              Will your spouse or common-law partner come with you to Canada?
+            </label>
+            <nb-select
+              name="p_marital_003"
+              placeholder="Select Showcase"
+              fullWidth
+              formControlName="p_marital_003"
+              [status]="
+                (submitted || f.p_marital_003.touched) && f.p_marital_003.errors
+                  ? 'danger'
+                  : ''
+              "
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option *ngFor="let item of optYesNo" [value]="item.value">
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <!-- <div class="card-text text-white" *ngIf=" (submitted || f.p_marital_003.touched) && f.p_marital_003.errors " > <small *ngIf="f.p_marital_003.errors?.required" class="text-muted text-muted-danger" > Field required </small> </div> -->
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</ng-container>

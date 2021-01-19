@@ -1,15 +1,16 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+
 import {
-  NbMenuModule,
+  NbIconModule,
   NbCardModule,
   NbInputModule,
   NbSelectModule,
   NbButtonModule,
   NbCheckboxModule,
-  NbStepperModule,
   NbDatepickerModule,
-  NbIconModule,
+  NbStepperModule,
   NbListModule,
   NbAccordionModule,
   NbSpinnerModule,
@@ -17,7 +18,6 @@ import {
 } from "@nebular/theme";
 
 const nebular = [
-  NbMenuModule,
   NbIconModule,
   NbCardModule,
   NbInputModule,
@@ -25,26 +25,46 @@ const nebular = [
   NbCheckboxModule,
   NbDatepickerModule,
   NbButtonModule,
-  NbStepperModule,
+  // NbStepperModule,
   // NbListModule,
   // NbAccordionModule,
   // NbSpinnerModule,
   // NbAlertModule,
 ];
 
+import { FamilyModule } from "../../components/family/family.module";
+
 import { VisaFormsComponent } from "./visa-forms.component";
 import { VisitorComponent } from "./visitor/visitor.component";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { FamilyModule } from "../../components/family/family.module";
-import { ExpressEntryComponent } from "./express-entry/express-entry.component";
-import { WorkPermitComponent } from "./work-permit/work-permit.component";
+import { SecMaritalStatusComponent } from "./sec-marital-status/sec-marital-status.component";
+import { FormExpressEntryComponent } from "./form-express-entry/form-express-entry.component";
+import { FormWorkPermitComponent } from "./form-work-permit/form-work-permit.component";
+import { FormVisitorComponent } from "./form-visitor/form-visitor.component";
+import { SecPersonalInformationComponent } from "./sec-personal-information/sec-personal-information.component";
+import { SecEducationComponent } from "./sec-education/sec-education.component";
+import { SecInformationComponent } from "./sec-information/sec-information.component";
+import { SecVisitComponent } from "./sec-visit/sec-visit.component";
+import { SecLanguageTestComponent } from "./sec-language-test/sec-language-test.component";
+import { SecWorkDetailsComponent } from "./sec-work-details/sec-work-details.component";
+import { SecFamilyComponent } from "./sec-family/sec-family.component";
+import { SecFinatialComponent } from "./sec-finatial/sec-finatial.component";
 
 @NgModule({
   declarations: [
     VisaFormsComponent,
+    SecMaritalStatusComponent,
+    FormExpressEntryComponent,
+    FormWorkPermitComponent,
     VisitorComponent,
-    ExpressEntryComponent,
-    WorkPermitComponent,
+    FormVisitorComponent,
+    SecPersonalInformationComponent,
+    SecEducationComponent,
+    SecInformationComponent,
+    SecVisitComponent,
+    SecLanguageTestComponent,
+    SecWorkDetailsComponent,
+    SecFamilyComponent,
+    SecFinatialComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,48 @@
+<form novalidate autocomplete="off" [formGroup]="forma" (submit)="save()">
+  <nb-card>
+    <nb-card-header>Express Entry</nb-card-header>
+    <nb-card-body>
+      <!-- <ngx-sec-personal-information #personalInformation [submitted]="submitted" > </ngx-sec-personal-information> -->
+
+      <!-- <ngx-sec-marital-status #maritalStatus [submitted]="submitted"> </ngx-sec-marital-status> -->
+
+      <!-- <ngx-sec-information #information [submitted]="submitted" ></ngx-sec-information> -->
+
+      <!-- <ngx-sec-visit #visitAdmisibility [submitted]="submitted"></ngx-sec-visit> -->
+
+      <!-- <ngx-sec-education #maritalStatus [submitted]="submitted"> </ngx-sec-education> -->
+
+      <ngx-sec-language-test
+        #languageTest
+        [submitted]="submitted"
+      ></ngx-sec-language-test>
+    </nb-card-body>
+    <nb-card-footer>
+      <!-- Botones  -->
+      <div>
+        <div *ngIf="process && process.status === cmStatus.active">
+          <!-- <button type="submit" [disabled]="!forma.valid" nbButton fullWidth status="primary" > -->
+          <button type="submit" nbButton fullWidth status="primary">
+            Submit
+          </button>
+        </div>
+
+        <div
+          *ngIf="
+            process && process.status !== cmStatus.active && url[0] !== 'pages'
+          "
+        >
+          <button type="submit" nbButton fullWidth status="primary">
+            Update
+          </button>
+        </div>
+      </div>
+    </nb-card-footer>
+  </nb-card>
+</form>
+
+<div>
+  <pre>
+    {{ forma.value | json }}
+  </pre>
+</div>

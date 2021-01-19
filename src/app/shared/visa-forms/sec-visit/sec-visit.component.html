@@ -1,0 +1,195 @@
+<!-- visit -->
+<ng-container [formGroup]="parentForm">
+  <nb-card accent="info" [formGroupName]="nameSection">
+    <nb-card-header>
+      <label for="">Previous and Future Visit(s) and Admisibility</label>
+    </nb-card-header>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="p_visit_001">
+              Have you or your spouse ever been refused for any type of
+              application for any country or any province?
+            </label>
+            <nb-select
+              name="p_visit_001"
+              placeholder="Select Showcase"
+              fullWidth
+              formControlName="p_visit_001"
+              [status]="
+                (submitted || f.p_visit_001.touched) && f.p_visit_001.errors
+                  ? 'danger'
+                  : ''
+              "
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option *ngFor="let item of optYesNo" [value]="item.value">
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <div
+              class="card-text text-white"
+              *ngIf="
+                (submitted || f.p_visit_001.touched) && f.p_visit_001.errors
+              "
+            >
+              <small
+                *ngIf="f.p_visit_001.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="p_visit_002">
+              Have you or your spouse ever been arrested, detained, charged or
+              convicted in any country in past?
+            </label>
+            <nb-select
+              name="p_visit_002"
+              placeholder="Select Showcase"
+              fullWidth
+              formControlName="p_visit_002"
+              [status]="
+                (submitted || f.p_visit_002.touched) && f.p_visit_002.errors
+                  ? 'danger'
+                  : ''
+              "
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option *ngFor="let item of optYesNo" [value]="item.value">
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <div
+              class="card-text text-white"
+              *ngIf="
+                (submitted || f.p_visit_002.touched) && f.p_visit_002.errors
+              "
+            >
+              <small
+                *ngIf="f.p_visit_002.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="p_visit_003">
+              Have you or your spouse previously applied for immigration or visa
+              to Canada?
+            </label>
+            <nb-select
+              name="p_visit_003"
+              placeholder="Select Showcase"
+              fullWidth
+              formControlName="p_visit_003"
+              [status]="
+                (submitted || f.p_visit_003.touched) && f.p_visit_003.errors
+                  ? 'danger'
+                  : ''
+              "
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option *ngFor="let item of optYesNo" [value]="item.value">
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <div
+              class="card-text text-white"
+              *ngIf="
+                (submitted || f.p_visit_003.touched) && f.p_visit_003.errors
+              "
+            >
+              <small
+                *ngIf="f.p_visit_003.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="p_visit_004">
+              Where is your preferred destination in Canada?
+            </label>
+            <nb-select
+              name="p_visit_004"
+              placeholder="Select Showcase"
+              fullWidth
+              formControlName="p_visit_004"
+              [status]="
+                (submitted || f.p_visit_004.touched) && f.p_visit_004.errors
+                  ? 'danger'
+                  : ''
+              "
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option *ngFor="let item of optProvinces" [value]="item.value">
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <div
+              class="card-text text-white"
+              *ngIf="
+                (submitted || f.p_visit_004.touched) && f.p_visit_004.errors
+              "
+            >
+              <small
+                *ngIf="f.p_visit_004.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="p_visit_005">
+              Have you previously submitted an Express Entry application?
+            </label>
+            <nb-select
+              name="p_visit_005"
+              placeholder="Select Showcase"
+              fullWidth
+              formControlName="p_visit_005"
+              [status]="
+                (submitted || f.p_visit_005.touched) && f.p_visit_005.errors
+                  ? 'danger'
+                  : ''
+              "
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option *ngFor="let item of optYesNo" [value]="item.value">
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <div
+              class="card-text text-white"
+              *ngIf="
+                (submitted || f.p_visit_005.touched) && f.p_visit_005.errors
+              "
+            >
+              <small
+                *ngIf="f.p_visit_005.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</ng-container>

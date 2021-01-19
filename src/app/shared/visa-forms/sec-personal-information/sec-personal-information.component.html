@@ -1,0 +1,436 @@
+<!-- Personal Information -->
+<ng-container [formGroup]="parentForm">
+  <nb-card accent="info" [formGroupName]="nameSection">
+    <nb-card-header>
+      <label for="">Personal information </label>
+    </nb-card-header>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="">Title </label>
+            <nb-select
+              name="title"
+              placeholder="Select Showcase"
+              fullWidth
+              formControlName="title"
+              [status]="
+                (submitted || f.title.touched) && f.title.errors ? 'danger' : ''
+              "
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option *ngFor="let item of optTitles" [value]="item.value">
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <div
+              class="card-text text-white"
+              *ngIf="(submitted || f.title.touched) && f.title.errors"
+            >
+              <small
+                *ngIf="f.title.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="">Sex </label>
+            <nb-select
+              name="sex"
+              placeholder="Select Showcase"
+              fullWidth
+              formControlName="sex"
+              [status]="
+                (submitted || f.sex.touched) && f.sex.errors ? 'danger' : ''
+              "
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option *ngFor="let item of optSex" [value]="item.value">
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <div
+              *ngIf="(submitted || f.sex.touched) && f.sex.errors"
+              class="card-text"
+            >
+              <small
+                *ngIf="f.sex.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="">First Name </label>
+            <input
+              type="text"
+              name="first_name"
+              placeholder="First Name"
+              nbInput
+              fullWidth
+              formControlName="first_name"
+              [status]="
+                (submitted || f.first_name.touched) && f.first_name.errors
+                  ? 'danger'
+                  : ''
+              "
+            />
+            <div
+              *ngIf="(submitted || f.first_name.touched) && f.first_name.errors"
+              class="card-text"
+            >
+              <small
+                *ngIf="f.first_name.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+              <small
+                *ngIf="f.first_name.errors?.existe"
+                class="text-muted text-muted-danger"
+              >
+                campo con errores
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="">Last Name </label>
+            <input
+              type="text"
+              name="last_name"
+              placeholder="Last Name"
+              nbInput
+              fullWidth
+              formControlName="last_name"
+              [status]="
+                (submitted || f.last_name.touched) && f.last_name.errors
+                  ? 'danger'
+                  : ''
+              "
+            />
+            <div
+              *ngIf="(submitted || f.last_name.touched) && f.last_name.errors"
+              class="card-text"
+            >
+              <small
+                *ngIf="f.last_name.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="">Email </label>
+            <input
+              type="text"
+              name="email"
+              placeholder="Email"
+              nbInput
+              fullWidth
+              formControlName="email"
+              [status]="
+                (submitted || f.email.touched) && f.email.errors ? 'danger' : ''
+              "
+            />
+            <div
+              *ngIf="(submitted || f.email.touched) && f.email.errors"
+              class="card-text"
+            >
+              <small
+                *ngIf="f.email.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+              <small
+                *ngIf="f.email.errors?.pattern"
+                class="text-muted text-muted-danger"
+              >
+                Email invalid
+              </small>
+              <small
+                *ngIf="f.email.errors?.existe"
+                class="text-muted text-muted-danger"
+              >
+                The email already exist
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="">Telephone </label>
+            <input
+              type="text"
+              name="telephone"
+              placeholder="Telephone"
+              nbInput
+              fullWidth
+              formControlName="telephone"
+              [status]="
+                (submitted || f.telephone.touched) && f.telephone.errors
+                  ? 'danger'
+                  : ''
+              "
+            />
+            <div
+              *ngIf="(submitted || f.telephone.touched) && f.telephone.errors"
+              class="card-text"
+            >
+              <small
+                *ngIf="f.telephone.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+              <small
+                *ngIf="f.telephone.errors?.pattern"
+                class="text-muted text-muted-danger"
+              >
+                Not is a phone number valid
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="">Country of Citizenship </label>
+            <nb-select
+              name="country_citizenship"
+              placeholder="Select Showcase"
+              fullWidth
+              formControlName="country_citizenship"
+              [status]="
+                (submitted || f.country_citizenship.touched) &&
+                f.country_citizenship.errors
+                  ? 'danger'
+                  : ''
+              "
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option *ngFor="let item of optCountries" [value]="item.value">
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <div
+              *ngIf="
+                (submitted || f.country_citizenship.touched) &&
+                f.country_citizenship.errors
+              "
+              class="card-text"
+            >
+              <small
+                *ngIf="f.country_citizenship.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="">Other Citizenship </label>
+            <nb-select
+              name="other_citizenship"
+              placeholder="Select Showcase"
+              fullWidth
+              formControlName="other_citizenship"
+              [status]="
+                (submitted || f.other_citizenship.touched) &&
+                f.other_citizenship.errors
+                  ? 'danger'
+                  : ''
+              "
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option *ngFor="let item of optCountries" [value]="item.value">
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <div
+              *ngIf="
+                (submitted || f.other_citizenship.touched) &&
+                f.other_citizenship.errors
+              "
+              class="card-text"
+            >
+              <small
+                *ngIf="f.other_citizenship.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="">Country of Residence </label>
+            <nb-select
+              name="country_residence"
+              placeholder="Select Showcase"
+              fullWidth
+              formControlName="country_residence"
+              [status]="
+                (submitted || f.country_residence.touched) &&
+                f.country_residence.errors
+                  ? 'danger'
+                  : ''
+              "
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option *ngFor="let item of optCountries" [value]="item.value">
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <div
+              *ngIf="
+                (submitted || f.country_residence.touched) &&
+                f.country_residence.errors
+              "
+              class="card-text"
+            >
+              <small
+                *ngIf="f.country_residence.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="">Status in Country of Residence </label>
+            <nb-select
+              name="status_residence"
+              placeholder="Select Showcase"
+              fullWidth
+              formControlName="status_residence"
+              [status]="
+                (submitted || f.status_residence.touched) &&
+                f.status_residence.errors
+                  ? 'danger'
+                  : ''
+              "
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option *ngFor="let item of optStatus" [value]="item.value">
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <div
+              *ngIf="
+                (submitted || f.status_residence.touched) &&
+                f.status_residence.errors
+              "
+              class="card-text"
+            >
+              <small
+                *ngIf="f.status_residence.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="name">Other Status in Country of Residence </label>
+            <input
+              type="text"
+              name="status_residence_other"
+              formControlName="status_residence_other"
+              nbInput
+              fullWidth
+              [status]="
+                (submitted || f.status_residence_other.touched) &&
+                f.status_residence_other.errors
+                  ? 'danger'
+                  : ''
+              "
+            />
+            <div
+              *ngIf="
+                (submitted || f.status_residence_other.touched) &&
+                f.status_residence_other.errors
+              "
+              class="card-text"
+            >
+              <small
+                *ngIf="f.status_residence_other.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="">Age </label>
+            <input
+              type="number"
+              name="age"
+              min="18"
+              max="99"
+              placeholder="Age"
+              nbInput
+              fullWidth
+              formControlName="age"
+              [status]="
+                (submitted || f.age.touched) && f.age.errors ? 'danger' : ''
+              "
+            />
+            <div
+              *ngIf="(submitted || f.age.touched) && f.age.errors"
+              class="card-text"
+            >
+              <small
+                *ngIf="f.age.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+              <small
+                *ngIf="f.age.errors?.min"
+                class="text-muted text-muted-danger"
+                >Field minimun {{ f.age.errors.min.min }}</small
+              >
+              <small
+                *ngIf="f.age.errors?.max"
+                class="text-muted text-muted-danger"
+                >Field {{ f.age.errors.max.max }}</small
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</ng-container>

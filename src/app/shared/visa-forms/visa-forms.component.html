@@ -5,15 +5,16 @@
 
   <ng-template [ngSwitchCase]="vsCategories.expressentry">
     <div>
-      <ngx-express-entry [process]="process"></ngx-express-entry>
+      <!-- <ngx-express-entry [process]="process"></ngx-express-entry> -->
+      <ngx-form-express-entry [process]="process"></ngx-form-express-entry>
     </div>
   </ng-template>
 
-  <ng-template [ngSwitchCase]="vsCategories.workpermit">
+  <!-- <ng-template [ngSwitchCase]="vsCategories.workpermit">
     <div>
       <ngx-work-permit [process]="process"></ngx-work-permit>
     </div>
-  </ng-template>
+  </ng-template> -->
 
   <ng-template ngSwitchDefault>
     <div>This is default</div>

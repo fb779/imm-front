@@ -8,6 +8,7 @@ import {
 } from "../../../services/services.index";
 import { Title } from "../../../models/Titlel";
 import { Country } from "../../../models/Country";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "ngx-express-entry",
@@ -36,12 +37,17 @@ export class ExpressEntryComponent implements OnInit {
   optMaritalStatus = [];
   optPropousVisit = [];
   optStayCanada = [];
+  optLevelEducation = [];
+  optYearsEducation = [];
 
   constructor(
+    private _router: Router,
     private _formBuilder: FormBuilder,
     private _porcessServices: UserProcessService,
     private _asf: AssessmentFormService
   ) {
+    this.url = this._router.url.split("/").filter((x) => x.trim() !== "");
+
     this._asf.getTitles().subscribe((data) => {
       this.optTitles = data;
     });
@@ -80,6 +86,14 @@ export class ExpressEntryComponent implements OnInit {
 
     this._asf.getStayCanada().subscribe((data) => {
       this.optStayCanada = data;
+    });
+
+    this._asf.getLevelEducation().subscribe((data) => {
+      this.optLevelEducation = data;
+    });
+
+    this._asf.getYearsEducation().subscribe((data) => {
+      this.optYearsEducation = data;
     });
   }
 
@@ -120,29 +134,135 @@ export class ExpressEntryComponent implements OnInit {
         Validators.max(99),
       ]),
       destiny: this._formBuilder.control("", [Validators.required]),
-      marital_status: this._formBuilder.control("", [Validators.required]),
-      // 'number_accompanying': this._formBuilder.control(0, [Validators.required]),
-      purpose_visit: this._formBuilder.control("", [Validators.required]),
-      letter_invitation: this._formBuilder.control("", [Validators.required]),
-      stay_canada: this._formBuilder.control("", [Validators.required]),
-      funds: this._formBuilder.control("", [Validators.required]),
-      disease: this._formBuilder.control("", [Validators.required]),
-      criminal_act: this._formBuilder.control("", [Validators.required]),
-      refuse_canada: this._formBuilder.control("", [Validators.required]),
-      comments: this._formBuilder.control("", []),
+      /*************************************
+       * data for express entry
+       *************************************/
+      p_marital_001: this._formBuilder.control("", [Validators.required]),
+      p_marital_002: this._formBuilder.control("", []),
+      p_marital_003: this._formBuilder.control("", []),
+
+      p_information_001: this._formBuilder.control("", []),
+      p_information_002: this._formBuilder.control("", []),
+
+      p_visit_001: this._formBuilder.control("", []),
+      p_visit_002: this._formBuilder.control("", []),
+      p_visit_003: this._formBuilder.control("", []),
+      p_visit_004: this._formBuilder.control("", []),
+      p_visit_005: this._formBuilder.control("", []),
+
+      p_education_001: this._formBuilder.control("", []),
+      p_education_list: new FormArray([this.initFormEduList()]),
+      p_education_spouse_001: this._formBuilder.control("", []),
+      p_education_spouse_list: new FormArray([this.initFormEduList()]),
+
+      p_language_001: this._formBuilder.control("", []),
+      p_language_en_001: this._formBuilder.control("", []),
+      p_language_en_002: this._formBuilder.control("", []),
+      p_language_en_003: this._formBuilder.control("", []),
+      p_language_en_004: this._formBuilder.control("", []),
+      p_language_en_005: this._formBuilder.control("", []),
+      p_language_en_006: this._formBuilder.control("", []),
+      p_language_en_007: this._formBuilder.control("", []),
+
+      p_language_fr_001: this._formBuilder.control("", []),
+      p_language_fr_002: this._formBuilder.control("", []),
+      p_language_fr_003: this._formBuilder.control("", []),
+      p_language_fr_004: this._formBuilder.control("", []),
+      p_language_fr_005: this._formBuilder.control("", []),
+      p_language_fr_006: this._formBuilder.control("", []),
+
+      p_language_spouse_001: this._formBuilder.control("", []),
+      p_language_en_spouse_001: this._formBuilder.control("", []),
+      p_language_en_spouse_002: this._formBuilder.control("", []),
+      p_language_en_spouse_003: this._formBuilder.control("", []),
+      p_language_en_spouse_004: this._formBuilder.control("", []),
+      p_language_en_spouse_005: this._formBuilder.control("", []),
+      p_language_en_spouse_006: this._formBuilder.control("", []),
+      p_language_en_spouse_007: this._formBuilder.control("", []),
+
+      p_language_fr_spouse_001: this._formBuilder.control("", []),
+      p_language_fr_spouse_002: this._formBuilder.control("", []),
+      p_language_fr_spouse_003: this._formBuilder.control("", []),
+      p_language_fr_spouse_004: this._formBuilder.control("", []),
+      p_language_fr_spouse_005: this._formBuilder.control("", []),
+      p_language_fr_spouse_006: this._formBuilder.control("", []),
+
+      p_workdetail_001: this._formBuilder.control("", []),
+      p_workdetail_002: this._formBuilder.control("", []),
+      p_workdetail_003: this._formBuilder.control("", []),
+      p_workdetail_004: this._formBuilder.control("", []),
+
+      p_workdetail_current_005: this._formBuilder.control("", []),
+      p_workdetail_current_006: this._formBuilder.control("", []),
+      p_workdetail_current_007: this._formBuilder.control("", []),
+      p_workdetail_current_008: this._formBuilder.control("", []),
+      p_workdetail_current_009: this._formBuilder.control("", []),
+      p_workdetail_current_010: this._formBuilder.control("", []),
+
+      p_workdetail_list: new FormArray([]),
+      p_workdetail_spouse_list: new FormArray([]),
+
+      p_family_001: this._formBuilder.control("", []),
+      p_family_002: this._formBuilder.control("", []),
+      p_family_003: this._formBuilder.control("", []),
+      p_family_004: this._formBuilder.control("", []),
+      p_family_005: this._formBuilder.control("", []),
+
+      p_money_001: this._formBuilder.control("", []),
+
+      comments: this._formBuilder.control(""),
     });
 
-    this.forma.controls["status_residence"].valueChanges.subscribe(
-      (value: any) => {
-        if (value == 5) {
-          this.forma.get("status_residence_other").enable();
-        } else {
-          this.forma.get("status_residence_other").disable();
-          this.forma.get("status_residence_other").reset();
-        }
+    this.f.status_residence.valueChanges.subscribe((value: any) => {
+      if (value == 5) {
+        this.forma.get("status_residence_other").enable();
+      } else {
+        this.forma.get("status_residence_other").disable();
+        this.forma.get("status_residence_other").reset();
       }
-    );
+    });
+
+    this.f.p_marital_001.valueChanges.subscribe((value: any) => {
+      console.log("cambio en pregunta p_marital_001");
+      // TODO: if value === 2 "Married or common law, need enabled other fields"
+    });
   }
+
+  get f() {
+    return this.forma.controls;
+  }
+
+  /*************************************************************
+   * Education section
+   *************************************************************/
+  initFormEduList() {
+    return this._formBuilder.group({
+      level: ["", [Validators.required]],
+      study: ["", [Validators.required]],
+      institution: ["", [Validators.required]],
+      duration: ["", [Validators.required]],
+      country: ["", [Validators.required]],
+    });
+  }
+  get fEduList() {
+    return this.f.p_education_list as FormArray;
+  }
+
+  get fEduSpList() {
+    return this.f.p_education_spouse_list as FormArray;
+  }
+
+  add() {
+    if (this.fEduList.length === 10) return;
+
+    this.fEduList.push(this.initFormEduList());
+  }
+  remove(ix: number) {
+    if (this.fEduList.length > 1) {
+      this.fEduList.removeAt(ix);
+    }
+  }
+  /*************************************************************/
 
   loadForm() {
     if (this.process && this.process.status !== status.active) {
@@ -165,9 +285,16 @@ export class ExpressEntryComponent implements OnInit {
     }
   }
 
-  get f() {
-    return this.forma.controls;
-  }
+  guardar() {
+    console.log("validando formulario");
+    this.submitted = true;
 
-  guardar() {}
+    if (this.forma.invalid) {
+      // this._toastr.toastrGenericMessage(`Form is nvalid`, "Form", "warning");
+      console.log("errores", this.forma.errors);
+      return;
+    }
+
+    console.log("Valores", this.forma.value);
+  }
 }

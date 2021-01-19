@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WorkPermitComponent } from './work-permit.component';
+import { SecFamilyComponent } from './sec-family.component';
 
-describe('WorkPermitComponent', () => {
-  let component: WorkPermitComponent;
-  let fixture: ComponentFixture<WorkPermitComponent>;
+describe('SecFamilyComponent', () => {
+  let component: SecFamilyComponent;
+  let fixture: ComponentFixture<SecFamilyComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WorkPermitComponent ]
+      declarations: [ SecFamilyComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WorkPermitComponent);
+    fixture = TestBed.createComponent(SecFamilyComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

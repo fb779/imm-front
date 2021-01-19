@@ -1,6 +1,4 @@
-<!-- <form novalidate autocomplete="off" [formGroup]="forma" (submit)="guardar()" ></form> -->
-
-<form novalidate autocomplete="off" [formGroup]="forma">
+<form novalidate autocomplete="off" [formGroup]="forma" (submit)="guardar()">
   <nb-card>
     <nb-card-header>Express Entry</nb-card-header>
     <nb-card-body>
@@ -461,63 +459,25 @@
           </div>
         </nb-card-body>
       </nb-card>
-      <!-- Destination -->
+
+      <!-- marital status -->
       <nb-card accent="info">
-        <nb-card-body>
-          <div class="row">
-            <div class="col-12 col-md-12">
-              <div class="form-group">
-                <label for="">Destination in Canada </label>
-                <nb-select
-                  name="destiny"
-                  placeholder="Select Showcase"
-                  fullWidth
-                  formControlName="destiny"
-                  [status]="
-                    (submitted || f.destiny.touched) && f.destiny.errors
-                      ? 'danger'
-                      : ''
-                  "
-                >
-                  <nb-option value="">Select...</nb-option>
-                  <nb-option
-                    *ngFor="let item of optProvinces"
-                    [value]="item.value"
-                  >
-                    {{ item.name }}
-                  </nb-option>
-                </nb-select>
-                <div
-                  *ngIf="(submitted || f.destiny.touched) && f.destiny.errors"
-                  class="card-text"
-                >
-                  <small
-                    *ngIf="f.destiny.errors?.required"
-                    class="text-muted text-muted-danger"
-                  >
-                    Field required
-                  </small>
-                </div>
-              </div>
-            </div>
-          </div>
-        </nb-card-body>
-      </nb-card>
-      <!-- Marital status -->
-      <nb-card accent="info">
+        <nb-card-header>
+          <label for="">Marital Status</label>
+        </nb-card-header>
         <nb-card-body>
           <div class="row">
             <div class="col-12 col-md-6">
               <div class="form-group">
-                <label for="">Marital Status </label>
+                <label for="p_marital_001">Marital Status:</label>
                 <nb-select
-                  name="marital_status"
+                  name="p_marital_001"
                   placeholder="Select Showcase"
                   fullWidth
-                  formControlName="marital_status"
+                  formControlName="p_marital_001"
                   [status]="
-                    (submitted || f.marital_status.touched) &&
-                    f.marital_status.errors
+                    (submitted || f.p_marital_001.touched) &&
+                    f.p_marital_001.errors
                       ? 'danger'
                       : ''
                   "
@@ -530,156 +490,888 @@
                     {{ item.name }}
                   </nb-option>
                 </nb-select>
-                <div
-                  *ngIf="
-                    (submitted || f.marital_status.touched) &&
-                    f.marital_status.errors
-                  "
-                  class="card-text"
-                >
-                  <small
-                    *ngIf="f.marital_status.errors?.required"
-                    class="text-muted text-muted-danger"
-                  >
-                    Field required
-                  </small>
-                </div>
+                <!-- <div class="card-text text-white" *ngIf=" (submitted || f.p_marital_001.touched) && f.p_marital_001.errors " > <small *ngIf="f.p_marital_001.errors?.required" class="text-muted text-muted-danger" > Field required </small> </div> -->
               </div>
             </div>
 
             <div class="col-12 col-md-6">
               <div class="form-group">
-                <label for="">Purpose of your visit? </label>
-                <nb-select
-                  name="purpose_visit"
-                  formControlName="purpose_visit"
-                  [status]="
-                    (submitted || f.purpose_visit.touched) &&
-                    f.purpose_visit.errors
-                      ? 'danger'
-                      : ''
-                  "
-                  fullWidth
-                  placeholder="Select Showcase"
-                >
-                  <nb-option value="">Select...</nb-option>
-                  <nb-option
-                    *ngFor="let item of optPropousVisit"
-                    [value]="item.value"
-                  >
-                    {{ item.name }}
-                  </nb-option>
-                </nb-select>
-                <div
-                  *ngIf="
-                    (submitted || f.purpose_visit.touched) &&
-                    f.purpose_visit.errors
-                  "
-                  class="card-text"
-                >
-                  <small
-                    *ngIf="f.purpose_visit.errors?.required"
-                    class="text-muted text-muted-danger"
-                  >
-                    Field required
-                  </small>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-12 col-md-6">
-              <div class="form-group">
-                <label for="">
-                  Do you have a letter of invitation from a Person or a Company
-                  in Canadian?
+                <label for="p_marital_002">
+                  Is your spouse or common-law partner a citizen or permanent
+                  resident of Canada?
                 </label>
                 <nb-select
-                  name="letter_invitation"
-                  formControlName="letter_invitation"
+                  name="p_marital_002"
+                  placeholder="Select Showcase"
+                  fullWidth
+                  formControlName="p_marital_002"
                   [status]="
-                    (submitted || f.letter_invitation.touched) &&
-                    f.letter_invitation.errors
+                    (submitted || f.p_marital_002.touched) &&
+                    f.p_marital_002.errors
                       ? 'danger'
                       : ''
                   "
-                  fullWidth
-                  placeholder="Select Showcase"
                 >
                   <nb-option value="">Select...</nb-option>
                   <nb-option *ngFor="let item of optYesNo" [value]="item.value">
                     {{ item.name }}
                   </nb-option>
                 </nb-select>
-                <div
-                  *ngIf="
-                    (submitted || f.letter_invitation.touched) &&
-                    f.letter_invitation.errors
-                  "
-                  class="card-text"
-                >
-                  <small
-                    *ngIf="f.letter_invitation.errors?.required"
-                    class="text-muted text-muted-danger"
-                  >
-                    Field required
-                  </small>
-                </div>
+                <!-- <div class="card-text text-white" *ngIf=" (submitted || f.p_marital_002.touched) && f.p_marital_002.errors " > <small *ngIf="f.p_marital_002.errors?.required" class="text-muted text-muted-danger" > Field required </small> </div> -->
               </div>
             </div>
 
             <div class="col-12 col-md-6">
               <div class="form-group">
-                <label for="">Length of intended stay in Canada? </label>
+                <label for="p_marital_003">
+                  Will your spouse or common-law partner come with you to
+                  Canada?
+                </label>
                 <nb-select
-                  name="stay_canada"
-                  formControlName="stay_canada"
+                  name="p_marital_003"
+                  placeholder="Select Showcase"
+                  fullWidth
+                  formControlName="p_marital_003"
                   [status]="
-                    (submitted || f.stay_canada.touched) && f.stay_canada.errors
+                    (submitted || f.p_marital_003.touched) &&
+                    f.p_marital_003.errors
                       ? 'danger'
                       : ''
                   "
-                  fullWidth
-                  placeholder="Select Showcase"
                 >
                   <nb-option value="">Select...</nb-option>
-                  <nb-option
-                    *ngFor="let item of optStayCanada"
-                    [value]="item.value"
-                  >
+                  <nb-option *ngFor="let item of optYesNo" [value]="item.value">
                     {{ item.name }}
                   </nb-option>
                 </nb-select>
-                <div
-                  *ngIf="
-                    (submitted || f.stay_canada.touched) && f.stay_canada.errors
-                  "
-                  class="card-text"
-                >
-                  <small
-                    *ngIf="f.stay_canada.errors?.required"
-                    class="text-muted text-muted-danger"
-                  >
-                    Field required
-                  </small>
-                </div>
+                <!-- <div class="card-text text-white" *ngIf=" (submitted || f.p_marital_003.touched) && f.p_marital_003.errors " > <small *ngIf="f.p_marital_003.errors?.required" class="text-muted text-muted-danger" > Field required </small> </div> -->
               </div>
             </div>
           </div>
         </nb-card-body>
       </nb-card>
 
-      <!-- <ngx-family [process]="process" [url]="url"></ngx-family> -->
+      <!-- information -->
+      <nb-card accent="info">
+        <nb-card-header>
+          <label for="">Information</label>
+        </nb-card-header>
+        <nb-card-body>
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <div class="form-group">
+                <label for="p_information_001">
+                  Have you or your spouse previously visited Canada for work,
+                  travel, or study?
+                </label>
+                <nb-select
+                  name="p_information_001"
+                  placeholder="Select Showcase"
+                  fullWidth
+                  formControlName="p_information_001"
+                  [status]="
+                    (submitted || f.p_information_001.touched) &&
+                    f.p_information_001.errors
+                      ? 'danger'
+                      : ''
+                  "
+                >
+                  <nb-option value="">Select...</nb-option>
+                  <nb-option *ngFor="let item of optYesNo" [value]="item.value">
+                    {{ item.name }}
+                  </nb-option>
+                </nb-select>
+                <!-- <div class="card-text text-white" *ngIf=" (submitted || f.p_information_001.touched) && f.p_information_001.errors " > <small *ngIf="f.p_information_001.errors?.required" class="text-muted text-muted-danger" > Field required </small> </div> -->
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <div class="form-group">
+                <label for="p_information_002">
+                  Do you have a Visitors, Student or Work Visa for Canada?
+                </label>
+                <nb-select
+                  name="p_information_002"
+                  placeholder="Select Showcase"
+                  fullWidth
+                  formControlName="p_information_002"
+                  [status]="
+                    (submitted || f.p_information_002.touched) &&
+                    f.p_information_002.errors
+                      ? 'danger'
+                      : ''
+                  "
+                >
+                  <nb-option value="">Select...</nb-option>
+                  <nb-option *ngFor="let item of optYesNo" [value]="item.value">
+                    {{ item.name }}
+                  </nb-option>
+                </nb-select>
+                <!-- <div class="card-text text-white" *ngIf=" (submitted || f.p_information_002.touched) && f.p_information_002.errors " > <small *ngIf="f.p_information_002.errors?.required" class="text-muted text-muted-danger" > Field required </small> </div> -->
+              </div>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+
+      <!-- visit -->
+      <nb-card accent="info">
+        <nb-card-header>
+          <label for="">Previous and Future Visit(s) and Admisibility</label>
+        </nb-card-header>
+        <nb-card-body>
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <div class="form-group">
+                <label for="p_visit_001">
+                  Have you or your spouse ever been refused for any type of
+                  application for any country or any province?
+                </label>
+                <nb-select
+                  name="p_visit_001"
+                  placeholder="Select Showcase"
+                  fullWidth
+                  formControlName="p_visit_001"
+                  [status]="
+                    (submitted || f.p_visit_001.touched) && f.p_visit_001.errors
+                      ? 'danger'
+                      : ''
+                  "
+                >
+                  <nb-option value="">Select...</nb-option>
+                  <nb-option *ngFor="let item of optYesNo" [value]="item.value">
+                    {{ item.name }}
+                  </nb-option>
+                </nb-select>
+                <!-- <div class="card-text text-white" *ngIf=" (submitted || f.p_visit_001.touched) && f.p_visit_001.errors " > <small *ngIf="f.p_visit_001.errors?.required" class="text-muted text-muted-danger" > Field required </small> </div> -->
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="form-group">
+                <label for="p_visit_002">
+                  Have you or your spouse ever been arrested, detained, charged
+                  or convicted in any country in past?
+                </label>
+                <nb-select
+                  name="p_visit_002"
+                  placeholder="Select Showcase"
+                  fullWidth
+                  formControlName="p_visit_002"
+                  [status]="
+                    (submitted || f.p_visit_002.touched) && f.p_visit_002.errors
+                      ? 'danger'
+                      : ''
+                  "
+                >
+                  <nb-option value="">Select...</nb-option>
+                  <nb-option *ngFor="let item of optYesNo" [value]="item.value">
+                    {{ item.name }}
+                  </nb-option>
+                </nb-select>
+                <!-- <div class="card-text text-white" *ngIf=" (submitted || f.p_visit_002.touched) && f.p_visit_002.errors " > <small *ngIf="f.p_visit_002.errors?.required" class="text-muted text-muted-danger" > Field required </small> </div> -->
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="form-group">
+                <label for="p_visit_003">
+                  Have you or your spouse previously applied for immigration or
+                  visa to Canada?
+                </label>
+                <nb-select
+                  name="p_visit_003"
+                  placeholder="Select Showcase"
+                  fullWidth
+                  formControlName="p_visit_003"
+                  [status]="
+                    (submitted || f.p_visit_003.touched) && f.p_visit_003.errors
+                      ? 'danger'
+                      : ''
+                  "
+                >
+                  <nb-option value="">Select...</nb-option>
+                  <nb-option *ngFor="let item of optYesNo" [value]="item.value">
+                    {{ item.name }}
+                  </nb-option>
+                </nb-select>
+                <!-- <div class="card-text text-white" *ngIf=" (submitted || f.p_visit_003.touched) && f.p_visit_003.errors " > <small *ngIf="f.p_visit_003.errors?.required" class="text-muted text-muted-danger" > Field required </small> </div> -->
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="form-group">
+                <label for="p_visit_004">
+                  Where is your preferred destination in Canada?
+                </label>
+                <nb-select
+                  name="p_visit_004"
+                  placeholder="Select Showcase"
+                  fullWidth
+                  formControlName="p_visit_004"
+                  [status]="
+                    (submitted || f.p_visit_004.touched) && f.p_visit_004.errors
+                      ? 'danger'
+                      : ''
+                  "
+                >
+                  <nb-option value="">Select...</nb-option>
+                  <nb-option
+                    *ngFor="let item of optProvinces"
+                    [value]="item.value"
+                  >
+                    {{ item.name }}
+                  </nb-option>
+                </nb-select>
+                <!-- <div class="card-text text-white" *ngIf=" (submitted || f.p_visit_004.touched) && f.p_visit_004.errors " > <small *ngIf="f.p_visit_004.errors?.required" class="text-muted text-muted-danger" > Field required </small> </div> -->
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="form-group">
+                <label for="p_visit_005">
+                  Have you previously submitted an Express Entry application?
+                </label>
+                <nb-select
+                  name="p_visit_005"
+                  placeholder="Select Showcase"
+                  fullWidth
+                  formControlName="p_visit_005"
+                  [status]="
+                    (submitted || f.p_visit_005.touched) && f.p_visit_005.errors
+                      ? 'danger'
+                      : ''
+                  "
+                >
+                  <nb-option value="">Select...</nb-option>
+                  <nb-option *ngFor="let item of optYesNo" [value]="item.value">
+                    {{ item.name }}
+                  </nb-option>
+                </nb-select>
+                <!-- <div class="card-text text-white" *ngIf=" (submitted || f.p_visit_005.touched) && f.p_visit_005.errors " > <small *ngIf="f.p_visit_005.errors?.required" class="text-muted text-muted-danger" > Field required </small> </div> -->
+              </div>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+
+      <!-- education -->
+      <nb-card accent="info">
+        <nb-card-header>
+          <label for="">Education</label>
+        </nb-card-header>
+        <nb-card-body>
+          <div class="row">
+            <div class="col-12">
+              <label for="">
+                What is your highest level of education that you have completed
+                and graduated?
+              </label>
+            </div>
+          </div>
+          <!-- education history -->
+          <nb-card>
+            <nb-card-header>
+              <div class="row">
+                <div class="col-10">Education History</div>
+                <div class="col text-right">
+                  <button
+                    nbButton
+                    outLine
+                    status="primary"
+                    size="tiny"
+                    type="button"
+                    [disabled]="fEduList.length === 10"
+                    (click)="add()"
+                  >
+                    <nb-icon icon="plus-circle-outline"></nb-icon>
+                  </button>
+                </div>
+              </div>
+            </nb-card-header>
+            <nb-card-body>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th><label>Level</label></th>
+                    <th><label>Field of Study</label></th>
+                    <th><label>Name of School/Institution</label></th>
+                    <th><label>Duration (yrs)</label></th>
+                    <!-- <th><label>Country</label></th> -->
+                    <th><label>Option</label></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    *ngFor="
+                      let educationList of fEduList.controls;
+                      let i = index
+                    "
+                  >
+                    <ng-container [formGroup]="educationList">
+                      <td>
+                        <div class="form-group mb-0">
+                          <nb-select
+                            name="level"
+                            placeholder="Select Showcase"
+                            fullWidth
+                            formControlName="level"
+                            [status]="
+                              (submitted ||
+                                educationList.controls.level.touched) &&
+                              educationList.controls.level.errors
+                                ? 'danger'
+                                : ''
+                            "
+                          >
+                            <nb-option value="">Select...</nb-option>
+                            <nb-option
+                              *ngFor="let item of optLevelEducation"
+                              [value]="item.value"
+                            >
+                              {{ item.name }}
+                            </nb-option>
+                          </nb-select>
+                          <!-- <div class="card-text text-white" *ngIf=" (submitted || educationList.controls.level.touched) && educationList.controls.level.errors " > <small *ngIf="educationList.controls.level.errors?.required" class="text-muted text-muted-danger" > Field required </small> </div> -->
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group mb-0">
+                          <input
+                            type="text"
+                            name="study"
+                            placeholder="Study"
+                            nbInput
+                            fullWidth
+                            formControlName="study"
+                            [status]="
+                              (submitted ||
+                                educationList.controls.study.touched) &&
+                              educationList.controls.study.errors
+                                ? 'danger'
+                                : ''
+                            "
+                          />
+
+                          <!-- <div class="card-text" *ngIf=" (submitted || educationList.controls.study.touched) && educationList.controls.study.errors " >
+                            <small *ngIf=" educationList.controls.study.errors?.required " class="form-text text-muted text-muted-danger" > Field required </small>
+                          </div> -->
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group mb-0">
+                          <input
+                            type="text"
+                            name="institution"
+                            placeholder="School or Institution"
+                            nbInput
+                            fullWidth
+                            formControlName="institution"
+                            [status]="
+                              (submitted ||
+                                educationList.controls.institution.touched) &&
+                              educationList.controls.institution.errors
+                                ? 'danger'
+                                : ''
+                            "
+                          />
+
+                          <!-- <div class="card-text" *ngIf=" (submitted || educationList.controls.institution.touched) && educationList.controls.institution.errors " >
+                            <small *ngIf=" educationList.controls.institution.errors?.required " class="form-text text-muted text-muted-danger" > Field required </small>
+                          </div> -->
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group mb-0">
+                          <nb-select
+                            name="duration"
+                            placeholder="Select Showcase"
+                            fullWidth
+                            formControlName="duration"
+                            [status]="
+                              (submitted ||
+                                educationList.controls.duration.touched) &&
+                              educationList.controls.duration.errors
+                                ? 'danger'
+                                : ''
+                            "
+                          >
+                            <nb-option value="">Select...</nb-option>
+                            <nb-option
+                              *ngFor="let item of optYearsEducation"
+                              [value]="item.value"
+                            >
+                              {{ item.name }}
+                            </nb-option>
+                          </nb-select>
+                          <!-- <div class="card-text text-white" *ngIf=" (submitted || educationList.controls.duration.touched) && educationList.controls.duration.errors " > <small *ngIf="educationList.controls.duration.errors?.required" class="text-muted text-muted-danger" > Field required </small> </div> -->
+                        </div>
+                      </td>
+                      <!-- <td>4</td> -->
+                      <td class="text-center">
+                        <button
+                          nbButton
+                          type="button"
+                          ghost
+                          status="danger"
+                          size="tiny"
+                          [disabled]="fEduList.length === 1"
+                          (click)="remove(i)"
+                        >
+                          <nb-icon icon="close-circle-outline"></nb-icon>
+                          <!-- <nb-icon icon="file-remove-outline"></nb-icon> -->
+                        </button>
+                      </td>
+                    </ng-container>
+                  </tr>
+                </tbody>
+              </table>
+            </nb-card-body>
+          </nb-card>
+
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                <label for="p_education_001">
+                  Have you completed an Education Credential Assessment ECA for
+                  your education outside of Canada?
+                </label>
+                <nb-select
+                  name="p_education_001"
+                  placeholder="Select Showcase"
+                  fullWidth
+                  formControlName="p_education_001"
+                  [status]="
+                    (submitted || f.p_education_001.touched) &&
+                    f.p_education_001.errors
+                      ? 'danger'
+                      : ''
+                  "
+                >
+                  <nb-option value="">Select...</nb-option>
+                  <nb-option *ngFor="let item of optYesNo" [value]="item.value">
+                    {{ item.name }}
+                  </nb-option>
+                </nb-select>
+                <!-- <div class="card-text text-white" *ngIf=" (submitted || f.p_education_001.touched) && f.p_education_001.errors " > <small *ngIf="f.p_education_001.errors?.required" class="text-muted text-muted-danger" > Field required </small> </div> -->
+              </div>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+
+      <!-- language test / exam -->
+      <nb-card accent="info">
+        <nb-card-header>
+          <label for="">Language test</label>
+        </nb-card-header>
+        <nb-card-body>
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                <label>
+                  Have you taken a Language Exam, in either English or French,
+                  within the last two(2) years?
+                </label>
+                <nb-select
+                  name="p_language_001"
+                  placeholder="Select Showcase"
+                  fullWidth
+                  formControlName="p_language_001"
+                  [status]="
+                    (submitted || f.p_language_001.touched) &&
+                    f.p_language_001.errors
+                      ? 'danger'
+                      : ''
+                  "
+                >
+                  <nb-option value="">Select...</nb-option>
+                  <nb-option *ngFor="let item of optYesNo" [value]="item.value">
+                    {{ item.name }}
+                  </nb-option>
+                </nb-select>
+                <!-- <div class="card-text text-white" *ngIf=" (submitted || f.p_language_001.touched) && f.p_language_001.errors " > <small *ngIf="f.p_language_001.errors?.required" class="text-muted text-muted-danger" > Field required </small> </div> -->
+              </div>
+            </div>
+            <ng-container>
+              <div class="col-12 col-md-6">
+                <nb-card accent="info">
+                  <nb-card-header>
+                    <label for=""> English Test </label>
+                  </nb-card-header>
+                  <nb-card-body>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="form-group">
+                          <label>
+                            Which official language test did you take?
+                          </label>
+                          <nb-select
+                            name="p_language_en_001"
+                            placeholder="Select Showcase"
+                            fullWidth
+                            formControlName="p_language_en_001"
+                            [status]="
+                              (submitted || f.p_language_en_001.touched) &&
+                              f.p_language_en_001.errors
+                                ? 'danger'
+                                : ''
+                            "
+                          >
+                            <!-- <nb-option value="">Select...</nb-option> <nb-option *ngFor="let item of optYesNo" [value]="item.value" > {{ item.name }} </nb-option> -->
+                          </nb-select>
+                          <!-- <div class="card-text text-white" *ngIf=" (submitted || f.p_language_en_001.touched) && f.p_language_en_001.errors " > <small *ngIf="f.p_language_en_001.errors?.required" class="text-muted text-muted-danger" > Field required </small> </div> -->
+                        </div>
+                      </div>
+
+                      <div class="col-12">
+                        <div class="form-group">
+                          <label> Which IELTS Exam did you take? </label>
+                          <nb-select
+                            name="p_language_en_002"
+                            placeholder="Select Showcase"
+                            fullWidth
+                            formControlName="p_language_en_002"
+                            [status]="
+                              (submitted || f.p_language_en_002.touched) &&
+                              f.p_language_en_002.errors
+                                ? 'danger'
+                                : ''
+                            "
+                          >
+                            <!-- <nb-option value="">Select...</nb-option> <nb-option *ngFor="let item of optYesNo" [value]="item.value" > {{ item.name }} </nb-option> -->
+                          </nb-select>
+                          <!-- <div class="card-text text-white" *ngIf=" (submitted || f.p_language_en_002.touched) && f.p_language_en_002.errors " > <small *ngIf="f.p_language_en_002.errors?.required" class="text-muted text-muted-danger" > Field required </small> </div> -->
+                        </div>
+                      </div>
+
+                      <div class="col-12">
+                        <div class="form-group">
+                          <label> Exam results date? </label>
+                          <nb-select
+                            name="p_language_en_003"
+                            placeholder="Select Showcase"
+                            fullWidth
+                            formControlName="p_language_en_003"
+                            [status]="
+                              (submitted || f.p_language_en_003.touched) &&
+                              f.p_language_en_003.errors
+                                ? 'danger'
+                                : ''
+                            "
+                          >
+                            <!-- <nb-option value="">Select...</nb-option> <nb-option *ngFor="let item of optYesNo" [value]="item.value" > {{ item.name }} </nb-option> -->
+                          </nb-select>
+                          <!-- <div class="card-text text-white" *ngIf=" (submitted || f.p_language_en_003.touched) && f.p_language_en_003.errors " > <small *ngIf="f.p_language_en_003.errors?.required" class="text-muted text-muted-danger" > Field required </small> </div> -->
+                        </div>
+                      </div>
+
+                      <div class="col-12 col-md-6">
+                        <div class="form-group">
+                          <label> Speaking </label>
+                          <nb-select
+                            name="p_language_en_004"
+                            placeholder="Select Showcase"
+                            fullWidth
+                            formControlName="p_language_en_004"
+                            [status]="
+                              (submitted || f.p_language_en_004.touched) &&
+                              f.p_language_en_004.errors
+                                ? 'danger'
+                                : ''
+                            "
+                          >
+                            <!-- <nb-option value="">Select...</nb-option> <nb-option *ngFor="let item of optYesNo" [value]="item.value" > {{ item.name }} </nb-option> -->
+                          </nb-select>
+                          <!-- <div class="card-text text-white" *ngIf=" (submitted || f.p_language_en_004.touched) && f.p_language_en_004.errors " > <small *ngIf="f.p_language_en_004.errors?.required" class="text-muted text-muted-danger" > Field required </small> </div> -->
+                        </div>
+                      </div>
+
+                      <div class="col-12 col-md-6">
+                        <div class="form-group">
+                          <label> Listening </label>
+                          <nb-select
+                            name="p_language_en_005"
+                            placeholder="Select Showcase"
+                            fullWidth
+                            formControlName="p_language_en_005"
+                            [status]="
+                              (submitted || f.p_language_en_005.touched) &&
+                              f.p_language_en_005.errors
+                                ? 'danger'
+                                : ''
+                            "
+                          >
+                            <!-- <nb-option value="">Select...</nb-option> <nb-option *ngFor="let item of optYesNo" [value]="item.value" > {{ item.name }} </nb-option> -->
+                          </nb-select>
+                          <!-- <div class="card-text text-white" *ngIf=" (submitted || f.p_language_en_005.touched) && f.p_language_en_005.errors " > <small *ngIf="f.p_language_en_005.errors?.required" class="text-muted text-muted-danger" > Field required </small> </div> -->
+                        </div>
+                      </div>
+
+                      <div class="col-12 col-md-6">
+                        <div class="form-group">
+                          <label> Reading </label>
+                          <nb-select
+                            name="p_language_en_006"
+                            placeholder="Select Showcase"
+                            fullWidth
+                            formControlName="p_language_en_006"
+                            [status]="
+                              (submitted || f.p_language_en_006.touched) &&
+                              f.p_language_en_006.errors
+                                ? 'danger'
+                                : ''
+                            "
+                          >
+                            <!-- <nb-option value="">Select...</nb-option> <nb-option *ngFor="let item of optYesNo" [value]="item.value" > {{ item.name }} </nb-option> -->
+                          </nb-select>
+                          <!-- <div class="card-text text-white" *ngIf=" (submitted || f.p_language_en_006.touched) && f.p_language_en_006.errors " > <small *ngIf="f.p_language_en_006.errors?.required" class="text-muted text-muted-danger" > Field required </small> </div> -->
+                        </div>
+                      </div>
+
+                      <div class="col-12 col-md-6">
+                        <div class="form-group">
+                          <label> Writing </label>
+                          <nb-select
+                            name="p_language_en_007"
+                            placeholder="Select Showcase"
+                            fullWidth
+                            formControlName="p_language_en_007"
+                            [status]="
+                              (submitted || f.p_language_en_007.touched) &&
+                              f.p_language_en_007.errors
+                                ? 'danger'
+                                : ''
+                            "
+                          >
+                            <!-- <nb-option value="">Select...</nb-option> <nb-option *ngFor="let item of optYesNo" [value]="item.value" > {{ item.name }} </nb-option> -->
+                          </nb-select>
+                          <!-- <div class="card-text text-white" *ngIf=" (submitted || f.p_language_en_007.touched) && f.p_language_en_007.errors " > <small *ngIf="f.p_language_en_007.errors?.required" class="text-muted text-muted-danger" > Field required </small> </div> -->
+                        </div>
+                      </div>
+                    </div>
+                  </nb-card-body>
+                </nb-card>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <nb-card accent="info">
+                  <nb-card-header>
+                    <label for=""> French Test </label>
+                  </nb-card-header>
+                  <nb-card-body>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="form-group">
+                          <label>
+                            Which official language test did you take?
+                          </label>
+                          <nb-select
+                            name="p_language_en_001"
+                            placeholder="Select Showcase"
+                            fullWidth
+                            formControlName="p_language_en_001"
+                            [status]="
+                              (submitted || f.p_language_en_001.touched) &&
+                              f.p_language_en_001.errors
+                                ? 'danger'
+                                : ''
+                            "
+                          >
+                            <!-- <nb-option value="">Select...</nb-option> <nb-option *ngFor="let item of optYesNo" [value]="item.value" > {{ item.name }} </nb-option> -->
+                          </nb-select>
+                          <!-- <div class="card-text text-white" *ngIf=" (submitted || f.p_language_en_001.touched) && f.p_language_en_001.errors " > <small *ngIf="f.p_language_en_001.errors?.required" class="text-muted text-muted-danger" > Field required </small> </div> -->
+                        </div>
+                      </div>
+
+                      <div class="col-12">
+                        <div class="form-group">
+                          <label> Exam results date? </label>
+                          <nb-select
+                            name="p_language_en_002"
+                            placeholder="Select Showcase"
+                            fullWidth
+                            formControlName="p_language_en_002"
+                            [status]="
+                              (submitted || f.p_language_en_002.touched) &&
+                              f.p_language_en_002.errors
+                                ? 'danger'
+                                : ''
+                            "
+                          >
+                            <!-- <nb-option value="">Select...</nb-option> <nb-option *ngFor="let item of optYesNo" [value]="item.value" > {{ item.name }} </nb-option> -->
+                          </nb-select>
+                          <!-- <div class="card-text text-white" *ngIf=" (submitted || f.p_language_en_002.touched) && f.p_language_en_002.errors " > <small *ngIf="f.p_language_en_002.errors?.required" class="text-muted text-muted-danger" > Field required </small> </div> -->
+                        </div>
+                      </div>
+
+                      <div class="col-12 col-md-6">
+                        <div class="form-group">
+                          <label> Speaking </label>
+                          <nb-select
+                            name="p_language_en_003"
+                            placeholder="Select Showcase"
+                            fullWidth
+                            formControlName="p_language_en_003"
+                            [status]="
+                              (submitted || f.p_language_en_003.touched) &&
+                              f.p_language_en_003.errors
+                                ? 'danger'
+                                : ''
+                            "
+                          >
+                            <!-- <nb-option value="">Select...</nb-option> <nb-option *ngFor="let item of optYesNo" [value]="item.value" > {{ item.name }} </nb-option> -->
+                          </nb-select>
+                          <!-- <div class="card-text text-white" *ngIf=" (submitted || f.p_language_en_003.touched) && f.p_language_en_003.errors " > <small *ngIf="f.p_language_en_003.errors?.required" class="text-muted text-muted-danger" > Field required </small> </div> -->
+                        </div>
+                      </div>
+
+                      <div class="col-12 col-md-6">
+                        <div class="form-group">
+                          <label> Listening </label>
+                          <nb-select
+                            name="p_language_en_004"
+                            placeholder="Select Showcase"
+                            fullWidth
+                            formControlName="p_language_en_004"
+                            [status]="
+                              (submitted || f.p_language_en_004.touched) &&
+                              f.p_language_en_004.errors
+                                ? 'danger'
+                                : ''
+                            "
+                          >
+                            <!-- <nb-option value="">Select...</nb-option> <nb-option *ngFor="let item of optYesNo" [value]="item.value" > {{ item.name }} </nb-option> -->
+                          </nb-select>
+                          <!-- <div class="card-text text-white" *ngIf=" (submitted || f.p_language_en_004.touched) && f.p_language_en_004.errors " > <small *ngIf="f.p_language_en_004.errors?.required" class="text-muted text-muted-danger" > Field required </small> </div> -->
+                        </div>
+                      </div>
+
+                      <div class="col-12 col-md-6">
+                        <div class="form-group">
+                          <label> Reading </label>
+                          <nb-select
+                            name="p_language_en_005"
+                            placeholder="Select Showcase"
+                            fullWidth
+                            formControlName="p_language_en_005"
+                            [status]="
+                              (submitted || f.p_language_en_005.touched) &&
+                              f.p_language_en_005.errors
+                                ? 'danger'
+                                : ''
+                            "
+                          >
+                            <!-- <nb-option value="">Select...</nb-option> <nb-option *ngFor="let item of optYesNo" [value]="item.value" > {{ item.name }} </nb-option> -->
+                          </nb-select>
+                          <!-- <div class="card-text text-white" *ngIf=" (submitted || f.p_language_en_005.touched) && f.p_language_en_005.errors " > <small *ngIf="f.p_language_en_005.errors?.required" class="text-muted text-muted-danger" > Field required </small> </div> -->
+                        </div>
+                      </div>
+
+                      <div class="col-12 col-md-6">
+                        <div class="form-group">
+                          <label> Writing </label>
+                          <nb-select
+                            name="p_language_en_006"
+                            placeholder="Select Showcase"
+                            fullWidth
+                            formControlName="p_language_en_006"
+                            [status]="
+                              (submitted || f.p_language_en_006.touched) &&
+                              f.p_language_en_006.errors
+                                ? 'danger'
+                                : ''
+                            "
+                          >
+                            <!-- <nb-option value="">Select...</nb-option> <nb-option *ngFor="let item of optYesNo" [value]="item.value" > {{ item.name }} </nb-option> -->
+                          </nb-select>
+                          <!-- <div class="card-text text-white" *ngIf=" (submitted || f.p_language_en_006.touched) && f.p_language_en_006.errors " > <small *ngIf="f.p_language_en_006.errors?.required" class="text-muted text-muted-danger" > Field required </small> </div> -->
+                        </div>
+                      </div>
+                    </div>
+                  </nb-card-body>
+                </nb-card>
+              </div>
+            </ng-container>
+          </div>
+        </nb-card-body>
+      </nb-card>
+
+      <!-- <div class="col-12 col-md-6">
+        <div class="form-group">
+          <label>text_pregunta</label>
+          <nb-select name="_pregunta_" placeholder="Select Showcase" fullWidth formControlName="_pregunta_" [status]=" (submitted || f._pregunta_.touched) && f._pregunta_.errors ? 'danger' : '' " >
+            <nb-option value="">Select...</nb-option> <nb-option *ngFor="let item of optTitles" [value]="item.value" > {{ item.name }} </nb-option>
+          </nb-select>
+          <div class="card-text text-white" *ngIf=" (submitted || f._pregunta_.touched) && f._pregunta_.errors " > <small *ngIf="f._pregunta_.errors?.required" class="text-muted text-muted-danger" > Field required </small> </div>
+        </div>
+      </div> -->
+
+      <!-- <div>
+
+        <!-- language englis -- >
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <nb-card accent="info">
+              <nb-card-body>
+                <div class="row">
+                  <div class="col-12">
+                    <label for="">English</label>
+                  </div>
+                </div>
+              </nb-card-body>
+            </nb-card>
+          </div>
+          <div class="col-12 col-md-6">
+            <nb-card accent="info">
+              <nb-card-body>
+                <div class="row">
+                  <div class="col-12">
+                    <label for="">French</label>
+                  </div>
+                </div>
+              </nb-card-body>
+            </nb-card>
+          </div>
+        </div>
+
+        <!-- work details -- >
+        <nb-card accent="info">
+          <nb-card-body>
+            <div class="row">
+              <div class="col-12">
+                <label for="">Work</label>
+              </div>
+            </div>
+          </nb-card-body>
+        </nb-card>
+
+        <!-- family -- >
+        <nb-card accent="info">
+          <nb-card-body>
+            <div class="row">
+              <div class="col-12">
+                <label for="">Family</label>
+              </div>
+            </div>
+          </nb-card-body>
+        </nb-card>
+
+        <!-- money -- >
+        <nb-card accent="info">
+          <nb-card-body>
+            <div class="row">
+              <div class="col-12">
+                <label for="">Money</label>
+              </div>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </div> -->
+
+      <!-- <ngx-family [process]="process"></ngx-family> -->
 
       <!-- Botones  -->
       <div>
         <div *ngIf="process && process.status === cmStatus.active">
-          <button
-            type="submit"
-            [disabled]="!forma.valid"
-            nbButton
-            fullWidth
-            status="primary"
-          >
+          <!-- <button type="submit" [disabled]="!forma.valid" nbButton fullWidth status="primary" > -->
+          <button type="submit" nbButton fullWidth status="primary">
             Submit
           </button>
         </div>
