@@ -1,1 +1,54 @@
-<p>sec-finatial works!</p>
+<!-- money -->
+<ng-container [formGroup]="parentForm">
+  <nb-card accent="info" [formGroupName]="nameSection">
+    <nb-card-header>
+      <label for="">Financial</label>
+    </nb-card-header>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label>
+              How much funds do you have available to immigrate to Canada?
+              (Canadian Dollars)
+            </label>
+            <nb-select
+              name="p_finantial_001"
+              placeholder="Select Showcase"
+              fullWidth
+              formControlName="p_finantial_001"
+              [status]="
+                (submitted || f.p_finantial_001.touched) &&
+                f.p_finantial_001.errors
+                  ? 'danger'
+                  : ''
+              "
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option
+                *ngFor="let item of optFinantialFounds"
+                [value]="item.value"
+              >
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <div
+              class="card-text text-white"
+              *ngIf="
+                (submitted || f.p_finantial_001.touched) &&
+                f.p_finantial_001.errors
+              "
+            >
+              <small
+                *ngIf="f.p_finantial_001.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</ng-container>

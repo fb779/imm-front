@@ -1,27 +1,29 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, OnDestroy } from "@angular/core";
 import {
   ControlContainer,
-  FormGroup,
   FormBuilder,
+  FormGroup,
+  FormArray,
   Validators,
 } from "@angular/forms";
 import { AssessmentFormService } from "../../../services/services.index";
 import { IOption } from "../../../models/Option";
-import { FormArray } from "@angular/forms";
+import { IBaseForm } from "../IBaseForm";
 
 @Component({
   selector: "ngx-sec-education",
   templateUrl: "./sec-education.component.html",
   styleUrls: ["./sec-education.component.scss"],
 })
-export class SecEducationComponent implements OnInit {
+export class SecEducationComponent implements IBaseForm, OnInit, OnDestroy {
   parentForm: FormGroup;
   childForm: FormGroup;
 
   @Input("nameSection") nameSection: string = "education";
+  @Input("submitted") submitted: boolean = false;
   @Input("data") data: any = {};
-  @Input("submitted") submitted: Boolean = false;
 
+  optYesNo: IOption[] = [];
   optLevelEducation: IOption[] = [];
   optYearsEducation: IOption[] = [];
   optCountries: IOption[] = [];
@@ -31,37 +33,69 @@ export class SecEducationComponent implements OnInit {
     private _parentControl: ControlContainer,
     private _asf: AssessmentFormService
   ) {
-    this.LoadOptions();
-  }
-
-  ngOnInit() {
-    this.build();
-    this.loadInformation();
+    this.loadOptions();
   }
 
   build() {
     this.parentForm = this._parentControl.control as FormGroup;
 
     this.childForm = this._fb.group({
-      p_education_001: this._fb.control("", []),
-      p_education_list: this._fb.array([this.initFormEduList()]),
+      p_education_001: this._fb.control("", [Validators.required]),
+      p_education_list: this._fb.array([this.newEducationRecord()]),
+      p_education_spouse_001: this._fb.control("", [Validators.required]),
+      p_education_spouse_list: this._fb.array([]),
     });
+
+    this.pf.maritalStatus &&
+      this.pf.maritalStatus
+        .get("p_marital_001")
+        .valueChanges.subscribe((value) => {
+          if (value == 2) {
+            this.childForm.get("p_education_spouse_001").enable();
+          } else {
+            this.childForm.get("p_education_spouse_001").reset();
+            this.childForm.get("p_education_spouse_001").disable();
+            this.fEduSpList.clear();
+          }
+        });
 
     this.parentForm.addControl(this.nameSection, this.childForm);
   }
 
   loadInformation() {
-    const loadValues = Object.keys(this.childForm.value).reduce((acc, cur) => {
-      return this.data[cur] ? { ...acc, [cur]: this.data[cur] } : acc;
+    const loadValues = Object.keys(this.f).reduce((acc, cur) => {
+      let value = this.data[cur] || "";
+
+      if (
+        !this.data[cur] &&
+        (cur === "p_education_list" || cur === "p_education_spouse_list")
+      ) {
+        value = [];
+      }
+
+      return { ...acc, [cur]: value };
     }, {});
 
-    this.childForm.setValue({
-      ...this.childForm.value,
+    this.data.p_education_list &&
+      this.data.p_education_list.forEach((el, i) => {
+        if (i > 0) this.addEducation();
+      });
+
+    this.data.p_education_spouse_list &&
+      this.data.p_education_spouse_list.forEach(() => {
+        this.addEducationSpouse();
+      });
+
+    this.childForm.patchValue({
       ...loadValues,
     });
   }
 
-  LoadOptions() {
+  loadOptions() {
+    this._asf.getYesNo().subscribe((data) => {
+      this.optYesNo = data;
+    });
+
     this._asf.getLevelEducation().subscribe((data) => {
       this.optLevelEducation = data;
     });
@@ -75,7 +109,7 @@ export class SecEducationComponent implements OnInit {
     });
   }
 
-  initFormEduList() {
+  newEducationRecord() {
     return this._fb.group({
       level: ["", [Validators.required]],
       study: ["", [Validators.required]],
@@ -83,6 +117,24 @@ export class SecEducationComponent implements OnInit {
       duration: ["", [Validators.required]],
       country: ["CA", [Validators.required]],
     });
+  }
+
+  ngOnInit() {
+    this.build();
+    this.loadInformation();
+  }
+
+  ngOnDestroy() {}
+
+  get pf() {
+    return this.parentForm.controls;
+  }
+
+  get isMarried() {
+    return this.pf.maritalStatus &&
+      this.pf.maritalStatus.get("p_marital_001").value == 2
+      ? true
+      : false;
   }
 
   get f() {
@@ -93,14 +145,29 @@ export class SecEducationComponent implements OnInit {
     return this.f.p_education_list as FormArray;
   }
 
-  add() {
+  addEducation() {
     if (this.fEduList.length === 10) return;
 
-    this.fEduList.push(this.initFormEduList());
+    this.fEduList.push(this.newEducationRecord());
   }
-  remove(ix: number) {
+
+  removeEducation(ix: number) {
     if (this.fEduList.length > 1) {
       this.fEduList.removeAt(ix);
     }
+  }
+
+  get fEduSpList() {
+    return this.f.p_education_spouse_list as FormArray;
+  }
+
+  addEducationSpouse() {
+    if (this.fEduSpList.length === 10) return;
+
+    this.fEduSpList.push(this.newEducationRecord());
+  }
+
+  removeEducationSpouse(ix: number) {
+    this.fEduSpList.removeAt(ix);
   }
 }

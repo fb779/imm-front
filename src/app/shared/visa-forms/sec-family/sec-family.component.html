@@ -1,1 +1,165 @@
-<p>sec-family works!</p>
+<!-- family -->
+<ng-container [formGroup]="parentForm">
+  <nb-card accent="info" [formGroupName]="nameSection">
+    <nb-card-header>
+      <label for="">Family Relations in Canada</label>
+    </nb-card-header>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label>
+              Do you or your accompanying spouse or common-law partner, have a
+              relative in Canada?
+            </label>
+            <nb-select
+              name="p_family_001"
+              placeholder="Select Showcase"
+              fullWidth
+              formControlName="p_family_001"
+              [status]="
+                (submitted || f.p_family_001.touched) && f.p_family_001.errors
+                  ? 'danger'
+                  : ''
+              "
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option *ngFor="let item of optYesNo" [value]="item.value">
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <div
+              class="card-text text-white"
+              *ngIf="
+                (submitted || f.p_family_001.touched) && f.p_family_001.errors
+              "
+            >
+              <small
+                *ngIf="f.p_family_001.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label> Do you have children? </label>
+            <nb-select
+              name="p_family_002"
+              placeholder="Select Showcase"
+              fullWidth
+              formControlName="p_family_002"
+              [status]="
+                (submitted || f.p_family_002.touched) && f.p_family_002.errors
+                  ? 'danger'
+                  : ''
+              "
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option *ngFor="let item of optYesNo" [value]="item.value">
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <div
+              class="card-text text-white"
+              *ngIf="
+                (submitted || f.p_family_002.touched) && f.p_family_002.errors
+              "
+            >
+              <small
+                *ngIf="f.p_family_002.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label> Number of Children? </label>
+
+            <nb-select
+              name="p_family_003"
+              placeholder="Select Showcase"
+              fullWidth
+              formControlName="p_family_003"
+              [status]="
+                (submitted || f.p_family_003.touched) && f.p_family_003.errors
+                  ? 'danger'
+                  : ''
+              "
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option
+                *ngFor="let item of optRangeChildren"
+                [value]="item.value"
+              >
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <div
+              class="card-text text-white"
+              *ngIf="
+                (submitted || f.p_family_003.touched) && f.p_family_003.errors
+              "
+            >
+              <small
+                *ngIf="f.p_family_003.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label> List their ages (e.g. 3, 10, 18) </label>
+            <input
+              type="text"
+              name="p_family_004"
+              placeholder="Select Showcase"
+              nbInput
+              fullWidth
+              formControlName="p_family_004"
+              [status]="
+                (submitted || f.p_family_004.touched) && f.p_family_004.errors
+                  ? 'danger'
+                  : ''
+              "
+            />
+
+            <div
+              class="card-text text-white"
+              *ngIf="
+                (submitted || f.p_family_004.touched) && f.p_family_004.errors
+              "
+            >
+              <small
+                *ngIf="f.p_family_004.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field is required
+              </small>
+              <small
+                *ngIf="f.p_family_004.errors?.ageComplete"
+                class="text-muted text-muted-danger"
+              >
+                You need check the ages, you need write
+                {{ f.p_family_004.errors.ageComplete.requiredAges }} ages
+                between {{ f.p_family_004.errors.ageComplete.minAge }} and
+                {{ f.p_family_004.errors.ageComplete.maxAge }} years old
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</ng-container>

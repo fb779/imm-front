@@ -10,10 +10,7 @@ import {
   NbButtonModule,
   NbCheckboxModule,
   NbDatepickerModule,
-  NbStepperModule,
   NbListModule,
-  NbAccordionModule,
-  NbSpinnerModule,
   NbAlertModule,
 } from "@nebular/theme";
 
@@ -25,11 +22,8 @@ const nebular = [
   NbCheckboxModule,
   NbDatepickerModule,
   NbButtonModule,
-  // NbStepperModule,
-  // NbListModule,
-  // NbAccordionModule,
-  // NbSpinnerModule,
-  // NbAlertModule,
+  NbListModule,
+  NbAlertModule,
 ];
 
 import { FamilyModule } from "../../components/family/family.module";

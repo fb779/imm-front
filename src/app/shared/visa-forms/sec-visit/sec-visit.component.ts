@@ -48,12 +48,12 @@ export class SecVisitComponent implements IBaseForm, OnInit {
   }
 
   loadInformation() {
-    const loadValues = Object.keys(this.childForm.value).reduce((acc, cur) => {
-      return this.data[cur] ? { ...acc, [cur]: this.data[cur] } : acc;
+    const loadValues = Object.keys(this.f).reduce((acc, cur) => {
+      const value = this.data[cur] || "";
+      return { ...acc, [cur]: value };
     }, {});
 
-    this.childForm.setValue({
-      ...this.childForm.value,
+    this.childForm.patchValue({
       ...loadValues,
     });
   }

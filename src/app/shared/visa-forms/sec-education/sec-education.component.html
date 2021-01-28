@@ -14,10 +14,12 @@
         </div>
       </div>
       <!-- education history -->
-      <nb-card>
+      <nb-card accent="primary">
         <nb-card-header>
           <div class="row">
-            <div class="col-10">Education History</div>
+            <div class="col-12 col-md-10">
+              <label> Education History </label>
+            </div>
             <div class="col text-right">
               <button
                 nbButton
@@ -26,7 +28,7 @@
                 size="tiny"
                 type="button"
                 [disabled]="fEduList.length === 10"
-                (click)="add()"
+                (click)="addEducation()"
               >
                 <nb-icon icon="plus-circle-outline"></nb-icon>
               </button>
@@ -46,10 +48,8 @@
               </tr>
             </thead>
             <tbody>
-              <tr
-                *ngFor="let educationList of fEduList.controls; let i = index"
-              >
-                <ng-container [formGroup]="educationList">
+              <tr *ngFor="let eduList of fEduList.controls; let i = index">
+                <ng-container [formGroup]="eduList">
                   <td>
                     <div class="form-group mb-0">
                       <nb-select
@@ -58,8 +58,8 @@
                         fullWidth
                         formControlName="level"
                         [status]="
-                          (submitted || educationList.controls.level.touched) &&
-                          educationList.controls.level.errors
+                          (submitted || eduList.controls.level.touched) &&
+                          eduList.controls.level.errors
                             ? 'danger'
                             : ''
                         "
@@ -72,7 +72,6 @@
                           {{ item.name }}
                         </nb-option>
                       </nb-select>
-                      <!-- <div class="card-text text-white" *ngIf=" (submitted || educationList.controls.level.touched) && educationList.controls.level.errors " > <small *ngIf="educationList.controls.level.errors?.required" class="text-muted text-muted-danger" > Field required </small> </div> -->
                     </div>
                   </td>
                   <td>
@@ -85,15 +84,15 @@
                         fullWidth
                         formControlName="study"
                         [status]="
-                          (submitted || educationList.controls.study.touched) &&
-                          educationList.controls.study.errors
+                          (submitted || eduList.controls.study.touched) &&
+                          eduList.controls.study.errors
                             ? 'danger'
                             : ''
                         "
                       />
 
-                      <!-- <div class="card-text" *ngIf=" (submitted || educationList.controls.study.touched) && educationList.controls.study.errors " >
-                            <small *ngIf=" educationList.controls.study.errors?.required " class="form-text text-muted text-muted-danger" > Field required </small>
+                      <!-- <div class="card-text" *ngIf=" (submitted || eduList.controls.study.touched) && eduList.controls.study.errors " >
+                            <small *ngIf=" eduList.controls.study.errors?.required " class="form-text text-muted text-muted-danger" > Field required </small>
                           </div> -->
                     </div>
                   </td>
@@ -107,16 +106,15 @@
                         fullWidth
                         formControlName="institution"
                         [status]="
-                          (submitted ||
-                            educationList.controls.institution.touched) &&
-                          educationList.controls.institution.errors
+                          (submitted || eduList.controls.institution.touched) &&
+                          eduList.controls.institution.errors
                             ? 'danger'
                             : ''
                         "
                       />
 
-                      <!-- <div class="card-text" *ngIf=" (submitted || educationList.controls.institution.touched) && educationList.controls.institution.errors " >
-                            <small *ngIf=" educationList.controls.institution.errors?.required " class="form-text text-muted text-muted-danger" > Field required </small>
+                      <!-- <div class="card-text" *ngIf=" (submitted || eduList.controls.institution.touched) && eduList.controls.institution.errors " >
+                            <small *ngIf=" eduList.controls.institution.errors?.required " class="form-text text-muted text-muted-danger" > Field required </small>
                           </div> -->
                     </div>
                   </td>
@@ -128,9 +126,8 @@
                         fullWidth
                         formControlName="duration"
                         [status]="
-                          (submitted ||
-                            educationList.controls.duration.touched) &&
-                          educationList.controls.duration.errors
+                          (submitted || eduList.controls.duration.touched) &&
+                          eduList.controls.duration.errors
                             ? 'danger'
                             : ''
                         "
@@ -143,10 +140,13 @@
                           {{ item.name }}
                         </nb-option>
                       </nb-select>
-                      <!-- <div class="card-text text-white" *ngIf=" (submitted || educationList.controls.duration.touched) && educationList.controls.duration.errors " > <small *ngIf="educationList.controls.duration.errors?.required" class="text-muted text-muted-danger" > Field required </small> </div> -->
                     </div>
                   </td>
-                  <!-- <td>4</td> -->
+                  <!-- <td>
+                    <div class="form-group mb-0">
+                      <nb-select name="country" placeholder="Select Showcase" fullWidth formControlName="country" [status]=" (submitted || eduList.controls.country.touched) && eduList.controls.country.errors ? 'danger' : '' " > <nb-option value="">Select...</nb-option> <nb-option *ngFor="let item of optCountries" [value]="item.value" > {{ item.name }} </nb-option> </nb-select>
+                    </div>
+                  </td> -->
                   <td class="text-center">
                     <button
                       nbButton
@@ -155,7 +155,7 @@
                       status="danger"
                       size="tiny"
                       [disabled]="fEduList.length === 1"
-                      (click)="remove(i)"
+                      (click)="removeEducation(i)"
                     >
                       <nb-icon icon="close-circle-outline"></nb-icon>
                       <!-- <nb-icon icon="file-remove-outline"></nb-icon> -->
@@ -171,7 +171,7 @@
       <div class="row">
         <div class="col-12">
           <div class="form-group">
-            <label for="p_education_001">
+            <label>
               Have you completed an Education Credential Assessment ECA for your
               education outside of Canada?
             </label>
@@ -196,6 +196,207 @@
           </div>
         </div>
       </div>
+
+      <ng-container *ngIf="isMarried">
+        <nb-card accent="success">
+          <nb-card-header>
+            <div class="row">
+              <div class="col-12 col-md-10">
+                <label> Spouse Education History </label>
+              </div>
+              <div class="col text-right">
+                <button
+                  nbButton
+                  outLine
+                  status="primary"
+                  size="tiny"
+                  type="button"
+                  [disabled]="fEduSpList.length === 10"
+                  (click)="addEducationSpouse()"
+                >
+                  <nb-icon icon="plus-circle-outline"></nb-icon>
+                </button>
+              </div>
+            </div>
+          </nb-card-header>
+          <nb-card-body>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th><label>Level</label></th>
+                  <th><label>Field of Study</label></th>
+                  <th><label>Name of School/Institution</label></th>
+                  <th><label>Duration (yrs)</label></th>
+                  <!-- <th><label>Country</label></th> -->
+                  <th><label>Option</label></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="let eduSpList of fEduSpList.controls; let i = index"
+                >
+                  <ng-container [formGroup]="eduSpList">
+                    <td>
+                      <div class="form-group mb-0">
+                        <nb-select
+                          name="level"
+                          placeholder="Select Showcase"
+                          fullWidth
+                          formControlName="level"
+                          [status]="
+                            (submitted || eduSpList.controls.level.touched) &&
+                            eduSpList.controls.level.errors
+                              ? 'danger'
+                              : ''
+                          "
+                        >
+                          <nb-option value="">Select...</nb-option>
+                          <nb-option
+                            *ngFor="let item of optLevelEducation"
+                            [value]="item.value"
+                          >
+                            {{ item.name }}
+                          </nb-option>
+                        </nb-select>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="form-group mb-0">
+                        <input
+                          type="text"
+                          name="study"
+                          placeholder="Study"
+                          nbInput
+                          fullWidth
+                          formControlName="study"
+                          [status]="
+                            (submitted || eduSpList.controls.study.touched) &&
+                            eduSpList.controls.study.errors
+                              ? 'danger'
+                              : ''
+                          "
+                        />
+
+                        <!-- <div class="card-text" *ngIf=" (submitted || eduSpList.controls.study.touched) && eduSpList.controls.study.errors " >
+                            <small *ngIf=" eduSpList.controls.study.errors?.required " class="form-text text-muted text-muted-danger" > Field required </small>
+                          </div> -->
+                      </div>
+                    </td>
+                    <td>
+                      <div class="form-group mb-0">
+                        <input
+                          type="text"
+                          name="institution"
+                          placeholder="School or Institution"
+                          nbInput
+                          fullWidth
+                          formControlName="institution"
+                          [status]="
+                            (submitted ||
+                              eduSpList.controls.institution.touched) &&
+                            eduSpList.controls.institution.errors
+                              ? 'danger'
+                              : ''
+                          "
+                        />
+
+                        <!-- <div class="card-text" *ngIf=" (submitted || eduSpList.controls.institution.touched) && eduSpList.controls.institution.errors " >
+                            <small *ngIf=" eduSpList.controls.institution.errors?.required " class="form-text text-muted text-muted-danger" > Field required </small>
+                          </div> -->
+                      </div>
+                    </td>
+                    <td>
+                      <div class="form-group mb-0">
+                        <nb-select
+                          name="duration"
+                          placeholder="Select Showcase"
+                          fullWidth
+                          formControlName="duration"
+                          [status]="
+                            (submitted ||
+                              eduSpList.controls.duration.touched) &&
+                            eduSpList.controls.duration.errors
+                              ? 'danger'
+                              : ''
+                          "
+                        >
+                          <nb-option value="">Select...</nb-option>
+                          <nb-option
+                            *ngFor="let item of optYearsEducation"
+                            [value]="item.value"
+                          >
+                            {{ item.name }}
+                          </nb-option>
+                        </nb-select>
+                      </div>
+                    </td>
+                    <!-- <td>
+                    <div class="form-group mb-0">
+                      <nb-select name="country" placeholder="Select Showcase" fullWidth formControlName="country" [status]=" (submitted || eduSpList.controls.country.touched) && eduSpList.controls.country.errors ? 'danger' : '' " > <nb-option value="">Select...</nb-option> <nb-option *ngFor="let item of optCountries" [value]="item.value" > {{ item.name }} </nb-option> </nb-select>
+                    </div>
+                  </td> -->
+                    <td class="text-center">
+                      <button
+                        nbButton
+                        type="button"
+                        ghost
+                        status="danger"
+                        size="tiny"
+                        (click)="removeEducationSpouse(i)"
+                      >
+                        <nb-icon icon="close-circle-outline"></nb-icon>
+                        <!-- <nb-icon icon="file-remove-outline"></nb-icon> -->
+                      </button>
+                    </td>
+                  </ng-container>
+                </tr>
+              </tbody>
+            </table>
+          </nb-card-body>
+        </nb-card>
+
+        <div class="row">
+          <div class="col-12">
+            <div class="form-group">
+              <label>
+                Has your spouse completed an Education Credential Assessment ECA
+                for his/her education outside of Canada?
+              </label>
+              <nb-select
+                name="p_education_spouse_001"
+                placeholder="Select Showcase"
+                fullWidth
+                formControlName="p_education_spouse_001"
+                [status]="
+                  (submitted || f.p_education_spouse_001.touched) &&
+                  f.p_education_spouse_001.errors
+                    ? 'danger'
+                    : ''
+                "
+              >
+                <nb-option value="">Select...</nb-option>
+                <nb-option *ngFor="let item of optYesNo" [value]="item.value">
+                  {{ item.name }}
+                </nb-option>
+              </nb-select>
+              <div
+                class="card-text text-white"
+                *ngIf="
+                  (submitted || f.p_education_spouse_001.touched) &&
+                  f.p_education_spouse_001.errors
+                "
+              >
+                <small
+                  *ngIf="f.p_education_spouse_001.errors?.required"
+                  class="text-muted text-muted-danger"
+                >
+                  Field required
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
     </nb-card-body>
   </nb-card>
 </ng-container>

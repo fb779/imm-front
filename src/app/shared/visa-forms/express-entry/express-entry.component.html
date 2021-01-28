@@ -1293,43 +1293,7 @@
         </nb-card-body>
       </nb-card>
 
-      <!-- <div class="col-12 col-md-6">
-        <div class="form-group">
-          <label>text_pregunta</label>
-          <nb-select name="_pregunta_" placeholder="Select Showcase" fullWidth formControlName="_pregunta_" [status]=" (submitted || f._pregunta_.touched) && f._pregunta_.errors ? 'danger' : '' " >
-            <nb-option value="">Select...</nb-option> <nb-option *ngFor="let item of optTitles" [value]="item.value" > {{ item.name }} </nb-option>
-          </nb-select>
-          <div class="card-text text-white" *ngIf=" (submitted || f._pregunta_.touched) && f._pregunta_.errors " > <small *ngIf="f._pregunta_.errors?.required" class="text-muted text-muted-danger" > Field required </small> </div>
-        </div>
-      </div> -->
-
       <!-- <div>
-
-        <!-- language englis -- >
-        <div class="row">
-          <div class="col-12 col-md-6">
-            <nb-card accent="info">
-              <nb-card-body>
-                <div class="row">
-                  <div class="col-12">
-                    <label for="">English</label>
-                  </div>
-                </div>
-              </nb-card-body>
-            </nb-card>
-          </div>
-          <div class="col-12 col-md-6">
-            <nb-card accent="info">
-              <nb-card-body>
-                <div class="row">
-                  <div class="col-12">
-                    <label for="">French</label>
-                  </div>
-                </div>
-              </nb-card-body>
-            </nb-card>
-          </div>
-        </div>
 
         <!-- work details -- >
         <nb-card accent="info">
@@ -1376,15 +1340,11 @@
           </button>
         </div>
 
-        <div
-          *ngIf="
-            process && process.status !== cmStatus.active && url[0] !== 'pages'
-          "
-        >
+        <!-- <div *ngIf=" process && process.status !== cmStatus.active && url[0] !== 'pages' " >
           <button type="submit" nbButton fullWidth status="primary">
             Update
           </button>
-        </div>
+        </div> -->
       </div>
     </nb-card-body>
   </nb-card>

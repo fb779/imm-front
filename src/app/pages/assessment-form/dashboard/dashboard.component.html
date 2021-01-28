@@ -3,10 +3,10 @@
   <nb-list>
     <nb-list-item *ngFor="let process of processes">
       <div class="row">
-        <div class="col-8">
+        <div class="col-12 col-md-8">
           {{ process.visa_category.name }}
         </div>
-        <div class="col-4">
+        <div class="col-12 col-md-4">
           <button
             (click)="goProcess(process)"
             nbButton

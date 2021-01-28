@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, OnInit } from "@angular/core";
+import { Component, forwardRef, Input, OnInit, OnDestroy } from "@angular/core";
 import {
   ControlContainer,
   FormBuilder,
@@ -14,7 +14,7 @@ import { IBaseForm } from "../IBaseForm";
   templateUrl: "./sec-marital-status.component.html",
   styleUrls: ["./sec-marital-status.component.scss"],
 })
-export class SecMaritalStatusComponent implements IBaseForm, OnInit {
+export class SecMaritalStatusComponent implements IBaseForm, OnInit, OnDestroy {
   parentForm: FormGroup;
   childForm: FormGroup;
 
@@ -38,8 +38,8 @@ export class SecMaritalStatusComponent implements IBaseForm, OnInit {
 
     this.childForm = this._fb.group({
       p_marital_001: this._fb.control("", [Validators.required]),
-      p_marital_002: this._fb.control("", []),
-      p_marital_003: this._fb.control("", []),
+      p_marital_002: this._fb.control("", [Validators.required]),
+      p_marital_003: this._fb.control("", [Validators.required]),
     });
 
     this.childForm.controls["p_marital_001"].valueChanges.subscribe(
@@ -48,11 +48,11 @@ export class SecMaritalStatusComponent implements IBaseForm, OnInit {
           this.childForm.get("p_marital_002").enable();
           this.childForm.get("p_marital_003").enable();
         } else {
-          this.childForm.get("p_marital_002").disable();
           this.childForm.get("p_marital_002").reset();
-
-          this.childForm.get("p_marital_003").disable();
           this.childForm.get("p_marital_003").reset();
+
+          this.childForm.get("p_marital_002").disable();
+          this.childForm.get("p_marital_003").disable();
         }
       }
     );
@@ -61,12 +61,12 @@ export class SecMaritalStatusComponent implements IBaseForm, OnInit {
   }
 
   loadInformation() {
-    const loadValues = Object.keys(this.childForm.value).reduce((acc, cur) => {
-      return this.data[cur] ? { ...acc, [cur]: this.data[cur] } : acc;
+    const loadValues = Object.keys(this.f).reduce((acc, cur) => {
+      const value = this.data[cur] || "";
+      return { ...acc, [cur]: value };
     }, {});
 
-    this.childForm.setValue({
-      ...this.childForm.value,
+    this.childForm.patchValue({
       ...loadValues,
     });
   }
@@ -83,6 +83,10 @@ export class SecMaritalStatusComponent implements IBaseForm, OnInit {
   ngOnInit() {
     this.build();
     this.loadInformation();
+  }
+
+  ngOnDestroy(): void {
+    this.parentForm.removeControl(this.nameSection);
   }
 
   get f() {

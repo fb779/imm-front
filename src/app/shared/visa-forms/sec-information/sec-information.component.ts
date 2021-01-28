@@ -44,12 +44,12 @@ export class SecInformationComponent implements IBaseForm, OnInit {
   }
 
   loadInformation(): void {
-    const loadValues = Object.keys(this.childForm.value).reduce((acc, cur) => {
-      return this.data[cur] ? { ...acc, [cur]: this.data[cur] } : acc;
+    const loadValues = Object.keys(this.f).reduce((acc, cur) => {
+      let value = this.data[cur] || "";
+      return { ...acc, [cur]: value };
     }, {});
 
-    this.childForm.setValue({
-      ...this.childForm.value,
+    this.childForm.patchValue({
       ...loadValues,
     });
   }

@@ -34,6 +34,8 @@ export const passwordRegex = new RegExp(
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/
 );
 
+export const agesRegex = new RegExp(/^(\d{1,2})(\,\d{1,2})*$/);
+
 export const roles = {
   admin: "ADMIN_ROLE",
   client: "CLIENT_ROLE",

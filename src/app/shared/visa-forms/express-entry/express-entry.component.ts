@@ -192,13 +192,6 @@ export class ExpressEntryComponent implements OnInit {
       p_workdetail_003: this._formBuilder.control("", []),
       p_workdetail_004: this._formBuilder.control("", []),
 
-      p_workdetail_current_005: this._formBuilder.control("", []),
-      p_workdetail_current_006: this._formBuilder.control("", []),
-      p_workdetail_current_007: this._formBuilder.control("", []),
-      p_workdetail_current_008: this._formBuilder.control("", []),
-      p_workdetail_current_009: this._formBuilder.control("", []),
-      p_workdetail_current_010: this._formBuilder.control("", []),
-
       p_workdetail_list: new FormArray([]),
       p_workdetail_spouse_list: new FormArray([]),
 

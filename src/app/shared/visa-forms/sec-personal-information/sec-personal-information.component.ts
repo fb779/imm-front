@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, OnDestroy } from "@angular/core";
 import { Title } from "../../../models/Titlel";
 import {
   ControlContainer,
@@ -15,7 +15,8 @@ import { IBaseForm } from "../IBaseForm";
   templateUrl: "./sec-personal-information.component.html",
   styleUrls: ["./sec-personal-information.component.scss"],
 })
-export class SecPersonalInformationComponent implements IBaseForm, OnInit {
+export class SecPersonalInformationComponent
+  implements IBaseForm, OnInit, OnDestroy {
   parentForm: FormGroup;
   childForm: FormGroup;
 
@@ -33,7 +34,7 @@ export class SecPersonalInformationComponent implements IBaseForm, OnInit {
     private _parentControl: ControlContainer,
     private _asf: AssessmentFormService
   ) {
-    this.LoadOptions();
+    this.loadOptions();
   }
 
   build() {
@@ -56,8 +57,9 @@ export class SecPersonalInformationComponent implements IBaseForm, OnInit {
       other_citizenship: this._fb.control("", []),
       country_residence: this._fb.control("", [Validators.required]),
       status_residence: this._fb.control("", [Validators.required]),
-      // status_residence_other: this._fb.control({ value: "", disabled: true }, [ Validators.required, ]),
-      status_residence_other: this._fb.control("", [Validators.required]),
+      status_residence_other: this._fb.control({ value: "", disabled: true }, [
+        Validators.required,
+      ]),
       age: this._fb.control("", [
         Validators.required,
         Validators.min(0),
@@ -70,8 +72,8 @@ export class SecPersonalInformationComponent implements IBaseForm, OnInit {
         if (value == 5) {
           this.childForm.get("status_residence_other").enable();
         } else {
-          this.childForm.get("status_residence_other").disable();
           this.childForm.get("status_residence_other").reset();
+          this.childForm.get("status_residence_other").disable();
         }
       }
     );
@@ -80,17 +82,17 @@ export class SecPersonalInformationComponent implements IBaseForm, OnInit {
   }
 
   loadInformation() {
-    const loadValues = Object.keys(this.childForm.value).reduce((acc, cur) => {
-      return this.data[cur] ? { ...acc, [cur]: this.data[cur] } : acc;
+    const loadValues = Object.keys(this.f).reduce((acc, cur) => {
+      let value = this.data[cur] || "";
+      return { ...acc, [cur]: value };
     }, {});
 
-    this.childForm.setValue({
-      ...this.childForm.value,
+    this.childForm.patchValue({
       ...loadValues,
     });
   }
 
-  LoadOptions() {
+  loadOptions() {
     this._asf.getTitles().subscribe((data) => {
       this.optTitles = data;
     });
@@ -111,6 +113,11 @@ export class SecPersonalInformationComponent implements IBaseForm, OnInit {
   ngOnInit() {
     this.build();
     this.loadInformation();
+  }
+
+  ngOnDestroy(): void {
+    console.log("destruccion del componente");
+    this.parentForm.removeControl(this.nameSection);
   }
 
   get f() {

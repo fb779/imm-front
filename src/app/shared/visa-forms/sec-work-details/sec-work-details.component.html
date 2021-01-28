@@ -1,1 +1,746 @@
-<p>sec-work-details works!</p>
+<!-- work details -->
+<ng-container [formGroup]="parentForm">
+  <nb-card accent="info" [formGroupName]="nameSection">
+    <nb-card-header>
+      <label for="">Work Details</label>
+    </nb-card-header>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label>
+              Do you have a certificate of qualification from a Canadian
+              province, territory or federal body (Trade Workers Only)?
+            </label>
+            <nb-select
+              name="p_workdetail_001"
+              placeholder="Select Showcase"
+              fullWidth
+              formControlName="p_workdetail_001"
+              [status]="
+                (submitted || f.p_workdetail_001.touched) &&
+                f.p_workdetail_001.errors
+                  ? 'danger'
+                  : ''
+              "
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option *ngFor="let item of optYesNo" [value]="item.value">
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <div
+              class="card-text text-white"
+              *ngIf="
+                (submitted || f.p_workdetail_001.touched) &&
+                f.p_workdetail_001.errors
+              "
+            >
+              <small
+                *ngIf="f.p_workdetail_001.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label>
+              Do you have a nomination certificate from a Canadian province?
+            </label>
+            <nb-select
+              name="p_workdetail_002"
+              placeholder="Select Showcase"
+              fullWidth
+              formControlName="p_workdetail_002"
+              [status]="
+                (submitted || f.p_workdetail_002.touched) &&
+                f.p_workdetail_002.errors
+                  ? 'danger'
+                  : ''
+              "
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option *ngFor="let item of optYesNo" [value]="item.value">
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <div
+              class="card-text text-white"
+              *ngIf="
+                (submitted || f.p_workdetail_002.touched) &&
+                f.p_workdetail_002.errors
+              "
+            >
+              <small
+                *ngIf="f.p_workdetail_002.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label>
+              Do you have an official offer of employment from a Canadian
+              Employer (LMIA or approved LMIA-exempt occupation)?
+            </label>
+            <nb-select
+              name="p_workdetail_003"
+              placeholder="Select Showcase"
+              fullWidth
+              formControlName="p_workdetail_003"
+              [status]="
+                (submitted || f.p_workdetail_003.touched) &&
+                f.p_workdetail_003.errors
+                  ? 'danger'
+                  : ''
+              "
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option *ngFor="let item of optYesNo" [value]="item.value">
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <div
+              class="card-text text-white"
+              *ngIf="
+                (submitted || f.p_workdetail_003.touched) &&
+                f.p_workdetail_003.errors
+              "
+            >
+              <small
+                *ngIf="f.p_workdetail_003.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label> What is the title of the job being offered? </label>
+            <!-- <input type="text" name="p_workdetail_004" placeholder="Title Job offer" nbInput fullWidth formControlName="p_workdetail_004" [status]=" (submitted || f.p_workdetail_004.touched) && f.p_workdetail_004.errors ? 'danger' : '' " /> -->
+            <nb-select
+              name="p_workdetail_004"
+              placeholder="Select Showcase"
+              fullWidth
+              formControlName="p_workdetail_004"
+              [status]="
+                (submitted || f.p_workdetail_004.touched) &&
+                f.p_workdetail_004.errors
+                  ? 'danger'
+                  : ''
+              "
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option *ngFor="let item of optNocList" [value]="item.value">
+                {{ item.value }} - {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <div
+              class="card-text text-white"
+              *ngIf="
+                (submitted || f.p_workdetail_004.touched) &&
+                f.p_workdetail_004.errors
+              "
+            >
+              <small
+                *ngIf="f.p_workdetail_004.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Work history -->
+      <ng-container>
+        <nb-card accent="primary">
+          <nb-card-header>
+            <div class="row">
+              <div class="col-10">
+                <label> Work History </label>
+              </div>
+              <div class="col text-right">
+                <button
+                  nbButton
+                  outLine
+                  status="primary"
+                  size="tiny"
+                  type="button"
+                  [disabled]="fWorkList.length === maxItems"
+                  (click)="addWorDetail()"
+                >
+                  <nb-icon icon="plus-circle-outline"></nb-icon>
+                </button>
+              </div>
+            </div>
+          </nb-card-header>
+          <nb-list>
+            <nb-list-item
+              *ngFor="let workItem of fWorkList.controls; let i = index"
+            >
+              <ng-container [formGroup]="workItem">
+                <div class="row">
+                  <div class="col-12">
+                    <label for="">Work detail {{ i + 1 }}</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 col-md-4">
+                    <div class="form-group">
+                      <label>Title</label>
+                      <input
+                        type="text"
+                        name="title"
+                        placeholder="Title"
+                        nbInput
+                        fullWidth
+                        formControlName="title"
+                        [status]="
+                          (submitted || workItem.controls.title.touched) &&
+                          workItem.controls.title.errors
+                            ? 'danger'
+                            : ''
+                        "
+                      />
+                      <div
+                        class="card-text"
+                        *ngIf="
+                          (submitted || workItem.controls.title.touched) &&
+                          workItem.controls.title.errors
+                        "
+                      >
+                        <small
+                          *ngIf="workItem.controls.title.errors?.required"
+                          class="form-text text-muted text-muted-danger"
+                        >
+                          Field required
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-4">
+                    <div class="form-group">
+                      <label>Duties</label>
+                      <input
+                        type="text"
+                        name="duties"
+                        placeholder="Duties"
+                        nbInput
+                        fullWidth
+                        formControlName="duties"
+                        [status]="
+                          (submitted || workItem.controls.duties.touched) &&
+                          workItem.controls.duties.errors
+                            ? 'danger'
+                            : ''
+                        "
+                      />
+                      <div
+                        class="card-text"
+                        *ngIf="
+                          (submitted || workItem.controls.duties.touched) &&
+                          workItem.controls.duties.errors
+                        "
+                      >
+                        <small
+                          *ngIf="workItem.controls.duties.errors?.required"
+                          class="form-text text-muted text-muted-danger"
+                        >
+                          Field required
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-4">
+                    <div class="form-group">
+                      <label>Company</label>
+                      <input
+                        type="text"
+                        name="company"
+                        placeholder="Company"
+                        nbInput
+                        fullWidth
+                        formControlName="company"
+                        [status]="
+                          (submitted || workItem.controls.company.touched) &&
+                          workItem.controls.company.errors
+                            ? 'danger'
+                            : ''
+                        "
+                      />
+                      <div
+                        class="card-text"
+                        *ngIf="
+                          (submitted || workItem.controls.company.touched) &&
+                          workItem.controls.company.errors
+                        "
+                      >
+                        <small
+                          *ngIf="workItem.controls.company.errors?.required"
+                          class="form-text text-muted text-muted-danger"
+                        >
+                          Field required
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-4">
+                    <div class="form-group">
+                      <label>Dutarion</label>
+                      <input
+                        type="number"
+                        name="duration"
+                        placeholder="Duration"
+                        min="1"
+                        max="99"
+                        maxlength="2"
+                        nbInput
+                        fullWidth
+                        formControlName="duration"
+                        [status]="
+                          (submitted || workItem.controls.duration.touched) &&
+                          workItem.controls.duration.errors
+                            ? 'danger'
+                            : ''
+                        "
+                      />
+                      <div
+                        class="card-text"
+                        *ngIf="
+                          (submitted || workItem.controls.duration.touched) &&
+                          workItem.controls.duration.errors
+                        "
+                      >
+                        <small
+                          *ngIf="workItem.controls.duration.errors?.required"
+                          class="form-text text-muted text-muted-danger"
+                        >
+                          Field required
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-4">
+                    <div class="form-group">
+                      <label>Hour per Week</label>
+                      <input
+                        type="number"
+                        name="hoursPerWeek"
+                        placeholder="Hours Per Week"
+                        min="1"
+                        max="99"
+                        nbInput
+                        fullWidth
+                        formControlName="hoursPerWeek"
+                        [status]="
+                          (submitted ||
+                            workItem.controls.hoursPerWeek.touched) &&
+                          workItem.controls.hoursPerWeek.errors
+                            ? 'danger'
+                            : ''
+                        "
+                      />
+                      <div
+                        class="card-text"
+                        *ngIf="
+                          (submitted ||
+                            workItem.controls.hoursPerWeek.touched) &&
+                          workItem.controls.hoursPerWeek.errors
+                        "
+                      >
+                        <small
+                          *ngIf="
+                            workItem.controls.hoursPerWeek.errors?.required
+                          "
+                          class="form-text text-muted text-muted-danger"
+                        >
+                          Field required
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- <div class="col-12 col-md-4">
+                    <div class="form-group">
+                      <label>Country</label>
+                      <nb-select
+                        name="country"
+                        placeholder="Select Country"
+                        fullWidth
+                        formControlName="country"
+                        [status]="
+                          (submitted || workItem.controls.country.touched) &&
+                          workItem.controls.country.errors
+                            ? 'danger'
+                            : ''
+                        "
+                      >
+                        <nb-option value="">Select...</nb-option>
+                        <nb-option
+                          *ngFor="let item of optCountries"
+                          [value]="item.value"
+                        >
+                          {{ item.name }}
+                        </nb-option>
+                      </nb-select>
+                      <div
+                        class="card-text"
+                        *ngIf="
+                          (submitted || workItem.controls.country.touched) &&
+                          workItem.controls.country.errors
+                        "
+                      >
+                        <small
+                          *ngIf="workItem.controls.country.errors?.required"
+                          class="form-text text-muted text-muted-danger"
+                        >
+                          Field required
+                        </small>
+                      </div>
+                    </div>
+                  </div> -->
+                </div>
+
+                <div class="row">
+                  <div class="col-12">
+                    <button
+                      nbButton
+                      type="button"
+                      outline
+                      fullWidth
+                      status="danger"
+                      size="tiny"
+                      [disabled]="fWorkList.length === minItems"
+                      (click)="removeWorDetail(i)"
+                    >
+                      <nb-icon icon="close-circle-outline"></nb-icon>
+                      <!-- <nb-icon icon="file-remove-outline"></nb-icon> -->
+                    </button>
+                  </div>
+                </div>
+              </ng-container>
+            </nb-list-item>
+            <!-- <nb-list-item>
+              <button
+                nbButton
+                outLine
+                status="primary"
+                fullWidth
+                size="tiny"
+                type="button"
+                [disabled]="fWorkList.length === maxItems"
+                (click)="addWorDetail()"
+              >
+                <nb-icon icon="plus-circle-outline"></nb-icon>
+              </button>
+            </nb-list-item> -->
+          </nb-list>
+        </nb-card>
+      </ng-container>
+
+      <!-- spouse work histroy -->
+      <ng-container *ngIf="isMarried">
+        <nb-card accent="success">
+          <nb-card-header>
+            <div class="row">
+              <div class="col-10">
+                <label> Spouse Work History </label>
+              </div>
+              <div class="col text-right">
+                <button
+                  nbButton
+                  outLine
+                  status="primary"
+                  size="tiny"
+                  type="button"
+                  [disabled]="fWorkSpList.length === maxItems"
+                  (click)="addWorDetailSpouse()"
+                >
+                  <nb-icon icon="plus-circle-outline"></nb-icon>
+                </button>
+              </div>
+            </div>
+          </nb-card-header>
+          <nb-list>
+            <nb-list-item
+              *ngFor="let spWorkItem of fWorkSpList.controls; let i = index"
+            >
+              <ng-container [formGroup]="spWorkItem">
+                <div class="row">
+                  <div class="col-12">
+                    <label for="">Work Detail {{ i + 1 }}</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 col-md-4">
+                    <div class="form-group">
+                      <label>Title</label>
+                      <input
+                        type="text"
+                        name="title"
+                        placeholder="Title"
+                        nbInput
+                        fullWidth
+                        formControlName="title"
+                        [status]="
+                          (submitted || spWorkItem.controls.title.touched) &&
+                          spWorkItem.controls.title.errors
+                            ? 'danger'
+                            : ''
+                        "
+                      />
+                      <div
+                        class="card-text"
+                        *ngIf="
+                          (submitted || spWorkItem.controls.title.touched) &&
+                          spWorkItem.controls.title.errors
+                        "
+                      >
+                        <small
+                          *ngIf="spWorkItem.controls.title.errors?.required"
+                          class="form-text text-muted text-muted-danger"
+                        >
+                          Field required
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-4">
+                    <div class="form-group">
+                      <label>Duties</label>
+                      <input
+                        type="text"
+                        name="duties"
+                        placeholder="Duties"
+                        nbInput
+                        fullWidth
+                        formControlName="duties"
+                        [status]="
+                          (submitted || spWorkItem.controls.duties.touched) &&
+                          spWorkItem.controls.duties.errors
+                            ? 'danger'
+                            : ''
+                        "
+                      />
+                      <div
+                        class="card-text"
+                        *ngIf="
+                          (submitted || spWorkItem.controls.duties.touched) &&
+                          spWorkItem.controls.duties.errors
+                        "
+                      >
+                        <small
+                          *ngIf="spWorkItem.controls.duties.errors?.required"
+                          class="form-text text-muted text-muted-danger"
+                        >
+                          Field required
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-4">
+                    <div class="form-group">
+                      <label>Company</label>
+                      <input
+                        type="text"
+                        name="company"
+                        placeholder="Company"
+                        nbInput
+                        fullWidth
+                        formControlName="company"
+                        [status]="
+                          (submitted || spWorkItem.controls.company.touched) &&
+                          spWorkItem.controls.company.errors
+                            ? 'danger'
+                            : ''
+                        "
+                      />
+                      <div
+                        class="card-text"
+                        *ngIf="
+                          (submitted || spWorkItem.controls.company.touched) &&
+                          spWorkItem.controls.company.errors
+                        "
+                      >
+                        <small
+                          *ngIf="spWorkItem.controls.company.errors?.required"
+                          class="form-text text-muted text-muted-danger"
+                        >
+                          Field required
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-4">
+                    <div class="form-group">
+                      <label>Dutarion</label>
+                      <input
+                        type="number"
+                        name="duration"
+                        placeholder="Duration"
+                        min="1"
+                        max="99"
+                        maxlength="2"
+                        nbInput
+                        fullWidth
+                        formControlName="duration"
+                        [status]="
+                          (submitted || spWorkItem.controls.duration.touched) &&
+                          spWorkItem.controls.duration.errors
+                            ? 'danger'
+                            : ''
+                        "
+                      />
+                      <div
+                        class="card-text"
+                        *ngIf="
+                          (submitted || spWorkItem.controls.duration.touched) &&
+                          spWorkItem.controls.duration.errors
+                        "
+                      >
+                        <small
+                          *ngIf="spWorkItem.controls.duration.errors?.required"
+                          class="form-text text-muted text-muted-danger"
+                        >
+                          Field required
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-4">
+                    <div class="form-group">
+                      <label>Hour per Week</label>
+                      <input
+                        type="number"
+                        name="hoursPerWeek"
+                        placeholder="Hours Per Week"
+                        min="1"
+                        max="99"
+                        nbInput
+                        fullWidth
+                        formControlName="hoursPerWeek"
+                        [status]="
+                          (submitted ||
+                            spWorkItem.controls.hoursPerWeek.touched) &&
+                          spWorkItem.controls.hoursPerWeek.errors
+                            ? 'danger'
+                            : ''
+                        "
+                      />
+                      <div
+                        class="card-text"
+                        *ngIf="
+                          (submitted ||
+                            spWorkItem.controls.hoursPerWeek.touched) &&
+                          spWorkItem.controls.hoursPerWeek.errors
+                        "
+                      >
+                        <small
+                          *ngIf="
+                            spWorkItem.controls.hoursPerWeek.errors?.required
+                          "
+                          class="form-text text-muted text-muted-danger"
+                        >
+                          Field required
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- <div class="col-12 col-md-4">
+                    <div class="form-group">
+                      <label>Country</label>
+                      <nb-select
+                        name="country"
+                        placeholder="Select Country"
+                        fullWidth
+                        formControlName="country"
+                        [status]="
+                          (submitted || spWorkItem.controls.country.touched) &&
+                          spWorkItem.controls.country.errors
+                            ? 'danger'
+                            : ''
+                        "
+                      >
+                        <nb-option value="">Select...</nb-option>
+                        <nb-option
+                          *ngFor="let item of optCountries"
+                          [value]="item.value"
+                        >
+                          {{ item.name }}
+                        </nb-option>
+                      </nb-select>
+                      <div
+                        class="card-text"
+                        *ngIf="
+                          (submitted || spWorkItem.controls.country.touched) &&
+                          spWorkItem.controls.country.errors
+                        "
+                      >
+                        <small
+                          *ngIf="spWorkItem.controls.country.errors?.required"
+                          class="form-text text-muted text-muted-danger"
+                        >
+                          Field required
+                        </small>
+                      </div>
+                    </div>
+                  </div> -->
+                </div>
+
+                <div class="row">
+                  <div class="col-12">
+                    <button
+                      nbButton
+                      type="button"
+                      outline
+                      fullWidth
+                      status="danger"
+                      size="tiny"
+                      (click)="removeWorDetailSpouse(i)"
+                    >
+                      <nb-icon icon="close-circle-outline"></nb-icon>
+                      <!-- <nb-icon icon="file-remove-outline"></nb-icon> -->
+                    </button>
+                  </div>
+                </div>
+              </ng-container>
+            </nb-list-item>
+            <!-- <nb-list-item>
+              <button
+                nbButton
+                outLine
+                status="primary"
+                fullWidth
+                size="tiny"
+                type="button"
+                [disabled]="fWorkSpList.length === maxItems"
+                (click)="addWorDetailSpouse()"
+              >
+                <nb-icon icon="plus-circle-outline"></nb-icon>
+              </button>
+            </nb-list-item> -->
+          </nb-list>
+        </nb-card>
+      </ng-container>
+    </nb-card-body>
+  </nb-card>
+</ng-container>

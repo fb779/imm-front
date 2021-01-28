@@ -2,20 +2,33 @@
   <nb-card>
     <nb-card-header>Express Entry</nb-card-header>
     <nb-card-body>
-      <!-- <ngx-sec-personal-information #personalInformation [submitted]="submitted" > </ngx-sec-personal-information> -->
-
-      <!-- <ngx-sec-marital-status #maritalStatus [submitted]="submitted"> </ngx-sec-marital-status> -->
-
-      <!-- <ngx-sec-information #information [submitted]="submitted" ></ngx-sec-information> -->
-
-      <!-- <ngx-sec-visit #visitAdmisibility [submitted]="submitted"></ngx-sec-visit> -->
-
-      <!-- <ngx-sec-education #maritalStatus [submitted]="submitted"> </ngx-sec-education> -->
-
-      <ngx-sec-language-test
-        #languageTest
+      <ngx-sec-personal-information
+        #personalInformation
         [submitted]="submitted"
-      ></ngx-sec-language-test>
+      >
+      </ngx-sec-personal-information>
+
+      <ngx-sec-marital-status #maritalStatus [submitted]="submitted">
+      </ngx-sec-marital-status>
+
+      <ngx-sec-information #information [submitted]="submitted">
+      </ngx-sec-information>
+
+      <ngx-sec-visit #visitAdmisibility [submitted]="submitted">
+      </ngx-sec-visit>
+
+      <ngx-sec-education #education [submitted]="submitted">
+      </ngx-sec-education>
+
+      <ngx-sec-language-test #languageTest [submitted]="submitted">
+      </ngx-sec-language-test>
+
+      <ngx-sec-work-details #workDetails [submitted]="submitted">
+      </ngx-sec-work-details>
+
+      <ngx-sec-family #family [submitted]="submitted"> </ngx-sec-family>
+
+      <ngx-sec-finatial #family [submitted]="submitted"> </ngx-sec-finatial>
     </nb-card-body>
     <nb-card-footer>
       <!-- Botones  -->
@@ -40,6 +53,12 @@
     </nb-card-footer>
   </nb-card>
 </form>
+
+<div>
+  <pre>
+    {{ loadData | json }}
+  </pre>
+</div>
 
 <div>
   <pre>

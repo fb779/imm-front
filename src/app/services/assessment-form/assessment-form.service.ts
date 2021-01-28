@@ -21,6 +21,8 @@ import {
   opsLevelEducation,
   opsYearsEducation,
 } from "../../mocks/titles";
+import { nocList, INoc } from "../../mocks/noc-list";
+import { IOption, IOptionNumber } from "../../models/Option";
 
 @Injectable({
   providedIn: "root",
@@ -28,15 +30,15 @@ import {
 export class AssessmentFormService {
   constructor(private _http: HttpClient) {}
 
-  getAccompanying(): Observable<any[]> {
+  getAccompanying(): Observable<IOptionNumber[]> {
     return observableOf(opsAccompanying);
   }
 
-  getAges(): Observable<any[]> {
+  getAges(): Observable<IOptionNumber[]> {
     return observableOf(opsAges);
   }
 
-  getRelationships(): Observable<any[]> {
+  getRelationships(): Observable<IOption[]> {
     return observableOf(opsRelationships);
   }
 
@@ -44,11 +46,11 @@ export class AssessmentFormService {
     return observableOf(opsTitles);
   }
 
-  getSex(): Observable<any[]> {
+  getSex(): Observable<IOption[]> {
     return observableOf(opsSex);
   }
 
-  getYesNo(): Observable<any[]> {
+  getYesNo(): Observable<IOption[]> {
     return observableOf(opsYesNo);
   }
 
@@ -56,31 +58,49 @@ export class AssessmentFormService {
     return observableOf(opsCountries);
   }
 
-  getStatus(): Observable<any[]> {
+  getStatus(): Observable<IOption[]> {
     return observableOf(opsStatus);
   }
 
-  getProvinces(): Observable<any[]> {
+  getProvinces(): Observable<IOption[]> {
     return observableOf(opsProvinces);
   }
 
-  getMaritalStatus(): Observable<any[]> {
+  getMaritalStatus(): Observable<IOption[]> {
     return observableOf(opsMaritalStatus);
   }
 
-  getPropousVisit(): Observable<any[]> {
+  getPropousVisit(): Observable<IOption[]> {
     return observableOf(opsPropousVisit);
   }
 
-  getStayCanada(): Observable<any[]> {
+  getStayCanada(): Observable<IOption[]> {
     return observableOf(opsStayCanada);
   }
 
-  getLevelEducation(): Observable<any[]> {
+  getLevelEducation(): Observable<IOption[]> {
     return observableOf(opsLevelEducation);
   }
 
-  getYearsEducation(): Observable<any[]> {
+  getYearsEducation(): Observable<IOption[]> {
     return observableOf(opsYearsEducation);
+  }
+
+  getNocList(term: string = ""): Observable<IOption[]> {
+    const nocFiltered = term
+      ? nocList.filter(({ code, name, type }: INoc) => {
+          return (
+            code.includes(term) ||
+            name.toLocaleLowerCase().includes(term.toLowerCase()) ||
+            type.includes(term)
+          );
+        })
+      : nocList;
+
+    return observableOf(
+      nocFiltered.map(
+        ({ code, name }: INoc): IOption => ({ value: code, name })
+      )
+    );
   }
 }

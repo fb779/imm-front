@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../../environments/environment";
-import { tap, map, pluck, catchError } from "rxjs/operators";
+import { tap, map, pluck, catchError, shareReplay } from "rxjs/operators";
 import { Process } from "../../models/Process";
 import { of } from "rxjs";
 
@@ -42,7 +42,8 @@ export class UserProcessService {
       catchError((e) => {
         console.log("error en la consulta", e);
         return of(null);
-      })
+      }),
+      shareReplay()
     );
   }
 
