@@ -69,8 +69,8 @@ export class SecWorkDetailsComponent implements IBaseForm, OnInit {
       let value = this.data[cur] || "";
 
       if (
-        (!this.data[cur] && cur === "p_workdetail_list") ||
-        cur === "p_workdetail_spouse_list"
+        !this.data[cur] &&
+        (cur === "p_workdetail_list" || cur === "p_workdetail_spouse_list")
       ) {
         value = [];
       }

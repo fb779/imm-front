@@ -116,7 +116,6 @@ export class SecPersonalInformationComponent
   }
 
   ngOnDestroy(): void {
-    console.log("destruccion del componente");
     this.parentForm.removeControl(this.nameSection);
   }
 

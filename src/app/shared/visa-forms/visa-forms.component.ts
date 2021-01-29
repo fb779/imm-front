@@ -16,6 +16,5 @@ export class VisaFormsComponent implements OnInit {
 
   ngOnInit() {
     this.visa = this.process.visa_category.title || null;
-    console.log("", this.visa);
   }
 }

@@ -13,13 +13,13 @@
               (Canadian Dollars)
             </label>
             <nb-select
-              name="p_finantial_001"
+              name="p_financial_001"
               placeholder="Select Showcase"
               fullWidth
-              formControlName="p_finantial_001"
+              formControlName="p_financial_001"
               [status]="
-                (submitted || f.p_finantial_001.touched) &&
-                f.p_finantial_001.errors
+                (submitted || f.p_financial_001.touched) &&
+                f.p_financial_001.errors
                   ? 'danger'
                   : ''
               "
@@ -35,12 +35,12 @@
             <div
               class="card-text text-white"
               *ngIf="
-                (submitted || f.p_finantial_001.touched) &&
-                f.p_finantial_001.errors
+                (submitted || f.p_financial_001.touched) &&
+                f.p_financial_001.errors
               "
             >
               <small
-                *ngIf="f.p_finantial_001.errors?.required"
+                *ngIf="f.p_financial_001.errors?.required"
                 class="text-muted text-muted-danger"
               >
                 Field required

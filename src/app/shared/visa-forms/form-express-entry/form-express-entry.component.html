@@ -1,34 +1,51 @@
 <form novalidate autocomplete="off" [formGroup]="forma" (submit)="save()">
-  <nb-card>
+  <nb-card *ngIf="process" [nbSpinner]="loading" nbSpinnerStatus="primary">
     <nb-card-header>Express Entry</nb-card-header>
     <nb-card-body>
-      <ngx-sec-personal-information
-        #personalInformation
-        [submitted]="submitted"
-      >
-      </ngx-sec-personal-information>
+      <ng-container *ngIf="dataForm as data">
+        <ngx-sec-personal-information
+          #personalInformation
+          [submitted]="submitted"
+          [data]="data"
+        >
+        </ngx-sec-personal-information>
 
-      <ngx-sec-marital-status #maritalStatus [submitted]="submitted">
-      </ngx-sec-marital-status>
+        <ngx-sec-marital-status
+          #maritalStatus
+          [submitted]="submitted"
+          [data]="data"
+        >
+        </ngx-sec-marital-status>
 
-      <ngx-sec-information #information [submitted]="submitted">
-      </ngx-sec-information>
+        <ngx-sec-information #information [submitted]="submitted" [data]="data">
+        </ngx-sec-information>
 
-      <ngx-sec-visit #visitAdmisibility [submitted]="submitted">
-      </ngx-sec-visit>
+        <ngx-sec-visit #visitAdmisibility [submitted]="submitted" [data]="data">
+        </ngx-sec-visit>
 
-      <ngx-sec-education #education [submitted]="submitted">
-      </ngx-sec-education>
+        <ngx-sec-education #education [submitted]="submitted" [data]="data">
+        </ngx-sec-education>
 
-      <ngx-sec-language-test #languageTest [submitted]="submitted">
-      </ngx-sec-language-test>
+        <ngx-sec-language-test
+          #languageTest
+          [submitted]="submitted"
+          [data]="data"
+        >
+        </ngx-sec-language-test>
 
-      <ngx-sec-work-details #workDetails [submitted]="submitted">
-      </ngx-sec-work-details>
+        <ngx-sec-work-details
+          #workDetails
+          [submitted]="submitted"
+          [data]="data"
+        >
+        </ngx-sec-work-details>
 
-      <ngx-sec-family #family [submitted]="submitted"> </ngx-sec-family>
+        <ngx-sec-family #family [submitted]="submitted" [data]="data">
+        </ngx-sec-family>
 
-      <ngx-sec-finatial #family [submitted]="submitted"> </ngx-sec-finatial>
+        <ngx-sec-finatial #financial [submitted]="submitted" [data]="data">
+        </ngx-sec-finatial>
+      </ng-container>
     </nb-card-body>
     <nb-card-footer>
       <!-- Botones  -->
@@ -53,15 +70,3 @@
     </nb-card-footer>
   </nb-card>
 </form>
-
-<div>
-  <pre>
-    {{ loadData | json }}
-  </pre>
-</div>
-
-<div>
-  <pre>
-    {{ forma.value | json }}
-  </pre>
-</div>

@@ -4,8 +4,6 @@ import {
   ControlContainer,
   FormBuilder,
   FormGroup,
-  ValidationErrors,
-  ValidatorFn,
   Validators,
 } from "@angular/forms";
 import { IBaseForm } from "../IBaseForm";
@@ -59,7 +57,6 @@ export class SecLanguageTestComponent implements IBaseForm, OnInit {
   optScoreFrWriting: IOption[] = [];
 
   constructor(
-    private _cdr: ChangeDetectorRef,
     private _cc: ControlContainer,
     private _fb: FormBuilder,
     private _asf: AssessmentFormService
@@ -322,7 +319,9 @@ export class SecLanguageTestComponent implements IBaseForm, OnInit {
       value && this.loadScoreFrTest(value);
     });
 
-    // spouse
+    /**
+     *  spouse
+     */
     this.childForm.controls["p_language_spouse_001"].valueChanges.subscribe(
       (value) => {
         if (value == 1) {
@@ -478,8 +477,9 @@ export class SecLanguageTestComponent implements IBaseForm, OnInit {
 
   ngOnInit() {
     this.build();
+
     this.loadInformation();
-    this._cdr.detectChanges();
+    // this._cdr.detectChanges();
   }
   get pf() {
     return this.parentForm.controls;

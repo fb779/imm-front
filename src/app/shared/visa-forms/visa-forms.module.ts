@@ -12,6 +12,7 @@ import {
   NbDatepickerModule,
   NbListModule,
   NbAlertModule,
+  NbSpinnerModule,
 } from "@nebular/theme";
 
 const nebular = [
@@ -24,6 +25,7 @@ const nebular = [
   NbButtonModule,
   NbListModule,
   NbAlertModule,
+  NbSpinnerModule,
 ];
 
 import { FamilyModule } from "../../components/family/family.module";

@@ -52,7 +52,7 @@ export class SecFinatialComponent implements IBaseForm, OnInit {
     this.parentForm = this._controlContainer.control as FormGroup;
 
     this.childForm = this._fb.group({
-      p_finantial_001: this._fb.control("", [Validators.required]),
+      p_financial_001: this._fb.control("", [Validators.required]),
     });
 
     this.parentForm.addControl(this.nameSection, this.childForm);
