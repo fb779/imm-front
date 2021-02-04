@@ -44,6 +44,7 @@ import { SecLanguageTestComponent } from "./sec-language-test/sec-language-test.
 import { SecWorkDetailsComponent } from "./sec-work-details/sec-work-details.component";
 import { SecFamilyComponent } from "./sec-family/sec-family.component";
 import { SecFinatialComponent } from "./sec-finatial/sec-finatial.component";
+import { SecWpInformationComponent } from './sec-wp-information/sec-wp-information.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { SecFinatialComponent } from "./sec-finatial/sec-finatial.component";
     SecWorkDetailsComponent,
     SecFamilyComponent,
     SecFinatialComponent,
+    SecWpInformationComponent,
   ],
   imports: [
     CommonModule,

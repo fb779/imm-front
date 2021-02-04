@@ -1,1 +1,73 @@
-<p>form-work-permit works!</p>
+<form novalidate autocomplete="off" [formGroup]="forma" (submit)="save()">
+  <nb-card *ngIf="process" [nbSpinner]="loading" nbSpinnerStatus="primary">
+    <nb-card-header>Work Permit</nb-card-header>
+    <nb-card-body>
+      <ng-container *ngIf="dataForm as data">
+        <ngx-sec-personal-information
+          #personalInformation
+          [submitted]="submitted"
+          [data]="data"
+        >
+        </ngx-sec-personal-information>
+
+        <!-- <ngx-sec-marital-status
+          #maritalStatus
+          [submitted]="submitted"
+          [data]="data"
+        >
+        </ngx-sec-marital-status> -->
+
+        <!-- <ngx-sec-information #information [submitted]="submitted" [data]="data">
+        </ngx-sec-information> -->
+
+        <ngx-sec-visit #visitAdmisibility [submitted]="submitted" [data]="data">
+        </ngx-sec-visit>
+
+        <ngx-sec-education #education [submitted]="submitted" [data]="data">
+        </ngx-sec-education>
+
+        <ngx-sec-language-test
+          #languageTest
+          [submitted]="submitted"
+          [data]="data"
+        >
+        </ngx-sec-language-test>
+
+        <ngx-sec-work-details
+          #workDetails
+          [submitted]="submitted"
+          [data]="data"
+        >
+        </ngx-sec-work-details>
+
+        <ngx-sec-family #family [submitted]="submitted" [data]="data">
+        </ngx-sec-family>
+
+        <ngx-family [process]="process"></ngx-family>
+
+        <ngx-sec-finatial #financial [submitted]="submitted" [data]="data">
+        </ngx-sec-finatial>
+      </ng-container>
+    </nb-card-body>
+    <nb-card-footer>
+      <!-- Botones  -->
+      <div>
+        <div *ngIf="process && process.status === cmStatus.active">
+          <button type="submit" nbButton fullWidth status="primary">
+            Submit
+          </button>
+        </div>
+
+        <div
+          *ngIf="
+            process && process.status !== cmStatus.active && url[0] !== 'pages'
+          "
+        >
+          <button type="submit" nbButton fullWidth status="primary">
+            Update
+          </button>
+        </div>
+      </div>
+    </nb-card-footer>
+  </nb-card>
+</form>
