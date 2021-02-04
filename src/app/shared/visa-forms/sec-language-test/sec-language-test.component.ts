@@ -115,7 +115,10 @@ export class SecLanguageTestComponent implements IBaseForm, OnInit {
           Validators.required,
         ]),
 
-        p_language_spouse_001: this._fb.control("", [Validators.required]),
+        p_language_spouse_001: this._fb.control({ value: "", disabled: true }, [
+          Validators.required,
+        ]),
+
         p_language_spouse_en_001: this._fb.control(
           { value: "", disabled: true },
           []
@@ -181,6 +184,7 @@ export class SecLanguageTestComponent implements IBaseForm, OnInit {
       this.pf.maritalStatus
         .get("p_marital_001")
         .valueChanges.subscribe((value) => {
+          console.log("valor del status marital", { value });
           if (value == 2) {
             this.childForm.get("p_language_spouse_001").enable();
           } else {
@@ -448,7 +452,8 @@ export class SecLanguageTestComponent implements IBaseForm, OnInit {
       return { ...acc, [cur]: value };
     }, {});
 
-    this.childForm.patchValue({ ...loadValues });
+    // this.childForm.patchValue({ ...loadValues });
+    this.childForm.setValue({ ...loadValues });
   }
 
   loadOptions() {

@@ -1,15 +1,17 @@
 import { Component, Input, OnInit, ChangeDetectorRef } from "@angular/core";
 import { FormGroup, FormBuilder, FormArray } from "@angular/forms";
 import { Router } from "@angular/router";
-import { Process } from "../../../models/Process";
-import { status, visaCategories } from "../../../config/config";
+import { of } from "rxjs";
+import { map, catchError } from "rxjs/operators";
 import {
   ToastrService,
   UserProcessService,
 } from "../../../services/services.index";
+import { Process } from "../../../models/Process";
+import { status, visaCategories } from "../../../config/config";
+import { cleanData } from "../clean-data-forms";
 
 import * as _ from "underscore";
-import { map } from "rxjs/operators";
 
 @Component({
   selector: "ngx-form-express-entry",
@@ -29,7 +31,6 @@ export class FormExpressEntryComponent implements OnInit {
   dataForm: any;
 
   constructor(
-    private _cdr: ChangeDetectorRef,
     private _router: Router,
     private _fb: FormBuilder,
     private _porcessServices: UserProcessService,
@@ -76,8 +77,10 @@ export class FormExpressEntryComponent implements OnInit {
           this.loading = false;
         });
     } else {
+      const client = { ...this.process.client };
+      delete client._id;
+      this.dataForm = { ...client };
       this.loading = false;
-      this.dataForm = {};
     }
   }
 
@@ -87,43 +90,21 @@ export class FormExpressEntryComponent implements OnInit {
 
     if (this.forma.invalid) {
       this._toastr.toastrGenericMessage(`Form is nvalid`, "Form", "warning");
+      this.loading = false;
       return;
     }
 
-    const valores = Object.keys(this.forma.value).reduce((acc, cur) => {
-      const newCurVal = this.forma.value[cur] || "";
-
-      if (typeof newCurVal === "object") {
-        acc = { ...acc, ...newCurVal };
-      } else {
-        acc = { ...acc, [cur]: newCurVal };
-      }
-
-      return acc;
-    }, {});
-
-    const fields = Object.keys(this.f).reduce((acc, cur) => {
-      const curControl = this.f[cur];
-
-      if (curControl.hasOwnProperty("controls")) {
-        const ctlValues = Object.keys(curControl["controls"]).reduce(
-          (ac, el) =>
-            el.includes("list") ? { ...ac, [el]: [] } : { ...ac, [el]: "" },
-          {}
-        );
-        acc = { ...acc, ...ctlValues };
-      } else {
-        acc = { ...acc, [cur]: curControl.value };
-      }
-
-      return acc;
-    }, {});
-
-    const completeData = { ...fields, ...valores };
+    const completeData = cleanData(this.forma);
 
     if (this.f._id.value === "new") {
       this._porcessServices
         .setForm(this.process, completeData)
+        .pipe(
+          catchError(() => {
+            this.loading = false;
+            return of({});
+          })
+        )
         .subscribe((resp: any) => {
           if (resp.ok) {
             this._toastr.toastrGenericMessage(
@@ -139,6 +120,12 @@ export class FormExpressEntryComponent implements OnInit {
     } else {
       this._porcessServices
         .updateForm(this.process, completeData)
+        .pipe(
+          catchError(() => {
+            this.loading = false;
+            return of({});
+          })
+        )
         .subscribe((resp: any) => {
           if (resp.ok) {
             this._toastr.toastrGenericMessage(

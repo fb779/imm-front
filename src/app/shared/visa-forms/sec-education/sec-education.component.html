@@ -165,6 +165,21 @@
               </tr>
             </tbody>
           </table>
+          <div class="">
+            <button
+              nbButton
+              outLine
+              status="primary"
+              size="tiny"
+              type="button"
+              fullWidth
+              [disabled]="fEduList.length === 10"
+              (click)="addEducation()"
+            >
+              <span>Add education History</span>
+              <nb-icon icon="plus-circle-outline"></nb-icon>
+            </button>
+          </div>
         </nb-card-body>
       </nb-card>
 
@@ -352,6 +367,21 @@
                 </tr>
               </tbody>
             </table>
+            <div class="">
+              <button
+                nbButton
+                outLine
+                fullWidth
+                status="primary"
+                size="tiny"
+                type="button"
+                [disabled]="fEduSpList.length === 10"
+                (click)="addEducationSpouse()"
+              >
+                <span>Add education History</span>
+                <nb-icon icon="plus-circle-outline"></nb-icon>
+              </button>
+            </div>
           </nb-card-body>
         </nb-card>
 

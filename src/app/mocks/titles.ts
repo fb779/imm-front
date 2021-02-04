@@ -287,7 +287,7 @@ export const opsCountries: IOption[] = [
   { name: "Oman", value: "OM" },
   { name: "Pakistan", value: "PK" },
   { name: "Palau", value: "PW" },
-  { name: "Palestine, State of", value: "PS" },
+  { name: "Palestine", value: "PS" },
   { name: "Panama", value: "PA" },
   { name: "Papua New Guinea", value: "PG" },
   { name: "Paraguay", value: "PY" },

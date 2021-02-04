@@ -125,7 +125,6 @@
         <div class="col-12 col-md-6">
           <div class="form-group">
             <label> What is the title of the job being offered? </label>
-            <!-- <input type="text" name="p_workdetail_004" placeholder="Title Job offer" nbInput fullWidth formControlName="p_workdetail_004" [status]=" (submitted || f.p_workdetail_004.touched) && f.p_workdetail_004.errors ? 'danger' : '' " /> -->
             <nb-select
               name="p_workdetail_004"
               placeholder="Select Showcase"
@@ -299,7 +298,7 @@
 
                   <div class="col-12 col-md-4">
                     <div class="form-group">
-                      <label>Dutarion</label>
+                      <label>Dutarion (years)</label>
                       <input
                         type="number"
                         name="duration"
@@ -374,7 +373,7 @@
                     </div>
                   </div>
 
-                  <!-- <div class="col-12 col-md-4">
+                  <div class="col-12 col-md-4">
                     <div class="form-group">
                       <label>Country</label>
                       <nb-select
@@ -412,7 +411,7 @@
                         </small>
                       </div>
                     </div>
-                  </div> -->
+                  </div>
                 </div>
 
                 <div class="row">
@@ -434,20 +433,23 @@
                 </div>
               </ng-container>
             </nb-list-item>
-            <!-- <nb-list-item>
-              <button
-                nbButton
-                outLine
-                status="primary"
-                fullWidth
-                size="tiny"
-                type="button"
-                [disabled]="fWorkList.length === maxItems"
-                (click)="addWorDetail()"
-              >
-                <nb-icon icon="plus-circle-outline"></nb-icon>
-              </button>
-            </nb-list-item> -->
+            <nb-list-item>
+              <div>
+                <button
+                  nbButton
+                  outLine
+                  status="primary"
+                  size="tiny"
+                  type="button"
+                  fullWidth
+                  [disabled]="fWorkList.length === maxItems"
+                  (click)="addWorDetail()"
+                >
+                  <span>Add Work History</span>
+                  <nb-icon icon="plus-circle-outline"></nb-icon>
+                </button>
+              </div>
+            </nb-list-item>
           </nb-list>
         </nb-card>
       </ng-container>
@@ -590,7 +592,7 @@
 
                   <div class="col-12 col-md-4">
                     <div class="form-group">
-                      <label>Dutarion</label>
+                      <label>Dutarion (years)</label>
                       <input
                         type="number"
                         name="duration"
@@ -665,7 +667,7 @@
                     </div>
                   </div>
 
-                  <!-- <div class="col-12 col-md-4">
+                  <div class="col-12 col-md-4">
                     <div class="form-group">
                       <label>Country</label>
                       <nb-select
@@ -703,7 +705,7 @@
                         </small>
                       </div>
                     </div>
-                  </div> -->
+                  </div>
                 </div>
 
                 <div class="row">
@@ -718,13 +720,12 @@
                       (click)="removeWorDetailSpouse(i)"
                     >
                       <nb-icon icon="close-circle-outline"></nb-icon>
-                      <!-- <nb-icon icon="file-remove-outline"></nb-icon> -->
                     </button>
                   </div>
                 </div>
               </ng-container>
             </nb-list-item>
-            <!-- <nb-list-item>
+            <nb-list-item>
               <button
                 nbButton
                 outLine
@@ -735,9 +736,10 @@
                 [disabled]="fWorkSpList.length === maxItems"
                 (click)="addWorDetailSpouse()"
               >
+                <span>Add Work History</span>
                 <nb-icon icon="plus-circle-outline"></nb-icon>
               </button>
-            </nb-list-item> -->
+            </nb-list-item>
           </nb-list>
         </nb-card>
       </ng-container>

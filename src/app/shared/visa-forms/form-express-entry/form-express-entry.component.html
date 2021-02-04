@@ -43,6 +43,8 @@
         <ngx-sec-family #family [submitted]="submitted" [data]="data">
         </ngx-sec-family>
 
+        <!-- <ngx-family [process]="process"></ngx-family> -->
+
         <ngx-sec-finatial #financial [submitted]="submitted" [data]="data">
         </ngx-sec-finatial>
       </ng-container>
@@ -51,7 +53,6 @@
       <!-- Botones  -->
       <div>
         <div *ngIf="process && process.status === cmStatus.active">
-          <!-- <button type="submit" [disabled]="!forma.valid" nbButton fullWidth status="primary" > -->
           <button type="submit" nbButton fullWidth status="primary">
             Submit
           </button>

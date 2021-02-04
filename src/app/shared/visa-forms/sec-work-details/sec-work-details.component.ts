@@ -112,7 +112,7 @@ export class SecWorkDetailsComponent implements IBaseForm, OnInit {
       company: ["", [Validators.required]],
       duration: ["", [Validators.required]],
       hoursPerWeek: ["", [Validators.required]],
-      country: ["CA", [Validators.required]],
+      country: ["", [Validators.required]],
     });
   }
 

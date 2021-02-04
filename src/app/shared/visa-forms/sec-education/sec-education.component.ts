@@ -42,7 +42,9 @@ export class SecEducationComponent implements IBaseForm, OnInit, OnDestroy {
     this.childForm = this._fb.group({
       p_education_001: this._fb.control("", [Validators.required]),
       p_education_list: this._fb.array([this.newEducationRecord()]),
-      p_education_spouse_001: this._fb.control("", [Validators.required]),
+      p_education_spouse_001: this._fb.control({ value: "", disabled: true }, [
+        Validators.required,
+      ]),
       p_education_spouse_list: this._fb.array([]),
     });
 

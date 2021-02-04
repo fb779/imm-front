@@ -63,9 +63,32 @@ export class SecFamilyComponent implements IBaseForm, OnInit {
       ]),
       p_family_004: this._fb.control({ value: "", disabled: true }, [
         Validators.required,
-        this.isAgeCorrectly(1, 25).bind(this),
+        this.isAgeCorrectly(1, 99).bind(this),
       ]),
     });
+
+    // this.pf.maritalStatus &&
+    //   this.pf.maritalStatus
+    //     .get("p_marital_001")
+    //     .valueChanges.subscribe((value) => {
+    //       console.log("valor del estatus maital", value);
+    //       if (value == 1) {
+    //         this.childForm.get("p_family_002").clearValidators();
+    //         this.childForm.get("p_family_002").reset();
+    //         this.childForm.get("p_family_003").reset();
+    //         this.childForm.get("p_family_004").reset();
+    //         this.childForm.get("p_family_002").disable();
+    //         this.childForm.get("p_family_003").disable();
+    //         this.childForm.get("p_family_004").disable();
+    //       } else {
+    //         this.childForm.get("p_family_002").enable();
+    //         this.childForm.get("p_family_003").enable();
+    //         this.childForm.get("p_family_004").enable();
+    //         this.childForm
+    //           .get("p_family_002")
+    //           .setValidators(Validators.required);
+    //       }
+    //     });
 
     this.childForm.get("p_family_002").valueChanges.subscribe((value) => {
       if (value == 1) {
@@ -117,11 +140,8 @@ export class SecFamilyComponent implements IBaseForm, OnInit {
           if (arr.length !== requiredAges) return false;
 
           return (
-            acc &&
-            cur.trim() &&
-            !isNaN(cur) &&
-            Number(cur.trim()) >= minAge &&
-            Number(cur.trim()) <= maxAge
+            acc && cur.trim() && !isNaN(cur) && Number(cur.trim()) <= maxAge
+            // Number(cur.trim()) >= minAge &&
           );
         }, true);
 
@@ -135,6 +155,17 @@ export class SecFamilyComponent implements IBaseForm, OnInit {
     this.build();
     this.loadInformation();
   }
+
+  // get pf() {
+  //   return this.parentForm.controls;
+  // }
+
+  // get isSingle() {
+  //   return this.pf.maritalStatus &&
+  //     this.pf.maritalStatus.get("p_marital_001").value == 1
+  //     ? true
+  //     : false;
+  // }
 
   get f() {
     return this.childForm.controls;
