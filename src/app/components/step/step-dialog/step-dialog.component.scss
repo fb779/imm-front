@@ -8,3 +8,12 @@ nb-card.formChecklist > nb-card-footer {
   justify-content: space-around;
   align-items: stretch;
 }
+
+.input-group {
+  flex-flow: row nowrap;
+}
+
+.input-group > .form-control {
+  height: auto;
+  padding: 0;
+}

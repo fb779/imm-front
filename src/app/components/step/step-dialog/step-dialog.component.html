@@ -1,19 +1,32 @@
 <nb-card class="dialog-card">
+  <nb-card-header>
+    <label> Control Advance Steps </label>
+  </nb-card-header>
   <nb-card-body>
-    <section *ngFor="let step of steps">
-      <label for="">{{ step.name | uppercase }}</label>
-      <nb-select
-        name="state"
-        fullWidth
-        formControlName="state"
-        [(selected)]="step.status"
-      >
-        <nb-option value="COMPLETE">COMPLETE</nb-option>
-        <nb-option value="IN-PROGRES">IN-PROGRES</nb-option>
-      </nb-select>
-      <button nbButton size="tiny" (click)="save(step)">
-        <nb-icon icon="save-outline"></nb-icon>
-      </button>
-    </section>
+    <ng-container>
+      <div class="input-group mb-3" *ngFor="let step of steps">
+        <div class="input-group-prepend">
+          <label class="input-group-text" id="addon-wrapping">{{
+            step.name | uppercase
+          }}</label>
+        </div>
+        <nb-select
+          name="state"
+          class="form-control"
+          shape="rectangle"
+          fullWidth
+          formControlName="state"
+          [(selected)]="step.status"
+        >
+          <nb-option value="COMPLETE">COMPLETE</nb-option>
+          <nb-option value="IN-PROGRES">IN-PROGRES</nb-option>
+        </nb-select>
+        <div class="input-group-append">
+          <button nbButton size="tiny" (click)="save(step)">
+            <nb-icon icon="save-outline"></nb-icon>
+          </button>
+        </div>
+      </div>
+    </ng-container>
   </nb-card-body>
 </nb-card>

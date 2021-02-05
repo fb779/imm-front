@@ -1,7 +1,10 @@
 <ng-container *ngIf="process?.steps.length > 0">
-  <section>
-    <ngx-step-show-line [steps]="process.steps"></ngx-step-show-line>
-    <ngx-step-button [steps]="process.steps"></ngx-step-button>
+  <section class="row">
+    <ngx-step-button class="col-1" [steps]="process.steps"></ngx-step-button>
+    <ngx-step-show-line
+      class="col"
+      [steps]="process.steps"
+    ></ngx-step-show-line>
   </section>
 </ng-container>
 
