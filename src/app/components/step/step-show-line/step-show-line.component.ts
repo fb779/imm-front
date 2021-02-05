@@ -7,6 +7,7 @@ import { ProcessStep, statusValues } from "../../../models/ProcessStep.model";
   styleUrls: ["./step-show-line.component.scss"],
 })
 export class StepShowLineComponent implements OnInit {
+  @Input("name") name: string = null;
   @Input("steps") steps: ProcessStep[];
   stValues = statusValues;
 

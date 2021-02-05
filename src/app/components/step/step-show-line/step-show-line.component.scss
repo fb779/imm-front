@@ -1,6 +1,17 @@
-// .success {
-//   background-color: var(--success);
-// }
+section {
+  margin-bottom: 0.25rem;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: start;
+  align-items: center;
+}
+
+.name {
+  box-sizing: border-box;
+  margin: 0 1rem;
+  padding: 0.35rem;
+}
+
 .line-advance {
   --arrow-border-with: 1rem;
   --arrow-space-positive: 1rem;
@@ -21,7 +32,6 @@
     color: var(--white);
     box-sizing: border-box;
     margin-right: var(--arrow-margin-right);
-    margin-bottom: 0.25rem;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-around;

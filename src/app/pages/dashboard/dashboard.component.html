@@ -1,9 +1,12 @@
-<div *ngIf="processes.length > 0">
+<ng-container *ngIf="processes.length > 0">
   <ng-container *ngFor="let process of processes">
-    <ngx-step-show-line [steps]="process.steps"></ngx-step-show-line>
+    <ngx-step-show-line
+      [name]="process.visa_category.name"
+      [steps]="process.steps"
+    ></ngx-step-show-line>
     <!-- <ngx-countdown [date]="process.createdAt"> </ngx-countdown> -->
   </ng-container>
-</div>
+</ng-container>
 
 <ngx-cards></ngx-cards>
 
