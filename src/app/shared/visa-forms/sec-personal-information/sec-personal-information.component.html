@@ -19,7 +19,10 @@
               "
             >
               <nb-option value="">Select...</nb-option>
-              <nb-option *ngFor="let item of optTitles" [value]="item.value">
+              <nb-option
+                *ngFor="let item of optTitles$ | async"
+                [value]="item.value"
+              >
                 {{ item.name }}
               </nb-option>
             </nb-select>
@@ -50,7 +53,10 @@
               "
             >
               <nb-option value="">Select...</nb-option>
-              <nb-option *ngFor="let item of optSex" [value]="item.value">
+              <nb-option
+                *ngFor="let item of optSex$ | async"
+                [value]="item.value"
+              >
                 {{ item.name }}
               </nb-option>
             </nb-select>
@@ -226,7 +232,10 @@
               "
             >
               <nb-option value="">Select...</nb-option>
-              <nb-option *ngFor="let item of optCountries" [value]="item.value">
+              <nb-option
+                *ngFor="let item of optCountries$ | async"
+                [value]="item.value"
+              >
                 {{ item.name }}
               </nb-option>
             </nb-select>
@@ -263,7 +272,10 @@
               "
             >
               <nb-option value="">Select...</nb-option>
-              <nb-option *ngFor="let item of optCountries" [value]="item.value">
+              <nb-option
+                *ngFor="let item of optCountries$ | async"
+                [value]="item.value"
+              >
                 {{ item.name }}
               </nb-option>
             </nb-select>
@@ -300,7 +312,10 @@
               "
             >
               <nb-option value="">Select...</nb-option>
-              <nb-option *ngFor="let item of optCountries" [value]="item.value">
+              <nb-option
+                *ngFor="let item of optCountries$ | async"
+                [value]="item.value"
+              >
                 {{ item.name }}
               </nb-option>
             </nb-select>
@@ -337,7 +352,10 @@
               "
             >
               <nb-option value="">Select...</nb-option>
-              <nb-option *ngFor="let item of optStatus" [value]="item.value">
+              <nb-option
+                *ngFor="let item of optStatus$ | async"
+                [value]="item.value"
+              >
                 {{ item.name }}
               </nb-option>
             </nb-select>

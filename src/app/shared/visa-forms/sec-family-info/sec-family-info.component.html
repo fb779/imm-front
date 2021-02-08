@@ -1,0 +1,180 @@
+<ng-container [formGroup]="parentForm">
+  <nb-card accent="info" [formGroupName]="nameSection">
+    <nb-card-header>
+      <label for=""> DO YOU OR ANY OF YOUR ACCOMPANYING FAMILY MEMBERS </label>
+    </nb-card-header>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for=""> Do you have sufficient funds for your visit? </label>
+            <nb-select
+              name="p_familyinfo_001"
+              formControlName="p_familyinfo_001"
+              [status]="
+                (submitted || f.p_familyinfo_001.touched) &&
+                f.p_familyinfo_001.errors
+                  ? 'danger'
+                  : ''
+              "
+              fullWidth
+              placeholder="Select Showcase"
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option *ngFor="let item of optYesNo" [value]="item.value">
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <div
+              *ngIf="
+                (submitted || f.p_familyinfo_001.touched) &&
+                f.p_familyinfo_001.errors
+              "
+              class="card-text"
+            >
+              <small
+                *ngIf="f.p_familyinfo_001.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="">Have any serious disease? </label>
+            <nb-select
+              name="p_familyinfo_002"
+              formControlName="p_familyinfo_002"
+              [status]="
+                (submitted || f.p_familyinfo_002.touched) &&
+                f.p_familyinfo_002.errors
+                  ? 'danger'
+                  : ''
+              "
+              fullWidth
+              placeholder="Select Showcase"
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option *ngFor="let item of optYesNo" [value]="item.value">
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <div
+              *ngIf="
+                (submitted || f.p_familyinfo_002.touched) &&
+                f.p_familyinfo_002.errors
+              "
+              class="card-text"
+            >
+              <small
+                *ngIf="f.p_familyinfo_002.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="">Been convicted of a criminal act? </label>
+            <nb-select
+              name="p_familyinfo_003"
+              formControlName="p_familyinfo_003"
+              [status]="
+                (submitted || f.p_familyinfo_003.touched) &&
+                f.p_familyinfo_003.errors
+                  ? 'danger'
+                  : ''
+              "
+              fullWidth
+              placeholder="Select Showcase"
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option *ngFor="let item of optYesNo" [value]="item.value">
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <div
+              *ngIf="
+                (submitted || f.p_familyinfo_003.touched) &&
+                f.p_familyinfo_003.errors
+              "
+              class="card-text"
+            >
+              <small
+                *ngIf="f.p_familyinfo_003.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="">Been refused entry to Canada? </label>
+            <nb-select
+              name="p_familyinfo_004"
+              formControlName="p_familyinfo_004"
+              [status]="
+                (submitted || f.p_familyinfo_004.touched) &&
+                f.p_familyinfo_004.errors
+                  ? 'danger'
+                  : ''
+              "
+              fullWidth
+              placeholder="Select Showcase"
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option *ngFor="let item of optYesNo" [value]="item.value">
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <div
+              *ngIf="
+                (submitted || f.p_familyinfo_004.touched) &&
+                f.p_familyinfo_004.errors
+              "
+              class="card-text"
+            >
+              <small
+                *ngIf="f.p_familyinfo_004.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="col-12">
+        <div class="form-group">
+          <label for="">Comments? </label>
+          <textarea name="p_familyinfo_005" rows="5" placeholder="Text Area" nbInput fullWidth shape="semi-round" formControlName="p_familyinfo_005" [status]=" (submitted || f.p_familyinfo_005.touched) && f.p_familyinfo_005.errors ? 'danger' : '' " >
+          </textarea>
+          <div
+            *ngIf="
+              (submitted || f.p_familyinfo_005.touched) &&
+              f.p_familyinfo_005.errors
+            "
+            class="card-text"
+          >
+            <small
+              *ngIf="f.p_familyinfo_005.errors?.required"
+              class="text-muted text-muted-danger"
+            >
+              Field required
+            </small>
+          </div>
+        </div>
+      </div> -->
+      </div>
+    </nb-card-body>
+  </nb-card>
+</ng-container>

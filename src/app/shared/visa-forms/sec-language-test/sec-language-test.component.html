@@ -25,7 +25,10 @@
               "
             >
               <nb-option value="">Select...</nb-option>
-              <nb-option *ngFor="let item of optYesNo" [value]="item.value">
+              <nb-option
+                *ngFor="let item of optYesNo$ | async"
+                [value]="item.value"
+              >
                 {{ item.name }}
               </nb-option>
             </nb-select>
@@ -84,7 +87,7 @@
                       >
                         <nb-option value="">Select...</nb-option>
                         <nb-option
-                          *ngFor="let item of optEnglishTest"
+                          *ngFor="let item of optEnglishTest$ | async"
                           [value]="item.value"
                         >
                           {{ item.name }}
@@ -124,7 +127,7 @@
                       >
                         <nb-option value="">Select...</nb-option>
                         <nb-option
-                          *ngFor="let item of optIeltsExam"
+                          *ngFor="let item of optIeltsExam$ | async"
                           [value]="item.value"
                         >
                           {{ item.name }}
@@ -157,6 +160,7 @@
                         nbInput
                         fullWidth
                         formControlName="p_language_en_003"
+                        readonly="readonly"
                         [nbDatepicker]="enPicker"
                         [status]="
                           (submitted || f.p_language_en_003.touched) &&
@@ -379,7 +383,7 @@
                       >
                         <nb-option value="">Select...</nb-option>
                         <nb-option
-                          *ngFor="let item of optFrenchTest"
+                          *ngFor="let item of optFrenchTest$ | async"
                           [value]="item.value"
                         >
                           {{ item.name }}
@@ -411,6 +415,7 @@
                         nbInput
                         fullWidth
                         formControlName="p_language_fr_002"
+                        readonly="readonly"
                         [nbDatepicker]="frPicker"
                         [status]="
                           (submitted || f.p_language_fr_002.touched) &&
@@ -631,7 +636,10 @@
                 "
               >
                 <nb-option value="">Select...</nb-option>
-                <nb-option *ngFor="let item of optYesNo" [value]="item.value">
+                <nb-option
+                  *ngFor="let item of optYesNo$ | async"
+                  [value]="item.value"
+                >
                   {{ item.name }}
                 </nb-option>
               </nb-select>
@@ -692,7 +700,7 @@
                         >
                           <nb-option value="">Select...</nb-option>
                           <nb-option
-                            *ngFor="let item of optEnglishTest"
+                            *ngFor="let item of optEnglishTest$ | async"
                             [value]="item.value"
                           >
                             {{ item.name }}
@@ -732,7 +740,7 @@
                         >
                           <nb-option value="">Select...</nb-option>
                           <nb-option
-                            *ngFor="let item of optIeltsExam"
+                            *ngFor="let item of optIeltsExam$ | async"
                             [value]="item.value"
                           >
                             {{ item.name }}
@@ -765,6 +773,7 @@
                           nbInput
                           fullWidth
                           formControlName="p_language_spouse_en_003"
+                          readonly="readonly"
                           [nbDatepicker]="enPicker"
                           [status]="
                             (submitted || f.p_language_spouse_en_003.touched) &&
@@ -987,7 +996,7 @@
                         >
                           <nb-option value="">Select...</nb-option>
                           <nb-option
-                            *ngFor="let item of optFrenchTest"
+                            *ngFor="let item of optFrenchTest$ | async"
                             [value]="item.value"
                           >
                             {{ item.name }}
@@ -1019,6 +1028,7 @@
                           nbInput
                           fullWidth
                           formControlName="p_language_spouse_fr_002"
+                          readonly="readonly"
                           [nbDatepicker]="frPicker"
                           [status]="
                             (submitted || f.p_language_spouse_fr_002.touched) &&

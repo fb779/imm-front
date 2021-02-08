@@ -1,4 +1,10 @@
-import { Component, Input, OnInit, ChangeDetectorRef } from "@angular/core";
+import {
+  Component,
+  Input,
+  OnInit,
+  ChangeDetectorRef,
+  OnDestroy,
+} from "@angular/core";
 import {
   AbstractControl,
   ControlContainer,
@@ -12,13 +18,15 @@ import { IOption } from "../../../models/Option";
 import { exams, scores } from "../../../mocks/score-language";
 
 import * as moment from "moment";
+import { Subject, Observable } from "rxjs";
+import { takeUntil } from "rxjs/operators";
 
 @Component({
   selector: "ngx-sec-language-test",
   templateUrl: "./sec-language-test.component.html",
   styleUrls: ["./sec-language-test.component.scss"],
 })
-export class SecLanguageTestComponent implements IBaseForm, OnInit {
+export class SecLanguageTestComponent implements IBaseForm, OnInit, OnDestroy {
   parentForm: FormGroup;
   childForm: FormGroup;
 
@@ -26,31 +34,21 @@ export class SecLanguageTestComponent implements IBaseForm, OnInit {
   @Input("submitted") submitted: boolean = false;
   @Input("data") data: any = {};
 
+  notifier$: Subject<any> = new Subject();
+
   min: Date;
   max: Date;
 
-  optYesNo: IOption[] = [];
-
-  optEnglishTest: IOption[] = [
-    { name: exams.ielts, value: exams.ielts },
-    { name: exams.celpip, value: exams.celpip },
-  ];
-
-  optIeltsExam: IOption[] = [
-    { name: "Academic", value: "A" },
-    { name: "General", value: "G" },
-  ];
+  optYesNo$: Observable<IOption[]>;
+  optEnglishTest$: Observable<IOption[]>;
+  optIeltsExam$: Observable<IOption[]>;
 
   optScoreEnSpeaking: IOption[] = [];
   optScoreEnListening: IOption[] = [];
   optScoreEnReading: IOption[] = [];
   optScoreEnWriting: IOption[] = [];
 
-  optFrenchTest: IOption[] = [
-    { name: exams.tcf, value: exams.tcf },
-    { name: exams.tef, value: exams.tef },
-  ];
-
+  optFrenchTest$: Observable<IOption[]>;
   optScoreFrSpeaking: IOption[] = [];
   optScoreFrListening: IOption[] = [];
   optScoreFrReading: IOption[] = [];
@@ -183,8 +181,8 @@ export class SecLanguageTestComponent implements IBaseForm, OnInit {
     this.pf.maritalStatus &&
       this.pf.maritalStatus
         .get("p_marital_001")
-        .valueChanges.subscribe((value) => {
-          console.log("valor del status marital", { value });
+        .valueChanges.pipe(takeUntil(this.notifier$))
+        .subscribe((value) => {
           if (value == 2) {
             this.childForm.get("p_language_spouse_001").enable();
           } else {
@@ -221,8 +219,9 @@ export class SecLanguageTestComponent implements IBaseForm, OnInit {
           }
         });
 
-    this.childForm.controls["p_language_001"].valueChanges.subscribe(
-      (value) => {
+    this.childForm.controls["p_language_001"].valueChanges
+      .pipe(takeUntil(this.notifier$))
+      .subscribe((value) => {
         if (value == 1) {
           this.childForm.get("p_language_en_001").enable();
           this.childForm.get("p_language_fr_001").enable();
@@ -256,78 +255,84 @@ export class SecLanguageTestComponent implements IBaseForm, OnInit {
           this.childForm.get("p_language_fr_006").reset();
           this.childForm.get("p_language_fr_006").disable();
         }
-      }
-    );
+      });
 
-    this.childForm.get("p_language_en_001").valueChanges.subscribe((value) => {
-      this.childForm.get("p_language_en_004").reset();
-      this.childForm.get("p_language_en_005").reset();
-      this.childForm.get("p_language_en_006").reset();
-      this.childForm.get("p_language_en_007").reset();
+    this.childForm
+      .get("p_language_en_001")
+      .valueChanges.pipe(takeUntil(this.notifier$))
+      .subscribe((value) => {
+        this.childForm.get("p_language_en_004").reset();
+        this.childForm.get("p_language_en_005").reset();
+        this.childForm.get("p_language_en_006").reset();
+        this.childForm.get("p_language_en_007").reset();
 
-      if (value) {
-        this.childForm.get("p_language_en_003").enable();
-        this.childForm.get("p_language_en_004").enable();
-        this.childForm.get("p_language_en_005").enable();
-        this.childForm.get("p_language_en_006").enable();
-        this.childForm.get("p_language_en_007").enable();
-      }
+        if (value) {
+          this.childForm.get("p_language_en_003").enable();
+          this.childForm.get("p_language_en_004").enable();
+          this.childForm.get("p_language_en_005").enable();
+          this.childForm.get("p_language_en_006").enable();
+          this.childForm.get("p_language_en_007").enable();
+        }
 
-      switch (value) {
-        case exams.ielts:
-          this.childForm.get("p_language_en_002").enable();
-          break;
-        case exams.celpip:
-          this.childForm.get("p_language_en_002").reset();
-          this.childForm.get("p_language_en_002").disable();
-          break;
-        default:
-          this.childForm.get("p_language_en_002").reset();
-          this.childForm.get("p_language_en_003").reset();
+        switch (value) {
+          case exams.ielts:
+            this.childForm.get("p_language_en_002").enable();
+            break;
+          case exams.celpip:
+            this.childForm.get("p_language_en_002").reset();
+            this.childForm.get("p_language_en_002").disable();
+            break;
+          default:
+            this.childForm.get("p_language_en_002").reset();
+            this.childForm.get("p_language_en_003").reset();
 
-          this.childForm.get("p_language_en_002").disable();
-          this.childForm.get("p_language_en_003").disable();
-          this.childForm.get("p_language_en_004").disable();
-          this.childForm.get("p_language_en_005").disable();
-          this.childForm.get("p_language_en_006").disable();
-          this.childForm.get("p_language_en_007").disable();
-          break;
-      }
+            this.childForm.get("p_language_en_002").disable();
+            this.childForm.get("p_language_en_003").disable();
+            this.childForm.get("p_language_en_004").disable();
+            this.childForm.get("p_language_en_005").disable();
+            this.childForm.get("p_language_en_006").disable();
+            this.childForm.get("p_language_en_007").disable();
+            break;
+        }
 
-      // operador de cortocircuito para ejecutar la funcion cuando exista un valor
-      value && this.loadScoreEnTest(value);
-    });
+        // operador de cortocircuito para ejecutar la funcion cuando exista un valor
+        value && this.loadScoreEnTest(value);
+      });
 
-    this.childForm.get("p_language_fr_001").valueChanges.subscribe((value) => {
-      this.childForm.get("p_language_fr_003").reset();
-      this.childForm.get("p_language_fr_004").reset();
-      this.childForm.get("p_language_fr_005").reset();
-      this.childForm.get("p_language_fr_006").reset();
+    this.childForm
+      .get("p_language_fr_001")
+      .valueChanges.pipe(takeUntil(this.notifier$))
+      .subscribe((value) => {
+        this.childForm.get("p_language_fr_003").reset();
+        this.childForm.get("p_language_fr_004").reset();
+        this.childForm.get("p_language_fr_005").reset();
+        this.childForm.get("p_language_fr_006").reset();
 
-      if (value) {
-        this.childForm.get("p_language_fr_002").enable();
-        this.childForm.get("p_language_fr_003").enable();
-        this.childForm.get("p_language_fr_004").enable();
-        this.childForm.get("p_language_fr_005").enable();
-        this.childForm.get("p_language_fr_006").enable();
-      } else {
-        this.childForm.get("p_language_fr_002").reset();
-        this.childForm.get("p_language_fr_002").disable();
-        this.childForm.get("p_language_fr_003").disable();
-        this.childForm.get("p_language_fr_004").disable();
-        this.childForm.get("p_language_fr_005").disable();
-        this.childForm.get("p_language_fr_006").disable();
-      }
+        if (value) {
+          this.childForm.get("p_language_fr_002").enable();
+          this.childForm.get("p_language_fr_003").enable();
+          this.childForm.get("p_language_fr_004").enable();
+          this.childForm.get("p_language_fr_005").enable();
+          this.childForm.get("p_language_fr_006").enable();
+        } else {
+          this.childForm.get("p_language_fr_002").reset();
+          this.childForm.get("p_language_fr_002").disable();
+          this.childForm.get("p_language_fr_003").disable();
+          this.childForm.get("p_language_fr_004").disable();
+          this.childForm.get("p_language_fr_005").disable();
+          this.childForm.get("p_language_fr_006").disable();
+        }
 
-      // operador de cortocircuito para ejecutar la funcion cuando exista un valor
-      value && this.loadScoreFrTest(value);
-    });
+        // operador de cortocircuito para ejecutar la funcion cuando exista un valor
+        value && this.loadScoreFrTest(value);
+      });
 
     /**
      *  spouse
      */
-    this.childForm.controls["p_language_spouse_001"].valueChanges.subscribe(
-      (value) => {
+    this.childForm.controls["p_language_spouse_001"].valueChanges
+      .pipe(takeUntil(this.notifier$))
+      .subscribe((value) => {
         if (value == 1) {
           this.childForm.get("p_language_spouse_en_001").enable();
           this.childForm.get("p_language_spouse_fr_001").enable();
@@ -361,12 +366,12 @@ export class SecLanguageTestComponent implements IBaseForm, OnInit {
           this.childForm.get("p_language_spouse_fr_006").reset();
           this.childForm.get("p_language_spouse_fr_006").disable();
         }
-      }
-    );
+      });
 
     this.childForm
       .get("p_language_spouse_en_001")
-      .valueChanges.subscribe((value) => {
+      .valueChanges.pipe(takeUntil(this.notifier$))
+      .subscribe((value) => {
         this.childForm.get("p_language_spouse_en_004").reset();
         this.childForm.get("p_language_spouse_en_005").reset();
         this.childForm.get("p_language_spouse_en_006").reset();
@@ -407,7 +412,8 @@ export class SecLanguageTestComponent implements IBaseForm, OnInit {
 
     this.childForm
       .get("p_language_spouse_fr_001")
-      .valueChanges.subscribe((value) => {
+      .valueChanges.pipe(takeUntil(this.notifier$))
+      .subscribe((value) => {
         this.childForm.get("p_language_spouse_fr_003").reset();
         this.childForm.get("p_language_spouse_fr_004").reset();
         this.childForm.get("p_language_spouse_fr_005").reset();
@@ -452,14 +458,14 @@ export class SecLanguageTestComponent implements IBaseForm, OnInit {
       return { ...acc, [cur]: value };
     }, {});
 
-    // this.childForm.patchValue({ ...loadValues });
-    this.childForm.setValue({ ...loadValues });
+    this.childForm.patchValue({ ...loadValues });
   }
 
   loadOptions() {
-    this._asf.getYesNo().subscribe((data) => {
-      this.optYesNo = data;
-    });
+    this.optYesNo$ = this._asf.getYesNo();
+    this.optEnglishTest$ = this._asf.getEnglishTest();
+    this.optIeltsExam$ = this._asf.getIeltsExam();
+    this.optFrenchTest$ = this._asf.getFrenchTest();
   }
 
   loadScoreEnTest(test: string) {
@@ -482,10 +488,14 @@ export class SecLanguageTestComponent implements IBaseForm, OnInit {
 
   ngOnInit() {
     this.build();
-
     this.loadInformation();
-    // this._cdr.detectChanges();
   }
+
+  ngOnDestroy(): void {
+    this.notifier$.next();
+    this.notifier$.complete();
+  }
+
   get pf() {
     return this.parentForm.controls;
   }
@@ -501,6 +511,9 @@ export class SecLanguageTestComponent implements IBaseForm, OnInit {
     return this.childForm.controls;
   }
 
+  /**
+   * Validaciones
+   */
   isLanguageTestComplete(form: AbstractControl): { [key: string]: any } | null {
     return form.get("p_language_001").value == 1 &&
       !form.get("p_language_en_001").value &&

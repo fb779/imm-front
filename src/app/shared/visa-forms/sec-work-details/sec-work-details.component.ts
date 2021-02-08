@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, OnDestroy } from "@angular/core";
 import {
   ControlContainer,
   FormBuilder,
@@ -9,13 +9,15 @@ import { AssessmentFormService } from "../../../services/services.index";
 import { IBaseForm } from "../IBaseForm";
 import { IOption } from "../../../models/Option";
 import { FormArray } from "@angular/forms";
+import { Subject, Observable } from "rxjs";
+import { takeUntil } from "rxjs/operators";
 
 @Component({
   selector: "ngx-sec-work-details",
   templateUrl: "./sec-work-details.component.html",
   styleUrls: ["./sec-work-details.component.scss"],
 })
-export class SecWorkDetailsComponent implements IBaseForm, OnInit {
+export class SecWorkDetailsComponent implements IBaseForm, OnInit, OnDestroy {
   constructor(
     private _controlContainer: ControlContainer,
     private _fb: FormBuilder,
@@ -34,9 +36,11 @@ export class SecWorkDetailsComponent implements IBaseForm, OnInit {
   minItems = 1;
   maxItems = 10;
 
-  optYesNo: IOption[] = [];
-  optCountries: IOption[] = [];
-  optNocList: IOption[] = [];
+  notifier$: Subject<any> = new Subject();
+
+  optYesNo$: Observable<IOption[]>;
+  optCountries$: Observable<IOption[]>;
+  optNocList$: Observable<IOption[]>;
 
   build(): void {
     this.parentForm = this._controlContainer.control as FormGroup;
@@ -52,14 +56,17 @@ export class SecWorkDetailsComponent implements IBaseForm, OnInit {
       p_workdetail_spouse_list: this._fb.array([]),
     });
 
-    this.childForm.get("p_workdetail_003").valueChanges.subscribe((value) => {
-      if (value == 1) {
-        this.childForm.get("p_workdetail_004").enable();
-      } else {
-        this.childForm.get("p_workdetail_004").reset();
-        this.childForm.get("p_workdetail_004").disable();
-      }
-    });
+    this.childForm
+      .get("p_workdetail_003")
+      .valueChanges.pipe(takeUntil(this.notifier$))
+      .subscribe((value) => {
+        if (value == 1) {
+          this.childForm.get("p_workdetail_004").enable();
+        } else {
+          this.childForm.get("p_workdetail_004").reset();
+          this.childForm.get("p_workdetail_004").disable();
+        }
+      });
 
     this.parentForm.addControl(this.nameSection, this.childForm);
   }
@@ -92,17 +99,9 @@ export class SecWorkDetailsComponent implements IBaseForm, OnInit {
   }
 
   loadOptions(): void {
-    this._asf.getYesNo().subscribe((data) => {
-      this.optYesNo = data;
-    });
-
-    this._asf.getCountries().subscribe((data) => {
-      this.optCountries = data;
-    });
-
-    this._asf.getNocList().subscribe((data) => {
-      this.optNocList = data;
-    });
+    this.optYesNo$ = this._asf.getYesNo();
+    this.optCountries$ = this._asf.getCountries();
+    this.optNocList$ = this._asf.getNocList();
   }
 
   newWorkHistory() {
@@ -119,6 +118,11 @@ export class SecWorkDetailsComponent implements IBaseForm, OnInit {
   ngOnInit() {
     this.build();
     this.loadInformation();
+  }
+
+  ngOnDestroy(): void {
+    this.notifier$.next();
+    this.notifier$.complete();
   }
 
   get pf() {

@@ -9,6 +9,8 @@ import {
 import { AssessmentFormService } from "../../../services/services.index";
 import { IOption } from "../../../models/Option";
 import { IBaseForm } from "../IBaseForm";
+import { Subject, Observable } from "rxjs";
+import { takeUntil } from "rxjs/operators";
 
 @Component({
   selector: "ngx-sec-education",
@@ -23,10 +25,12 @@ export class SecEducationComponent implements IBaseForm, OnInit, OnDestroy {
   @Input("submitted") submitted: boolean = false;
   @Input("data") data: any = {};
 
-  optYesNo: IOption[] = [];
-  optLevelEducation: IOption[] = [];
-  optYearsEducation: IOption[] = [];
-  optCountries: IOption[] = [];
+  notifier$: Subject<any> = new Subject();
+
+  optYesNo$: Observable<IOption[]>;
+  optLevelEducation$: Observable<IOption[]>;
+  optYearsEducation$: Observable<IOption[]>;
+  optCountries$: Observable<IOption[]>;
 
   constructor(
     private _fb: FormBuilder,
@@ -51,7 +55,8 @@ export class SecEducationComponent implements IBaseForm, OnInit, OnDestroy {
     this.pf.maritalStatus &&
       this.pf.maritalStatus
         .get("p_marital_001")
-        .valueChanges.subscribe((value) => {
+        .valueChanges.pipe(takeUntil(this.notifier$))
+        .subscribe((value) => {
           if (value == 2) {
             this.childForm.get("p_education_spouse_001").enable();
           } else {
@@ -94,21 +99,10 @@ export class SecEducationComponent implements IBaseForm, OnInit, OnDestroy {
   }
 
   loadOptions() {
-    this._asf.getYesNo().subscribe((data) => {
-      this.optYesNo = data;
-    });
-
-    this._asf.getLevelEducation().subscribe((data) => {
-      this.optLevelEducation = data;
-    });
-
-    this._asf.getYearsEducation().subscribe((data) => {
-      this.optYearsEducation = data;
-    });
-
-    this._asf.getCountries().subscribe((data) => {
-      this.optCountries = data;
-    });
+    this.optYesNo$ = this._asf.getYesNo();
+    this.optLevelEducation$ = this._asf.getLevelEducation();
+    this.optYearsEducation$ = this._asf.getYearsEducation();
+    this.optCountries$ = this._asf.getCountries();
   }
 
   newEducationRecord() {
@@ -126,7 +120,10 @@ export class SecEducationComponent implements IBaseForm, OnInit, OnDestroy {
     this.loadInformation();
   }
 
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    this.notifier$.next();
+    this.notifier$.complete();
+  }
 
   get pf() {
     return this.parentForm.controls;

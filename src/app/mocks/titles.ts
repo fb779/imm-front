@@ -1,5 +1,6 @@
 import { IOption, IOptionNumber } from "../models/Option";
 import { Title } from "../models/Titlel";
+import { exams } from "./score-language";
 
 export const opsRoles: IOption[] = [
   { value: "ADMIN_ROLE", name: "ADMIN" },
@@ -392,4 +393,60 @@ export const opsYearsEducation: IOption[] = [
   { value: "9", name: "8 years" },
   { value: "10", name: "9 years" },
   { value: "11", name: "10+ years" },
+];
+
+export const opsFinantialFounds: IOption[] = [
+  {
+    value: "1",
+    name: "less than $12,960 (does not meet minium financial requirement)",
+  },
+  { value: "2", name: "$12,960 (minimum required for 1 family member)" },
+  { value: "3", name: "$16,135 (minimum required for 2 family members)" },
+  { value: "4", name: "$19,836 (minimum required for 3 family members)" },
+  { value: "5", name: "$24,083 (minimum required for 4 family members)" },
+  { value: "6", name: "$27,315 (minimum required for 5 family members)" },
+  { value: "7", name: "$30,806 (minimum required for 6 family members)" },
+  { value: "8", name: "$34,299 (minimum required for 7 family members)" },
+  {
+    value: "9",
+    name: "$35,000+ (minimum required for 7 or more family members)",
+  },
+];
+
+export const opsRangeChildren: IOption[] = [
+  { value: "1", name: "1" },
+  { value: "2", name: "2" },
+  { value: "3", name: "3" },
+  { value: "4", name: "4" },
+  { value: "5", name: "5" },
+  { value: "6", name: "6" },
+  { value: "7", name: "7" },
+  { value: "8", name: "8" },
+  { value: "9", name: "9" },
+  { value: "10", name: "10" },
+  { value: "11", name: "11" },
+  { value: "12", name: "12" },
+  { value: "13", name: "13" },
+  { value: "14", name: "14" },
+  { value: "15", name: "15" },
+];
+
+export const opsEnglishTest: IOption[] = [
+  { name: exams.ielts, value: exams.ielts },
+  { name: exams.celpip, value: exams.celpip },
+];
+
+export const opsIeltsExam: IOption[] = [
+  { name: "Academic", value: "A" },
+  { name: "General", value: "G" },
+];
+
+export const opsFrenchTest: IOption[] = [
+  { name: exams.tcf, value: exams.tcf },
+  { name: exams.tef, value: exams.tef },
+];
+
+export const opsApplayWorkPermit: IOption[] = [
+  { value: "O", name: "Online" },
+  { value: "P", name: "Port of Entry" },
 ];

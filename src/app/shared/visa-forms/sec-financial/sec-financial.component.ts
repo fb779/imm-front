@@ -8,37 +8,24 @@ import {
 import { AssessmentFormService } from "../../../services/services.index";
 import { IBaseForm } from "../IBaseForm";
 import { IOption } from "../../../models/Option";
+import { Observable } from "rxjs";
 
 @Component({
-  selector: "ngx-sec-finatial",
-  templateUrl: "./sec-finatial.component.html",
-  styleUrls: ["./sec-finatial.component.scss"],
+  selector: "ngx-sec-financial",
+  templateUrl: "./sec-financial.component.html",
+  styleUrls: ["./sec-financial.component.scss"],
 })
-export class SecFinatialComponent implements IBaseForm, OnInit {
+export class SecFinancialComponent implements IBaseForm, OnInit {
   parentForm: FormGroup;
   childForm: FormGroup;
 
   @Input("nameSection") nameSection: string = "financial";
-  @Input("submitted") submitted: boolean;
-  @Input("data") data: any;
+  @Input("submitted") submitted: boolean = false;
+  @Input("data") data: any = {};
+  @Input("require") require: boolean = true;
 
-  optFinantialFounds: IOption[] = [
-    {
-      value: "1",
-      name: "less than $12,960 (does not meet minium financial requirement)",
-    },
-    { value: "2", name: "$12,960 (minimum required for 1 family member)" },
-    { value: "3", name: "$16,135 (minimum required for 2 family members)" },
-    { value: "4", name: "$19,836 (minimum required for 3 family members)" },
-    { value: "5", name: "$24,083 (minimum required for 4 family members)" },
-    { value: "6", name: "$27,315 (minimum required for 5 family members)" },
-    { value: "7", name: "$30,806 (minimum required for 6 family members)" },
-    { value: "8", name: "$34,299 (minimum required for 7 family members)" },
-    {
-      value: "9",
-      name: "$35,000+ (minimum required for 7 or more family members)",
-    },
-  ];
+  // optFinantialFounds: IOption[] = [];
+  optFinantialFounds$: Observable<IOption[]>;
 
   constructor(
     private _controlContainer: ControlContainer,
@@ -55,6 +42,11 @@ export class SecFinatialComponent implements IBaseForm, OnInit {
       p_financial_001: this._fb.control("", [Validators.required]),
     });
 
+    if (!this.require) {
+      this.childForm.get("p_financial_001").clearValidators();
+      this.childForm.get("p_financial_001").updateValueAndValidity();
+    }
+
     this.parentForm.addControl(this.nameSection, this.childForm);
   }
 
@@ -67,7 +59,9 @@ export class SecFinatialComponent implements IBaseForm, OnInit {
     this.childForm.patchValue({ ...loadValues });
   }
 
-  loadOptions() {}
+  loadOptions() {
+    this.optFinantialFounds$ = this._asf.getFinancial();
+  }
 
   ngOnInit() {
     this.build();

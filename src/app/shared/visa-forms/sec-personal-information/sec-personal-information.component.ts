@@ -9,6 +9,9 @@ import {
 import { AssessmentFormService } from "../../../services/services.index";
 import { Country } from "../../../models/Country";
 import { IBaseForm } from "../IBaseForm";
+import { Subject, Observable } from "rxjs";
+import { takeUntil } from "rxjs/operators";
+import { IOption } from "../../../models/Option";
 
 @Component({
   selector: "ngx-sec-personal-information",
@@ -24,10 +27,12 @@ export class SecPersonalInformationComponent
   @Input("submitted") submitted: boolean = false;
   @Input("data") data: any = {};
 
-  optTitles: Title[] = [];
-  optSex = [];
-  optCountries: Country[] = [];
-  optStatus = [];
+  notifier$: Subject<any> = new Subject();
+
+  optTitles$: Observable<Title[]>;
+  optSex$: Observable<IOption[]>;
+  optCountries$: Observable<Country[]>;
+  optStatus$: Observable<IOption[]>;
 
   constructor(
     private _fb: FormBuilder,
@@ -67,16 +72,16 @@ export class SecPersonalInformationComponent
       ]),
     });
 
-    this.childForm.controls["status_residence"].valueChanges.subscribe(
-      (value: any) => {
+    this.childForm.controls["status_residence"].valueChanges
+      .pipe(takeUntil(this.notifier$))
+      .subscribe((value: any) => {
         if (value == 5) {
           this.childForm.get("status_residence_other").enable();
         } else {
           this.childForm.get("status_residence_other").reset();
           this.childForm.get("status_residence_other").disable();
         }
-      }
-    );
+      });
 
     this.parentForm.addControl(this.nameSection, this.childForm);
   }
@@ -93,21 +98,10 @@ export class SecPersonalInformationComponent
   }
 
   loadOptions() {
-    this._asf.getTitles().subscribe((data) => {
-      this.optTitles = data;
-    });
-
-    this._asf.getSex().subscribe((data) => {
-      this.optSex = data;
-    });
-
-    this._asf.getCountries().subscribe((data) => {
-      this.optCountries = data;
-    });
-
-    this._asf.getStatus().subscribe((data) => {
-      this.optStatus = data;
-    });
+    this.optTitles$ = this._asf.getTitles();
+    this.optSex$ = this._asf.getSex();
+    this.optCountries$ = this._asf.getCountries();
+    this.optStatus$ = this._asf.getStatus();
   }
 
   ngOnInit() {
@@ -116,7 +110,9 @@ export class SecPersonalInformationComponent
   }
 
   ngOnDestroy(): void {
-    this.parentForm.removeControl(this.nameSection);
+    this.notifier$.next();
+    this.notifier$.complete();
+    // this.parentForm.removeControl(this.nameSection);
   }
 
   get f() {

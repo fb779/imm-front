@@ -9,6 +9,7 @@ import {
 } from "../../../services/services.index";
 import { Process } from "../../../models/Process";
 import { status, visaCategories } from "../../../config/config";
+import { cleanData } from "../clean-data-forms";
 
 @Component({
   selector: "ngx-form-work-permit",
@@ -36,7 +37,7 @@ export class FormWorkPermitComponent implements OnInit {
     this.url = this._router.url.split("/").filter((x) => x.trim() !== "");
     this.forma = this._fb.group({
       _id: this._fb.control("new"),
-      kind: this._fb.control(visaCategories.expressentry),
+      kind: this._fb.control(visaCategories.workpermit),
     });
   }
 
@@ -76,15 +77,13 @@ export class FormWorkPermitComponent implements OnInit {
     } else {
       const client = { ...this.process.client };
       delete client._id;
-      setTimeout(() => {
-        this.dataForm = { ...client };
-        this.loading = false;
-      }, 3000);
+      this.dataForm = { ...client };
+      this.loading = false;
     }
   }
 
   save() {
-    this.loading = true;
+    // this.loading = true;
     this.submitted = true;
 
     // if (this.forma.invalid) {
@@ -93,36 +92,7 @@ export class FormWorkPermitComponent implements OnInit {
     //   return;
     // }
 
-    const valores = Object.keys(this.forma.value).reduce((acc, cur) => {
-      const newCurVal = this.forma.value[cur] || "";
-
-      if (typeof newCurVal === "object") {
-        acc = { ...acc, ...newCurVal };
-      } else {
-        acc = { ...acc, [cur]: newCurVal };
-      }
-
-      return acc;
-    }, {});
-
-    const fields = Object.keys(this.f).reduce((acc, cur) => {
-      const curControl = this.f[cur];
-
-      if (curControl.hasOwnProperty("controls")) {
-        const ctlValues = Object.keys(curControl["controls"]).reduce(
-          (ac, el) =>
-            el.includes("list") ? { ...ac, [el]: [] } : { ...ac, [el]: "" },
-          {}
-        );
-        acc = { ...acc, ...ctlValues };
-      } else {
-        acc = { ...acc, [cur]: curControl.value };
-      }
-
-      return acc;
-    }, {});
-
-    const completeData = { ...fields, ...valores };
+    const completeData = cleanData(this.forma);
 
     console.log("informacion a enivar", { completeData });
 

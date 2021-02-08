@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SecFinatialComponent } from './sec-finatial.component';
+import { SecFamilyInfoComponent } from './sec-family-info.component';
 
-describe('SecFinatialComponent', () => {
-  let component: SecFinatialComponent;
-  let fixture: ComponentFixture<SecFinatialComponent>;
+describe('SecFamilyInfoComponent', () => {
+  let component: SecFamilyInfoComponent;
+  let fixture: ComponentFixture<SecFamilyInfoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SecFinatialComponent ]
+      declarations: [ SecFamilyInfoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SecFinatialComponent);
+    fixture = TestBed.createComponent(SecFamilyInfoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

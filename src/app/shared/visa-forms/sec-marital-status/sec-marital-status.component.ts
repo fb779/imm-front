@@ -5,6 +5,9 @@ import {
   FormGroup,
   Validators,
 } from "@angular/forms";
+import { Subject, Observable } from "rxjs";
+import { takeUntil } from "rxjs/operators";
+
 import { AssessmentFormService } from "../../../services/services.index";
 import { IOption } from "../../../models/Option";
 import { IBaseForm } from "../IBaseForm";
@@ -22,8 +25,10 @@ export class SecMaritalStatusComponent implements IBaseForm, OnInit, OnDestroy {
   @Input("submitted") submitted: boolean = false;
   @Input("data") data: any = {};
 
-  optMaritalStatus: IOption[] = [];
-  optYesNo: IOption[] = [];
+  notifier$: Subject<any> = new Subject();
+
+  optMaritalStatus$: Observable<IOption[]>;
+  optYesNo$: Observable<IOption[]>;
 
   constructor(
     private _fb: FormBuilder,
@@ -42,8 +47,9 @@ export class SecMaritalStatusComponent implements IBaseForm, OnInit, OnDestroy {
       p_marital_003: this._fb.control("", [Validators.required]),
     });
 
-    this.childForm.controls["p_marital_001"].valueChanges.subscribe(
-      (value: any) => {
+    this.childForm.controls["p_marital_001"].valueChanges
+      .pipe(takeUntil(this.notifier$))
+      .subscribe((value: any) => {
         if (value == 2) {
           this.childForm.get("p_marital_002").enable();
           this.childForm.get("p_marital_003").enable();
@@ -54,8 +60,7 @@ export class SecMaritalStatusComponent implements IBaseForm, OnInit, OnDestroy {
           this.childForm.get("p_marital_002").disable();
           this.childForm.get("p_marital_003").disable();
         }
-      }
-    );
+      });
 
     this.parentForm.addControl(this.nameSection, this.childForm);
   }
@@ -72,12 +77,8 @@ export class SecMaritalStatusComponent implements IBaseForm, OnInit, OnDestroy {
   }
 
   loadOptions() {
-    this._asf.getMaritalStatus().subscribe((data) => {
-      this.optMaritalStatus = data;
-    });
-    this._asf.getYesNo().subscribe((data) => {
-      this.optYesNo = data;
-    });
+    this.optMaritalStatus$ = this._asf.getMaritalStatus();
+    this.optYesNo$ = this._asf.getYesNo();
   }
 
   ngOnInit() {
@@ -86,7 +87,8 @@ export class SecMaritalStatusComponent implements IBaseForm, OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.parentForm.removeControl(this.nameSection);
+    this.notifier$.next();
+    this.notifier$.complete();
   }
 
   get f() {

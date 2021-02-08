@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, OnDestroy } from "@angular/core";
 import {
   FormGroup,
   FormBuilder,
@@ -8,13 +8,14 @@ import {
 import { IBaseForm } from "../IBaseForm";
 import { AssessmentFormService } from "../../../services/services.index";
 import { IOption } from "../../../models/Option";
+import { Subject, Observable } from "rxjs";
 
 @Component({
   selector: "ngx-sec-information",
   templateUrl: "./sec-information.component.html",
   styleUrls: ["./sec-information.component.scss"],
 })
-export class SecInformationComponent implements IBaseForm, OnInit {
+export class SecInformationComponent implements IBaseForm, OnInit, OnDestroy {
   parentForm: FormGroup;
   childForm: FormGroup;
 
@@ -22,7 +23,9 @@ export class SecInformationComponent implements IBaseForm, OnInit {
   @Input("submitted") submitted: boolean = false;
   @Input("data") data: any = {};
 
-  optYesNo: IOption[];
+  notifier$: Subject<any> = new Subject();
+
+  optYesNo$: Observable<IOption[]>;
 
   constructor(
     private _parentControl: ControlContainer,
@@ -55,14 +58,17 @@ export class SecInformationComponent implements IBaseForm, OnInit {
   }
 
   loadOptions(): void {
-    this._asf.getYesNo().subscribe((data) => {
-      this.optYesNo = data;
-    });
+    this.optYesNo$ = this._asf.getYesNo();
   }
 
   ngOnInit() {
     this.build();
     this.loadInformation();
+  }
+
+  ngOnDestroy(): void {
+    this.notifier$.next();
+    this.notifier$.complete();
   }
 
   get f() {

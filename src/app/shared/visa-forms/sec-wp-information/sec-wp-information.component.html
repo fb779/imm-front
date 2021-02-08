@@ -1,1 +1,217 @@
-<p>sec-wp-information works!</p>
+<!-- information -->
+<ng-container [formGroup]="parentForm">
+  <nb-card accent="info" [formGroupName]="nameSection">
+    <nb-card-header>
+      <label for="">Information</label>
+    </nb-card-header>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label>
+              Have you or your spouse previously visited Canada for work,
+              travel, or study?
+            </label>
+            <nb-select
+              name="p_information_001"
+              placeholder="Select Showcase"
+              fullWidth
+              formControlName="p_information_001"
+              [status]="
+                (submitted || f.p_information_001.touched) &&
+                f.p_information_001.errors
+                  ? 'danger'
+                  : ''
+              "
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option
+                *ngFor="let item of optYesNo$ | async"
+                [value]="item.value"
+              >
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <div
+              class="card-text text-white"
+              *ngIf="
+                (submitted || f.p_information_001.touched) &&
+                f.p_information_001.errors
+              "
+            >
+              <small
+                *ngIf="f.p_information_001.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label>
+              What status did you enter as - Student, Work Permit, Visitor,
+              Other?
+            </label>
+            <input
+              type="text"
+              name="p_information_002"
+              placeholder="Select Showcase"
+              nbInput
+              fullWidth
+              formControlName="p_information_002"
+              [status]="
+                (submitted || f.p_information_002.touched) &&
+                f.p_information_002.errors
+                  ? 'danger'
+                  : ''
+              "
+            />
+            <!-- <nb-select name="p_information_002" placeholder="Select Showcase" fullWidth formControlName="p_information_002" [status]=" (submitted || f.p_information_002.touched) && f.p_information_002.errors ? 'danger' : '' " >
+              <nb-option value="">Select...</nb-option>
+              <nb-option *ngFor="let item of optYesNo$ | async" [value]="item.value"> {{ item.name }} </nb-option>
+            </nb-select> -->
+            <div
+              class="card-text text-white"
+              *ngIf="
+                (submitted || f.p_information_002.touched) &&
+                f.p_information_002.errors
+              "
+            >
+              <small
+                *ngIf="f.p_information_002.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label>
+              What year did you or your spouse first enter Canada?
+            </label>
+            <input
+              type="text"
+              name="p_information_003"
+              placeholder="Select Showcase"
+              nbInput
+              fullWidth
+              formControlName="p_information_003"
+              [status]="
+                (submitted || f.p_information_003.touched) &&
+                f.p_information_003.errors
+                  ? 'danger'
+                  : ''
+              "
+            />
+            <!-- <nb-select name="p_information_003" placeholder="Select Showcase" fullWidth formControlName="p_information_003" [status]=" (submitted || f.p_information_003.touched) && f.p_information_003.errors ? 'danger' : '' " >
+              <nb-option value="">Select...</nb-option>
+              <nb-option *ngFor="let item of optYesNo$ | async" [value]="item.value"> {{ item.name }} </nb-option>
+            </nb-select> -->
+            <div
+              class="card-text text-white"
+              *ngIf="
+                (submitted || f.p_information_003.touched) &&
+                f.p_information_003.errors
+              "
+            >
+              <small
+                *ngIf="f.p_information_003.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label> Do you have a Visitors or Student Visa for Canada? </label>
+            <nb-select
+              name="p_information_004"
+              placeholder="Select Showcase"
+              fullWidth
+              formControlName="p_information_004"
+              [status]="
+                (submitted || f.p_information_004.touched) &&
+                f.p_information_004.errors
+                  ? 'danger'
+                  : ''
+              "
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option
+                *ngFor="let item of optYesNo$ | async"
+                [value]="item.value"
+              >
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <div
+              class="card-text text-white"
+              *ngIf="
+                (submitted || f.p_information_004.touched) &&
+                f.p_information_004.errors
+              "
+            >
+              <small
+                *ngIf="f.p_information_004.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label>
+              Do you or your spouse currently have a Visitor Visa to either the
+              United States, United Kingdom or Schengen Area?
+            </label>
+            <nb-select
+              name="p_information_005"
+              placeholder="Select Showcase"
+              fullWidth
+              formControlName="p_information_005"
+              [status]="
+                (submitted || f.p_information_005.touched) &&
+                f.p_information_005.errors
+                  ? 'danger'
+                  : ''
+              "
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option
+                *ngFor="let item of optYesNo$ | async"
+                [value]="item.value"
+              >
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <div
+              class="card-text text-white"
+              *ngIf="
+                (submitted || f.p_information_005.touched) &&
+                f.p_information_005.errors
+              "
+            >
+              <small
+                *ngIf="f.p_information_005.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</ng-container>

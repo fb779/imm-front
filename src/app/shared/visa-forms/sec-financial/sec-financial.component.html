@@ -26,7 +26,7 @@
             >
               <nb-option value="">Select...</nb-option>
               <nb-option
-                *ngFor="let item of optFinantialFounds"
+                *ngFor="let item of optFinantialFounds$ | async"
                 [value]="item.value"
               >
                 {{ item.name }}

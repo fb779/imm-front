@@ -20,9 +20,15 @@ import {
   opsStayCanada,
   opsLevelEducation,
   opsYearsEducation,
+  opsFinantialFounds,
+  opsRangeChildren,
+  opsEnglishTest,
+  opsIeltsExam,
+  opsApplayWorkPermit,
 } from "../../mocks/titles";
 import { nocList, INoc } from "../../mocks/noc-list";
 import { IOption, IOptionNumber } from "../../models/Option";
+import { opsFrenchTest } from "../../mocks/titles";
 
 @Injectable({
   providedIn: "root",
@@ -84,6 +90,30 @@ export class AssessmentFormService {
 
   getYearsEducation(): Observable<IOption[]> {
     return observableOf(opsYearsEducation);
+  }
+
+  getFinancial(): Observable<IOption[]> {
+    return observableOf(opsFinantialFounds);
+  }
+
+  getRangeChildren(): Observable<IOption[]> {
+    return observableOf(opsRangeChildren);
+  }
+
+  getEnglishTest(): Observable<IOption[]> {
+    return observableOf(opsEnglishTest);
+  }
+
+  getIeltsExam(): Observable<IOption[]> {
+    return observableOf(opsIeltsExam);
+  }
+
+  getFrenchTest(): Observable<IOption[]> {
+    return observableOf(opsFrenchTest);
+  }
+
+  getApplayWorkPermit(): Observable<IOption[]> {
+    return observableOf(opsApplayWorkPermit);
   }
 
   getNocList(term: string = ""): Observable<IOption[]> {

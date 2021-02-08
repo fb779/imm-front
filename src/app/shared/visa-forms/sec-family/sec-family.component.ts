@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, OnDestroy } from "@angular/core";
 import {
   FormGroup,
   ControlContainer,
@@ -11,13 +11,15 @@ import { IBaseForm } from "../IBaseForm";
 import { IOption } from "../../../models/Option";
 import { AssessmentFormService } from "../../../services/services.index";
 import { agesRegex } from "../../../config/config";
+import { takeUntil } from "rxjs/operators";
+import { Subject, Observable } from "rxjs";
 
 @Component({
   selector: "ngx-sec-family",
   templateUrl: "./sec-family.component.html",
   styleUrls: ["./sec-family.component.scss"],
 })
-export class SecFamilyComponent implements IBaseForm, OnInit {
+export class SecFamilyComponent implements IBaseForm, OnInit, OnDestroy {
   parentForm: FormGroup;
   childForm: FormGroup;
 
@@ -25,24 +27,10 @@ export class SecFamilyComponent implements IBaseForm, OnInit {
   @Input("submitted") submitted: boolean = false;
   @Input("data") data: any = {};
 
-  optYesNo: IOption[] = [];
-  optRangeChildren: IOption[] = [
-    { value: "1", name: "1" },
-    { value: "2", name: "2" },
-    { value: "3", name: "3" },
-    { value: "4", name: "4" },
-    { value: "5", name: "5" },
-    { value: "6", name: "6" },
-    { value: "7", name: "7" },
-    { value: "8", name: "8" },
-    { value: "9", name: "9" },
-    { value: "10", name: "10" },
-    { value: "11", name: "11" },
-    { value: "12", name: "12" },
-    { value: "13", name: "13" },
-    { value: "14", name: "14" },
-    { value: "15", name: "15" },
-  ];
+  notifier$: Subject<any> = new Subject();
+
+  optYesNo$: Observable<IOption[]>;
+  optRangeChildren$: Observable<IOption[]>;
 
   constructor(
     private _controlContainer: ControlContainer,
@@ -70,7 +58,8 @@ export class SecFamilyComponent implements IBaseForm, OnInit {
     // this.pf.maritalStatus &&
     //   this.pf.maritalStatus
     //     .get("p_marital_001")
-    //     .valueChanges.subscribe((value) => {
+    //     .valueChanges.pipe(takeUntil(this.notifier$))
+    //     .subscribe((value) => {
     //       console.log("valor del estatus maital", value);
     //       if (value == 1) {
     //         this.childForm.get("p_family_002").clearValidators();
@@ -90,25 +79,31 @@ export class SecFamilyComponent implements IBaseForm, OnInit {
     //       }
     //     });
 
-    this.childForm.get("p_family_002").valueChanges.subscribe((value) => {
-      if (value == 1) {
-        this.childForm.get("p_family_003").enable();
-      } else {
-        this.childForm.get("p_family_003").reset();
-        this.childForm.get("p_family_004").reset();
-        this.childForm.get("p_family_003").disable();
-        this.childForm.get("p_family_004").disable();
-      }
-    });
+    this.childForm
+      .get("p_family_002")
+      .valueChanges.pipe(takeUntil(this.notifier$))
+      .subscribe((value) => {
+        if (value == 1) {
+          this.childForm.get("p_family_003").enable();
+        } else {
+          this.childForm.get("p_family_003").reset();
+          this.childForm.get("p_family_004").reset();
+          this.childForm.get("p_family_003").disable();
+          this.childForm.get("p_family_004").disable();
+        }
+      });
 
-    this.childForm.get("p_family_003").valueChanges.subscribe((value) => {
-      if (!value) {
-        this.childForm.get("p_family_004").reset();
-        this.childForm.get("p_family_004").disable();
-      } else {
-        this.childForm.get("p_family_004").enable();
-      }
-    });
+    this.childForm
+      .get("p_family_003")
+      .valueChanges.pipe(takeUntil(this.notifier$))
+      .subscribe((value) => {
+        if (!value) {
+          this.childForm.get("p_family_004").reset();
+          this.childForm.get("p_family_004").disable();
+        } else {
+          this.childForm.get("p_family_004").enable();
+        }
+      });
 
     this.parentForm.addControl(this.nameSection, this.childForm);
   }
@@ -123,9 +118,8 @@ export class SecFamilyComponent implements IBaseForm, OnInit {
   }
 
   loadOptions() {
-    this._asf.getYesNo().subscribe((data) => {
-      this.optYesNo = data;
-    });
+    this.optYesNo$ = this._asf.getYesNo();
+    this.optRangeChildren$ = this._asf.getRangeChildren();
   }
 
   isAgeCorrectly(minAge: Number, maxAge: Number): ValidatorFn {
@@ -154,6 +148,11 @@ export class SecFamilyComponent implements IBaseForm, OnInit {
   ngOnInit() {
     this.build();
     this.loadInformation();
+  }
+
+  ngOnDestroy(): void {
+    this.notifier$.next();
+    this.notifier$.complete();
   }
 
   // get pf() {

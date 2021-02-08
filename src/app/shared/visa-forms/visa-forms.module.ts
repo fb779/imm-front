@@ -43,8 +43,10 @@ import { SecVisitComponent } from "./sec-visit/sec-visit.component";
 import { SecLanguageTestComponent } from "./sec-language-test/sec-language-test.component";
 import { SecWorkDetailsComponent } from "./sec-work-details/sec-work-details.component";
 import { SecFamilyComponent } from "./sec-family/sec-family.component";
-import { SecFinatialComponent } from "./sec-finatial/sec-finatial.component";
-import { SecWpInformationComponent } from './sec-wp-information/sec-wp-information.component';
+import { SecFinancialComponent } from "./sec-financial/sec-financial.component";
+import { SecWpInformationComponent } from "./sec-wp-information/sec-wp-information.component";
+import { SecWorkPermitComponent } from "./sec-work-permit/sec-work-permit.component";
+import { SecFamilyInfoComponent } from './sec-family-info/sec-family-info.component';
 
 @NgModule({
   declarations: [
@@ -61,8 +63,10 @@ import { SecWpInformationComponent } from './sec-wp-information/sec-wp-informati
     SecLanguageTestComponent,
     SecWorkDetailsComponent,
     SecFamilyComponent,
-    SecFinatialComponent,
+    SecFinancialComponent,
     SecWpInformationComponent,
+    SecWorkPermitComponent,
+    SecFamilyInfoComponent,
   ],
   imports: [
     CommonModule,

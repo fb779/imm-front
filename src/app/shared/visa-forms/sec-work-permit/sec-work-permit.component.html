@@ -1,0 +1,136 @@
+<ng-container [formGroup]="parentForm">
+  <nb-card accent="info" [formGroupName]="nameSection">
+    <nb-card-header>
+      <label for="">Post Grad Work Permit</label>
+    </nb-card-header>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label>
+              Have you applied for your Post Grad Work Permit (PGWP)?
+            </label>
+            <nb-select
+              name="p_workpermit_001"
+              placeholder="Select Showcase"
+              fullWidth
+              formControlName="p_workpermit_001"
+              [status]="
+                (submitted || f.p_workpermit_001.touched) &&
+                f.p_workpermit_001.errors
+                  ? 'danger'
+                  : ''
+              "
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option
+                *ngFor="let item of optYesNo$ | async"
+                [value]="item.value"
+              >
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <div
+              class="card-text text-white"
+              *ngIf="
+                (submitted || f.p_workpermit_001.touched) &&
+                f.p_workpermit_001.errors
+              "
+            >
+              <small
+                *ngIf="f.p_workpermit_001.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label> How did you submit your PGWP application? </label>
+            <nb-select
+              name="p_workpermit_002"
+              placeholder="Select Showcase"
+              fullWidth
+              formControlName="p_workpermit_002"
+              [status]="
+                (submitted || f.p_workpermit_002.touched) &&
+                f.p_workpermit_002.errors
+                  ? 'danger'
+                  : ''
+              "
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option
+                *ngFor="let item of optApplayWorkPermit$ | async"
+                [value]="item.value"
+              >
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <div
+              class="card-text text-white"
+              *ngIf="
+                (submitted || f.p_workpermit_002.touched) &&
+                f.p_workpermit_002.errors
+              "
+            >
+              <small
+                *ngIf="f.p_workpermit_002.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label> When did you submit your PGWP application? </label>
+            <input
+              type="text"
+              placeholder="Pick Date"
+              name="p_workpermit_003"
+              nbInput
+              fullWidth
+              formControlName="p_workpermit_003"
+              readonly="readonly"
+              [nbDatepicker]="application"
+              [status]="
+                (submitted || f.p_workpermit_003.touched) &&
+                f.p_workpermit_003.errors
+                  ? 'danger'
+                  : ''
+              "
+            />
+            <nb-datepicker
+              #application
+              [showHeader]="false"
+              [min]="min"
+              [max]="max"
+            >
+            </nb-datepicker>
+
+            <div
+              class="card-text text-white"
+              *ngIf="
+                (submitted || f.p_workpermit_003.touched) &&
+                f.p_workpermit_003.errors
+              "
+            >
+              <small
+                *ngIf="f.p_workpermit_003.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</ng-container>

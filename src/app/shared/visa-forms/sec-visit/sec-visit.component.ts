@@ -8,6 +8,7 @@ import {
 import { AssessmentFormService } from "../../../services/services.index";
 import { IOption } from "../../../models/Option";
 import { IBaseForm } from "../IBaseForm";
+import { Observable, Subject } from "rxjs";
 
 @Component({
   selector: "ngx-sec-visit",
@@ -22,8 +23,8 @@ export class SecVisitComponent implements IBaseForm, OnInit {
   @Input("submitted") submitted: boolean = false;
   @Input("data") data: any = {};
 
-  optProvinces: IOption[] = [];
-  optYesNo: IOption[] = [];
+  optProvinces$: Observable<IOption[]>;
+  optYesNo$: Observable<IOption[]>;
 
   constructor(
     private _fb: FormBuilder,
@@ -59,12 +60,8 @@ export class SecVisitComponent implements IBaseForm, OnInit {
   }
 
   loadOptions() {
-    this._asf.getProvinces().subscribe((data) => {
-      this.optProvinces = data;
-    });
-    this._asf.getYesNo().subscribe((data) => {
-      this.optYesNo = data;
-    });
+    this.optProvinces$ = this._asf.getProvinces();
+    this.optYesNo$ = this._asf.getYesNo();
   }
 
   ngOnInit() {

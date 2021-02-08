@@ -66,7 +66,10 @@
                       >
                         <nb-option value="">Select...</nb-option>
                         <nb-option
-                          *ngFor="let item of optLevelEducation"
+                          *ngFor="
+                            let item of optLevelEducation$
+                              | async as optLevelEducation
+                          "
                           [value]="item.value"
                         >
                           {{ item.name }}
@@ -90,10 +93,6 @@
                             : ''
                         "
                       />
-
-                      <!-- <div class="card-text" *ngIf=" (submitted || eduList.controls.study.touched) && eduList.controls.study.errors " >
-                            <small *ngIf=" eduList.controls.study.errors?.required " class="form-text text-muted text-muted-danger" > Field required </small>
-                          </div> -->
                     </div>
                   </td>
                   <td>
@@ -112,10 +111,6 @@
                             : ''
                         "
                       />
-
-                      <!-- <div class="card-text" *ngIf=" (submitted || eduList.controls.institution.touched) && eduList.controls.institution.errors " >
-                            <small *ngIf=" eduList.controls.institution.errors?.required " class="form-text text-muted text-muted-danger" > Field required </small>
-                          </div> -->
                     </div>
                   </td>
                   <td>
@@ -134,7 +129,10 @@
                       >
                         <nb-option value="">Select...</nb-option>
                         <nb-option
-                          *ngFor="let item of optYearsEducation"
+                          *ngFor="
+                            let item of optYearsEducation$
+                              | async as optYearsEducation
+                          "
                           [value]="item.value"
                         >
                           {{ item.name }}
@@ -144,7 +142,10 @@
                   </td>
                   <!-- <td>
                     <div class="form-group mb-0">
-                      <nb-select name="country" placeholder="Select Showcase" fullWidth formControlName="country" [status]=" (submitted || eduList.controls.country.touched) && eduList.controls.country.errors ? 'danger' : '' " > <nb-option value="">Select...</nb-option> <nb-option *ngFor="let item of optCountries" [value]="item.value" > {{ item.name }} </nb-option> </nb-select>
+                      <nb-select name="country" placeholder="Select Showcase" fullWidth formControlName="country" [status]=" (submitted || eduList.controls.country.touched) && eduList.controls.country.errors ? 'danger' : '' " >
+                        <nb-option value="">Select...</nb-option>
+                        <nb-option *ngFor="let item of optCountries$ | async as optCountries" [value]="item.value" > {{ item.name }} </nb-option>
+                      </nb-select>
                     </div>
                   </td> -->
                   <td class="text-center">
@@ -158,7 +159,6 @@
                       (click)="removeEducation(i)"
                     >
                       <nb-icon icon="close-circle-outline"></nb-icon>
-                      <!-- <nb-icon icon="file-remove-outline"></nb-icon> -->
                     </button>
                   </td>
                 </ng-container>
@@ -203,7 +203,10 @@
               "
             >
               <nb-option value="">Select...</nb-option>
-              <nb-option *ngFor="let item of optYesNo" [value]="item.value">
+              <nb-option
+                *ngFor="let item of optYesNo$ | async as optYesNo"
+                [value]="item.value"
+              >
                 {{ item.name }}
               </nb-option>
             </nb-select>
@@ -267,7 +270,10 @@
                         >
                           <nb-option value="">Select...</nb-option>
                           <nb-option
-                            *ngFor="let item of optLevelEducation"
+                            *ngFor="
+                              let item of optLevelEducation$
+                                | async as optLevelEducation
+                            "
                             [value]="item.value"
                           >
                             {{ item.name }}
@@ -291,10 +297,6 @@
                               : ''
                           "
                         />
-
-                        <!-- <div class="card-text" *ngIf=" (submitted || eduSpList.controls.study.touched) && eduSpList.controls.study.errors " >
-                            <small *ngIf=" eduSpList.controls.study.errors?.required " class="form-text text-muted text-muted-danger" > Field required </small>
-                          </div> -->
                       </div>
                     </td>
                     <td>
@@ -314,10 +316,6 @@
                               : ''
                           "
                         />
-
-                        <!-- <div class="card-text" *ngIf=" (submitted || eduSpList.controls.institution.touched) && eduSpList.controls.institution.errors " >
-                            <small *ngIf=" eduSpList.controls.institution.errors?.required " class="form-text text-muted text-muted-danger" > Field required </small>
-                          </div> -->
                       </div>
                     </td>
                     <td>
@@ -346,10 +344,13 @@
                       </div>
                     </td>
                     <!-- <td>
-                    <div class="form-group mb-0">
-                      <nb-select name="country" placeholder="Select Showcase" fullWidth formControlName="country" [status]=" (submitted || eduSpList.controls.country.touched) && eduSpList.controls.country.errors ? 'danger' : '' " > <nb-option value="">Select...</nb-option> <nb-option *ngFor="let item of optCountries" [value]="item.value" > {{ item.name }} </nb-option> </nb-select>
-                    </div>
-                  </td> -->
+                      <div class="form-group mb-0">
+                        <nb-select name="country" placeholder="Select Showcase" fullWidth formControlName="country" [status]=" (submitted || eduSpList.controls.country.touched) && eduSpList.controls.country.errors ? 'danger' : '' " >
+                          <nb-option value="">Select...</nb-option>
+                          <nb-option *ngFor="let item of optCountries$ | async as optCountries" [value]="item.value" > {{ item.name }} </nb-option>
+                        </nb-select>
+                      </div>
+                    </td> -->
                     <td class="text-center">
                       <button
                         nbButton
@@ -405,7 +406,10 @@
                 "
               >
                 <nb-option value="">Select...</nb-option>
-                <nb-option *ngFor="let item of optYesNo" [value]="item.value">
+                <nb-option
+                  *ngFor="let item of optYesNo$ | async as optYesNo"
+                  [value]="item.value"
+                >
                   {{ item.name }}
                 </nb-option>
               </nb-select>
