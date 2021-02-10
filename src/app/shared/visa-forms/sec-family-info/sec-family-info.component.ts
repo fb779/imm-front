@@ -5,9 +5,10 @@ import {
   FormBuilder,
   Validators,
 } from "@angular/forms";
-import { Subject } from "rxjs";
+import { Subject, Observable } from "rxjs";
 import { IBaseForm } from "../IBaseForm";
 import { AssessmentFormService } from "../../../services/assessment-form/assessment-form.service";
+import { IOption } from "../../../models/Option";
 
 @Component({
   selector: "ngx-sec-family-info",
@@ -22,14 +23,14 @@ export class SecFamilyInfoComponent implements IBaseForm, OnInit, OnDestroy {
   @Input("submitted") submitted: boolean = false;
   @Input("data") data: any = {};
 
-  notifier$: Subject<any> = new Subject();
+  optYesNo$: Observable<IOption[]>;
 
   constructor(
     private _parentControl: ControlContainer,
     private _fb: FormBuilder,
     private _asf: AssessmentFormService
   ) {
-    // this.loadOptions();
+    this.loadOptions();
   }
 
   build() {
@@ -47,21 +48,25 @@ export class SecFamilyInfoComponent implements IBaseForm, OnInit, OnDestroy {
   }
 
   loadInformation() {
-    throw new Error("Method not implemented.");
+    const loadValues = Object.keys(this.f).reduce((acc, cur) => {
+      let value = this.data[cur] || "";
+      return { ...acc, [cur]: value };
+    }, {});
+
+    this.childForm.patchValue({ ...loadValues });
   }
 
   loadOptions() {
-    throw new Error("Method not implemented.");
+    this.optYesNo$ = this._asf.getYesNo();
   }
 
   ngOnInit() {
     this.build();
-    // this.loadInformation()
+    this.loadInformation();
   }
 
   ngOnDestroy() {
-    this.notifier$.next();
-    this.notifier$.complete();
+    this.parentForm.removeControl(this.nameSection);
   }
 
   get f() {

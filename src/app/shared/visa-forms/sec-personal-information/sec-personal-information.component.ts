@@ -6,12 +6,13 @@ import {
   FormBuilder,
   Validators,
 } from "@angular/forms";
+import { Subject, Observable } from "rxjs";
+import { takeUntil } from "rxjs/operators";
 import { AssessmentFormService } from "../../../services/services.index";
 import { Country } from "../../../models/Country";
 import { IBaseForm } from "../IBaseForm";
-import { Subject, Observable } from "rxjs";
-import { takeUntil } from "rxjs/operators";
 import { IOption } from "../../../models/Option";
+import { phoneNumberRegex } from "../../../config/config";
 
 @Component({
   selector: "ngx-sec-personal-information",
@@ -56,7 +57,7 @@ export class SecPersonalInformationComponent
       ]),
       telephone: this._fb.control("", [
         Validators.required,
-        Validators.pattern("[0-9]*$"),
+        Validators.pattern(phoneNumberRegex),
       ]),
       country_citizenship: this._fb.control("", [Validators.required]),
       other_citizenship: this._fb.control("", []),
@@ -112,7 +113,7 @@ export class SecPersonalInformationComponent
   ngOnDestroy(): void {
     this.notifier$.next();
     this.notifier$.complete();
-    // this.parentForm.removeControl(this.nameSection);
+    this.parentForm.removeControl(this.nameSection);
   }
 
   get f() {

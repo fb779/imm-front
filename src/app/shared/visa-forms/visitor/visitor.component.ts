@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from "@angular/core";
 import { Router } from "@angular/router";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 
-import { status } from "../../../config/config";
+import { status, phoneNumberRegex } from "../../../config/config";
 import { Title } from "../../../models/Titlel";
 import { Country } from "../../../models/Country";
 
@@ -110,7 +110,7 @@ export class VisitorComponent implements OnInit {
       ]),
       telephone: new FormControl("", [
         Validators.required,
-        Validators.pattern("[0-9]*$"),
+        Validators.pattern(phoneNumberRegex),
       ]),
       country_citizenship: new FormControl("", [Validators.required]),
       other_citizenship: new FormControl("", []),

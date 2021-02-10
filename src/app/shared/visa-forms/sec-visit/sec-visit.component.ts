@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, OnDestroy } from "@angular/core";
 import {
   ControlContainer,
   FormBuilder,
@@ -15,7 +15,7 @@ import { Observable, Subject } from "rxjs";
   templateUrl: "./sec-visit.component.html",
   styleUrls: ["./sec-visit.component.scss"],
 })
-export class SecVisitComponent implements IBaseForm, OnInit {
+export class SecVisitComponent implements IBaseForm, OnInit, OnDestroy {
   parentForm: FormGroup;
   childForm: FormGroup;
 
@@ -67,6 +67,10 @@ export class SecVisitComponent implements IBaseForm, OnInit {
   ngOnInit() {
     this.build();
     this.loadInformation();
+  }
+
+  ngOnDestroy(): void {
+    this.parentForm.removeControl(this.nameSection);
   }
 
   get f() {

@@ -83,61 +83,59 @@ export class FormWorkPermitComponent implements OnInit {
   }
 
   save() {
-    // this.loading = true;
+    this.loading = true;
     this.submitted = true;
 
-    // if (this.forma.invalid) {
-    //   this._toastr.toastrGenericMessage(`Form is nvalid`, "Form", "warning");
-    //   this.loading = false;
-    //   return;
-    // }
+    if (this.forma.invalid) {
+      this._toastr.toastrGenericMessage(`Form is nvalid`, "Form", "warning");
+      this.loading = false;
+      return;
+    }
 
     const completeData = cleanData(this.forma);
 
-    console.log("informacion a enivar", { completeData });
-
-    // if (this.f._id.value === "new") {
-    //   this._porcessServices
-    //     .setForm(this.process, completeData)
-    //     .pipe(
-    //       catchError(() => {
-    //         this.loading = false;
-    //         return of({});
-    //       })
-    //     )
-    //     .subscribe((resp: any) => {
-    //       if (resp.ok) {
-    //         this._toastr.toastrGenericMessage(
-    //           `Saved successfull`,
-    //           "Form save",
-    //           "success"
-    //         );
-    //         this.loading = false;
-    //         this._router.navigate([this.url[0], this.url[1]]);
-    //         return;
-    //       }
-    //     });
-    // } else {
-    //   this._porcessServices
-    //     .updateForm(this.process, completeData)
-    //     .pipe(
-    //       catchError(() => {
-    //         this.loading = false;
-    //         return of({});
-    //       })
-    //     )
-    //     .subscribe((resp: any) => {
-    //       if (resp.ok) {
-    //         this._toastr.toastrGenericMessage(
-    //           `Saved successfull`,
-    //           "Form save",
-    //           "success"
-    //         );
-    //         // this._router.navigate([this.url[0], this.url[1]]);
-    //         this.loading = false;
-    //         return;
-    //       }
-    //     });
-    // }
+    if (this.f._id.value === "new") {
+      this._porcessServices
+        .setForm(this.process, completeData)
+        .pipe(
+          catchError(() => {
+            this.loading = false;
+            return of({});
+          })
+        )
+        .subscribe((resp: any) => {
+          if (resp.ok) {
+            this._toastr.toastrGenericMessage(
+              `Saved successfull`,
+              "Form save",
+              "success"
+            );
+            this.loading = false;
+            this._router.navigate([this.url[0], this.url[1]]);
+            return;
+          }
+        });
+    } else {
+      this._porcessServices
+        .updateForm(this.process, completeData)
+        .pipe(
+          catchError(() => {
+            this.loading = false;
+            return of({});
+          })
+        )
+        .subscribe((resp: any) => {
+          if (resp.ok) {
+            this._toastr.toastrGenericMessage(
+              `Saved successfull`,
+              "Form save",
+              "success"
+            );
+            // this._router.navigate([this.url[0], this.url[1]]);
+            this.loading = false;
+            return;
+          }
+        });
+    }
   }
 }

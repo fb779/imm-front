@@ -21,7 +21,10 @@
               placeholder="Select Showcase"
             >
               <nb-option value="">Select...</nb-option>
-              <nb-option *ngFor="let item of optYesNo" [value]="item.value">
+              <nb-option
+                *ngFor="let item of optYesNo$ | async"
+                [value]="item.value"
+              >
                 {{ item.name }}
               </nb-option>
             </nb-select>
@@ -58,7 +61,10 @@
               placeholder="Select Showcase"
             >
               <nb-option value="">Select...</nb-option>
-              <nb-option *ngFor="let item of optYesNo" [value]="item.value">
+              <nb-option
+                *ngFor="let item of optYesNo$ | async"
+                [value]="item.value"
+              >
                 {{ item.name }}
               </nb-option>
             </nb-select>
@@ -95,7 +101,10 @@
               placeholder="Select Showcase"
             >
               <nb-option value="">Select...</nb-option>
-              <nb-option *ngFor="let item of optYesNo" [value]="item.value">
+              <nb-option
+                *ngFor="let item of optYesNo$ | async"
+                [value]="item.value"
+              >
                 {{ item.name }}
               </nb-option>
             </nb-select>
@@ -132,7 +141,10 @@
               placeholder="Select Showcase"
             >
               <nb-option value="">Select...</nb-option>
-              <nb-option *ngFor="let item of optYesNo" [value]="item.value">
+              <nb-option
+                *ngFor="let item of optYesNo$ | async"
+                [value]="item.value"
+              >
                 {{ item.name }}
               </nb-option>
             </nb-select>

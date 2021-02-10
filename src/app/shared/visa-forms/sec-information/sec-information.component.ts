@@ -69,6 +69,7 @@ export class SecInformationComponent implements IBaseForm, OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.notifier$.next();
     this.notifier$.complete();
+    this.parentForm.removeControl(this.nameSection);
   }
 
   get f() {

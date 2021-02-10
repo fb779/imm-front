@@ -36,6 +36,12 @@ export const passwordRegex = new RegExp(
 
 export const agesRegex = new RegExp(/^(\d{1,2})(\,\d{1,2})*$/);
 
+export const yearValid = new RegExp(/^(19|20)(\d{2})$/);
+
+export const phoneNumberRegex = new RegExp(
+  /^(\+\d{1,2})[-](\d{3})[-](\d{3})[-](\d{4})$/
+);
+
 export const roles = {
   admin: "ADMIN_ROLE",
   client: "CLIENT_ROLE",

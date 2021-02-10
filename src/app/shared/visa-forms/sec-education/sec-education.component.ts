@@ -123,6 +123,7 @@ export class SecEducationComponent implements IBaseForm, OnInit, OnDestroy {
   ngOnDestroy() {
     this.notifier$.next();
     this.notifier$.complete();
+    this.parentForm.removeControl(this.nameSection);
   }
 
   get pf() {

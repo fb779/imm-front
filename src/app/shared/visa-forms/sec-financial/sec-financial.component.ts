@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, OnDestroy } from "@angular/core";
 import {
   FormGroup,
   ControlContainer,
@@ -15,7 +15,7 @@ import { Observable } from "rxjs";
   templateUrl: "./sec-financial.component.html",
   styleUrls: ["./sec-financial.component.scss"],
 })
-export class SecFinancialComponent implements IBaseForm, OnInit {
+export class SecFinancialComponent implements IBaseForm, OnInit, OnDestroy {
   parentForm: FormGroup;
   childForm: FormGroup;
 
@@ -66,6 +66,10 @@ export class SecFinancialComponent implements IBaseForm, OnInit {
   ngOnInit() {
     this.build();
     this.loadInformation();
+  }
+
+  ngOnDestroy(): void {
+    this.parentForm.removeControl(this.nameSection);
   }
 
   get f() {

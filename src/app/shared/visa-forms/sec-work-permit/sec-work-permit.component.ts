@@ -83,7 +83,12 @@ export class SecWorkPermitComponent implements IBaseForm, OnInit, OnDestroy {
   }
 
   loadInformation() {
-    this.optYesNo$ = this._asf.getYesNo();
+    const loadValues = Object.keys(this.f).reduce((acc, cur) => {
+      let value = this.data[cur] || "";
+      return { ...acc, [cur]: value };
+    }, {});
+
+    this.childForm.patchValue({ ...loadValues });
   }
 
   loadOptions() {
@@ -93,12 +98,13 @@ export class SecWorkPermitComponent implements IBaseForm, OnInit, OnDestroy {
 
   ngOnInit() {
     this.build();
-    // this.loadInformation();
+    this.loadInformation();
   }
 
   ngOnDestroy() {
     this.notifier$.next();
     this.notifier$.complete();
+    this.parentForm.removeControl(this.nameSection);
   }
 
   get f() {

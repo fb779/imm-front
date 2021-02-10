@@ -69,10 +69,6 @@
                   : ''
               "
             />
-            <!-- <nb-select name="p_information_002" placeholder="Select Showcase" fullWidth formControlName="p_information_002" [status]=" (submitted || f.p_information_002.touched) && f.p_information_002.errors ? 'danger' : '' " >
-              <nb-option value="">Select...</nb-option>
-              <nb-option *ngFor="let item of optYesNo$ | async" [value]="item.value"> {{ item.name }} </nb-option>
-            </nb-select> -->
             <div
               class="card-text text-white"
               *ngIf="
@@ -97,6 +93,7 @@
             </label>
             <input
               type="text"
+              [min]="minYear"
               name="p_information_003"
               placeholder="Select Showcase"
               nbInput
@@ -109,10 +106,6 @@
                   : ''
               "
             />
-            <!-- <nb-select name="p_information_003" placeholder="Select Showcase" fullWidth formControlName="p_information_003" [status]=" (submitted || f.p_information_003.touched) && f.p_information_003.errors ? 'danger' : '' " >
-              <nb-option value="">Select...</nb-option>
-              <nb-option *ngFor="let item of optYesNo$ | async" [value]="item.value"> {{ item.name }} </nb-option>
-            </nb-select> -->
             <div
               class="card-text text-white"
               *ngIf="
@@ -125,6 +118,14 @@
                 class="text-muted text-muted-danger"
               >
                 Field required
+              </small>
+              <small
+                *ngIf="f.p_information_003.errors?.isYearOk"
+                class="text-muted text-muted-danger"
+              >
+                The field must be numeric and must be between
+                {{ f.p_information_003.errors.isYearOk.minYear }} and
+                {{ f.p_information_003.errors.isYearOk.maxYear }}
               </small>
             </div>
           </div>
