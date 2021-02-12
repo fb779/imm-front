@@ -1,10 +1,16 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, OnDestroy } from "@angular/core";
 import { Router } from "@angular/router";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Observable, Subject } from "rxjs";
+import { takeUntil } from "rxjs/operators";
 
-import { status, phoneNumberRegex } from "../../../config/config";
+import {
+  status,
+  phoneNumberRegex,
+  visaCategories,
+} from "../../../config/config";
 import { Title } from "../../../models/Titlel";
-import { Country } from "../../../models/Country";
+import { IOption, IOptionNumber } from "../../../models/Option";
 
 import {
   AssessmentFormService,
@@ -18,7 +24,7 @@ import {
   templateUrl: "./visitor.component.html",
   styleUrls: ["./visitor.component.scss"],
 })
-export class VisitorComponent implements OnInit {
+export class VisitorComponent implements OnInit, OnDestroy {
   @Input("process") process: any;
   id: string;
   submitted = false;
@@ -27,19 +33,22 @@ export class VisitorComponent implements OnInit {
 
   forma: FormGroup;
 
-  optTitles: Title[] = [];
-  optSex = [];
-  optAccompanying = [];
-  optYesNo = [];
-  optCountries: Country[] = [];
-  optStatus = [];
-  optProvinces = [];
-  optMaritalStatus = [];
-  optPropousVisit = [];
-  optStayCanada = [];
+  notifier$: Subject<any> = new Subject();
+
+  optTitles$: Observable<Title[]>;
+  optSex$: Observable<IOption[]>;
+  optAccompanying$: Observable<IOptionNumber[]>;
+  optYesNo$: Observable<IOption[]>;
+  optCountries$: Observable<IOption[]>;
+  optStatus$: Observable<IOption[]>;
+  optProvinces$: Observable<IOption[]>;
+  optMaritalStatus$: Observable<IOption[]>;
+  optPropousVisit$: Observable<IOption[]>;
+  optStayCanada$: Observable<IOption[]>;
 
   constructor(
     private _router: Router,
+    private _fb: FormBuilder,
     public _sidebarServices: SidebarService,
     private _porcessServices: UserProcessService,
     private _asf: AssessmentFormService,
@@ -47,106 +56,83 @@ export class VisitorComponent implements OnInit {
   ) {
     this.url = this._router.url.split("/").filter((x) => x.trim() !== "");
 
-    this._asf.getTitles().subscribe((data) => {
-      this.optTitles = data;
-    });
-
-    this._asf.getSex().subscribe((data) => {
-      this.optSex = data;
-    });
-
-    this._asf.getAccompanying().subscribe((data) => {
-      this.optAccompanying = data;
-    });
-
-    this._asf.getYesNo().subscribe((data) => {
-      this.optYesNo = data;
-    });
-
-    this._asf.getCountries().subscribe((data) => {
-      this.optCountries = data;
-    });
-
-    this._asf.getStatus().subscribe((data) => {
-      this.optStatus = data;
-    });
-
-    this._asf.getProvinces().subscribe((data) => {
-      this.optProvinces = data;
-    });
-
-    this._asf.getMaritalStatus().subscribe((data) => {
-      this.optMaritalStatus = data;
-    });
-
-    this._asf.getPropousVisit().subscribe((data) => {
-      this.optPropousVisit = data;
-    });
-
-    this._asf.getStayCanada().subscribe((data) => {
-      this.optStayCanada = data;
-    });
+    this.loadOptions();
   }
 
   ngOnInit() {
     this.build();
-
     this.loadForm();
   }
 
+  ngOnDestroy(): void {
+    this.notifier$.next();
+    this.notifier$.complete();
+  }
+
   build() {
-    this.forma = new FormGroup({
-      _id: new FormControl("nuevo"),
-      kind: new FormControl(""),
-      // 'process': new FormControl('', [Validators.required]),
-      title: new FormControl("", [Validators.required]),
-      sex: new FormControl("", [Validators.required]),
-      first_name: new FormControl("", [Validators.required]),
-      last_name: new FormControl("", [Validators.required]),
-      // 'email': new FormControl('', [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")], [this.existeEmail]),
-      email: new FormControl("", [
+    this.forma = this._fb.group({
+      _id: this._fb.control("nuevo"),
+      kind: this._fb.control(visaCategories.expressentry),
+
+      title: this._fb.control("", [Validators.required]),
+      sex: this._fb.control("", [Validators.required]),
+      first_name: this._fb.control("", [Validators.required]),
+      last_name: this._fb.control("", [Validators.required]),
+      email: this._fb.control("", [
         Validators.required,
         Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$"),
       ]),
-      telephone: new FormControl("", [
+      telephone: this._fb.control("", [
         Validators.required,
         Validators.pattern(phoneNumberRegex),
       ]),
-      country_citizenship: new FormControl("", [Validators.required]),
-      other_citizenship: new FormControl("", []),
-      country_residence: new FormControl("", [Validators.required]),
-      status_residence: new FormControl("", [Validators.required]),
-      status_residence_other: new FormControl({ value: "", disabled: true }, [
+      country_citizenship: this._fb.control("", [Validators.required]),
+      other_citizenship: this._fb.control("", []),
+      country_residence: this._fb.control("", [Validators.required]),
+      status_residence: this._fb.control("", [Validators.required]),
+      status_residence_other: this._fb.control({ value: "", disabled: true }, [
         Validators.required,
       ]),
-      age: new FormControl("", [
+      age: this._fb.control("", [
         Validators.required,
         Validators.min(0),
         Validators.max(99),
       ]),
-      destiny: new FormControl("", [Validators.required]),
-      marital_status: new FormControl("", [Validators.required]),
-      // 'number_accompanying': new FormControl(0, [Validators.required]),
-      purpose_visit: new FormControl("", [Validators.required]),
-      letter_invitation: new FormControl("", [Validators.required]),
-      stay_canada: new FormControl("", [Validators.required]),
-      funds: new FormControl("", [Validators.required]),
-      disease: new FormControl("", [Validators.required]),
-      criminal_act: new FormControl("", [Validators.required]),
-      refuse_canada: new FormControl("", [Validators.required]),
-      comments: new FormControl("", []),
+      destiny: this._fb.control("", [Validators.required]),
+      marital_status: this._fb.control("", [Validators.required]),
+      purpose_visit: this._fb.control("", [Validators.required]),
+      letter_invitation: this._fb.control("", [Validators.required]),
+      stay_canada: this._fb.control("", [Validators.required]),
+      funds: this._fb.control("", [Validators.required]),
+      disease: this._fb.control("", [Validators.required]),
+      criminal_act: this._fb.control("", [Validators.required]),
+      refuse_canada: this._fb.control("", [Validators.required]),
+      comments: this._fb.control("", []),
     });
 
-    this.forma.controls["status_residence"].valueChanges.subscribe(
-      (value: any) => {
+    this.forma.controls["status_residence"].valueChanges
+      .pipe(takeUntil(this.notifier$))
+      .subscribe((value: any) => {
         if (value == 5) {
           this.forma.get("status_residence_other").enable();
         } else {
           this.forma.get("status_residence_other").disable();
           this.forma.get("status_residence_other").reset();
         }
-      }
-    );
+      });
+  }
+
+  loadOptions() {
+    this.optTitles$ = this._asf.getTitles();
+    this.optSex$ = this._asf.getSex();
+    this.optAccompanying$ = this._asf.getAccompanying();
+    this.optYesNo$ = this._asf.getYesNo();
+    this.optCountries$ = this._asf.getCountries();
+    this.optStatus$ = this._asf.getStatus();
+    this.optProvinces$ = this._asf.getProvinces();
+    this.optMaritalStatus$ = this._asf.getMaritalStatus();
+    this.optPropousVisit$ = this._asf.getPropousVisit();
+    this.optStayCanada$ = this._asf.getStayCanada();
   }
 
   loadForm() {
@@ -168,6 +154,12 @@ export class VisitorComponent implements OnInit {
 
           this.forma.setValue({ ...this.forma.value, ...loadDt });
         });
+    } else {
+      const client = { ...this.process.client };
+      // console.log({ client, pro: this.process });
+      delete client._id;
+      delete client.user;
+      this.forma.patchValue({ ...client });
     }
   }
 

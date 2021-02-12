@@ -1,4 +1,9 @@
-<form novalidate autocomplete="off" [formGroup]="formUser">
+<form
+  novalidate
+  autocomplete="off"
+  [formGroup]="formUser"
+  (submit)="saveUser()"
+>
   <nb-card>
     <nb-card-header>
       <ng-container *ngIf="f.first_name.value; else elseNewUser">
@@ -205,6 +210,7 @@
     </nb-card-body>
     <nb-card-footer>
       <button
+        type="button"
         nbButton
         status="danger"
         ngRouter
@@ -212,7 +218,7 @@
       >
         <nb-icon icon="close-circle-outline"></nb-icon>
       </button>
-      <button nbButton status="success" (click)="saveUser()">
+      <button type="submit" nbButton status="success">
         <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
       </button>
     </nb-card-footer>

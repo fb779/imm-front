@@ -1,32 +1,19 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ThemeModule } from '../../@theme/theme.module';
-import { FamilyComponent } from './family.component';
-import { SharedModule } from '../../shared/shared.module';
-import {
-  NbIconModule,
-  NbCardModule,
-  NbTabsetModule,
-  NbInputModule,
-  NbButtonModule,
-  NbRadioModule,
-} from '@nebular/theme';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { ThemeModule } from "../../@theme/theme.module";
+import { FamilyComponent } from "./family.component";
+import { SharedModule } from "../../shared/shared.module";
+import { NbIconModule, NbCardModule, NbTabsetModule } from "@nebular/theme";
 
 const family_nebular = [
   ThemeModule,
   NbCardModule,
   NbIconModule,
-  NbTabsetModule
+  NbTabsetModule,
 ];
 
 @NgModule({
-  declarations: [
-    FamilyComponent
-  ],
-  imports: [
-    CommonModule,
-    ...family_nebular,
-    SharedModule,
-  ]
+  declarations: [FamilyComponent],
+  imports: [CommonModule, ...family_nebular, SharedModule],
 })
-export class FamilyModule { }
+export class FamilyModule {}

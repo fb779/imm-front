@@ -28,7 +28,7 @@ const nebular = [
   NbSpinnerModule,
 ];
 
-import { FamilyModule } from "../../components/family/family.module";
+import { FamilyMembersModule } from "../../components/family-members/family-members.module";
 
 import { VisaFormsComponent } from "./visa-forms.component";
 import { VisitorComponent } from "./visitor/visitor.component";
@@ -46,7 +46,7 @@ import { SecFamilyComponent } from "./sec-family/sec-family.component";
 import { SecFinancialComponent } from "./sec-financial/sec-financial.component";
 import { SecWpInformationComponent } from "./sec-wp-information/sec-wp-information.component";
 import { SecWorkPermitComponent } from "./sec-work-permit/sec-work-permit.component";
-import { SecFamilyInfoComponent } from './sec-family-info/sec-family-info.component';
+import { SecFamilyInfoComponent } from "./sec-family-info/sec-family-info.component";
 
 @NgModule({
   declarations: [
@@ -73,7 +73,7 @@ import { SecFamilyInfoComponent } from './sec-family-info/sec-family-info.compon
     FormsModule,
     ReactiveFormsModule,
     ...nebular,
-    FamilyModule,
+    FamilyMembersModule,
   ],
   exports: [VisaFormsComponent],
 })

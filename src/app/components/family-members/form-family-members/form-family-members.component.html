@@ -1,8 +1,8 @@
-<form [formGroup]="clientForm">
+<form [formGroup]="clientForm" (submit)="save()">
   <nb-card class="dialog-card">
     <nb-card-body>
       <div class="row">
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-4">
           <div class="form-group">
             <label for="registeredOn">First Name</label>
             <input
@@ -37,7 +37,7 @@
           </div>
         </div>
 
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-4">
           <div class="form-group">
             <label for="name">Last Name</label>
             <input
@@ -66,7 +66,7 @@
           </div>
         </div>
 
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-4">
           <div class="form-group">
             <label for="">Relationship</label>
             <nb-select
@@ -82,7 +82,7 @@
             >
               <nb-option value="">Select...</nb-option>
               <nb-option
-                *ngFor="let item of optRelationships"
+                *ngFor="let item of optRelationships$ | async"
                 [value]="item.value"
               >
                 {{ item.name }}</nb-option
@@ -104,7 +104,7 @@
           </div>
         </div>
 
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-4">
           <div class="form-group">
             <label for="">Title</label>
             <nb-select
@@ -117,7 +117,10 @@
               "
             >
               <nb-option value="">Select...</nb-option>
-              <nb-option *ngFor="let item of optTitles" [value]="item.value">
+              <nb-option
+                *ngFor="let item of optTitles$ | async"
+                [value]="item.value"
+              >
                 {{ item.name }}</nb-option
               >
             </nb-select>
@@ -135,7 +138,7 @@
           </div>
         </div>
 
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-4">
           <div class="form-group">
             <label for="">Sex</label>
             <nb-select
@@ -148,7 +151,10 @@
               "
             >
               <nb-option value="">Select...</nb-option>
-              <nb-option *ngFor="let item of optSex" [value]="item.value">
+              <nb-option
+                *ngFor="let item of optSex$ | async"
+                [value]="item.value"
+              >
                 {{ item.name }}</nb-option
               >
             </nb-select>
@@ -166,7 +172,7 @@
           </div>
         </div>
 
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-4">
           <div class="form-group">
             <label for="">Country of Citizenship</label>
             <nb-select
@@ -182,7 +188,10 @@
               "
             >
               <nb-option value="">Select...</nb-option>
-              <nb-option *ngFor="let item of optCountries" [value]="item.value">
+              <nb-option
+                *ngFor="let item of optCountries$ | async"
+                [value]="item.value"
+              >
                 {{ item.name }}</nb-option
               >
             </nb-select>
@@ -203,7 +212,7 @@
           </div>
         </div>
 
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-4">
           <div class="form-group">
             <label for="">Other Citizenship</label>
             <nb-select
@@ -219,7 +228,10 @@
               "
             >
               <nb-option value="">Select...</nb-option>
-              <nb-option *ngFor="let item of optCountries" [value]="item.value">
+              <nb-option
+                *ngFor="let item of optCountries$ | async"
+                [value]="item.value"
+              >
                 {{ item.name }}</nb-option
               >
             </nb-select>
@@ -240,7 +252,7 @@
           </div>
         </div>
 
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-4">
           <div class="form-group">
             <label for="">Country of Residence</label>
             <nb-select
@@ -256,7 +268,10 @@
               "
             >
               <nb-option value="">Select...</nb-option>
-              <nb-option *ngFor="let item of optCountries" [value]="item.value">
+              <nb-option
+                *ngFor="let item of optCountries$ | async"
+                [value]="item.value"
+              >
                 {{ item.name }}</nb-option
               >
             </nb-select>
@@ -277,7 +292,7 @@
           </div>
         </div>
 
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-4">
           <div class="form-group">
             <label for="">Status in Country of Residence</label>
             <nb-select
@@ -293,7 +308,10 @@
               "
             >
               <nb-option value="">Select...</nb-option>
-              <nb-option *ngFor="let item of optStatus" [value]="item.value">
+              <nb-option
+                *ngFor="let item of optStatus$ | async"
+                [value]="item.value"
+              >
                 {{ item.name }}</nb-option
               >
             </nb-select>
@@ -314,7 +332,7 @@
           </div>
         </div>
 
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-4">
           <div class="form-group">
             <label for="name">Other Status in Country of Residence</label>
             <input
@@ -347,7 +365,7 @@
           </div>
         </div>
 
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-4">
           <div class="form-group">
             <label for="">Age</label>
 
@@ -361,7 +379,10 @@
               "
             >
               <nb-option value="">Select...</nb-option>
-              <nb-option *ngFor="let item of optAges" [value]="item.value">
+              <nb-option
+                *ngFor="let item of optAges$ | async"
+                [value]="item.value"
+              >
                 {{ item.name }}</nb-option
               >
             </nb-select>
@@ -382,24 +403,13 @@
     </nb-card-body>
     <nb-card-footer class="dialog-footer">
       <button type="button" nbButton (click)="cancel()">cancelar</button>
-      <button
-        type="button"
-        nbButton
-        status="success"
-        *ngIf="!this.client._id"
-        (click)="addMember()"
-      >
+      <button type="submit" nbButton status="success">guardar</button>
+      <!-- <button type="button" nbButton status="success" *ngIf="!this.client._id" (click)="addMember()" >
         guardar
-      </button>
-      <button
-        type="button"
-        nbButton
-        status="success"
-        *ngIf="this.client._id"
-        (click)="updateMember()"
-      >
+      </button> -->
+      <!-- <button type="button" nbButton status="success" *ngIf="this.client._id" (click)="updateMember()" >
         update
-      </button>
+      </button> -->
     </nb-card-footer>
   </nb-card>
 </form>

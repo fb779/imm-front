@@ -25,7 +25,6 @@ import { BillingInvoiceComponent } from "./billing-invoice/billing-invoice.compo
 import { AssessmentFormModule } from "./assessment-form/assessment-form.module";
 import { FormsGuidesModule } from "./forms-guides/forms-guides.module";
 import { DocumentsModule } from "./documents/documents.module";
-import { SharedModule } from "../shared/shared.module";
 import { FamilyModule } from "./family/family.module";
 import { ClientMessageModule } from "./client-messages/client-message.module";
 import { MyConsultantModule } from "./my-consultant/my-consultant.module";

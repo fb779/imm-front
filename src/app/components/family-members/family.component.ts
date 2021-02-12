@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { NbDialogService } from "@nebular/theme";
 import { Process } from "../../models/Process";
-import { FormFamilyMembersComponent } from "./form-family-members/form-family-members.component";
-import { DeleteFamilyMemberComponent } from "./delete-family-member/delete-family-member.component";
+
+import { WrapperComponent } from "./wrapper/wrapper.component";
+
 import { FamilyService, ToastrService } from "../../services/services.index";
 import { status } from "../../config/config";
 import { Router } from "@angular/router";
@@ -52,50 +53,56 @@ export class FamilyComponent implements OnInit {
   }
 
   openDialog() {
-    if (parseInt(this.process.companion + 1) <= this.numberFamilyMembers) {
-      this._toastr.toastrGenericMessage(
-        "Limit of family members",
-        "Family Members",
-        "warning"
-      );
-      return;
-    }
+    // if (parseInt(this.process.companion + 1) <= this.numberFamilyMembers) {
+    //   this._toastr.toastrGenericMessage(
+    //     "Limit of family members",
+    //     "Family Members",
+    //     "warning"
+    //   );
+    //   return;
+    // }
 
-    this.dialogService.open(FormFamilyMembersComponent, {
+    this.dialogService.open(WrapperComponent, {
       context: {
         process: this.process,
-        url: this.url,
       },
     });
+
+    // this.dialogService.open(FormFamilyMembersComponent, {
+    //   context: {
+    //     process: this.process,
+    //     url: this.url,
+    //   },
+    // });
   }
 
-  updateClient(ev) {
-    this.dialogService.open(FormFamilyMembersComponent, {
-      context: {
-        process: this.process,
-        url: this.url,
-        client: ev,
-      },
-    });
-  }
+  // updateClient(ev) {
+  //   this.dialogService.open(FormFamilyMembersComponent, {
+  //     context: {
+  //       process: this.process,
+  //       url: this.url,
+  //       client: ev,
+  //     },
+  //   });
+  // }
 
-  deleteClient(ev) {
-    this.dialogService
-      .open(DeleteFamilyMemberComponent, {
-        context: { client: ev },
-      })
-      .onClose.subscribe((res) => {
-        if (res) {
-          this._familyServices
-            .removeFamiliMember(this.process, ev)
-            .subscribe(() => {
-              this._toastr.toastrGenericMessage(
-                "Remove family member",
-                "Family members",
-                "success"
-              );
-            });
-        }
-      });
-  }
+  // deleteClient(ev) {
+  //   this.dialogService
+  //     .open(DeleteFamilyMemberComponent, {
+  //       context: { client: ev },
+  //     })
+  //     .onClose.subscribe((res) => {
+  //       if (res) {
+  //         this._familyServices
+  //           .removeFamiliMember(this.process, ev)
+  //           .subscribe(() => {
+  //             this._toastr.toastrGenericMessage(
+  //               "Remove family member",
+  //               "Family members",
+  //               "success"
+  //             );
+  //           });
+  //       }
+  //     });
+  // }
 }

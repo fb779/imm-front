@@ -15,35 +15,25 @@ import {
   NbSpinnerModule,
   NbAlertModule,
   NbDialogModule,
-  NbMenuModule,
-  NbCheckboxModule,
-  NbStepperModule,
-  NbDatepickerModule,
   NbAccordionModule,
-  NbActionsModule,
-  NbRadioModule,
-  NbUserModule,
 } from "@nebular/theme";
+
 import { DeleteFamilyMemberComponent } from "./delete-family-member/delete-family-member.component";
+import { WrapperComponent } from "./wrapper/wrapper.component";
+import { SelectFamilyMembersComponent } from './select-family-members/select-family-members.component';
+import { ShowFamilyMembersComponent } from './show-family-members/show-family-members.component';
 
 const nebular_family = [
-  // NbMenuModule,
   NbIconModule,
   NbCardModule,
   NbInputModule,
   NbSelectModule,
-  // NbCheckboxModule,
   NbButtonModule,
   NbSpinnerModule,
   NbAlertModule,
   NbListModule,
   NbDialogModule.forRoot(),
-  // NbDatepickerModule,
-  // NbStepperModule,
-  // NbAccordionModule,
-  // NbActionsModule,
-  // NbRadioModule,
-  // NbUserModule
+  NbAccordionModule,
 ];
 
 @NgModule({
@@ -53,8 +43,15 @@ const nebular_family = [
     FamilyListComponent,
     FormFamilyMembersComponent,
     DeleteFamilyMemberComponent,
+    WrapperComponent,
+    SelectFamilyMembersComponent,
+    ShowFamilyMembersComponent,
   ],
   exports: [FamilyComponent],
-  entryComponents: [FormFamilyMembersComponent, DeleteFamilyMemberComponent],
+  entryComponents: [
+    WrapperComponent,
+    // FormFamilyMembersComponent,
+    // DeleteFamilyMemberComponent,
+  ],
 })
-export class FamilyModule {}
+export class FamilyMembersModule {}

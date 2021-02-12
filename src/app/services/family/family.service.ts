@@ -11,11 +11,12 @@ import { Client } from "../../models/Client";
   providedIn: "root",
 })
 export class FamilyService {
-  // private processBS = new Subject();
   private processBS = new BehaviorSubject("");
-  private numberFamilyMembersBS = new BehaviorSubject(0);
+
+  private clientBS: BehaviorSubject<Client> = new BehaviorSubject<Client>(null);
 
   process$ = this.processBS.asObservable();
+  client$ = this.clientBS.asObservable();
 
   listFamilyMembers$ = this.process$.pipe(
     switchMap((process_id) =>
@@ -24,25 +25,27 @@ export class FamilyService {
       )
     ),
     pluck("list"),
-    // tap((x: any) => {
-    //   console.warn("cantidad de mienbros de la familia", x);
-    //   this.numberFamilyMembersBS.next(parseInt(x.length));
-    //   // this.numberFamilyMembers = parseInt(x.length);
-    // }),
     map((x: any) => {
       return x.map(({ client }) => ({ ...client }));
     })
   );
 
+  listFamilyUser$ = this.process$.pipe(
+    switchMap((process_id) =>
+      this._http.get(
+        `${environment.api_url}${environment.api_version}/family/user/${process_id}`
+      )
+    ),
+    tap(console.log),
+    pluck("data")
+    // map((x: any) => {
+    //   return x.map((client) => ({ ...client }));
+    // })
+  );
+
   numberFamilyMembers$ = this.listFamilyMembers$.pipe(
     map((el) => parseInt(el.length))
   );
-
-  // numberFamilyMembers$ = combineLatest(
-  //   this.listFamilyMembers$
-  // ).pipe(
-  //   map( x => x.length )
-  // );
 
   constructor(private _http: HttpClient) {}
 
@@ -50,9 +53,9 @@ export class FamilyService {
     this.processBS.next(id_process);
   }
 
-  // numberFamilyMembers() {
-  //   this.numberFamilyMembers$;
-  // }
+  loadEditClient(client: Client) {
+    this.clientBS.next(client);
+  }
 
   newFamilyMember(process: Process, client: Client): Observable<any> {
     delete client._id;

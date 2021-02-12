@@ -34,8 +34,6 @@ const nebular = [
   NbAlertModule,
 ];
 
-import { FamilyModule } from "../components/family/family.module";
-
 import { UploadFileComponent } from "./upload-file/upload-file.component";
 import { ClientDocumentsUploadComponent } from "./client-documents-upload/client-documents-upload.component";
 import { ListDocumentsComponent } from "./client-documents-upload/list-documents/list-documents.component";
@@ -44,13 +42,7 @@ import { DialogChecklistComponent } from "./dialog-checklist/dialog-checklist.co
 import { CheckListFormComponent } from "./dialog-checklist/check-list-form/check-list-form.component";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    ...nebular,
-    // FamilyModule,
-  ],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, ...nebular],
   declarations: [
     UploadFileComponent,
     ClientDocumentsUploadComponent,

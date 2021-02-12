@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../../environments/environment";
-import { tap, map, reduce } from "rxjs/operators";
+import { map } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",
@@ -18,16 +18,14 @@ export class AdminClientService {
   getVisaCategories() {
     const url = `${environment.api_url}${environment.api_version}/visa-category`;
 
-    return this._http
-      .get(url)
-      .pipe(
-        map(({ list }: any) =>
-          list.map(({ _id, name }) => ({
-            _id,
-            name,
-            value: name.toLowerCase(),
-          }))
-        )
-      );
+    return this._http.get(url).pipe(
+      map(({ list }: any) =>
+        list.map(({ _id, name, title }) => ({
+          _id,
+          name,
+          value: title,
+        }))
+      )
+    );
   }
 }
