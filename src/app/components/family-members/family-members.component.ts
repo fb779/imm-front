@@ -4,16 +4,16 @@ import { Process } from "../../models/Process";
 
 import { WrapperComponent } from "./wrapper/wrapper.component";
 
-import { FamilyService, ToastrService } from "../../services/services.index";
+import { FamilyService } from "../../services/services.index";
 import { status } from "../../config/config";
 import { Router } from "@angular/router";
 
 @Component({
-  selector: "ngx-family",
-  templateUrl: "./family.component.html",
-  styleUrls: ["./family.component.scss"],
+  selector: "ngx-family-members",
+  templateUrl: "./family-members.component.html",
+  styleUrls: ["./family-members.component.scss"],
 })
-export class FamilyComponent implements OnInit {
+export class FamilyMembersComponent implements OnInit {
   @Input() process: Process;
   url: string[];
 
@@ -24,7 +24,6 @@ export class FamilyComponent implements OnInit {
 
   constructor(
     private _router: Router,
-    private _toastr: ToastrService,
     private dialogService: NbDialogService,
     private _familyServices: FamilyService
   ) {}

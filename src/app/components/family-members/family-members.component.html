@@ -20,17 +20,7 @@
     </div>
   </nb-card-header>
 
-  <!-- <ngx-family-list [list]="listFamilyMembers$ | async" [visible]="visible">
-  </ngx-family-list> -->
-
   <ngx-show-family-members
     [list]="listFamilyMembers$ | async"
   ></ngx-show-family-members>
-
-  <!-- <ngx-family-list
-    [list]="listFamilyMembers$ | async"
-    [visible]="visible"
-    (update_client)="updateClient($event)"
-    (delete_client)="deleteClient($event)"
-  ></ngx-family-list> -->
 </nb-card>

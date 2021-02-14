@@ -7,8 +7,6 @@ export const cleanData = (form: FormGroup) => {
   const data = form.value;
   const controls = Object.keys(form.controls);
 
-  console.log("valores obtenidos", { data, controls });
-
   const fields = controls.reduce((acc, cur) => {
     const curControl = form.controls[cur];
     if (curControl.hasOwnProperty("controls")) {

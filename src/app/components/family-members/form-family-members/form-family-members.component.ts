@@ -130,15 +130,15 @@ export class FormFamilyMembersComponent implements OnInit, OnDestroy {
   }
 
   save() {
-    // if (this.clientForm.invalid) {
-    //   this.submitted = true;
-    //   this._toastr.toastrGenericMessage(
-    //     "Complete the form",
-    //     "Family members",
-    //     "warning"
-    //   );
-    //   return;
-    // }
+    if (this.clientForm.invalid) {
+      this.submitted = true;
+      this._toastr.toastrGenericMessage(
+        "Complete the form",
+        "Family members",
+        "warning"
+      );
+      return;
+    }
 
     this.saveForm.emit(this.clientForm.getRawValue());
   }

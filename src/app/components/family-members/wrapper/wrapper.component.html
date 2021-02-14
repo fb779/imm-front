@@ -1,4 +1,3 @@
-<!-- <nb-card > <nb-card-body> -->
 <nb-accordion class="dialog-width">
   <nb-accordion-item>
     <nb-accordion-item-header>
@@ -11,17 +10,17 @@
     </nb-accordion-item-body>
   </nb-accordion-item>
 
-  <!-- <nb-accordion-item #item [expanded]="true"> -->
-  <nb-accordion-item #item>
+  <nb-accordion-item [expanded]="true">
     <nb-accordion-item-header> List Family Members </nb-accordion-item-header>
-    <nb-accordion-item-body>
+    <nb-accordion-item-body *ngIf="listFamily$ | async as listFamily">
       <ngx-family-list
-        [list]="listFamily$ | async"
+        [list]="listFamily"
         [visible]="true"
         (update_client)="updateClient($event)"
+        (delete_client)="deleteClient($event)"
+        (setClientToProcess)="setClientToProcess($event)"
       >
       </ngx-family-list>
     </nb-accordion-item-body>
   </nb-accordion-item>
 </nb-accordion>
-<!-- </nb-card-body> </nb-card> -->

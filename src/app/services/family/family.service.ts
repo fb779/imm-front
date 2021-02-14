@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable, of, BehaviorSubject, Subject, combineLatest } from "rxjs";
-import { map, tap, pluck, filter, switchMap } from "rxjs/operators";
+import { Observable, BehaviorSubject } from "rxjs";
+import { map, tap, pluck, switchMap, shareReplay } from "rxjs/operators";
 
 import { Process } from "../../models/Process";
 import { environment } from "../../../environments/environment";
@@ -18,6 +18,7 @@ export class FamilyService {
   process$ = this.processBS.asObservable();
   client$ = this.clientBS.asObservable();
 
+  // listado de miembros de familia por proceso
   listFamilyMembers$ = this.process$.pipe(
     switchMap((process_id) =>
       this._http.get(
@@ -30,17 +31,27 @@ export class FamilyService {
     })
   );
 
+  // listado de miembros de familia por usuario
   listFamilyUser$ = this.process$.pipe(
     switchMap((process_id) =>
       this._http.get(
         `${environment.api_url}${environment.api_version}/family/user/${process_id}`
       )
     ),
-    tap(console.log),
-    pluck("data")
-    // map((x: any) => {
-    //   return x.map((client) => ({ ...client }));
-    // })
+    pluck("data"),
+    map((x: any) => {
+      return x.map((client) => ({ ...client, ["checked"]: false }));
+    })
+  );
+
+  // listado de documentos por  miembro de familia
+  listDocumentFamilyMembers$ = this.process$.pipe(
+    switchMap((process_id) =>
+      this._http.get(
+        `${environment.api_url}${environment.api_version}/family/${process_id}`
+      )
+    ),
+    pluck("list")
   );
 
   numberFamilyMembers$ = this.listFamilyMembers$.pipe(
@@ -77,8 +88,8 @@ export class FamilyService {
     );
   }
 
-  removeFamiliMember(process: Process, client: Client): Observable<any> {
-    const url = `${environment.api_url}${environment.api_version}/family/${process._id}/${client._id}`;
+  removeFamilyMember(process: Process, client: Client): Observable<any> {
+    const url = `${environment.api_url}${environment.api_version}/family/${client._id}`;
 
     return this._http
       .delete(url)
@@ -94,5 +105,33 @@ export class FamilyService {
     const url = `${environment.api_url}${environment.api_version}/family/client/${id_client}`;
 
     return this._http.get(url).pipe(pluck("list"));
+  }
+
+  addClientProcess(id_process, id_client) {
+    const url = `${environment.api_url}${environment.api_version}/family/set`;
+
+    const data = {
+      client: id_client,
+      process: id_process,
+      action: "add",
+    };
+
+    return this._http
+      .post(url, data)
+      .pipe(tap(() => this.processBS.next(id_process)));
+  }
+
+  removeClientProcess(id_process, id_client) {
+    const url = `${environment.api_url}${environment.api_version}/family/set`;
+
+    const data = {
+      client: id_client,
+      process: id_process,
+      action: "remove",
+    };
+
+    return this._http
+      .post(url, data)
+      .pipe(tap(() => this.processBS.next(id_process)));
   }
 }

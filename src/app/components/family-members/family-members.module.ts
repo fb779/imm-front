@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { FamilyComponent } from "./family.component";
+import { FamilyMembersComponent } from "./family-members.component";
 import { FormFamilyMembersComponent } from "./form-family-members/form-family-members.component";
 import { FamilyListComponent } from "./family-list/family-list.component";
 
@@ -16,18 +16,20 @@ import {
   NbAlertModule,
   NbDialogModule,
   NbAccordionModule,
+  NbCheckboxModule,
 } from "@nebular/theme";
 
 import { DeleteFamilyMemberComponent } from "./delete-family-member/delete-family-member.component";
 import { WrapperComponent } from "./wrapper/wrapper.component";
-import { SelectFamilyMembersComponent } from './select-family-members/select-family-members.component';
-import { ShowFamilyMembersComponent } from './show-family-members/show-family-members.component';
+import { SelectFamilyMembersComponent } from "./select-family-members/select-family-members.component";
+import { ShowFamilyMembersComponent } from "./show-family-members/show-family-members.component";
 
 const nebular_family = [
   NbIconModule,
   NbCardModule,
   NbInputModule,
   NbSelectModule,
+  NbCheckboxModule,
   NbButtonModule,
   NbSpinnerModule,
   NbAlertModule,
@@ -39,7 +41,7 @@ const nebular_family = [
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, ...nebular_family],
   declarations: [
-    FamilyComponent,
+    FamilyMembersComponent,
     FamilyListComponent,
     FormFamilyMembersComponent,
     DeleteFamilyMemberComponent,
@@ -47,11 +49,7 @@ const nebular_family = [
     SelectFamilyMembersComponent,
     ShowFamilyMembersComponent,
   ],
-  exports: [FamilyComponent],
-  entryComponents: [
-    WrapperComponent,
-    // FormFamilyMembersComponent,
-    // DeleteFamilyMemberComponent,
-  ],
+  exports: [FamilyMembersComponent],
+  entryComponents: [WrapperComponent, DeleteFamilyMemberComponent],
 })
 export class FamilyMembersModule {}

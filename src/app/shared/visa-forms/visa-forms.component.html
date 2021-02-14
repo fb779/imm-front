@@ -1,7 +1,7 @@
 <ng-container *ngIf="process" [ngSwitch]="visa">
   <ng-template [ngSwitchCase]="vsCategories.visitor">
-    <ngx-visitor [process]="process"></ngx-visitor>
-    <!-- <ngx-form-visitor></ngx-form-visitor> -->
+    <!-- <ngx-visitor [process]="process"></ngx-visitor> -->
+    <ngx-form-visitor [process]="process"></ngx-form-visitor>
   </ng-template>
 
   <ng-template [ngSwitchCase]="vsCategories.expressentry">

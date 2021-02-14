@@ -1,0 +1,212 @@
+<ng-container [formGroup]="parentForm">
+  <nb-card accent="info" [formGroupName]="nameSection">
+    <nb-card-body>
+      <div class="row">
+        <div class="col-12 col-md-12">
+          <div class="form-group">
+            <label for="">Destination in Canada </label>
+            <nb-select
+              name="p_information_001"
+              placeholder="Select Showcase"
+              fullWidth
+              formControlName="p_information_001"
+              [status]="
+                (submitted || f.p_information_001.touched) &&
+                f.p_information_001.errors
+                  ? 'danger'
+                  : ''
+              "
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option
+                *ngFor="let item of optProvinces$ | async"
+                [value]="item.value"
+              >
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <div
+              *ngIf="
+                (submitted || f.p_information_001.touched) &&
+                f.p_information_001.errors
+              "
+              class="card-text"
+            >
+              <small
+                *ngIf="f.p_information_001.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="">Marital Status </label>
+            <nb-select
+              name="p_information_002"
+              placeholder="Select Showcase"
+              fullWidth
+              formControlName="p_information_002"
+              [status]="
+                (submitted || f.p_information_002.touched) &&
+                f.p_information_002.errors
+                  ? 'danger'
+                  : ''
+              "
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option
+                *ngFor="let item of optMaritalStatus$ | async"
+                [value]="item.value"
+              >
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <div
+              *ngIf="
+                (submitted || f.p_information_002.touched) &&
+                f.p_information_002.errors
+              "
+              class="card-text"
+            >
+              <small
+                *ngIf="f.p_information_002.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="">Purpose of your visit? </label>
+            <nb-select
+              name="p_information_003"
+              formControlName="p_information_003"
+              [status]="
+                (submitted || f.p_information_003.touched) &&
+                f.p_information_003.errors
+                  ? 'danger'
+                  : ''
+              "
+              fullWidth
+              placeholder="Select Showcase"
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option
+                *ngFor="let item of optPropousVisit$ | async"
+                [value]="item.value"
+              >
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <div
+              *ngIf="
+                (submitted || f.p_information_003.touched) &&
+                f.p_information_003.errors
+              "
+              class="card-text"
+            >
+              <small
+                *ngIf="f.p_information_003.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="">
+              Do you have a letter of invitation from a Person or a Company in
+              Canadian?
+            </label>
+            <nb-select
+              name="p_information_004"
+              formControlName="p_information_004"
+              [status]="
+                (submitted || f.p_information_004.touched) &&
+                f.p_information_004.errors
+                  ? 'danger'
+                  : ''
+              "
+              fullWidth
+              placeholder="Select Showcase"
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option
+                *ngFor="let item of optYesNo$ | async"
+                [value]="item.value"
+              >
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <div
+              *ngIf="
+                (submitted || f.p_information_004.touched) &&
+                f.p_information_004.errors
+              "
+              class="card-text"
+            >
+              <small
+                *ngIf="f.p_information_004.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="">Length of intended stay in Canada? </label>
+            <nb-select
+              name="p_information_005"
+              formControlName="p_information_005"
+              [status]="
+                (submitted || f.p_information_005.touched) &&
+                f.p_information_005.errors
+                  ? 'danger'
+                  : ''
+              "
+              fullWidth
+              placeholder="Select Showcase"
+            >
+              <nb-option value="">Select...</nb-option>
+              <nb-option
+                *ngFor="let item of optStayCanada$ | async"
+                [value]="item.value"
+              >
+                {{ item.name }}
+              </nb-option>
+            </nb-select>
+            <div
+              *ngIf="
+                (submitted || f.p_information_005.touched) &&
+                f.p_information_005.errors
+              "
+              class="card-text"
+            >
+              <small
+                *ngIf="f.p_information_005.errors?.required"
+                class="text-muted text-muted-danger"
+              >
+                Field required
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</ng-container>

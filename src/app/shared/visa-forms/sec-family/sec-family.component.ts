@@ -60,7 +60,6 @@ export class SecFamilyComponent implements IBaseForm, OnInit, OnDestroy {
     //     .get("p_marital_001")
     //     .valueChanges.pipe(takeUntil(this.notifier$))
     //     .subscribe((value) => {
-    //       console.log("valor del estatus maital", value);
     //       if (value == 1) {
     //         this.childForm.get("p_family_002").clearValidators();
     //         this.childForm.get("p_family_002").reset();

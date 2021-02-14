@@ -31,11 +31,10 @@ const nebular = [
 import { FamilyMembersModule } from "../../components/family-members/family-members.module";
 
 import { VisaFormsComponent } from "./visa-forms.component";
-import { VisitorComponent } from "./visitor/visitor.component";
-import { SecMaritalStatusComponent } from "./sec-marital-status/sec-marital-status.component";
 import { FormExpressEntryComponent } from "./form-express-entry/form-express-entry.component";
 import { FormWorkPermitComponent } from "./form-work-permit/form-work-permit.component";
 import { FormVisitorComponent } from "./form-visitor/form-visitor.component";
+import { SecMaritalStatusComponent } from "./sec-marital-status/sec-marital-status.component";
 import { SecPersonalInformationComponent } from "./sec-personal-information/sec-personal-information.component";
 import { SecEducationComponent } from "./sec-education/sec-education.component";
 import { SecInformationComponent } from "./sec-information/sec-information.component";
@@ -47,6 +46,7 @@ import { SecFinancialComponent } from "./sec-financial/sec-financial.component";
 import { SecWpInformationComponent } from "./sec-wp-information/sec-wp-information.component";
 import { SecWorkPermitComponent } from "./sec-work-permit/sec-work-permit.component";
 import { SecFamilyInfoComponent } from "./sec-family-info/sec-family-info.component";
+import { SecVsInformationComponent } from "./sec-vs-information/sec-vs-information.component";
 
 @NgModule({
   declarations: [
@@ -54,7 +54,6 @@ import { SecFamilyInfoComponent } from "./sec-family-info/sec-family-info.compon
     SecMaritalStatusComponent,
     FormExpressEntryComponent,
     FormWorkPermitComponent,
-    VisitorComponent,
     FormVisitorComponent,
     SecPersonalInformationComponent,
     SecEducationComponent,
@@ -67,6 +66,7 @@ import { SecFamilyInfoComponent } from "./sec-family-info/sec-family-info.compon
     SecWpInformationComponent,
     SecWorkPermitComponent,
     SecFamilyInfoComponent,
+    SecVsInformationComponent,
   ],
   imports: [
     CommonModule,

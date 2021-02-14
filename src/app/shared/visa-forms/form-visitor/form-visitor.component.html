@@ -1,1 +1,56 @@
-<p>form-visitor works!</p>
+<form novalidate autocomplete="off" [formGroup]="forma" (submit)="save()">
+  <nb-card *ngIf="process" [nbSpinner]="loading" nbSpinnerStatus="primary">
+    <nb-card-header>Visitor Evaluation</nb-card-header>
+    <nb-card-body>
+      <ng-container *ngIf="dataForm as data">
+        <ngx-sec-personal-information
+          #personalInformation
+          [submitted]="submitted"
+          [data]="data"
+        >
+        </ngx-sec-personal-information>
+
+        <!-- <ngx-sec-marital-status
+          #maritalStatus
+          [submitted]="submitted"
+          [data]="data"
+        >
+        </ngx-sec-marital-status> -->
+
+        <ngx-sec-vs-information
+          #information
+          [submitted]="submitted"
+          [data]="data"
+        ></ngx-sec-vs-information>
+
+        <ngx-family-members [process]="process"></ngx-family-members>
+
+        <ngx-sec-family-info
+          #familyInfo
+          [submitted]="submitted"
+          [data]="data"
+        ></ngx-sec-family-info>
+      </ng-container>
+    </nb-card-body>
+    <nb-card-footer>
+      <!-- Botones  -->
+      <div>
+        <div *ngIf="process && process.status === cmStatus.active">
+          <button type="submit" nbButton fullWidth status="primary">
+            Submit
+          </button>
+        </div>
+
+        <div
+          *ngIf="
+            process && process.status !== cmStatus.active && url[0] !== 'pages'
+          "
+        >
+          <button type="submit" nbButton fullWidth status="primary">
+            Update
+          </button>
+        </div>
+      </div>
+    </nb-card-footer>
+  </nb-card>
+</form>
