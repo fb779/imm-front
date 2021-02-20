@@ -8,7 +8,7 @@ import { Observable } from "rxjs";
 import { Client } from "../../models/Client";
 import { Process } from "../../models/Process";
 import { status } from "../../config/config";
-import { Document } from '../../models/Document';
+import { Document } from "../../models/Document";
 
 @Component({
   selector: "ngx-documents",
@@ -17,19 +17,16 @@ import { Document } from '../../models/Document';
 })
 export class DocumentsComponent implements OnInit {
   @Input("process") process: Process;
-  // @Input("client") client: Client;
   status = status;
   loading = false;
 
-  listFamiliMembers$: Observable<Client[]> = this._familyServices.listFamilyMembers$;
+  // list$: Observable<any> = this._documentService.listClientProcess$;
+  // listDocuments$: Observable<any> = this._documentService.listDocumentsClients$;
+  list$: Observable<any> = this._documentService.list$;
 
-  constructor(
-    private _familyServices: FamilyService
-  ) { }
+  constructor(private _documentService: DocumentService) {}
 
   ngOnInit() {
-
+    this._documentService.setProcess(this.process._id);
   }
-
-
 }

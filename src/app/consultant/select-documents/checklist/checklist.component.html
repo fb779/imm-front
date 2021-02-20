@@ -1,8 +1,14 @@
 <div class="row">
-    <div class="col-12" *ngFor="let document of listItems">
-        <nb-checkbox [(checked)]="document.required" (checkedChange)="toggle($event)">{{ document.group }} - {{ document.name }}</nb-checkbox>
-    </div>
-    <div class="col-12">
-        <button nbButton fullWidth status="primary" (click)="saveList()">Save</button>
-    </div>
+  <div class="col-12" *ngFor="let document of checkList">
+    <nb-checkbox
+      [(checked)]="document.required"
+      (checkedChange)="toggle($event)"
+      >{{ document.group }} - {{ document.name }}</nb-checkbox
+    >
+  </div>
+  <div class="col-12">
+    <button nbButton fullWidth status="primary" (click)="saveList()">
+      Save
+    </button>
+  </div>
 </div>

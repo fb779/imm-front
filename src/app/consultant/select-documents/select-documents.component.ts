@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, TemplateRef } from "@angular/core";
 
 import { FamilyService } from "../../services/services.index";
+import { ProcessConsultantService } from "../process-consultant.service";
 import { status } from "../../config/config";
 import { CheckList } from "../../models/CheckList";
 import { Process } from "../../models/Process";
@@ -20,17 +21,34 @@ export class SelectDocumentsComponent implements OnInit {
   type_visa: string;
   otherDocument: string = "";
 
-  listFamiliMembers$: Observable<Client[]> = this._familyServices
-    .listFamilyMembers$;
+  // TODO: obtener miembros de la familia
+  listFamilyProcess$: Observable<Client[]>;
+  // listFamilyProcess$: Observable<Client[]> = this._familyServices .listFamilyMembers$;
 
-  constructor(private _familyServices: FamilyService) {}
+  // TODO: obtener checklist
+  listCheckList$: Observable<CheckList[]>;
 
-  ngOnInit() {
-    // this.loading = true;
-    this.type_visa = this.process.visa_category.name;
+  // TODO: obtener documentos por cada miembro
+  listDocumentClient$: Observable<Document[]>;
+
+  list$: Observable<any> = this._pcServices.list$;
+
+  constructor(private _pcServices: ProcessConsultantService) {
+    // this._pcServices.list$.subscribe();
+    // this.list$ = this._pcServices.list$;
   }
 
-  loadProcess() {}
+  ngOnInit() {
+    this.type_visa = this.process.visa_category.name;
 
-  saveList(list) {}
+    this.saveCheck();
+  }
+
+  saveCheck() {
+    this._pcServices.setTypeOfVisa(this.type_visa);
+  }
+
+  saveDocument() {
+    this._pcServices.setProcess(this.process._id);
+  }
 }

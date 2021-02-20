@@ -1,12 +1,9 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
 import {
-  ConsultantService,
   ChecklistService,
   ToastrService,
 } from "../../../services/services.index";
-import { CheckList } from "../../../models/CheckList";
 import { Process } from "../../../models/Process";
-import { Client } from "../../../models/Client";
 
 @Component({
   selector: "ngx-checklist",
@@ -15,49 +12,26 @@ import { Client } from "../../../models/Client";
 })
 export class ChecklistComponent implements OnInit {
   @Input("process") process: Process;
-  @Input("client") client: Client;
-  @Input("type_visa") type_visa;
+  @Input("client") client: any;
+  @Input("type_visa") type_visa: string;
+  @Output() save: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  listItems = [];
+  checkList: any = [];
+
   documentSelected = [];
   documentsLoads = [];
 
   constructor(
-    private _consultatnService: ConsultantService,
     private _checklistServices: ChecklistService,
     private _toastr: ToastrService
   ) {}
 
   ngOnInit() {
-    this._consultatnService
-      .getDocumentsOfConsultant(this.type_visa)
-      .subscribe((data: CheckList[]) => {
-        this.listItems = data;
-        // this.loading = false;
-        this.loadDocuments();
-      });
-  }
-
-  loadDocuments() {
-    this._checklistServices
-      .getDocumentsByProcessClient(this.process._id, this.client._id)
-      .subscribe((response) => {
-        this.documentsLoads = response;
-        this.adjustItemList();
-      });
-  }
-
-  adjustItemList() {
-    this.listItems = this.listItems.map((el) => {
-      if (this.documentsLoads.indexOf(el._id.toString()) > -1) {
-        el.required = true;
-      }
-      return el;
-    });
+    this.checkList = this.client.checkList;
   }
 
   toggle(e: boolean) {
-    this.documentSelected = this.listItems
+    this.documentSelected = this.checkList
       .filter((item) => {
         return item.required;
       })
@@ -76,11 +50,11 @@ export class ChecklistComponent implements OnInit {
         )
         .subscribe(
           (response) => {
+            this.save.emit(true);
             this._toastr.toastrGenericMessage(
               `Save document successfull`,
               "Check list"
             );
-            this.loadDocuments();
           },
           () =>
             this._toastr.toastrGenericMessage(

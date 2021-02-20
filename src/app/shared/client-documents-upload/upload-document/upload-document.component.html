@@ -9,9 +9,8 @@
         #inputFile
         [disabled]="input_enabled"
         (change)="seleccionarImagen($event.target.files[0])"
-        [disabled]="input_enabled"
       />
-      <label class="custom-file-label" #labelFile>{{ name || title }}</label>
+      <label class="custom-file-label" #labelFile>{{ name || title }} </label>
     </div>
     <div class="input-group-append">
       <button

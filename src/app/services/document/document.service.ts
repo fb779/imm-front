@@ -1,33 +1,69 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { pluck, tap } from "rxjs/operators";
+import { Observable, BehaviorSubject, combineLatest } from "rxjs";
+import { pluck, tap, map, switchMap } from "rxjs/operators";
 import { environment } from "../../../environments/environment";
-import { Document } from "../../models/Document";
 
-import { documentStatus } from "../../config/config";
 import { ToastrService } from "../toastr/toastr.service";
+import { FamilyService } from "../family/family.service";
+import { Document } from "../../models/Document";
+import { documentStatus } from "../../config/config";
 
 @Injectable({
   providedIn: "root",
 })
 export class DocumentService {
-  constructor(private _http: HttpClient, private _toastr: ToastrService) {}
+  private processBS: BehaviorSubject<string> = new BehaviorSubject<string>("");
+
+  process$: Observable<string> = this.processBS.asObservable();
+
+  listClientProcess$ = this._familyService.listFamilyMembers$;
+
+  listDocumentsClients$ = this.process$.pipe(
+    switchMap((process) => this.getDocumentsByProcess(process))
+  );
+
+  list$ = combineLatest([
+    this.listClientProcess$,
+    this.listDocumentsClients$,
+  ]).pipe(
+    map(([listClient, listDocuments]) => {
+      return [...listClient].map((client) => {
+        const documents = [...listDocuments].filter(
+          (doc) => doc.client === client._id
+        );
+        return { ...client, documents };
+      });
+    })
+  );
+
+  constructor(
+    private _http: HttpClient,
+    private _familyService: FamilyService,
+    private _toastr: ToastrService
+  ) {}
+
+  setProcess(id_process: string) {
+    this.processBS.next(id_process);
+  }
+
+  getDocumentsByProcess(id_process: string): Observable<Document[]> {
+    const type = "process";
+    const url = `${environment.api_url}${environment.api_version}/documents?type=${type}&id=${id_process}`;
+    return this._http.get(url).pipe(pluck("list"));
+  }
+
+  getDocumentsByClient(id_client: string): Observable<Document[]> {
+    const url = `${environment.api_url}${environment.api_version}/documents/${id_client}`;
+
+    return this._http.get(url).pipe(pluck("list"));
+  }
 
   getDocumentsByProcessClient(
     id_process: string,
     id_client: string
   ): Observable<Document[]> {
     const url = `${environment.api_url}${environment.api_version}/documents/${id_process}/${id_client}`;
-
-    return this._http.get(url).pipe(
-      // tap((re) => console.log("documentso del proceso y el cliente", re)),
-      pluck("list")
-    );
-  }
-
-  getDocumentsByClient(id_client: string): Observable<Document[]> {
-    const url = `${environment.api_url}${environment.api_version}/documents/${id_client}`;
 
     return this._http.get(url).pipe(pluck("list"));
   }

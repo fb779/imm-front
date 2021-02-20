@@ -1,42 +1,72 @@
 <div class="row">
-  <nb-list>
-    <nb-list-item>
-      <div class="row">
-        <div class="col-12 text-right">
-          <button nbButton size="small" status="success" (click)="loadDocuments()">
-              <nb-icon icon="refresh-outline"></nb-icon>
-          </button>
-        </div>
-      </div>
-    </nb-list-item>
-    <nb-list-item *ngFor="let document of listDocuments">
-      <div class="general">
-        <div class="info">
-          <div>
-            <p>{{ document.name }}</p>
-            <p>{{ document.status }}</p>
+  <ng-container *ngIf="listDocuments.length > 0; else empty">
+    <nb-list>
+      <nb-list-item *ngFor="let document of listDocuments">
+        <div class="general">
+          <div class="info">
+            <div>
+              <p>{{ document.name }}</p>
+              <p>{{ document.status }}</p>
+            </div>
+            <div class="form-group">
+              <textarea
+                name="comments"
+                rows="2"
+                class="form-control"
+                placeholder="Comments"
+                nbInput
+                fullWidth
+                shape="semi-round"
+                [(ngModel)]="comments[document._id]"
+                [disabled]="btnDownloadedStatus(document)"
+              >
+              </textarea>
+            </div>
           </div>
-          <div class="form-group">
-            <textarea name="comments" rows="2" class="form-control" placeholder="Comments" nbInput fullWidth shape="semi-round" [(ngModel)]="comments[document._id]" [disabled]="btnDownloadedStatus(document)"> </textarea>
-          </div>
-        </div>
-        <div class="comments">
-          <div>
-            <button type="button" nbButton size="small" status="primary" fullWidth [disabled]="btnDownloadedStatus(document)" (click)="download(document)">
+          <div class="comments">
+            <div>
+              <button
+                type="button"
+                nbButton
+                size="small"
+                status="primary"
+                fullWidth
+                [disabled]="btnDownloadedStatus(document)"
+                (click)="download(document)"
+              >
                 <nb-icon icon="download-outline"></nb-icon>
-            </button>
-          </div>
-          <div class="btns">
-            <button type="button" nbButton size="small" status="success" fullWidth [disabled]="btnAprobedRejectedStatus(document)" (click)="approbe(document)">
+              </button>
+            </div>
+            <div class="btns">
+              <button
+                type="button"
+                nbButton
+                size="small"
+                status="success"
+                fullWidth
+                [disabled]="btnAprobedRejectedStatus(document)"
+                (click)="approbe(document)"
+              >
                 <nb-icon icon="checkmark-outline"></nb-icon>
-            </button>
+              </button>
 
-            <button type="button" nbButton size="small" status="danger" fullWidth [disabled]="btnAprobedRejectedStatus(document)" (click)="reject(document, comments[document._id] )">
+              <button
+                type="button"
+                nbButton
+                size="small"
+                status="danger"
+                fullWidth
+                [disabled]="btnAprobedRejectedStatus(document)"
+                (click)="reject(document, comments[document._id])"
+              >
                 <nb-icon icon="close-outline"></nb-icon>
-            </button>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </nb-list-item>
-  </nb-list>
+      </nb-list-item>
+    </nb-list>
+  </ng-container>
 </div>
+
+<ng-template #empty> With out of documents </ng-template>

@@ -1,18 +1,18 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable, BehaviorSubject } from "rxjs";
-import { map, tap, pluck, switchMap, shareReplay } from "rxjs/operators";
+import { map, tap, pluck, switchMap } from "rxjs/operators";
 
 import { Process } from "../../models/Process";
 import { environment } from "../../../environments/environment";
 import { Client } from "../../models/Client";
+// import { ProcessConsultantService } from "../../consultant/process-consultant.service";
 
 @Injectable({
   providedIn: "root",
 })
 export class FamilyService {
-  private processBS = new BehaviorSubject("");
-
+  private processBS: BehaviorSubject<any> = new BehaviorSubject<any>("");
   private clientBS: BehaviorSubject<Client> = new BehaviorSubject<Client>(null);
 
   process$ = this.processBS.asObservable();
@@ -26,9 +26,7 @@ export class FamilyService {
       )
     ),
     pluck("list"),
-    map((x: any) => {
-      return x.map(({ client }) => ({ ...client }));
-    })
+    map((x: any) => x.map(({ client }) => ({ ...client })))
   );
 
   // listado de miembros de familia por usuario
@@ -42,16 +40,6 @@ export class FamilyService {
     map((x: any) => {
       return x.map((client) => ({ ...client, ["checked"]: false }));
     })
-  );
-
-  // listado de documentos por  miembro de familia
-  listDocumentFamilyMembers$ = this.process$.pipe(
-    switchMap((process_id) =>
-      this._http.get(
-        `${environment.api_url}${environment.api_version}/family/${process_id}`
-      )
-    ),
-    pluck("list")
   );
 
   numberFamilyMembers$ = this.listFamilyMembers$.pipe(

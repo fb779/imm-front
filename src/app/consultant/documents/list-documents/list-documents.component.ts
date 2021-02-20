@@ -15,7 +15,7 @@ import { documentStatus } from "../../../config/config";
 })
 export class ListDocumentsComponent implements OnInit {
   @Input("process") process: Process;
-  @Input("client") client: Client;
+  @Input("client") client: any;
   listDocuments: Document[] = [];
   documentStatus = documentStatus;
   comments = {};
@@ -27,17 +27,8 @@ export class ListDocumentsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.loadDocuments();
-  }
-
-  loadDocuments() {
-    this._documentService
-      .getDocumentsByProcessClient(this.process._id, this.client._id)
-      // .getDocumentsByClient(this.client._id)
-      .subscribe((response) => {
-        this.listDocuments = response;
-        this.comments = {};
-      });
+    // this.loadDocuments();
+    this.listDocuments = this.client.documents;
   }
 
   btnDownloadedStatus(item: Document) {
@@ -48,9 +39,9 @@ export class ListDocumentsComponent implements OnInit {
     return !(item.status !== documentStatus.create);
   }
 
-  // btnRejectedStatus(item: Document) {
-  //   return item.status === documentStatus.create;
-  // }
+  btnRejectedStatus(item: Document) {
+    return item.status === documentStatus.create;
+  }
 
   download(document_file: Document) {
     this._documentService.getDocumentFile(document_file);

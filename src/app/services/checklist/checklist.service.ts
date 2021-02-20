@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable, of } from "rxjs";
+import { Observable, of, BehaviorSubject } from "rxjs";
 import { map, pluck, tap, catchError } from "rxjs/operators";
 import { environment } from "../../../environments/environment";
 import { CheckList } from "../../models/CheckList";
@@ -9,6 +9,8 @@ import { CheckList } from "../../models/CheckList";
   providedIn: "root",
 })
 export class ChecklistService {
+  checkListBS: BehaviorSubject<any[]> = new BehaviorSubject([]);
+
   constructor(private _http: HttpClient) {}
 
   getDocumentsByClient(id_client: string): Observable<any> {

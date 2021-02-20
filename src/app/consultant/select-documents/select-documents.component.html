@@ -1,24 +1,29 @@
-<nb-card>
-    <nb-card-header>
-        <div class="row">
-            <div class="col-10">
-                Checklist Family
-            </div>
-            <div class="col-2">
-                <ngx-dialog-checklist [process]="process" (saveCheck)="loadProcess()"></ngx-dialog-checklist>
-            </div>
-        </div>
-    </nb-card-header>
-    <nb-card-body>
-        <nb-accordion [nbSpinner]="loading">
-            <nb-accordion-item *ngFor="let familyMember of listFamiliMembers$ | async">
-                <nb-accordion-item-header>
-                    {{ familyMember.first_name }} - {{ familyMember.last_name }}
-                </nb-accordion-item-header>
-                <nb-accordion-item-body>
-                    <ngx-checklist [process]="process" [client]="familyMember" [type_visa]="type_visa"></ngx-checklist>
-                </nb-accordion-item-body>
-            </nb-accordion-item>
-        </nb-accordion>
-    </nb-card-body>
+<nb-card [nbSpinner]="loading">
+  <nb-card-header>
+    <div class="row">
+      <div class="col-10">Checklist Family</div>
+      <div class="col-2">
+        <ngx-dialog-checklist
+          [process]="process"
+          (saveCheck)="saveCheck()"
+        ></ngx-dialog-checklist>
+      </div>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <nb-accordion *ngIf="list$ | async as listFamiliMembers">
+      <nb-accordion-item *ngFor="let familyMember of listFamiliMembers">
+        <nb-accordion-item-header>
+          {{ familyMember.first_name }} - {{ familyMember.last_name }}
+        </nb-accordion-item-header>
+        <nb-accordion-item-body>
+          <ngx-checklist
+            [process]="process"
+            [client]="familyMember"
+            (save)="saveDocument()"
+          ></ngx-checklist>
+        </nb-accordion-item-body>
+      </nb-accordion-item>
+    </nb-accordion>
+  </nb-card-body>
 </nb-card>

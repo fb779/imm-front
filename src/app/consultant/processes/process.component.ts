@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import {
   UserProcessService,
   FamilyService,
+  DocumentService,
 } from "../../services/services.index";
 import { Process } from "../../models/Process";
 import { status, visaCategories } from "../../config/config";
@@ -25,7 +26,6 @@ export class ProcessComponent implements OnInit {
   tabTitleMessages = "Messages";
 
   constructor(
-    private _router: Router,
     private _activatedRoute: ActivatedRoute,
     private _processServices: UserProcessService,
     private _familyServices: FamilyService
