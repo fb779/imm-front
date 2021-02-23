@@ -16,4 +16,10 @@ export class ClientService {
 
     return this._http.get(url).pipe(pluck("data", "client"));
   }
+
+  getClientByUser(userId: string): Observable<Client[]> {
+    const url = `${environment.api_url}${environment.api_version}/clients/user/${userId}`;
+
+    return this._http.get(url).pipe(pluck("data"));
+  }
 }

@@ -1,31 +1,33 @@
-<ng-container *ngIf="client; else clientEmpty">
-  <nb-card [nbSpinner]="spinner">
+<nb-card>
+  <ng-container *ngIf="client; else clientEmpty">
     <nb-card-header>
       {{ client.first_name }} {{ client.last_name }}
     </nb-card-header>
-    <nb-card-body
-      [nbSpinner]="spinner"
-      *ngIf="documents_list.length > 0; else documentsEmpty"
-    >
-      <nb-card>
-        <nb-card-header> Upload Documents </nb-card-header>
-        <nb-card-body>
-          <ngx-upload-document
-            *ngFor="let document_file of documents_list"
-            [document]="document_file"
-            (upload_file)="loadDocuments()"
-          ></ngx-upload-document>
-        </nb-card-body>
-      </nb-card>
-
-      <ngx-list-documents [documents]="documents_list"></ngx-list-documents>
+    <nb-card-body>
+      <ng-container *ngIf="listDocuments$ | async as listDocuments">
+        <nb-card *ngIf="listDocuments.length > 0; else documentsEmpty">
+          <nb-card-header> Upload Documents </nb-card-header>
+          <nb-card-body>
+            <ng-container *ngFor="let document of listDocuments">
+              <ngx-upload-document
+                class="mb-4"
+                [document]="document"
+                (upload_file)="confirmUpload($event)"
+              ></ngx-upload-document>
+            </ng-container>
+          </nb-card-body>
+        </nb-card>
+      </ng-container>
     </nb-card-body>
-  </nb-card>
-</ng-container>
+  </ng-container>
+</nb-card>
 
-<ng-template #clientEmpty> The client isn't load </ng-template>
-<ng-template #documentsEmpty>
+<ng-template #clientEmpty>
   <nb-card-body>
-    <p>No documents assigned to upload</p>
+    <span> The client doesn't load </span>
   </nb-card-body>
+</ng-template>
+
+<ng-template #documentsEmpty>
+  <p>No documents assigned to upload</p>
 </ng-template>

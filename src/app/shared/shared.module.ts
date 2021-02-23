@@ -36,7 +36,6 @@ const nebular = [
 
 import { UploadFileComponent } from "./upload-file/upload-file.component";
 import { ClientDocumentsUploadComponent } from "./client-documents-upload/client-documents-upload.component";
-import { ListDocumentsComponent } from "./client-documents-upload/list-documents/list-documents.component";
 import { UploadDocumentComponent } from "./client-documents-upload/upload-document/upload-document.component";
 import { DialogChecklistComponent } from "./dialog-checklist/dialog-checklist.component";
 import { CheckListFormComponent } from "./dialog-checklist/check-list-form/check-list-form.component";
@@ -46,7 +45,6 @@ import { CheckListFormComponent } from "./dialog-checklist/check-list-form/check
   declarations: [
     UploadFileComponent,
     ClientDocumentsUploadComponent,
-    ListDocumentsComponent,
     UploadDocumentComponent,
     DialogChecklistComponent,
     CheckListFormComponent,

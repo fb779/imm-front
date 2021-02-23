@@ -1,32 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import { NbAuthService } from '@nebular/auth';
-import { ClientService } from '../../services/services.index';
-import { Document } from '../../models/Document';
-import { Client } from '../../models/Client';
+import { Component, OnInit } from "@angular/core";
+import { NbAuthService } from "@nebular/auth";
+import { Observable } from "rxjs";
 
+import { ClientService } from "../../services/services.index";
+import { Document } from "../../models/Document";
+import { Client } from "../../models/Client";
 
 @Component({
-  selector: 'ngx-documents',
-  templateUrl: './documents.component.html',
-  styleUrls: ['./documents.component.scss']
+  selector: "ngx-documents",
+  templateUrl: "./documents.component.html",
+  styleUrls: ["./documents.component.scss"],
 })
 export class DocumentsComponent implements OnInit {
   user: any;
-  client: Client
-  spinner: Boolean = false;
 
-  constructor(private _nbAuth: NbAuthService, private _clientServices: ClientService) {
+  client$: Observable<Client>;
+
+  constructor(
+    private _nbAuth: NbAuthService,
+    private _clientServices: ClientService
+  ) {
     this._nbAuth.getToken().subscribe((data: any) => {
       this.user = data.payload.user;
     });
   }
 
   ngOnInit() {
-    this.spinner = true;
-    this._clientServices.getClientById(this.user.client).subscribe((response) => {
-      this.client = response;
-      this.spinner = false;
-    });
+    this.client$ = this._clientServices.getClientById(this.user.client);
   }
-
 }

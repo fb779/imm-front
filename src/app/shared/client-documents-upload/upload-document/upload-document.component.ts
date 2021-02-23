@@ -30,6 +30,7 @@ export class UploadDocumentComponent implements OnInit {
   // variables de salida emitidas por el componente
   @Output() upload_file: EventEmitter<Boolean> = new EventEmitter();
 
+  docStatus = documentStatus;
   title: string = "Browse your file";
 
   input_enabled: Boolean = false;
@@ -37,6 +38,7 @@ export class UploadDocumentComponent implements OnInit {
 
   // types permited
   ext: string[] = ["pdf", "image"];
+  maxSize: Number = 2;
 
   file_upload = null;
   name: string = "";
@@ -61,7 +63,7 @@ export class UploadDocumentComponent implements OnInit {
     this.spinner = false;
   }
 
-  seleccionarImagen(archivo: File) {
+  selectFile(archivo: File) {
     this.name = "";
 
     if (!archivo) {
@@ -70,7 +72,7 @@ export class UploadDocumentComponent implements OnInit {
         "Upload File",
         "warning"
       );
-      this.file_upload = null;
+      this.clearFile();
       return;
     }
 
@@ -80,8 +82,17 @@ export class UploadDocumentComponent implements OnInit {
         "Upload File",
         "warning"
       );
-      this.file_upload = null;
-      this.inputFile.nativeElement.value = "";
+      this.clearFile();
+      return;
+    }
+
+    if (!this.validMaxSize(archivo.size)) {
+      this._toastr.toastrGenericMessage(
+        `The file is bigger than the maximum allowed, the maximum allowed is ${this.maxSize}Mb`,
+        "Upload File",
+        "warning"
+      );
+      this.clearFile();
       return;
     }
 
@@ -96,8 +107,11 @@ export class UploadDocumentComponent implements OnInit {
     return inc.length > 0;
   }
 
-  validMaxSize(size: string) {
-    return false;
+  // validar si el tamaño del archivo es menor que el maximo permitido
+  validMaxSize(size: number) {
+    const fileSize = Number(size) / 1000 / 1000; // convertir a mb
+
+    return fileSize < this.maxSize;
   }
 
   uploadDocument() {
@@ -115,17 +129,51 @@ export class UploadDocumentComponent implements OnInit {
           this.spinner = false;
           this.upload_file.emit(true);
         },
-        (err) =>
+        (err) => {
           this._toastr.toastrGenericMessage(
             "Filed upload",
             "Upload File",
             "danger"
-          )
+          );
+          this.spinner = false;
+        }
       );
   }
 
   desabilitar() {
     this.input_enabled = !this.input_enabled;
     this.spinner = !this.spinner;
+  }
+
+  lastComment(comments) {
+    return comments.length > 0 ? comments[comments.length - 1].comment : "";
+  }
+
+  get getStatus() {
+    let className = "text-white ";
+    let icon = "";
+    switch (this.document_file.status) {
+      case this.docStatus.create:
+        className += "bg-info";
+        icon = "alert-circle-outline";
+        break;
+      case this.docStatus.uploaded:
+        className += "bg-primary";
+        icon = "checkmark-circle-outline";
+        break;
+      case this.docStatus.approved:
+        className += "bg-success";
+        icon = "done-all-outline";
+        break;
+      case this.docStatus.rejected:
+        className += "bg-warning";
+        icon = "alert-triangle-outline";
+        break;
+      default:
+        className = "";
+        break;
+    }
+
+    return { className, icon };
   }
 }

@@ -1,21 +1,25 @@
-<ng-container *ngIf="familyMembers.length > 0; else elseTemplate">
-    <nb-card>
-        <nb-card-body>
-            <nb-tabset fullWidth>
-                <nb-tab [tabTitle]="member.first_name" *ngFor="let member of familyMembers">
-                    <ngx-client-documents-upload [client]="member"></ngx-client-documents-upload>
-                </nb-tab>
-            </nb-tabset>
+<nb-card>
+  <nb-card-body>
+    <ng-container
+      *ngIf="familyMembers$ | async as familyMembers; else elseTemplate"
+    >
+      <ng-container *ngIf="familyMembers.length > 0; else elseTemplate">
+        <nb-tabset fullWidth>
+          <nb-tab
+            class="nb-tab-0p"
+            [tabTitle]="client.first_name"
+            *ngFor="let client of familyMembers"
+          >
+            <ngx-client-documents-upload
+              [client]="client"
+            ></ngx-client-documents-upload>
+          </nb-tab>
+        </nb-tabset>
+      </ng-container>
+    </ng-container>
+  </nb-card-body>
+</nb-card>
 
-        </nb-card-body>
-    </nb-card>
-</ng-container>
 <ng-template #elseTemplate>
-    <nb-card>
-        <nb-card-body>
-            <div>
-                No registered family members in the process
-            </div>
-        </nb-card-body>
-    </nb-card>
+  <div>No registered family members in the process</div>
 </ng-template>

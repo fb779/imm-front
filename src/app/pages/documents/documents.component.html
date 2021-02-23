@@ -1,1 +1,3 @@
-<ngx-client-documents-upload [nbSpinner]="spinner" *ngIf="client" [client]="client"></ngx-client-documents-upload>
+<ng-container *ngIf="client$ | async as client">
+  <ngx-client-documents-upload [client]="client"></ngx-client-documents-upload>
+</ng-container>
