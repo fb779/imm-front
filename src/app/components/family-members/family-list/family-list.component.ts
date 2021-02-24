@@ -9,11 +9,11 @@ import { tap } from "rxjs/operators";
   styleUrls: ["./family-list.component.scss"],
 })
 export class FamilyListComponent implements OnInit {
-  @Input("list") listFamilyMembers;
+  @Input("list") listFamilyMembers: any;
   @Input("visible") visible: boolean;
-  @Output() update_client: EventEmitter<any> = new EventEmitter();
-  @Output() delete_client: EventEmitter<any> = new EventEmitter();
-  @Output() setClientToProcess: EventEmitter<any> = new EventEmitter();
+  @Output() update_client: EventEmitter<any> = new EventEmitter<any>();
+  @Output() delete_client: EventEmitter<any> = new EventEmitter<any>();
+  @Output() setClientToProcess: EventEmitter<any> = new EventEmitter<any>();
 
   listClientsProcess$: Observable<any> = this._familyService.listFamilyMembers$;
 

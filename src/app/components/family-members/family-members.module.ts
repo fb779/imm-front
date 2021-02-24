@@ -21,7 +21,6 @@ import {
 
 import { DeleteFamilyMemberComponent } from "./delete-family-member/delete-family-member.component";
 import { WrapperComponent } from "./wrapper/wrapper.component";
-import { SelectFamilyMembersComponent } from "./select-family-members/select-family-members.component";
 import { ShowFamilyMembersComponent } from "./show-family-members/show-family-members.component";
 
 const nebular_family = [
@@ -46,7 +45,6 @@ const nebular_family = [
     FormFamilyMembersComponent,
     DeleteFamilyMemberComponent,
     WrapperComponent,
-    SelectFamilyMembersComponent,
     ShowFamilyMembersComponent,
   ],
   exports: [FamilyMembersComponent],

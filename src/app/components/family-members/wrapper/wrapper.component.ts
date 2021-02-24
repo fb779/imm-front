@@ -5,7 +5,7 @@ import { Observable, Subject } from "rxjs";
 
 import { FamilyService, ToastrService } from "../../../services/services.index";
 import { DeleteFamilyMemberComponent } from "../delete-family-member/delete-family-member.component";
-import { takeUntil } from "rxjs/operators";
+import { takeUntil, tap } from "rxjs/operators";
 
 @Component({
   selector: "ngx-wrapper",
@@ -15,9 +15,12 @@ import { takeUntil } from "rxjs/operators";
 export class WrapperComponent implements OnInit, OnDestroy {
   @Input("process") process: Process;
 
+  nFamilyMembers: number = 0;
+
   notifier$: Subject<any> = new Subject();
   listFamily$: Observable<any> = this._familyService.listFamilyUser$;
   listClienProcess$: Observable<any> = this._familyService.listFamilyMembers$;
+  numberFamily: number;
 
   constructor(
     protected ref: NbDialogRef<WrapperComponent>,
@@ -26,7 +29,11 @@ export class WrapperComponent implements OnInit, OnDestroy {
     private _toastr: ToastrService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this._familyService.numberFamilyMembers$.subscribe((dt) => {
+      this.numberFamily = dt;
+    });
+  }
 
   ngOnDestroy(): void {
     this._familyService.loadEditClient(null);
@@ -107,16 +114,41 @@ export class WrapperComponent implements OnInit, OnDestroy {
   }
 
   setClientToProcess(client) {
+    if (
+      client.checked &&
+      this.numberFamily >= parseInt(this.process.companion)
+    ) {
+      this._familyService.chageProcess(this.process._id);
+      this._toastr.toastrGenericMessage(
+        "You can't add more family members",
+        "Family members",
+        "warning"
+      );
+      return;
+    }
+
     if (client.checked) {
       this._familyService
         .addClientProcess(this.process._id, client._id)
         .pipe(takeUntil(this.notifier$))
-        .subscribe();
+        .subscribe(() => {
+          this._toastr.toastrGenericMessage(
+            "Added family member successful",
+            "Family members",
+            "success"
+          );
+        });
     } else {
       this._familyService
         .removeClientProcess(this.process._id, client._id)
         .pipe(takeUntil(this.notifier$))
-        .subscribe();
+        .subscribe(() => {
+          this._toastr.toastrGenericMessage(
+            "Removed family member successful",
+            "Family members",
+            "success"
+          );
+        });
     }
   }
 }

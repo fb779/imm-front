@@ -43,7 +43,7 @@ export class FamilyService {
   );
 
   numberFamilyMembers$ = this.listFamilyMembers$.pipe(
-    map((el) => parseInt(el.length))
+    map((dt) => parseInt(dt.length) - 1)
   );
 
   constructor(private _http: HttpClient) {}
