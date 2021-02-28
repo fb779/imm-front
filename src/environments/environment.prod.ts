@@ -6,6 +6,8 @@
  */
 export const environment = {
   production: true,
-  api_url: "http://localhost:3000",
+  // api_url: "http://localhost:3000",
+  // api_url: "http://167.172.250.40",
+  api_url: "http://portal.visalab.ca",
   api_version: "/api/v1",
 };

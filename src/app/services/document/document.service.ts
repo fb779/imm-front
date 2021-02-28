@@ -88,7 +88,7 @@ export class DocumentService {
   }
 
   getDocumentFile(document: Document) {
-    const url = `${environment.api_url}${environment.api_version}/files/${document.process}/${document.client}/${document.file_name}`;
+    const url = `${environment.api_url}${environment.api_version}/files/${document.client}/${document.file_name}`;
 
     this._http
       .get(url, { responseType: "blob" })
